@@ -1359,8 +1359,8 @@ a {
 }
 
 .cta--whatsapp {
-  background-color: #25D366;
-  color: white;
+  background-color: var(--color-button);
+  color: var(--color-bg);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1368,7 +1368,7 @@ a {
 }
 
 .cta--whatsapp:hover {
-  background-color: #1ebd5a;
+  background-color: var(--color-button-hover);
 }
 
 .cta--whatsapp svg {
