@@ -1459,9 +1459,10 @@ a {
    =================================================================== */
 
 .progressive-form {
-  max-width: 32rem;
+  max-width: 28rem;
   margin: var(--space-5) auto 0;
   text-align: left;
+  padding: var(--space-4);
 }
 
 .form-step {
@@ -1473,73 +1474,94 @@ a {
   display: block;
 }
 
+.form-step + .form-step {
+  margin-top: var(--space-4);
+}
+
 .form-label {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 400;
   color: var(--color-ink);
   margin-bottom: var(--space-2);
+  letter-spacing: 0.01em;
 }
 
 .form-input {
   width: 100%;
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-3) var(--space-3);
   font-family: var(--font-body);
   font-size: 0.95rem;
+  font-weight: 300;
   color: var(--color-ink);
-  background-color: var(--color-bg-soft);
-  border: 1px solid var(--color-line-soft);
-  border-radius: 0.5rem;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-line);
+  border-radius: 0;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  letter-spacing: 0.01em;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--color-rose);
-  background-color: #FFF9F7;
+  border-bottom-color: var(--color-rose);
+  background-color: transparent;
+  padding-bottom: calc(var(--space-3) - 1px);
 }
 
 .form-input::placeholder {
   color: var(--color-ink-faint);
+  font-weight: 300;
+}
+
+.form-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  color: var(--color-rose);
 }
 
 .form-actions {
   display: flex;
   gap: var(--space-3);
   justify-content: center;
-  margin-top: var(--space-4);
+  margin-top: var(--space-5);
 }
 
 .form-btn {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 400;
-  padding: 1rem 2rem;
+  padding: 0.95rem 2.5rem;
   border-radius: 999px;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .form-btn--secondary {
-  background-color: var(--color-bg-soft);
+  background-color: transparent;
   color: var(--color-ink);
-  border: 1px solid var(--color-line-soft);
+  border-color: var(--color-line);
 }
 
 .form-btn--secondary:hover {
   border-color: var(--color-rose);
   color: var(--color-rose);
+  background-color: rgba(156, 100, 80, 0.02);
 }
 
 .form-btn--primary {
   background-color: var(--color-button);
   color: var(--color-bg);
+  border-color: var(--color-button);
 }
 
 .form-btn--primary:hover {
   background-color: var(--color-button-hover);
+  border-color: var(--color-button-hover);
   transform: translateY(-2px);
 }
 
