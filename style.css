@@ -1359,6 +1359,25 @@ a {
   }
 }
 
+.cta--whatsapp {
+  background-color: #25D366;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.cta--whatsapp:hover {
+  background-color: #1ebd5a;
+}
+
+.cta--whatsapp svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
 
 /* ===================================================================
    8. Binnenkort beschikbaar
