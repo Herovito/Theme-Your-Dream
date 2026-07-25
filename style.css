@@ -428,6 +428,7 @@ a {
 .site-nav {
   pointer-events: auto;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: var(--space-4);
   flex-shrink: 0;
@@ -435,14 +436,17 @@ a {
 
 .site-nav--left {
   order: 1;
+  flex-direction: row;
 }
 
 .site-nav--center {
   order: 2;
+  flex-direction: row;
 }
 
 .site-nav--right {
   order: 3;
+  flex-direction: row;
 }
 
 .nav-item {
