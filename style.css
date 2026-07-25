@@ -366,23 +366,21 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
-  gap: var(--space-3);
-  padding: var(--space-4);
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-4);
   background-color: rgba(237, 225, 210, 0.98);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-line-soft);
   pointer-events: none;
+  min-height: 8rem;
 }
 
 .site-header__logo {
   pointer-events: auto;
-  grid-column: 1;
-  grid-row: 1;
   position: static;
   transform: none;
   display: flex;
@@ -398,7 +396,7 @@ a {
 }
 
 .site-header__logo img {
-  width: 150px;
+  width: 140px;
   height: auto;
   display: block;
   transition: transform 0.3s ease;
@@ -420,11 +418,10 @@ a {
 /* Navigation — all three in one row below logo */
 .site-header > nav {
   pointer-events: auto;
-  grid-column: 1;
-  grid-row: 2;
   display: flex;
   align-items: center;
-  gap: var(--space-5);
+  justify-content: center;
+  gap: var(--space-6);
   flex-shrink: 0;
 }
 
