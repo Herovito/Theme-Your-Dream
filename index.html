@@ -22,10 +22,42 @@
        Header: alleen logo, geen menu
        ============================================ -->
   <header class="site-header">
+    <!-- Navigation Left -->
+    <nav class="site-nav site-nav--left">
+      <div class="nav-item nav-item--dropdown">
+        <button class="nav-link nav-link--dropdown" aria-haspopup="true" aria-expanded="false">
+          Themaboxen
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown">
+          <a href="box-celebrate.html" class="nav-dropdown__item">Time to Celebrate</a>
+          <a href="box-natural.html" class="nav-dropdown__item">Natural</a>
+          <a href="box-warm-cosy.html" class="nav-dropdown__item">Warm &amp; Cosy</a>
+          <a href="box-your-day.html" class="nav-dropdown__item">It's Your Day</a>
+        </div>
+      </div>
+      <a href="eventstyling.html" class="nav-link">Eventstyling</a>
+    </nav>
+
+    <!-- Logo Center -->
     <a class="site-header__logo" href="index.html" aria-label="Theme Your Dream, terug naar home">
       <img src="logo.png" alt="Theme Your Dream" width="720" height="380" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
       <span class="site-header__logo-text" style="display:none">Theme Your Dream</span>
     </a>
+
+    <!-- Navigation Right -->
+    <nav class="site-nav site-nav--right">
+      <a href="over_dionne.html" class="nav-link">Over Dionne</a>
+    </nav>
+
+    <!-- Mobile Toggle -->
+    <button class="site-header__menu-toggle" aria-label="Menu openen" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
 
   <main id="main-content" class="page">

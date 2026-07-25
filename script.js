@@ -238,6 +238,66 @@
     showStep(0);
   }
 
+  // ===== 12. NAVIGATION DROPDOWN & MOBILE MENU =====
+  function initNavigation() {
+    const dropdownBtn = document.querySelector('.nav-link--dropdown');
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const navDropdownItems = document.querySelectorAll('.nav-dropdown__item');
+    const menuToggle = document.querySelector('.site-header__menu-toggle');
+    const navs = document.querySelectorAll('.site-nav');
+
+    // Dropdown functionality
+    if (dropdownBtn && navDropdown) {
+      dropdownBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = dropdownBtn.getAttribute('aria-expanded') === 'true';
+        dropdownBtn.setAttribute('aria-expanded', !isOpen);
+        navDropdown.closest('.nav-item--dropdown').classList.toggle('open');
+      });
+
+      // Close dropdown when item clicked
+      navDropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+          dropdownBtn.setAttribute('aria-expanded', 'false');
+          navDropdown.closest('.nav-item--dropdown').classList.remove('open');
+        });
+      });
+
+      // Close dropdown on outside click
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-item--dropdown')) {
+          dropdownBtn.setAttribute('aria-expanded', 'false');
+          navDropdown.closest('.nav-item--dropdown').classList.remove('open');
+        }
+      });
+    }
+
+    // Mobile menu toggle
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isOpen);
+
+        navs.forEach(nav => {
+          nav.classList.toggle('mobile-open');
+        });
+      });
+
+      // Close mobile menu on nav link click
+      const allNavLinks = document.querySelectorAll('.nav-link');
+      allNavLinks.forEach(link => {
+        if (link !== dropdownBtn) {
+          link.addEventListener('click', () => {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            navs.forEach(nav => {
+              nav.classList.remove('mobile-open');
+            });
+          });
+        }
+      });
+    }
+  }
+
   // ===== INITIALIZATION =====
   function init() {
     // Respect prefers-reduced-motion
@@ -257,6 +317,7 @@
     initCustomCursor();
     initBackToTop();
     initProgressiveContactForm();
+    initNavigation();
   }
 
   // Wait for DOM ready
