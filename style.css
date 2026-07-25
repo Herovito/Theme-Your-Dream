@@ -659,6 +659,7 @@ a {
   padding: var(--space-3);
   background:
     linear-gradient(160deg, rgba(140, 146, 117, 0.05), rgba(156, 100, 80, 0.05));
+  transition: border-color 0.3s ease;
 }
 
 .mood-card--photo {
@@ -666,9 +667,15 @@ a {
   overflow: hidden;
 }
 
+.mood-card--photo:hover,
+.mood-card--photo:focus-within {
+  border-color: var(--color-rose);
+}
+
 .mood-card__img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   display: block;
   border-radius: 0.75rem;
@@ -719,15 +726,17 @@ a {
   flex-wrap: wrap;
   background-color: var(--color-bg-soft);
   border-radius: 0.75rem;
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-5) var(--space-4);
+  justify-content: center;
 }
 
 .box-meta__item {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  flex: 1;
-  min-width: 8rem;
+  flex: 0 1 auto;
+  min-width: 10rem;
+  text-align: center;
 }
 
 .box-meta__label {
