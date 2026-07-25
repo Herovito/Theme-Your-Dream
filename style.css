@@ -415,12 +415,12 @@ a {
   letter-spacing: 0.01em;
 }
 
-/* Navigation — all three in one row below logo */
+/* Navigation — all nav elements in one horizontal row below logo */
 .site-header > nav {
   pointer-events: auto;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
   gap: var(--space-6);
   flex-shrink: 0;
 }
@@ -436,17 +436,14 @@ a {
 
 .site-nav--left {
   order: 1;
-  flex-direction: row;
 }
 
 .site-nav--center {
   order: 2;
-  flex-direction: row;
 }
 
 .site-nav--right {
   order: 3;
-  flex-direction: row;
 }
 
 .nav-item {
