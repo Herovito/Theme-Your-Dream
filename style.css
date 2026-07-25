@@ -370,7 +370,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-3);
+  gap: var(--space-4);
   padding: var(--space-5) var(--space-4);
   background-color: rgba(237, 225, 210, 0.98);
   backdrop-filter: blur(10px);
@@ -395,7 +395,7 @@ a {
 }
 
 .site-header__logo img {
-  width: 180px;
+  width: 170px;
   height: auto;
   display: block;
   transition: transform 0.3s ease;
@@ -418,9 +418,10 @@ a {
 .site-nav {
   pointer-events: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: var(--space-2);
+  justify-content: center;
+  gap: var(--space-5);
   flex-shrink: 0;
 }
 
