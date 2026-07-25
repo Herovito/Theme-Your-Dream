@@ -108,6 +108,85 @@ html {
   }
 }
 
+/* ===================================================================
+   Animation Keyframes
+   =================================================================== */
+
+@keyframes reveal-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-once {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(140, 95, 70, 0.7);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 8px rgba(140, 95, 70, 0);
+  }
+}
+
+@keyframes wave-float {
+  0%, 100% {
+    transform: translateY(0px) scaleY(1);
+  }
+  50% {
+    transform: translateY(-4px) scaleY(1.02);
+  }
+}
+
+@keyframes zoom-in-view {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes step-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes image-fade-in {
+  from {
+    filter: blur(10px);
+    opacity: 0.7;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-ink);
@@ -121,6 +200,16 @@ body {
 img {
   display: block;
   max-width: 100%;
+}
+
+img.lazy-load-fade {
+  filter: blur(10px);
+  opacity: 0.7;
+  transition: filter 0.5s ease, opacity 0.5s ease;
+}
+
+img.lazy-load-fade.loaded {
+  animation: image-fade-in 0.5s ease-out forwards;
 }
 
 a {
@@ -200,6 +289,16 @@ a {
   color: var(--color-ink);
   max-width: 32rem;
   margin: 0 auto var(--space-3);
+  opacity: 0;
+  animation: reveal-fade-in 0.6s ease-out forwards;
+}
+
+.section__heading.reveal-in .section__title {
+  animation-delay: 0.1s;
+}
+
+.section__heading.reveal-in .section__eyebrow {
+  animation: reveal-fade-in 0.6s ease-out forwards;
 }
 
 .section__lead {
@@ -411,6 +510,8 @@ a {
   padding: var(--space-6) var(--space-3) var(--space-5);
   max-width: 38rem;
   margin: 0 auto;
+  opacity: 0;
+  animation: reveal-fade-in 0.8s ease-out forwards;
 }
 
 .page-hero__eyebrow {
@@ -537,6 +638,8 @@ a {
 .process__step {
   text-align: center;
   padding: 0 var(--space-2);
+  opacity: 0;
+  animation: step-reveal 0.5s ease-out forwards;
 }
 
 .process__step-label {
@@ -589,6 +692,7 @@ a {
 .story-wave {
   display: block;
   width: 100%;
+  will-change: transform;
 }
 
 .story-section__inner {
@@ -679,6 +783,11 @@ a {
   object-fit: cover;
   display: block;
   border-radius: 0.75rem;
+  transition: transform 0.6s ease;
+}
+
+.mood-card__img.zoom-in-view {
+  animation: zoom-in-view 0.8s ease-out forwards;
 }
 
 .mood-card__text {
@@ -778,6 +887,12 @@ a {
   max-width: var(--measure);
   margin: 0 auto;
   text-align: center;
+  opacity: 0;
+  animation: reveal-fade-in 0.6s ease-out forwards;
+}
+
+.content-block.reveal-in {
+  animation-delay: 0.15s;
 }
 
 .content-block__title {
@@ -983,11 +1098,17 @@ a {
   border-radius: 999px;
   letter-spacing: 0.03em;
   transition: background-color 0.4s ease, transform 0.4s ease;
+  border: none;
+  cursor: pointer;
 }
 
 .cta:hover {
   background-color: var(--color-button-hover);
   transform: translateY(-2px);
+}
+
+.cta.pulse-once {
+  animation: pulse-once 1.2s ease-in-out 1;
 }
 
 .cta:focus-visible {
@@ -1330,6 +1451,137 @@ a {
 .skip-link:focus {
   left: var(--space-2);
   top: var(--space-2);
+}
+
+
+/* ===================================================================
+   Progressive Contact Form
+   =================================================================== */
+
+.progressive-form {
+  max-width: 32rem;
+  margin: var(--space-5) auto 0;
+  text-align: left;
+}
+
+.form-step {
+  display: none;
+  animation: slideIn 0.3s ease-out;
+}
+
+.form-step.active {
+  display: block;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin-bottom: var(--space-2);
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-line-soft);
+  border-radius: 0.5rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-rose);
+  background-color: #FFF9F7;
+}
+
+.form-input::placeholder {
+  color: var(--color-ink-faint);
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+
+.form-btn {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-btn--secondary {
+  background-color: var(--color-bg-soft);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line-soft);
+}
+
+.form-btn--secondary:hover {
+  border-color: var(--color-rose);
+  color: var(--color-rose);
+}
+
+.form-btn--primary {
+  background-color: var(--color-button);
+  color: var(--color-bg);
+}
+
+.form-btn--primary:hover {
+  background-color: var(--color-button-hover);
+  transform: translateY(-2px);
+}
+
+
+/* ===================================================================
+   Back to Top Button
+   =================================================================== */
+
+#back-to-top {
+  position: fixed;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-button);
+  color: var(--color-bg);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 40;
+  padding: 0;
+}
+
+#back-to-top:hover {
+  background-color: var(--color-button-hover);
+  transform: translateY(-4px);
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+#back-to-top svg {
+  width: 20px;
+  height: 20px;
 }
 
 

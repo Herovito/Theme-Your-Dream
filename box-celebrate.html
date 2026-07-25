@@ -95,7 +95,30 @@
       <p class="section__lead">
         Wil je deze box reserveren of heb je een vraag over de inhoud?
       </p>
-      <a class="cta" href="mailto:Dionne@ThemeYourDream.nl">Reserveer jouw themabox</a>
+
+      <!-- Progressive Contact Form -->
+      <form id="progressive-contact-form" class="progressive-form" method="POST" action="mailto:Dionne@ThemeYourDream.nl" enctype="text/plain">
+        <div class="form-step active">
+          <label for="email" class="form-label">Je e-mailadres</label>
+          <input type="email" id="email" name="email" placeholder="naam@voorbeeld.nl" required class="form-input">
+        </div>
+        <div class="form-step">
+          <label for="idea" class="form-label">Wat wil je weten of toevoegen?</label>
+          <textarea id="idea" name="idea" placeholder="Eventuele vragen of bijzonderheden" rows="4" class="form-input"></textarea>
+        </div>
+        <div class="form-step">
+          <label for="date" class="form-label">Wanneer wil je de box gebruiken?</label>
+          <input type="date" id="date" name="date" class="form-input">
+        </div>
+        <div class="form-actions">
+          <button type="button" data-action="prev" class="form-btn form-btn--secondary">Terug</button>
+          <button type="button" data-action="next" class="form-btn form-btn--primary cta">Volgende</button>
+        </div>
+      </form>
+
+      <p style="margin-top: var(--space-3); font-size: 0.9rem; color: var(--color-ink-soft);">
+        Of mail direct naar <a href="mailto:Dionne@ThemeYourDream.nl" style="text-decoration: underline; color: inherit;">Dionne@ThemeYourDream.nl</a>
+      </p>
     </section>
 
     <section class="also-see" aria-label="Ook bekijken">
@@ -109,6 +132,13 @@
     </section>
 
   </main>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Terug naar boven">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 2L2 10M10 2L18 10M10 2V18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
 
   <footer class="site-footer">
     <img src="logo.png" alt="Theme Your Dream" class="site-footer__logo" width="720" height="380">
