@@ -18,42 +18,48 @@
 
   <a class="skip-link" href="#main-content">Direct naar inhoud</a>
 
+  <!-- ============================================
+       Header: logo + hoofdmenu.
+       Eén nav met één lijst; identiek op alle pagina's.
+       ============================================ -->
   <header class="site-header">
     <a class="site-header__logo" href="index.html" aria-label="Theme Your Dream, terug naar home">
       <img src="logo.png" alt="Theme Your Dream" width="720" height="380" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
       <span class="site-header__logo-text" style="display:none">Theme Your Dream</span>
     </a>
 
-    <nav class="site-nav site-nav--left">
-      <div class="nav-item nav-item--dropdown">
-        <button class="nav-link nav-link--dropdown" aria-haspopup="true" aria-expanded="false">
-          Themaboxen
-          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="nav-dropdown">
-          <a href="box-celebrate.html" class="nav-dropdown__item">Time to Celebrate</a>
-          <a href="box-natural.html" class="nav-dropdown__item">Natural</a>
-          <a href="box-warm-cosy.html" class="nav-dropdown__item">Warm &amp; Cosy</a>
-          <a href="box-your-day.html" class="nav-dropdown__item">It's Your Day</a>
-        </div>
-      </div>
-    </nav>
-
-    <nav class="site-nav site-nav--center">
-      <a href="eventstyling.html" class="nav-link">Eventstyling</a>
-    </nav>
-
-    <nav class="site-nav site-nav--right">
-      <a href="over_dionne.html" class="nav-link">Over Dionne</a>
-    </nav>
-
-    <button class="site-header__menu-toggle" aria-label="Menu openen" aria-expanded="false">
+    <button class="site-header__menu-toggle" type="button" aria-label="Menu openen" aria-expanded="false" aria-controls="site-nav">
       <span></span>
       <span></span>
       <span></span>
     </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Hoofdmenu">
+      <ul class="site-nav__list">
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="nav-link nav-link--dropdown" type="button"
+                  aria-expanded="false" aria-controls="nav-themaboxen">
+            Themaboxen
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="nav-dropdown" id="nav-themaboxen">
+            <li><a class="nav-dropdown__item" href="themaboxen.html">Alle themaboxen</a></li>
+            <li><a class="nav-dropdown__item" href="box-celebrate.html">Time to Celebrate</a></li>
+            <li><a class="nav-dropdown__item" href="box-natural.html">Natural</a></li>
+            <li><a class="nav-dropdown__item" href="box-warm-cosy.html">Warm &amp; Cosy</a></li>
+            <li><a class="nav-dropdown__item" href="box-your-day.html">It's Your Day</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item">
+          <a class="nav-link" href="eventstyling.html" aria-current="page">Eventstyling</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="nav-link" href="over_dionne.html">Over Dionne</a>
+        </li>
+      </ul>
+    </nav>
   </header>
 
   <main id="main-content" class="page">
@@ -182,7 +188,9 @@
         Klaar om je feest onvergetelijk te maken?
       </p>
 
-      <a href="https://wa.me/31612345678?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20eventstyling." class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
+      <!-- [VERVANGEN DOOR DIONNE: WhatsApp-nummer] Nu de placeholder 31000000000.
+           Nummerformaat en de volledige lijst met plaatsen: DEPLOYMENT_CHECKLIST.md. -->
+      <a href="https://wa.me/31000000000?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20eventstyling." class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-9.746 9.798c0 2.734.732 5.408 2.12 7.727L2.513 21.92l8.329-2.183c2.262 1.23 4.807 1.884 7.516 1.884 5.41 0 9.799-4.39 9.799-9.799 0-2.618-.963-5.067-2.725-6.976-1.762-1.909-4.126-3.058-6.599-3.058z"/>
         </svg>
@@ -227,7 +235,8 @@
 
     <div class="site-footer__legal">
       <span>© 2026 Theme Your Dream</span>
-      <span>KvK: xxxxxxxx &nbsp;·&nbsp; Btw-id: NLxxxxxxxxxBxx</span>
+      <!-- [VERVANGEN DOOR DIONNE: KvK-nummer en btw-id] Zie DEPLOYMENT_CHECKLIST.md. -->
+      <span>KvK: [VERVANGEN DOOR DIONNE: KvK-nummer] &nbsp;·&nbsp; Btw-id: [VERVANGEN DOOR DIONNE: btw-id]</span>
       <div class="site-footer__legal-links">
         <a href="Algemene voorwaarden Theme Your Dream.pdf" target="_blank" rel="noopener">Algemene voorwaarden</a>
         <a href="privacyverklaring.html">Privacyverklaring</a>
@@ -235,5 +244,6 @@
     </div>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>

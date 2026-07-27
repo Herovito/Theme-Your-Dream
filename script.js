@@ -114,7 +114,7 @@
     const style = document.createElement('style');
     style.textContent = `
       body {
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="none" stroke="%234A3328" stroke-width="1.5"/></svg>') 12 12, auto;
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="none" stroke="%234A3329" stroke-width="1.5"/></svg>') 12 12, auto;
       }
       a, button, [role="button"] {
         cursor: pointer;
@@ -148,13 +148,15 @@
   function initScrollProgress() {
     const progressBar = document.createElement('div');
     progressBar.id = 'scroll-progress-bar';
+    // Kleur en laag komen uit de tokens in style.css, zodat de balk
+    // meeverandert wanneer het palet wijzigt.
     progressBar.style.cssText = `
       position: fixed;
       top: 0;
       left: 0;
       height: 2px;
-      background-color: #9C6450;
-      z-index: 9999;
+      background-color: var(--color-accent);
+      z-index: var(--z-scroll-progress);
       width: 0%;
       transition: width 0.1s ease;
     `;
@@ -238,64 +240,77 @@
     showStep(0);
   }
 
-  // ===== 12. NAVIGATION DROPDOWN & MOBILE MENU =====
+  // ===== 12. HOOFDMENU: THEMABOXEN-DISCLOSURE + MOBIEL MENU =====
+  // De navigatie werkt zonder JavaScript: alle menu-items zijn gewone
+  // links. JavaScript voegt alleen het open- en dichtklappen toe.
   function initNavigation() {
-    const dropdownBtn = document.querySelector('.nav-link--dropdown');
-    const navDropdown = document.querySelector('.nav-dropdown');
-    const navDropdownItems = document.querySelectorAll('.nav-dropdown__item');
-    const menuToggle = document.querySelector('.site-header__menu-toggle');
-    const navs = document.querySelectorAll('.site-nav');
+    const header = document.querySelector('.site-header');
+    if (!header) return;
 
-    // Dropdown functionality
-    if (dropdownBtn && navDropdown) {
-      dropdownBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isOpen = dropdownBtn.getAttribute('aria-expanded') === 'true';
-        dropdownBtn.setAttribute('aria-expanded', !isOpen);
-        navDropdown.closest('.nav-item--dropdown').classList.toggle('open');
-      });
+    const nav = header.querySelector('.site-nav');
+    const menuToggle = header.querySelector('.site-header__menu-toggle');
+    const dropdownBtn = header.querySelector('.nav-link--dropdown');
+    const dropdownItem = dropdownBtn && dropdownBtn.closest('.site-nav__item--dropdown');
 
-      // Close dropdown when item clicked
-      navDropdownItems.forEach(item => {
-        item.addEventListener('click', () => {
-          dropdownBtn.setAttribute('aria-expanded', 'false');
-          navDropdown.closest('.nav-item--dropdown').classList.remove('open');
-        });
-      });
+    function setDropdown(open) {
+      if (!dropdownBtn || !dropdownItem) return;
+      dropdownBtn.setAttribute('aria-expanded', String(open));
+      dropdownItem.classList.toggle('is-open', open);
+    }
 
-      // Close dropdown on outside click
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav-item--dropdown')) {
-          dropdownBtn.setAttribute('aria-expanded', 'false');
-          navDropdown.closest('.nav-item--dropdown').classList.remove('open');
-        }
+    function setMenu(open) {
+      if (!menuToggle || !nav) return;
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+      nav.classList.toggle('is-open', open);
+      if (!open) setDropdown(false);
+    }
+
+    // Themaboxen open- en dichtklappen. Op desktop opent de lijst ook
+    // op hover (CSS); de knop blijft nodig voor touch en toetsenbord.
+    if (dropdownBtn) {
+      dropdownBtn.addEventListener('click', () => {
+        setDropdown(dropdownBtn.getAttribute('aria-expanded') !== 'true');
       });
     }
 
-    // Mobile menu toggle
     if (menuToggle) {
       menuToggle.addEventListener('click', () => {
-        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', !isOpen);
-
-        navs.forEach(nav => {
-          nav.classList.toggle('mobile-open');
-        });
-      });
-
-      // Close mobile menu on nav link click
-      const allNavLinks = document.querySelectorAll('.nav-link');
-      allNavLinks.forEach(link => {
-        if (link !== dropdownBtn) {
-          link.addEventListener('click', () => {
-            menuToggle.setAttribute('aria-expanded', 'false');
-            navs.forEach(nav => {
-              nav.classList.remove('mobile-open');
-            });
-          });
-        }
+        setMenu(menuToggle.getAttribute('aria-expanded') !== 'true');
       });
     }
+
+    // Klik buiten de header sluit alles wat open staat.
+    document.addEventListener('click', (event) => {
+      if (header.contains(event.target)) return;
+      setDropdown(false);
+      setMenu(false);
+    });
+
+    // Escape sluit eerst de themaboxenlijst, daarna het mobiele menu,
+    // en zet de focus terug op de knop die het opende.
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      if (dropdownItem && dropdownItem.classList.contains('is-open')) {
+        setDropdown(false);
+        dropdownBtn.focus();
+      } else if (nav && nav.classList.contains('is-open')) {
+        setMenu(false);
+        menuToggle.focus();
+      }
+    });
+
+    // Een gekozen link sluit het menu, zodat de nieuwe pagina niet met
+    // een open menubalk begint wanneer de link naar een anker wijst.
+    nav && nav.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setMenu(false);
+    });
+
+    // Verbreedt het venster naar desktop, dan mag het mobiele menu geen
+    // verborgen toestand achterlaten.
+    const desktop = window.matchMedia('(min-width: 900px)');
+    const syncViewport = () => { if (desktop.matches) setMenu(false); };
+    desktop.addEventListener('change', syncViewport);
   }
 
   // ===== INITIALIZATION =====

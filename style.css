@@ -7,7 +7,7 @@
    3. Achtergrond
    4. Layout / frame / section
    5. Logo (brand, homepage hero)
-   5b. Site header (logo only, geen menu)
+   5b. Site header (logo + horizontale menubalk)
    5c. Zachte verwijzing onderaan subpagina's
    6. Hero
    6b. Pagina hero (subpagina's)
@@ -28,39 +28,79 @@
 /* ===================================================================
    1. Design tokens
    -------------------------------------------------------------------
-   Kleurpalet uitsluitend warme natuurtinten, afgeleid van het
-   officiële logo (donkerbruin + oudroze) aangevuld met een stille
-   groentint als gevraagd. Geen zwart, geen spierwit, geen goud.
+   De zes merkkleuren staan hieronder exact zoals in het merkhandboek.
+   Ze worden nergens anders in dit bestand als hexwaarde herhaald;
+   alle regels verwijzen naar de semantische tokens eronder.
+
+   Twee kleuren uit het handboek halen als tekstkleur geen WCAG AA:
+   walnut haalt 4.29:1 en copper 3.69:1 op cream, terwijl 4.5:1 nodig
+   is. Daarom bestaat er van beide één verdiepte variant met dezelfde
+   tint. Die verdiepte varianten zijn uitsluitend bedoeld voor tekst,
+   links en knoppen; voor vlakken en randen blijven de handboekkleuren
+   zelf in gebruik.
+
+   Alle onderstaande verhoudingen zijn gemeten tegen de werkelijke
+   achtergrond (cream / linen / old pink) volgens WCAG 2.1 1.4.3.
    =================================================================== */
 
 :root {
-  /* Kleur — achtergrond */
-  --color-bg: #EDE1D2;          /* warme zand-beige, hoofdachtergrond */
-  --color-bg-soft: #E2CDBA;     /* dieper zand, voor secties */
+  /* --- Merkkleuren (merkhandboek, niet wijzigen) ------------------- */
+  --color-cream:      #F7F1EA;  /* hoofdachtergrond */
+  --color-linen:      #EEE6DE;  /* subtiele sectieachtergrond */
+  --color-dark-brown: #4A3329;  /* tekst en navigatie */
+  --color-walnut:     #8C6B5A;  /* accent, alleen vlakken en randen */
+  --color-old-pink:   #C7A49A;  /* accentvlak, themaboxen-sectie */
+  --color-copper:     #A76F5B;  /* accent, alleen vlakken en randen */
 
-  /* Sectieachtergronden — ook gebruikt in JS-golfanimatie.
-     Alle drie op één centrale plek zodat kleurwijzigingen
-     nooit door HTML en JS gesynchroniseerd hoeven te worden. */
-  --color-warm-cream: #EDE1D2;  /* identiek aan --color-bg */
-  --color-soft-sand:  #E2CDBA;  /* identiek aan --color-bg-soft */
-  --color-muted-rose: #C9A492;  /* oud-roze, themaboxen-sectie */
+  /* --- Verdiepte varianten voor tekst (zelfde tint, donkerder) ----- */
+  --color-walnut-deep: #6B5646; /* 6.15:1 op cream, 5.59:1 op linen */
+  --color-copper-deep: #7A5240; /* 6.02:1 op cream, 5.47:1 op linen */
 
-  /* Kleur — tekst */
-  --color-ink: #4A3528;         /* donkerbruin, hoofdtekst (uit logo) */
-  --color-ink-soft: #7C6553;    /* gedempt bruin, secundaire tekst */
-  --color-ink-faint: #7E6A55;   /* leesbare bruintint, labels (AA, 4.66:1) */
+  /* --- Achtergrond -------------------------------------------------
+     Ook gelezen door de golfanimatie in index.html, zodat kleur-
+     wijzigingen nooit los in HTML of JS bijgewerkt hoeven te worden. */
+  --color-bg: var(--color-cream);
+  --color-bg-soft: var(--color-linen);
+  --color-card-bg: var(--color-linen);
 
-  /* Kleur — accenten */
-  --color-rose: #9C6450;        /* oudroze/terracotta uit logo (AA, 4.37:1) */
-  --color-sage: #8C9275;        /* stille warme groentint, accent */
-  --color-button: #8C5F46;      /* knopkleur, warm zand/terracotta (AA, 4.95:1) */
-  --color-button-hover: #7A5240;
+  /* Halftransparante headerbalk: cream met 96% dekking, zodat de
+     inhoud er zichtbaar onderdoor beweegt zonder tekst te storen. */
+  --color-header-bg: rgba(247, 241, 234, 0.96);
 
-  /* Lijnen / randen */
-  --color-line: rgba(74, 53, 40, 0.12);
-  --color-line-soft: rgba(74, 53, 40, 0.08);
-  --color-focus: #4A3528;
-  --color-card-bg: #EAE0D2;
+  /* --- Tekst ------------------------------------------------------- */
+  --color-ink: var(--color-dark-brown);        /* 10.42:1 op cream */
+  --color-ink-soft: var(--color-walnut-deep);  /* 6.15:1 op cream */
+  /* Labels en kleine bovenschriften. Was een lichtere tint, maar die
+     bleef op linen onder 4.5:1. Blijft als eigen token bestaan zodat
+     labelgebruik semantisch benoemd blijft. */
+  --color-ink-faint: var(--color-walnut-deep);
+
+  /* --- Accenten ---------------------------------------------------- */
+  --color-accent: var(--color-copper-deep);    /* links, cursief, iconen */
+  --color-button: var(--color-copper-deep);    /* cream tekst: 6.02:1 */
+  --color-button-hover: var(--color-dark-brown); /* cream tekst: 10.42:1 */
+
+  /* --- Zeer lichte kleurwassingen ----------------------------------
+     Merkkleuren op lage dekking, voor achtergrondgloed en hover-
+     vlakken. Als token, omdat rgba() geen var() kan bevatten en de
+     hexwaarden anders door het bestand verspreid zouden raken. */
+  --color-walnut-tint: rgba(140, 107, 90, 0.05);        /* walnut 5% */
+  --color-copper-tint: rgba(167, 111, 91, 0.05);        /* copper 5% */
+  --color-copper-tint-strong: rgba(167, 111, 91, 0.1);  /* copper 10% */
+
+  /* --- Lijnen / randen / focus ------------------------------------- */
+  --color-line: rgba(74, 51, 41, 0.14);
+  --color-line-soft: rgba(74, 51, 41, 0.09);
+  --color-focus: var(--color-dark-brown);
+
+  /* --- Lagen -------------------------------------------------------
+     Alleen elementen die elkaar werkelijk kunnen overlappen. De
+     skip link moet boven de sticky header liggen, anders is hij bij
+     focus onzichtbaar. */
+  --z-back-to-top: 40;
+  --z-header: 50;
+  --z-skip-link: 60;
+  --z-scroll-progress: 70;
 
   /* Layout */
   --header-height: 6.5rem;
@@ -123,14 +163,16 @@ html {
   }
 }
 
+/* De gloed is --color-copper-deep (#7A5240) op wisselende dekking.
+   rgba() kan geen var() bevatten, vandaar de losse waarde hier. */
 @keyframes pulse-once {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(140, 95, 70, 0.7);
+    box-shadow: 0 0 0 0 rgba(122, 82, 64, 0.7);
   }
   50% {
     transform: scale(1.02);
-    box-shadow: 0 0 0 8px rgba(140, 95, 70, 0);
+    box-shadow: 0 0 0 8px rgba(122, 82, 64, 0);
   }
 }
 
@@ -231,8 +273,8 @@ a {
   min-height: 100vh;
   background-color: var(--color-bg);
   background-image:
-    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(140, 146, 117, 0.028), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 85% 100%, rgba(156, 100, 80, 0.032), transparent 60%);
+    radial-gradient(ellipse 80% 60% at 20% 0%, var(--color-walnut-tint), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 85% 100%, var(--color-copper-tint), transparent 60%);
 }
 
 
@@ -353,34 +395,40 @@ a {
 /* ===================================================================
    5b. Site header
    -------------------------------------------------------------------
-   Geen navigatiebalk, geen menu. Alleen een klein, klikbaar logo
-   bovenaan, dat teruglinkt naar de homepage. Het logo bestand bevat
-   ook het opschrift "Theme Your Dream" en "Event styling & verhuur"
-   onder het TYD-monogram; voor de kleine header tonen we via een
-   vaste hoogte en object-position alleen het bovenste monogram, zo
-   blijft het herkenbaar zonder rommelig te ogen op klein formaat.
-   Er bestaat maar één logo bestand (logo.png) zodat er nooit een
-   tweede asset kan ontbreken.
+   Eén horizontale balk: logo links, hoofdmenu rechts. Het menu is
+   één <nav> met één <ul> met drie items, zodat hulpsoftware het als
+   één navigatie met drie keuzes aankondigt in plaats van als drie
+   losse navigaties.
+
+   Themaboxen is een disclosure (knop plus lijst met gewone links),
+   geen ARIA-menu. Op apparaten met een echte muis opent de lijst ook
+   op hover; op touch en met het toetsenbord doet de knop het werk,
+   zodat aria-expanded altijd de werkelijke toestand beschrijft.
+
+   Onder 900px klapt het menu onder het logo en opent het met de
+   hamburgerknop. Gesloten is het menu visibility:hidden, zodat de
+   links dan ook niet met Tab bereikbaar zijn.
    =================================================================== */
 
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: var(--z-header);
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  padding: var(--space-4) var(--space-4) var(--space-3);
-  background-color: rgba(237, 225, 210, 0.98);
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  /* min-height, geen height: de balk moet mee kunnen groeien met het
+     geopende mobiele menu en met een grotere tekstinstelling. */
+  min-height: var(--header-height);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-header-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-line-soft);
-  pointer-events: none;
 }
 
 .site-header__logo {
-  pointer-events: auto;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -401,96 +449,101 @@ a {
 }
 
 .site-header__logo:hover img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
+/* Vangnet: laadt logo.png niet, dan verschijnt de merknaam als tekst. */
 .site-header__logo-text {
-  display: none;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-ink);
 }
 
-/* Navigation wrapper — ensures all nav items stay in one row */
-.site-header > nav {
-  pointer-events: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-5);
-  flex-wrap: nowrap;
+@media (prefers-reduced-motion: reduce) {
+  .site-header__logo img {
+    transition: none;
+  }
+
+  .site-header__logo:hover img {
+    transform: none;
+  }
 }
 
-.site-nav {
-  pointer-events: auto;
+
+/* --- Hoofdmenu ----------------------------------------------------- */
+
+.site-nav__list {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: var(--space-4);
-  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.site-nav--left {
-  order: 1;
-}
-
-.site-nav--center {
-  order: 2;
-}
-
-.site-nav--right {
-  order: 3;
-}
-
-.nav-item {
-  position: relative;
-}
-
-.nav-item--dropdown {
+.site-nav__item {
   position: relative;
 }
 
 .nav-link {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 400;
   color: var(--color-ink);
   text-decoration: none;
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--space-2) 0;
-  transition: color 0.3s ease, transform 0.3s ease;
-  display: flex;
+  /* 2.75rem = 44px: volwaardig aanraakdoel, ook op desktop. */
+  min-height: 2.75rem;
+  padding: 0;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-1);
   letter-spacing: 0.01em;
   position: relative;
+  transition: color 0.3s ease;
 }
 
+/* Onderstreping als tweede, niet-kleurgebonden signaal voor hover,
+   focus en de huidige pagina. */
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: -2px;
+  bottom: 0.55rem;
   left: 0;
   width: 0;
   height: 1px;
-  background-color: var(--color-rose);
+  background-color: currentColor;
   transition: width 0.3s ease;
 }
 
 .nav-link:hover,
-.nav-link:focus {
-  color: var(--color-rose);
-  outline: none;
+.nav-link:focus-visible {
+  color: var(--color-accent);
 }
 
 .nav-link:hover::after,
-.nav-link:focus::after {
+.nav-link:focus-visible::after,
+.nav-link[aria-current="page"]::after {
   width: 100%;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.nav-link[aria-current="page"] {
+  color: var(--color-accent);
 }
 
 .nav-link--dropdown svg {
   width: 12px;
   height: 8px;
+  flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
@@ -498,78 +551,119 @@ a {
   transform: rotate(180deg);
 }
 
-/* Dropdown Menu */
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .nav-link::after,
+  .nav-link--dropdown svg {
+    transition: none;
+  }
+}
+
+
+/* --- Themaboxen disclosure ----------------------------------------- */
+
 .nav-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: rgba(237, 225, 210, 0.98);
+  /* z-index alleen ten opzichte van de andere headerkinderen; de
+     header zelf vormt de stapelcontext. */
+  z-index: 1;
+  list-style: none;
+  margin: var(--space-1) 0 0;
+  padding: var(--space-1) 0;
+  min-width: 13rem;
+  background-color: var(--color-header-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--color-line-soft);
   border-radius: 0.5rem;
-  min-width: 200px;
-  padding: var(--space-2) 0;
-  margin-top: var(--space-2);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
+  transform: translateY(-8px);
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-  z-index: 100;
-  backdrop-filter: blur(10px);
 }
 
-.nav-item--dropdown:hover .nav-dropdown,
-.nav-item--dropdown.open .nav-dropdown {
+/* Hover-openen alleen waar een echte muis is én de balk horizontaal
+   staat. Op touch zou :hover blijven "hangen" na een tik. */
+@media (hover: hover) and (min-width: 900px) {
+  .site-nav__item--dropdown:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.site-nav__item--dropdown.is-open .nav-dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  pointer-events: auto;
 }
 
 .nav-dropdown__item {
-  display: block;
-  padding: var(--space-2) var(--space-4);
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: var(--space-1) var(--space-3);
   color: var(--color-ink);
   text-decoration: none;
   font-size: 0.9rem;
-  font-weight: 300;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 400;
   border-left: 2px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.nav-dropdown__item:hover {
-  background-color: rgba(156, 100, 80, 0.08);
-  color: var(--color-rose);
-  border-left-color: var(--color-rose);
+.nav-dropdown__item:hover,
+.nav-dropdown__item:focus-visible,
+.nav-dropdown__item[aria-current="page"] {
+  color: var(--color-accent);
+  border-left-color: var(--color-accent);
+  background-color: var(--color-copper-tint-strong);
 }
 
-.nav-dropdown__item:focus {
-  outline: none;
-  background-color: rgba(156, 100, 80, 0.1);
-  color: var(--color-rose);
+.nav-dropdown__item:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
 }
 
-/* Mobile Menu Toggle */
+@media (prefers-reduced-motion: reduce) {
+  .nav-dropdown,
+  .nav-dropdown__item {
+    transition: none;
+  }
+}
+
+
+/* --- Hamburgerknop (alleen onder 900px) ---------------------------- */
+
 .site-header__menu-toggle {
-  pointer-events: auto;
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
   background: none;
   border: none;
+  border-radius: 0.4rem;
   cursor: pointer;
-  padding: var(--space-2);
-  gap: 5px;
+  padding: 0;
+}
+
+.site-header__menu-toggle:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .site-header__menu-toggle span {
   width: 24px;
   height: 2px;
   background-color: var(--color-ink);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .site-header__menu-toggle[aria-expanded="true"] span:nth-child(1) {
-  transform: rotate(45deg) translate(8px, 8px);
+  transform: translateY(7px) rotate(45deg);
 }
 
 .site-header__menu-toggle[aria-expanded="true"] span:nth-child(2) {
@@ -577,76 +671,102 @@ a {
 }
 
 .site-header__menu-toggle[aria-expanded="true"] span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 900px) {
+@media (prefers-reduced-motion: reduce) {
+  .site-header__menu-toggle span {
+    transition: none;
+  }
+}
+
+
+/* --- Onder 900px: menu klapt onder het logo ------------------------ */
+/* 899px, niet 900px: bij exact 900px zouden beide query's gelden. */
+
+@media (max-width: 899px) {
   .site-header {
-    flex-wrap: wrap;
-    height: auto;
-    padding: var(--space-3);
-  }
-
-  .site-header__logo {
-    position: static;
-    transform: none;
-    order: 2;
-    margin: 0 auto;
-  }
-
-  .site-header__logo img {
-    width: 140px;
+    padding: var(--space-2) var(--space-3);
   }
 
   .site-header__menu-toggle {
     display: flex;
-    order: 3;
-    position: absolute;
-    right: var(--space-3);
   }
 
   .site-nav {
-    order: 4;
-    width: 100%;
-    flex-direction: column;
-    gap: var(--space-3);
-    max-height: 0;
+    /* Volle breedte op een eigen regel onder logo en hamburger. */
+    flex-basis: 100%;
     overflow: hidden;
-    transition: max-height 0.3s ease;
-    margin-top: var(--space-3);
+    max-height: 0;
+    /* visibility, niet alleen max-height: anders blijven de links met
+       Tab bereikbaar terwijl ze onzichtbaar zijn. */
+    visibility: hidden;
+    transition: max-height 0.3s ease, visibility 0.3s ease;
   }
 
-  .site-nav.mobile-open {
-    max-height: 300px;
+  .site-nav.is-open {
+    /* Geen vaste hoogte: het menu mag groeien met zijn inhoud en
+       schuiven wanneer het scherm laag is. */
+    max-height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    visibility: visible;
   }
 
-  .site-nav--left,
-  .site-nav--right {
-    justify-content: center;
+  .site-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-2) 0;
   }
 
+  .site-nav__item + .site-nav__item {
+    border-top: 1px solid var(--color-line-soft);
+  }
+
+  .nav-link {
+    width: 100%;
+    justify-content: space-between;
+    padding: var(--space-1) var(--space-1);
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .nav-link[aria-current="page"] {
+    border-left: 2px solid var(--color-accent);
+    padding-left: calc(var(--space-1) - 2px);
+  }
+
+  /* De lijst met boxen schuift in de balk zelf open, niet erboven.
+     display:none in plaats van visibility: een statisch element met
+     visibility:hidden zou wél ruimte blijven innemen. Blijft JS-
+     gestuurd, zodat aria-expanded klopt met wat er te zien is. */
   .nav-dropdown {
     position: static;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    background-color: transparent;
-    border: none;
-    padding: 0;
+    display: none;
+    min-width: 0;
     margin: 0;
-    min-width: auto;
+    padding: 0 0 var(--space-1) var(--space-3);
+    background: none;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    transform: none;
+    transition: none;
   }
 
-  .nav-item--dropdown:hover .nav-dropdown,
-  .nav-item--dropdown.open .nav-dropdown {
+  .site-nav__item--dropdown.is-open .nav-dropdown {
+    display: block;
     opacity: 1;
     visibility: visible;
     transform: none;
   }
+}
 
-  .nav-dropdown__item {
-    font-size: 0.85rem;
-    padding: var(--space-2) var(--space-3);
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) {
+  .site-nav {
+    transition: none;
   }
 }
 
@@ -678,7 +798,10 @@ a {
 .also-see__links {
   display: flex;
   justify-content: center;
-  gap: var(--space-4);
+  /* Wrap: bij 320px passen drie paginanamen niet naast elkaar en
+     ontstond anders horizontale schuifruimte. */
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 
 .also-see__links a {
@@ -692,8 +815,8 @@ a {
 }
 
 .also-see__links a:hover {
-  color: var(--color-rose);
-  border-color: var(--color-rose);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .also-see__links a:focus-visible {
@@ -720,7 +843,7 @@ a {
 .hero__title em {
   font-style: italic;
   font-weight: 400;
-  color: var(--color-rose);
+  color: var(--color-accent);
 }
 
 .hero__intro {
@@ -781,7 +904,7 @@ a {
 .page-hero__title em {
   font-style: italic;
   font-weight: 400;
-  color: var(--color-rose);
+  color: var(--color-accent);
 }
 
 .page-hero__lead {
@@ -818,7 +941,7 @@ a {
 }
 
 .service-card:hover {
-  border-color: var(--color-rose);
+  border-color: var(--color-accent);
   transform: translateY(-3px);
 }
 
@@ -847,7 +970,7 @@ a {
   display: inline-block;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--color-rose);
+  color: var(--color-accent);
   letter-spacing: 0.02em;
 }
 
@@ -891,7 +1014,7 @@ a {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.05rem;
-  color: var(--color-rose);
+  color: var(--color-accent);
   margin-bottom: var(--space-2);
 }
 
@@ -929,8 +1052,20 @@ a {
   background-color: var(--color-bg-soft);
 }
 
+/* Old pink is de donkerste sectieachtergrond. Daarop haalt alleen
+   dark brown WCAG AA (5.12:1); de gedempte bruintinten blijven onder
+   3.1:1 en de koperen knop komt met 2.96:1 net onder de 3:1 die een
+   knopvlak nodig heeft om als vorm herkenbaar te zijn. In plaats van
+   elk element hier apart te overschrijven worden de tokens lokaal
+   verdiept: alles wat verderop var(--color-ink-soft) of
+   var(--color-button) gebruikt, klopt daarmee automatisch. */
 .story-section--rose {
-  background: var(--color-muted-rose);
+  background-color: var(--color-old-pink);
+
+  --color-ink-soft: var(--color-dark-brown);
+  --color-ink-faint: var(--color-dark-brown);
+  --color-button: var(--color-dark-brown);          /* 5.12:1 op old pink */
+  --color-button-hover: var(--color-walnut-deep);   /* 3.02:1 op old pink */
 }
 
 .story-wave {
@@ -950,7 +1085,7 @@ a {
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #73604A;
+  color: var(--color-ink-faint);
   margin-bottom: var(--space-3);
 }
 
@@ -1006,7 +1141,7 @@ a {
   text-align: center;
   padding: var(--space-3);
   background:
-    linear-gradient(160deg, rgba(140, 146, 117, 0.05), rgba(156, 100, 80, 0.05));
+    linear-gradient(160deg, var(--color-walnut-tint), var(--color-copper-tint));
   transition: border-color 0.3s ease;
 }
 
@@ -1017,7 +1152,7 @@ a {
 
 .mood-card--photo:hover,
 .mood-card--photo:focus-within {
-  border-color: var(--color-rose);
+  border-color: var(--color-accent);
 }
 
 .mood-card__img {
@@ -1063,8 +1198,10 @@ a {
   left: 0;
   right: 0;
   padding: var(--space-3) var(--space-3) var(--space-4);
+  /* Verloop is --color-dark-brown (#4A3329) op 70%; rgba() kan geen
+     var() bevatten. Cream tekst hierop: ruim boven 4.5:1. */
   background: linear-gradient(to top, rgba(74, 51, 41, 0.7) 0%, transparent 100%);
-  color: #F7F1EA;
+  color: var(--color-cream);
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 500;
@@ -1316,7 +1453,7 @@ a {
 
 .section-divider path {
   fill: none;
-  stroke: var(--color-rose);
+  stroke: var(--color-accent);
   stroke-width: 1.2;
   stroke-linecap: round;
   opacity: 0.5;
@@ -1470,7 +1607,7 @@ a {
 
 .site-footer__email:hover {
   color: var(--color-ink);
-  border-color: var(--color-sage);
+  border-color: var(--color-copper);
 }
 
 .site-footer__email:focus-visible {
@@ -1496,7 +1633,7 @@ a {
 
 .site-footer__social a:hover {
   color: var(--color-ink);
-  border-color: var(--color-sage);
+  border-color: var(--color-copper);
 }
 
 .site-footer__social a:focus-visible {
@@ -1581,8 +1718,8 @@ a {
 }
 
 .legal-toc__list a:hover {
-  color: var(--color-rose);
-  border-color: var(--color-rose);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .legal-article {
@@ -1647,6 +1784,13 @@ a {
   margin-bottom: 0.3rem;
 }
 
+/* Volledig uitgeschreven webadressen in juridische tekst zijn één
+   lang woord. Zonder deze regel duwen ze de pagina op 320px breder
+   dan het scherm. */
+.legal-body a {
+  overflow-wrap: anywhere;
+}
+
 .legal-contact-block {
   background-color: var(--color-bg-soft);
   border-radius: 0.75rem;
@@ -1687,7 +1831,7 @@ a {
 
 .signature-line path {
   fill: none;
-  stroke: var(--color-rose);
+  stroke: var(--color-accent);
   stroke-width: 1.2;
   stroke-linecap: round;
   opacity: 0.6;
@@ -1708,7 +1852,8 @@ a {
   border-radius: 0.4rem;
   border: 1px solid var(--color-line);
   font-size: 0.85rem;
-  z-index: 10;
+  /* Boven de sticky header, anders schuift de link bij focus eronder. */
+  z-index: var(--z-skip-link);
 }
 
 .skip-link:focus {
@@ -1768,7 +1913,7 @@ a {
 
 .form-input:focus {
   outline: none;
-  border-bottom-color: var(--color-rose);
+  border-bottom-color: var(--color-accent);
   background-color: transparent;
   padding-bottom: calc(var(--space-3) - 1px);
 }
@@ -1780,7 +1925,7 @@ a {
 
 .form-input::-webkit-calendar-picker-indicator {
   cursor: pointer;
-  color: var(--color-rose);
+  color: var(--color-accent);
 }
 
 .form-actions {
@@ -1811,9 +1956,9 @@ a {
 }
 
 .form-btn--secondary:hover {
-  border-color: var(--color-rose);
-  color: var(--color-rose);
-  background-color: rgba(156, 100, 80, 0.02);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background-color: var(--color-copper-tint);
 }
 
 .form-btn--primary {
@@ -1850,7 +1995,7 @@ a {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-  z-index: 40;
+  z-index: var(--z-back-to-top);
   padding: 0;
 }
 
@@ -1935,11 +2080,14 @@ a {
   }
 
   .site-header {
-    height: 8rem;
+    /* min-height, geen height: de balk mag altijd meegroeien met een
+       grotere tekstinstelling of langere menuteksten. */
+    min-height: 8rem;
+    padding: var(--space-2) var(--space-4);
   }
 
   .site-header__logo img {
-    width: 220px;
+    width: 200px;
     height: auto;
   }
 
