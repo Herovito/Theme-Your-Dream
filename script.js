@@ -184,7 +184,11 @@
     });
 
     backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Bij iedere klik opnieuw uitlezen, niet één keer bij het laden:
+      // de systeeminstelling kan tussendoor wijzigen.
+      const prefersReduced =
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
     });
   }
 

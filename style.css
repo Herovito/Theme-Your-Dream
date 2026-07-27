@@ -22,6 +22,7 @@
    10. Signature divider
    11. Accessibility helpers
    12. Responsive breakpoints
+   13. Verminderde beweging (algemeen vangnet, staat bewust achteraan)
    =================================================================== */
 
 
@@ -687,6 +688,11 @@ a {
 @media (max-width: 899px) {
   .site-header {
     padding: var(--space-2) var(--space-3);
+    /* Rijafstand op nul. De gesloten navigatie is een eigen flexrij van
+       0px hoog; met de rijafstand van de header eronder leverde dat
+       16px dode ruimte onder het logo op. De geopende navigatie brengt
+       zijn eigen ruimte mee via .site-nav.is-open. */
+    row-gap: 0;
   }
 
   .site-header__menu-toggle {
@@ -710,6 +716,9 @@ a {
     max-height: calc(100vh - var(--header-height));
     overflow-y: auto;
     visibility: visible;
+    /* Neemt de rol over van de rijafstand die hierboven op nul staat,
+       zodat alleen het geopende menu ruimte onder het logo krijgt. */
+    margin-top: var(--space-2);
   }
 
   .site-nav__list {
@@ -1679,6 +1688,14 @@ a {
   margin-top: var(--space-1);
 }
 
+/* Plaatshouder zolang het PDF-bestand ontbreekt. Bewust geen link en
+   geen onderstreping: de tekst moet er niet klikbaar uitzien. De
+   toevoeging tussen haakjes doet het werk, niet de kleur alleen. */
+.site-footer__legal-pending {
+  color: var(--color-ink-faint);
+  font-style: italic;
+}
+
 
 /* ===================================================================
    9b. Juridische pagina (privacyverklaring, voorwaarden)
@@ -1911,11 +1928,18 @@ a {
   letter-spacing: 0.01em;
 }
 
+/* De dikkere onderlijn is een sfeerdetail, geen focusindicator: hij
+   verandert alleen van kleur en haalt daarmee geen 3:1 vormcontrast.
+   De outline blijft daarom staan. */
 .form-input:focus {
-  outline: none;
   border-bottom-color: var(--color-accent);
   background-color: transparent;
   padding-bottom: calc(var(--space-3) - 1px);
+}
+
+.form-input:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .form-input::placeholder {
@@ -2151,5 +2175,39 @@ a {
 
   .content-block {
     max-width: 68rem;
+  }
+}
+
+
+/* ===================================================================
+   13. Verminderde beweging: algemeen vangnet
+   -------------------------------------------------------------------
+   Losse @media (prefers-reduced-motion) blokken staan door het hele
+   bestand en dekken de bekende gevallen af. Dit blok is het vangnet
+   voor de rest, waaronder .section__title, .content-block en
+   .process__step, die hun animatie rechtstreeks in de basisregel
+   krijgen.
+
+   Bewust geen `animation: none`: die elementen staan op opacity: 0 en
+   worden pas zichtbaar door de `forwards` vulling van hun animatie.
+   Met een duur van 0.01ms speelt de animatie direct af en blijft de
+   eindtoestand staan, zodat alle inhoud zichtbaar is zonder beweging.
+
+   `iteration-count: 1` stopt de doorlopende animaties (wave-float).
+   Staat achteraan het bestand en gebruikt !important, zodat het ook
+   inline stijlen van script.js overschrijft. Er staat verder nergens
+   !important in dit bestand.
+   =================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
   }
 }
