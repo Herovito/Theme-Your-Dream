@@ -145,7 +145,44 @@
     });
   }
 
-  // ===== 8. HOOFDMENU: THEMABOXEN-DISCLOSURE + MOBIEL MENU =====
+  // ===== 8. HEADER OVER DE BEELDHERO =====
+  // Op de homepage ligt de balk doorzichtig over de herofoto. Zodra de
+  // hero grotendeels voorbij is, vult de balk zich met de paginakleur,
+  // zodat de menutekst leesbaar blijft boven gewone inhoud.
+  //
+  // Dit is een toestandswissel, geen versiering: hij loopt ook wanneer
+  // iemand verminderde beweging heeft ingesteld. Alleen de overgang
+  // ernaartoe wordt dan door style.css uitgezet.
+  function initHeaderScrollState() {
+    if (!document.body.classList.contains('hero-overlay')) return;
+
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    // 200px: ver genoeg dat een kleine duw aan het scrollwiel de balk
+    // niet laat knipperen, ruim binnen de hoogte van de hero.
+    const TRIGGER = 200;
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      header.classList.toggle('site-header--scrolled', window.scrollY > TRIGGER);
+    }
+
+    // Via requestAnimationFrame: de klasse wordt hooguit één keer per
+    // beeldopbouw gezet in plaats van bij elke scrollgebeurtenis.
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }, { passive: true });
+
+    // Bij terugkeer op de pagina kan de browser de scrollpositie
+    // herstellen; dan moet de balk meteen kloppen.
+    update();
+  }
+
+  // ===== 9. HOOFDMENU: THEMABOXEN-DISCLOSURE + MOBIEL MENU =====
   // De navigatie werkt zonder JavaScript: alle menu-items zijn gewone
   // links. JavaScript voegt alleen het open- en dichtklappen toe.
   function initNavigation() {
@@ -168,6 +205,10 @@
       menuToggle.setAttribute('aria-expanded', String(open));
       menuToggle.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
       nav.classList.toggle('is-open', open);
+      // Boven de herofoto is de balk doorzichtig. Een geopend menu moet
+      // daar altijd een eigen ondergrond krijgen, anders staan de links
+      // op de foto.
+      header.classList.toggle('site-header--menu-open', open);
       if (!open) setDropdown(false);
     }
 
@@ -233,6 +274,7 @@
 
     initCustomCursor();
     initBackToTop();
+    initHeaderScrollState();
     initNavigation();
   }
 

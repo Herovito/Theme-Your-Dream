@@ -29,9 +29,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
+  <!-- De herofoto is het eerste en grootste beeld van de pagina. Preload
+       zorgt dat de browser hem naast het stylesheet ophaalt in plaats van
+       erna, zodat de rechterkolom niet als leeg vlak begint. -->
+  <link rel="preload" as="image" href="Foto hero.png" fetchpriority="high">
+
   <link rel="stylesheet" href="style.css">
+
+  <!-- De doorzichtige headerbalk over de hero heeft JavaScript nodig om
+       zich weer te vullen zodra er gescrold wordt. Deze markering staat
+       vooraan in de pagina zodat de balk meteen goed staat en niet
+       zichtbaar omschakelt. Zonder JavaScript blijft de gewone, gevulde
+       balk staan en blijft het menu dus altijd leesbaar. -->
+  <script>document.documentElement.classList.add('js');</script>
 </head>
-<body>
+<!-- hero-overlay: alleen deze pagina heeft een beeldhero waar de header
+     overheen mag liggen. Op de subpagina's blijft de balk staand meelopen. -->
+<body class="hero-overlay">
 
   <a class="skip-link" href="#main-content">Direct naar inhoud</a>
 
@@ -83,19 +97,56 @@
 
     <!-- ============================================
          Sectie 1: hero
+         -------------------------------------------
+         Tekst links, foto rechts. De foto lost aan de linkerkant op in
+         de paginakleur: het lege veld in het gouden licht wordt papier,
+         de gedekte tafel rechts blijft scherp. Dat is de merkgedachte
+         in beeld — van een vaag idee naar een feest dat af is.
+
+         Op mobiel staat de foto boven de tekst (grid-areas), terwijl de
+         kop in de broncode eerst blijft staan, zodat schermlezers met de
+         kop beginnen.
          ============================================ -->
-    <div class="frame">
-      <section class="hero" aria-label="Introductie">
-        <h1 class="hero__title">
-          Je hoeft nog geen plan te hebben.
+    <header class="hero-split">
+      <div class="hero-split__text">
+        <h1 class="hero-split__title">
+          Je hoeft nog geen plan te hebben.<br>
           <em>Een idee is genoeg.</em>
         </h1>
 
-        <p class="hero__question">
-          Jij geniet van het moment. Wij zorgen dat alles klopt.
+        <p class="hero-split__subtitle">
+          Van losse inspiratie naar een compleet gestyled feest.
         </p>
-      </section>
-    </div>
+
+        <p class="hero-split__body">
+          Jij geniet van het moment.<br class="hero-split__break">
+          Wij zorgen dat alles klopt.
+        </p>
+
+        <!-- WhatsApp CTA -->
+        <!-- [VERVANGEN DOOR DIONNE: WhatsApp-nummer] Nu de placeholder 31000000000.
+             Nummerformaat en de volledige lijst met plaatsen: DEPLOYMENT_CHECKLIST.md. -->
+        <a href="https://wa.me/31000000000?text=Hoi%20Dionne%21%20Ik%20heb%20een%20idee%20en%20wil%20graag%20meedenken%20over%20de%20styling."
+           class="cta cta--whatsapp cta--hero" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-9.746 9.798c0 2.734.732 5.408 2.12 7.727L2.513 21.92l8.329-2.183c2.262 1.23 4.807 1.884 7.516 1.884 5.41 0 9.799-4.39 9.799-9.799 0-2.618-.963-5.067-2.725-6.976-1.762-1.909-4.126-3.058-6.599-3.058z"/>
+          </svg>
+          Vertel Dionne jouw idee
+        </a>
+      </div>
+
+      <div class="hero-split__image">
+        <img
+          src="Foto hero.png"
+          alt="Lange gedekte tafel in een tuin bij avondlicht, met linnen loper, kaarsen in koperen houders en witte en zachtroze bloemen"
+          class="hero-split__img"
+          width="1536"
+          height="1024"
+          fetchpriority="high"
+          decoding="async"
+        >
+      </div>
+    </header>
 
     <!-- ============================================
          Sectie 2: korte introductie
@@ -272,7 +323,7 @@
       <!-- [VERVANGEN DOOR DIONNE: WhatsApp-nummer] Nu de placeholder 31000000000.
            Nummerformaat en de volledige lijst met plaatsen: DEPLOYMENT_CHECKLIST.md. -->
       <a href="https://wa.me/31000000000?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20Theme%20Your%20Dream." class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-9.746 9.798c0 2.734.732 5.408 2.12 7.727L2.513 21.92l8.329-2.183c2.262 1.23 4.807 1.884 7.516 1.884 5.41 0 9.799-4.39 9.799-9.799 0-2.618-.963-5.067-2.725-6.976-1.762-1.909-4.126-3.058-6.599-3.058z"/>
         </svg>
         Vertel Dionne jouw idee via WhatsApp

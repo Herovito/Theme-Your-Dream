@@ -5,10 +5,10 @@
    1. Design tokens (kleur, type, ruimte)
    2. Reset & basis + animatie-keyframes
    3. Achtergrond
-   4. Layout / frame / section
+   4. Layout / section
    5. Site header (logo + horizontale menubalk)
    5b. Zachte verwijzing onderaan subpagina's
-   6. Hero
+   6. Hero (homepage, tekst naast beeld)
    6b. Pagina hero (subpagina's)
    6c. Dienstblokken (compact, gebruikt op Over Dionne)
    6d. Werkwijze
@@ -66,6 +66,18 @@
      inhoud er zichtbaar onderdoor beweegt zonder tekst te storen. */
   --color-header-bg: rgba(247, 241, 234, 0.96);
 
+  /* Cream op oplopende dekking, voor de overgang van foto naar vlak in
+     de hero. rgba() kan geen var() bevatten, vandaar de losse waarden.
+     De variant op 0% is bewust cream en niet `transparent`: dat laatste
+     is zwart met dekking 0 en zou de kleurovergang grauw maken. */
+  --color-cream-0:  rgba(247, 241, 234, 0);
+  --color-cream-72: rgba(247, 241, 234, 0.72);
+  --color-cream-82: rgba(247, 241, 234, 0.82);
+
+  /* Schaduw onder de headerbalk zodra die vult. Dark brown op lage
+     dekking in plaats van zwart, zodat de rand warm blijft. */
+  --color-header-shadow: rgba(74, 51, 41, 0.09);
+
   /* --- Tekst ------------------------------------------------------- */
   --color-ink: var(--color-dark-brown);        /* 10.42:1 op cream */
   --color-ink-soft: var(--color-walnut-deep);  /* 6.15:1 op cream */
@@ -108,6 +120,10 @@
   /* Typografie */
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Beweging: één curve voor alles wat in beeld komt. Begint vlot en
+     komt zacht tot stilstand, zonder na te veren. */
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 
   /* Ruimte-eenheden (schaal van 4px) */
   --space-1: 0.5rem;
@@ -258,16 +274,8 @@ a {
 
 
 /* ===================================================================
-   4. Layout / frame
+   4. Layout
    =================================================================== */
-
-.frame {
-  width: 100%;
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: var(--space-7) var(--space-3) var(--space-4);
-  text-align: center;
-}
 
 /* Bredere container voor secties die meer ruimte nodig hebben
    dan een enkele kolom lopende tekst, zoals dienstblokken en
@@ -367,6 +375,53 @@ a {
   background-color: var(--color-header-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-line-soft);
+}
+
+/* --- Header over de beeldhero (alleen homepage) --------------------
+   Op pagina's met een beeldhero begint de balk onzichtbaar, zodat de
+   foto tot bovenaan het scherm doorloopt en het logo op de foto ligt.
+   Zodra er gescrold wordt vult de balk zich alsnog. De klasse staat op
+   <body>, niet op de header: de subpagina's houden hun gewone balk en
+   er verandert daar niets.
+
+   Twee toestandsklassen met dezelfde opmaak, uit twee bronnen: gescrold
+   (script.js, scrollpositie) en menu open (script.js, setMenu). Een
+   geopend mobiel menu moet altijd een eigen ondergrond hebben, anders
+   staan de links op de foto.
+
+   Alles hangt aan .js op <html>. Het vullen van de balk gebeurt met
+   JavaScript; zonder JavaScript zou hij dus doorzichtig over de hele
+   pagina blijven liggen en het menu onleesbaar worden. Dan valt de hele
+   overlay weg en blijft de gewone, meelopende balk staan. */
+
+.js .hero-overlay .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+  box-shadow: 0 0 0 0 transparent;
+  transition:
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.js .hero-overlay .site-header--scrolled,
+.js .hero-overlay .site-header--menu-open {
+  background-color: var(--color-header-bg);
+  backdrop-filter: blur(8px);
+  border-bottom-color: var(--color-line-soft);
+  box-shadow: 0 2px 8px var(--color-header-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero-overlay .site-header {
+    transition: none;
+  }
 }
 
 .site-header__logo {
@@ -775,33 +830,277 @@ a {
 
 
 /* ===================================================================
-   6. Hero
+   6. Hero (homepage) — tekst naast beeld
+   -------------------------------------------------------------------
+   Eén compositie, twee uitvoeringen.
+
+   Vanaf 48rem staat de tekst links en de foto rechts. De foto lost aan
+   de linkerzijde op in de paginakleur, precies over het deel waar alleen
+   licht en gras staan; de gedekte tafel rechts blijft onaangeroerd. Zo
+   is er geen naad tussen kolom en beeld, en vertelt het beeld zelf het
+   verhaal van vaag idee naar afgemaakt feest.
+
+   Onder 48rem staat de foto boven de tekst. De <h1> blijft in de
+   broncode vóór het beeld staan; de omkering gebeurt met grid-areas,
+   zodat schermlezers met de kop beginnen en er niets van volgorde
+   verandert voor het toetsenbord (het beeld is geen focuspunt).
+
+   Bovenlangs ligt over de foto een tweede, zachte cream-verloop. Dat is
+   geen decoratie: de headerbalk is hier doorzichtig en logo en menu
+   moeten leesbaar blijven, ook waar de boomkruin donker is.
    =================================================================== */
 
-.hero__title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.9rem, 6.5vw, 2.75rem);
-  line-height: 1.38;
-  letter-spacing: -0.01em;
-  color: var(--color-ink);
-  max-width: 28rem;
-  margin: 0 auto var(--space-4);
+/* minmax(0, 1fr) en niet 1fr: een grid-kolom weigert standaard smaller
+   te worden dan zijn langste woord. Een lange kop zou de kolom dan
+   breder maken dan het scherm en de hele pagina laten schuiven.
+   Geen eigen achtergrondkleur: zo loopt het zachte kleurverloop van
+   .page ononderbroken door en ontstaat er geen naad onder de hero. */
+.hero-split {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "media"
+    "text";
 }
 
-.hero__title em {
+
+/* --- Beeld ---------------------------------------------------------- */
+
+.hero-split__image {
+  grid-area: media;
+  position: relative;
+  overflow: hidden;
+  /* svh, niet vh: op mobiel springt de hoogte anders mee met de
+     verdwijnende adresbalk. */
+  height: clamp(17rem, 46svh, 24rem);
+}
+
+.hero-split__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* De uitsnede houdt de gedekte tafel vast, niet het lege veld links:
+     dat is het bewijs waar de bezoeker voor komt. */
+  object-position: 72% 50%;
+  /* Komt tot rust in plaats van door te groeien: het beeld eindigt op
+     schaal 1 en blijft dus scherp. */
+  animation: hero-image-settle 1.4s var(--ease-soft) forwards;
+}
+
+@keyframes hero-image-settle {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1); }
+}
+
+/* Twee verlopen, geen filter over de foto: bovenlangs een sluier voor
+   de leesbaarheid van de headerbalk, onderlangs de overgang naar de
+   tekst eronder. De sluier loopt niet verder dan nodig — op mobiel is
+   de balk lager én de foto korter, dus houdt hij daar eerder op. */
+.hero-split__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to bottom,
+      var(--color-cream-82) 0,
+      var(--color-cream-72) 4.5rem,
+      var(--color-cream-0) 9rem),
+    linear-gradient(to top,
+      var(--color-bg) 0,
+      var(--color-cream-0) 4rem);
+}
+
+
+/* --- Tekst ---------------------------------------------------------- */
+
+.hero-split__text {
+  grid-area: text;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-4) var(--space-3) var(--space-6);
+}
+
+.hero-split__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  /* De ondergrens is afgestemd op 320px: daar moet "Een idee is
+     genoeg." nog op één regel passen. Bewust geen text-wrap: balance —
+     de regelval wordt al met een <br> gestuurd, en balanceren zou de
+     merkzin alsnog in tweeën hakken. */
+  font-size: clamp(1.7rem, 6.4vw, 2.4rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+}
+
+.hero-split__title em {
   font-style: italic;
   font-weight: 400;
   color: var(--color-accent);
 }
 
-.hero__question {
+.hero-split__subtitle {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-ink);
+  max-width: 24ch;
+  margin-bottom: var(--space-2);
+}
+
+.hero-split__body {
   font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-ink);
-  max-width: 26rem;
-  margin: 0 auto var(--space-4);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-4);
+}
+
+/* De regelafbreking in de tekst geeft de twee zinnen hun eigen regel.
+   Op de smalste schermen zou dat een losse staart opleveren, dus daar
+   lopen de zinnen gewoon door. */
+.hero-split__break {
+  display: none;
+}
+
+
+/* De knop zelf staat bij de andere knopvarianten in hoofdstuk 7. */
+
+
+/* --- Gelaagd in beeld ----------------------------------------------- */
+/* Kop, ondertitel, tekst en knop komen kort na elkaar op. De volgorde
+   is de leesvolgorde, zodat de trap het oog naar de knop brengt.
+   Het vangnet onderaan dit bestand zet alle vier direct zichtbaar
+   wanneer verminderde beweging aanstaat. */
+
+.hero-split__title,
+.hero-split__subtitle,
+.hero-split__body,
+.hero-split .cta--hero {
+  opacity: 0;
+  animation: reveal-fade-in 0.7s var(--ease-soft) forwards;
+}
+
+.hero-split__title    { animation-delay: 0.1s; }
+.hero-split__subtitle { animation-delay: 0.22s; }
+.hero-split__body     { animation-delay: 0.32s; }
+.hero-split .cta--hero { animation-delay: 0.42s; }
+
+
+/* --- Vanaf 48rem: tekst naast beeld --------------------------------- */
+
+@media (min-width: 48rem) {
+  .hero-split {
+    /* Op tablet krijgt de tekst iets meer ruimte dan de 42/58 van het
+       ontwerp: onder de 64rem past de kop anders niet zonder rafelrand. */
+    grid-template-columns: 46fr 54fr;
+    grid-template-areas: "text media";
+    min-height: min(88svh, 44rem);
+  }
+
+  .hero-split__image {
+    height: auto;
+  }
+
+  .hero-split__img {
+    object-position: 68% 50%;
+  }
+
+  /* Nu loopt de overgang naar links, het lege deel van de foto in.
+     De sluier bovenlangs blijft en wordt langer, want de balk is hier
+     hoger en staat aan de kant van het menu op de foto. De korte veeg
+     onderlangs haalt de harde rand weg waar de foto op de volgende
+     sectie stuit. */
+  .hero-split__image::after {
+    background-image:
+      linear-gradient(to bottom,
+        var(--color-cream-82) 0,
+        var(--color-cream-72) 7rem,
+        var(--color-cream-0) 14rem),
+      linear-gradient(to top,
+        var(--color-bg) 0,
+        var(--color-cream-0) 5rem),
+      linear-gradient(to right,
+        var(--color-bg) 0,
+        var(--color-cream-0) 42%);
+  }
+
+  .hero-split__text {
+    justify-content: center;
+    /* Verticaal gecentreerd in de ruimte ónder de balk, niet in het
+       hele vlak: anders staat de kop optisch te hoog. */
+    padding:
+      calc(var(--header-height) + var(--space-4))
+      var(--space-4)
+      var(--space-6)
+      var(--space-4);
+  }
+
+  .hero-split__title {
+    font-size: clamp(2.1rem, 4.2vw, 2.9rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-split__break {
+    display: inline;
+  }
+}
+
+
+/* --- Vanaf 64rem: ruimere marges, grotere kop ----------------------- */
+
+@media (min-width: 64rem) {
+  .hero-split {
+    grid-template-columns: 42fr 58fr;
+    min-height: min(88svh, 50rem);
+  }
+
+  /* 8rem is de hoogte die de balk vanaf 900px aanhoudt. */
+  .hero-split__text {
+    padding:
+      calc(8rem + var(--space-4))
+      var(--space-4)
+      var(--space-7)
+      var(--space-5);
+  }
+
+  .hero-split__title {
+    font-size: clamp(2.1rem, 3.4vw, 3.4rem);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-split__subtitle {
+    font-size: 1.375rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-split__body {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-5);
+  }
+}
+
+
+/* Vanaf hier is er ruimte over in de tekstkolom; die gaat naar de
+   linkermarge, zodat de kop niet tegen de schermrand blijft plakken. */
+@media (min-width: 80rem) {
+  .hero-split__text {
+    padding-left: var(--space-6);
+    padding-right: var(--space-5);
+  }
+}
+
+@media (min-width: 90rem) {
+  .hero-split__text {
+    padding-left: var(--space-7);
+  }
 }
 
 
@@ -1361,7 +1660,7 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
+  gap: 0.5rem;
 }
 
 .cta--whatsapp:hover {
@@ -1372,6 +1671,26 @@ a {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+}
+
+/* Knop in de hero. Over de volle breedte van de tekstkolom zolang die
+   smal is: een groter aanraakdoel, en het label blijft op één regel.
+   Vanaf 64rem is er ruimte genoeg en krimpt de knop tot zijn eigen
+   breedte, links uitgelijnd met de kop erboven. */
+.cta--hero {
+  align-self: stretch;
+  /* Krappe zijmarge zolang de knop toch de volle breedte heeft: zo
+     blijft "Vertel Dionne jouw idee" ook op 320px op één regel. */
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+}
+
+@media (min-width: 64rem) {
+  .cta--hero {
+    align-self: flex-start;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
 }
 
 
@@ -1693,10 +2012,6 @@ a {
 
 /* Tablet (iPad portrait en groter) */
 @media (min-width: 640px) {
-  .frame {
-    padding: var(--space-8) var(--space-4) var(--space-7);
-  }
-
   .section--tight {
     padding-top: var(--space-4);
     padding-bottom: var(--space-4);
@@ -1713,10 +2028,6 @@ a {
 
 /* Laptop */
 @media (min-width: 900px) {
-  .frame {
-    max-width: 58rem;
-  }
-
   .section--tight {
     padding-top: var(--space-4);
     padding-bottom: var(--space-4);
@@ -1753,16 +2064,10 @@ a {
   .page-hero {
     max-width: 52rem;
   }
-
-
 }
 
 /* Desktop groot */
 @media (min-width: 1200px) {
-  .frame {
-    max-width: 72rem;
-  }
-
   .section--narrow {
     max-width: 68rem;
   }
@@ -1777,13 +2082,9 @@ a {
 }
 
 /* Ultra-wide: voorkom dat de pagina visueel "verdrinkt" in lege
-   zijkanten — frame blijft leesbaar gecentreerd, achtergrond
-   vult de rest rustig op. */
+   zijkanten — de tekstkolommen blijven leesbaar gecentreerd, de
+   achtergrond vult de rest rustig op. */
 @media (min-width: 1800px) {
-  .frame {
-    max-width: 84rem;
-  }
-
   .section--narrow {
     max-width: 76rem;
   }
