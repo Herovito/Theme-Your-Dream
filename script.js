@@ -24,57 +24,6 @@
     reveals.forEach(reveal => revealOnScroll.observe(reveal));
   }
 
-  // ===== 2. PULSE CTA BUTTON =====
-  // Primary CTA pulses on page load
-  function initPulseCTA() {
-    setTimeout(() => {
-      const ctaButtons = document.querySelectorAll('.section--cta-padded .cta, .section--narrow.section--cta .cta');
-      ctaButtons.forEach(btn => {
-        btn.classList.add('pulse-once');
-      });
-    }, 800);
-  }
-
-  // ===== 3. BOX ZOOM ON SCROLL =====
-  // Mood cards zoom in as they scroll into view
-  function initBoxZoomScroll() {
-    const moodCards = document.querySelectorAll('.mood-card--photo');
-
-    const zoomOptions = {
-      threshold: 0.3,
-      rootMargin: '0px'
-    };
-
-    const zoomOnScroll = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target.querySelector('.mood-card__img');
-          if (img) {
-            img.classList.add('zoom-in-view');
-          }
-        }
-      });
-    }, zoomOptions);
-
-    moodCards.forEach(card => zoomOnScroll.observe(card));
-  }
-
-  // ===== 4. CUSTOM CURSOR =====
-  // Subtle branded cursor on desktop
-  function initCustomCursor() {
-    if (window.innerWidth < 768) return; // Mobile: skip
-
-    const style = document.createElement('style');
-    style.textContent = `
-      body {
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="none" stroke="%234A3329" stroke-width="1.5"/></svg>') 12 12, auto;
-      }
-      a, button, [role="button"] {
-        cursor: pointer;
-      }
-    `;
-    document.head.appendChild(style);
-  }
 
   // ===== 5. IMAGE LAZY LOAD FADE =====
   // Fade in images as they load from blur
@@ -92,33 +41,10 @@
         img.addEventListener('load', () => {
           img.classList.add('loaded');
         });
+        img.addEventListener('animationend', () => {
+          img.classList.remove('lazy-load-fade');
+        });
       }
-    });
-  }
-
-  // ===== 6. SCROLL PROGRESS BAR =====
-  // Thin line at top that fills as user scrolls
-  function initScrollProgress() {
-    const progressBar = document.createElement('div');
-    progressBar.id = 'scroll-progress-bar';
-    // Kleur en laag komen uit de tokens in style.css, zodat de balk
-    // meeverandert wanneer het palet wijzigt.
-    progressBar.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 2px;
-      background-color: var(--color-accent);
-      z-index: var(--z-scroll-progress);
-      width: 0%;
-      transition: width 0.1s ease;
-    `;
-    document.body.appendChild(progressBar);
-
-    window.addEventListener('scroll', () => {
-      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = (window.scrollY / windowHeight) * 100;
-      progressBar.style.width = scrolled + '%';
     });
   }
 
@@ -128,13 +54,24 @@
     const backToTopBtn = document.getElementById('back-to-top');
     if (!backToTopBtn) return;
 
-    window.addEventListener('scroll', () => {
+    let ticking = false;
+    function update() {
+      ticking = false;
       if (window.scrollY > 300) {
         backToTopBtn.classList.add('visible');
       } else {
         backToTopBtn.classList.remove('visible');
       }
-    });
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
 
     backToTopBtn.addEventListener('click', () => {
       // Bij iedere klik opnieuw uitlezen, niet één keer bij het laden:
@@ -328,13 +265,9 @@
 
     if (!prefersReduced) {
       initScrollReveals();
-      initPulseCTA();
-      initBoxZoomScroll();
       initImageLazyLoadFade();
-      initScrollProgress();
     }
 
-    initCustomCursor();
     initBackToTop();
     initHeaderScrollState();
     // Leest zelf uit of beweging gewenst is, en luistert daarna op
