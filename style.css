@@ -1,5 +1,5 @@
-﻿/* ===================================================================
-   Theme Your Dream â€” style.css (concept, scrollend verhaal)
+/* ===================================================================
+   Theme Your Dream —” style.css (concept, scrollend verhaal)
    ===================================================================
    Inhoudsopgave:
    1. Design tokens (kleur, type, ruimte)
@@ -290,7 +290,7 @@ a {
 /* ===================================================================
    3. Achtergrond
    -------------------------------------------------------------------
-   Geen zichtbare textuur, geen patroon â€” twee zeer zachte, brede
+   Geen zichtbare textuur, geen patroon —” twee zeer zachte, brede
    gradients geven het vlak diepte, zoals kwalitatief papier dat
    het licht net iets anders weerkaatst dan een vlakke kleur.
    Het effect mag niet bewust waarneembaar zijn.
@@ -876,7 +876,7 @@ a {
 
 
 /* ===================================================================
-   6. Hero (homepage) â€” tekst naast beeld
+   6. Hero (homepage) —” tekst naast beeld
    -------------------------------------------------------------------
    Eén compositie, twee uitvoeringen.
 
@@ -941,7 +941,7 @@ a {
 
 /* Twee verlopen, geen filter over de foto: bovenlangs een sluier voor
    de leesbaarheid van de headerbalk, onderlangs de overgang naar de
-   tekst eronder. De sluier loopt niet verder dan nodig â€” op mobiel is
+   tekst eronder. De sluier loopt niet verder dan nodig —” op mobiel is
    de balk lager én de foto korter, dus houdt hij daar eerder op.
 
    Dit is het vangnet voor browsers zonder mask-image. Waar mask wél
@@ -1007,7 +1007,7 @@ a {
   font-family: var(--font-display);
   font-weight: 500;
   /* De ondergrens is afgestemd op 320px: daar moet "Een idee is
-     genoeg." nog op één regel passen. Bewust geen text-wrap: balance â€”
+     genoeg." nog op één regel passen. Bewust geen text-wrap: balance —”
      de regelval wordt al met een <br> gestuurd, en balanceren zou de
      merkzin alsnog in tweeÃ«n hakken. */
   font-size: clamp(1.7rem, 6.4vw, 2.4rem);
@@ -1375,7 +1375,7 @@ a {
    6d. Werkwijze
    -------------------------------------------------------------------
    Rustige stappen, benoemd in woorden in plaats van met opzichtige
-   01/02/03 cijfers â€” het zijn losse aandachtspunten in de manier
+   01/02/03 cijfers —” het zijn losse aandachtspunten in de manier
    van werken, geen strikte genummerde procedure.
    =================================================================== */
 
@@ -1723,7 +1723,7 @@ a {
   border-bottom: 1px solid var(--color-line);
 }
 
-/* Herbruikbare layout-helpers â€” vervangt veelgebruikte inline styles */
+/* Herbruikbare layout-helpers —” vervangt veelgebruikte inline styles */
 
 .section--photo {
   padding-top: 0;
@@ -2273,7 +2273,7 @@ a {
 }
 
 /* Ultra-wide: voorkom dat de pagina visueel "verdrinkt" in lege
-   zijkanten â€” de tekstkolommen blijven leesbaar gecentreerd, de
+   zijkanten —” de tekstkolommen blijven leesbaar gecentreerd, de
    achtergrond vult de rest rustig op. */
 @media (min-width: 1800px) {
   .section--narrow {
