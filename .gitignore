@@ -4,7 +4,10 @@ package-lock.json
 yarn.lock
 
 # Environment variables
+# .env.*.local dekt .env.local niet: dat patroon vereist een naamdeel
+# tussen de punten. Daarom staat .env.local hier apart.
 .env
+.env.local
 .env.*.local
 .env.production
 .env.development

@@ -1,0 +1,9 @@
+# Theme Your Dream
+# De site is nog niet gelanceerd: indexeren staat volledig uit.
+# Bij livegang: vervang "Disallow: /" door "Allow: /" en zet de
+# X-Robots-Tag in vercel.json en de robots-meta op index, follow.
+
+User-agent: *
+Disallow: /
+
+Sitemap: https://themeyourdream.nl/sitemap.xml
