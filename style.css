@@ -46,8 +46,8 @@
 
 :root {
   /* --- Merkkleuren (merkhandboek, niet wijzigen) ------------------- */
-  --color-cream:      #F5EEE4;  /* hoofdachtergrond */
-  --color-linen:      #EBE3D8;  /* subtiele sectieachtergrond */
+  --color-cream:      #F0E5DB;  /* hoofdachtergrond */
+  --color-linen:      #E6DDD0;  /* subtiele sectieachtergrond */
   --color-dark-brown: #4A3329;  /* tekst en navigatie */
   --color-walnut:     #8C6B5A;  /* accent, alleen vlakken en randen */
   --color-old-pink:   #C7A49A;  /* accentvlak, themaboxen-sectie */
@@ -64,15 +64,15 @@
 
   /* Halftransparante headerbalk: cream met 96% dekking, zodat de
      inhoud er zichtbaar onderdoor beweegt zonder tekst te storen. */
-  --color-header-bg: rgba(245, 238, 228, 0.96);
+  --color-header-bg: rgba(240, 229, 219, 0.96);
 
   /* Cream op oplopende dekking, voor de overgang van foto naar vlak in
      de hero. rgba() kan geen var() bevatten, vandaar de losse waarden.
      De variant op 0% is bewust cream en niet `transparent`: dat laatste
      is zwart met dekking 0 en zou de kleurovergang grauw maken. */
-  --color-cream-0:  rgba(245, 238, 228, 0);
-  --color-cream-72: rgba(245, 238, 228, 0.72);
-  --color-cream-82: rgba(245, 238, 228, 0.82);
+  --color-cream-0:  rgba(240, 229, 219, 0);
+  --color-cream-72: rgba(240, 229, 219, 0.72);
+  --color-cream-82: rgba(240, 229, 219, 0.82);
 
   /* Schaduw onder de headerbalk zodra die vult. Dark brown op lage
      dekking in plaats van zwart, zodat de rand warm blijft. */
@@ -418,10 +418,10 @@ a {
 
 .js .hero-overlay .site-header--scrolled,
 .js .hero-overlay .site-header--menu-open {
-  background-color: var(--color-header-bg);
-  backdrop-filter: blur(8px);
-  border-bottom-color: var(--color-line-soft);
-  box-shadow: 0 2px 8px var(--color-header-shadow);
+  background-color: transparent;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+  box-shadow: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
