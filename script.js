@@ -234,11 +234,18 @@
       if (!open) setDropdown(false);
     }
 
-    // Themaboxen open- en dichtklappen. Op desktop opent de lijst ook
-    // op hover (CSS); de knop blijft nodig voor touch en toetsenbord.
+    // Themaboxen: link naar "Alle themaboxen" pagina.
+    // Op mobile, prevent navigation en toggle dropdown in plaats daarvan.
+    // Op desktop, hover toont dropdown (CSS), klik navigeert normaal.
     if (dropdownBtn) {
-      dropdownBtn.addEventListener('click', () => {
-        setDropdown(dropdownBtn.getAttribute('aria-expanded') !== 'true');
+      const isMobile = window.matchMedia('(max-width: 899px)');
+      dropdownBtn.addEventListener('click', (e) => {
+        // Mobile: toggle dropdown, prevent navigation
+        if (isMobile.matches) {
+          e.preventDefault();
+          setDropdown(dropdownBtn.getAttribute('aria-expanded') !== 'true');
+        }
+        // Desktop: allow normal navigation (dropdown visible on hover)
       });
     }
 
