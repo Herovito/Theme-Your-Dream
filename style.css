@@ -35,7 +35,7 @@
 
    Twee kleuren uit het handboek halen als tekstkleur geen WCAG AA:
    walnut haalt 4.29:1 en copper 3.69:1 op cream, terwijl 4.5:1 nodig
-   is. Daarom bestaat er van beide Ã©Ã©n verdiepte variant met dezelfde
+   is. Daarom bestaat er van beide één verdiepte variant met dezelfde
    tint. Die verdiepte varianten zijn uitsluitend bedoeld voor tekst,
    links en knoppen; voor vlakken en randen blijven de handboekkleuren
    zelf in gebruik.
@@ -125,7 +125,7 @@
   --font-display: Georgia, "Fraunces", serif;
   --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Beweging: Ã©Ã©n curve voor alles wat in beeld komt. Begint vlot en
+  /* Beweging: één curve voor alles wat in beeld komt. Begint vlot en
      komt zacht tot stilstand, zonder na te veren. */
   --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 
@@ -390,9 +390,9 @@ a {
 /* ===================================================================
    5. Site header
    -------------------------------------------------------------------
-   EÃ©n horizontale balk: logo links, hoofdmenu rechts. Het menu is
-   Ã©Ã©n <nav> met Ã©Ã©n <ul> met drie items, zodat hulpsoftware het als
-   Ã©Ã©n navigatie met drie keuzes aankondigt in plaats van als drie
+   Eén horizontale balk: logo links, hoofdmenu rechts. Het menu is
+   één <nav> met één <ul> met drie items, zodat hulpsoftware het als
+   één navigatie met drie keuzes aankondigt in plaats van als drie
    losse navigaties.
 
    Themaboxen is een disclosure (knop plus lijst met gewone links),
@@ -625,7 +625,7 @@ a {
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover-openen alleen waar een echte muis is Ã©n de balk horizontaal
+/* Hover-openen alleen waar een echte muis is én de balk horizontaal
    staat. Op touch zou :hover blijven "hangen" na een tik. */
 @media (hover: hover) and (min-width: 900px) {
   .site-nav__item--dropdown:hover .nav-dropdown {
@@ -790,7 +790,7 @@ a {
 
   /* De lijst met boxen schuift in de balk zelf open, niet erboven.
      display:none in plaats van visibility: een statisch element met
-     visibility:hidden zou wÃ©l ruimte blijven innemen. Blijft JS-
+     visibility:hidden zou wél ruimte blijven innemen. Blijft JS-
      gestuurd, zodat aria-expanded klopt met wat er te zien is. */
   .nav-dropdown {
     position: static;
@@ -878,7 +878,7 @@ a {
 /* ===================================================================
    6. Hero (homepage) â€” tekst naast beeld
    -------------------------------------------------------------------
-   EÃ©n compositie, twee uitvoeringen.
+   Eén compositie, twee uitvoeringen.
 
    Vanaf 48rem staat de tekst links en de foto rechts. De foto lost aan
    de linkerzijde op in de paginakleur, precies over het deel waar alleen
@@ -942,9 +942,9 @@ a {
 /* Twee verlopen, geen filter over de foto: bovenlangs een sluier voor
    de leesbaarheid van de headerbalk, onderlangs de overgang naar de
    tekst eronder. De sluier loopt niet verder dan nodig â€” op mobiel is
-   de balk lager Ã©n de foto korter, dus houdt hij daar eerder op.
+   de balk lager én de foto korter, dus houdt hij daar eerder op.
 
-   Dit is het vangnet voor browsers zonder mask-image. Waar mask wÃ©l
+   Dit is het vangnet voor browsers zonder mask-image. Waar mask wél
    werkt neemt het blok hieronder de onderrand over; deze regel houdt
    dan alleen de sluier bovenlangs over. */
 .hero-split__image::after {
@@ -1007,7 +1007,7 @@ a {
   font-family: var(--font-display);
   font-weight: 500;
   /* De ondergrens is afgestemd op 320px: daar moet "Een idee is
-     genoeg." nog op Ã©Ã©n regel passen. Bewust geen text-wrap: balance â€”
+     genoeg." nog op één regel passen. Bewust geen text-wrap: balance â€”
      de regelval wordt al met een <br> gestuurd, en balanceren zou de
      merkzin alsnog in tweeÃ«n hakken. */
   font-size: clamp(1.7rem, 6.4vw, 2.4rem);
@@ -1384,6 +1384,7 @@ a {
   grid-template-columns: 1fr;
   gap: var(--space-4);
   margin: 0 auto;
+  background-color: var(--color-bg);
 }
 
 .process__step {
@@ -1450,7 +1451,7 @@ a {
    -------------------------------------------------------------------
    Grote, op zichzelf staande secties voor Eventstyling en Themaboxen
    op de homepage. Geen kaartjes, maar volle, rustige vlakken met een
-   zachte eigen ondertoon, ruime tekst en Ã©Ã©n duidelijke knop. Twee
+   zachte eigen ondertoon, ruime tekst en één duidelijke knop. Twee
    varianten wisselen subtiel van ondertoon (zand / oudroze) zodat de
    twee secties van elkaar te onderscheiden zijn zonder hard contrast.
    =================================================================== */
@@ -1490,7 +1491,7 @@ a {
 }
 
 /* Golfovergang tussen twee sectiekleuren. De SVG bestaat uit een
-   vlak in de bovenkleur met daaroverheen Ã©Ã©n golfpad in de onder-
+   vlak in de bovenkleur met daaroverheen één golfpad in de onder-
    kleur; een verticale blur maakt de overgang zacht in plaats van
    een harde rand. De twee kleuren komen per golf uit een modifier,
    zodat een paletwijziging alleen in de tokens hoeft te gebeuren. */
@@ -1851,13 +1852,13 @@ a {
 }
 
 /* Knop in de hero. Over de volle breedte van de tekstkolom zolang die
-   smal is: een groter aanraakdoel, en het label blijft op Ã©Ã©n regel.
+   smal is: een groter aanraakdoel, en het label blijft op één regel.
    Vanaf 64rem is er ruimte genoeg en krimpt de knop tot zijn eigen
    breedte, links uitgelijnd met de kop erboven. */
 .cta--hero {
   align-self: stretch;
   /* Krappe zijmarge zolang de knop toch de volle breedte heeft: zo
-     blijft "Vertel Dionne jouw idee" ook op 320px op Ã©Ã©n regel. */
+     blijft "Vertel Dionne jouw idee" ook op 320px op één regel. */
   padding-left: var(--space-3);
   padding-right: var(--space-3);
 }
@@ -2091,7 +2092,7 @@ a {
   margin-bottom: 0.3rem;
 }
 
-/* Volledig uitgeschreven webadressen in juridische tekst zijn Ã©Ã©n
+/* Volledig uitgeschreven webadressen in juridische tekst zijn één
    lang woord. Zonder deze regel duwen ze de pagina op 320px breder
    dan het scherm. */
 .legal-body a {
