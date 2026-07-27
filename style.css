@@ -330,6 +330,13 @@ a {
   animation: reveal-fade-in 0.7s var(--ease-soft) forwards;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .js .section__title {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .section__heading.reveal-in .section__title {
   animation-delay: 0.1s;
 }
@@ -1352,13 +1359,34 @@ a {
   padding: 0 var(--space-2);
 }
 
+.js .process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
 .js .process__step {
   opacity: 0;
   transform: translateY(16px);
 }
 
-.js .process__step.reveal-in {
+.js .process.reveal-in .process__step {
   animation: reveal-fade-in 0.6s var(--ease-soft) forwards;
+}
+
+.js .process.reveal-in .process__step:nth-child(1) { animation-delay: 0ms; }
+.js .process.reveal-in .process__step:nth-child(2) { animation-delay: 90ms; }
+.js .process.reveal-in .process__step:nth-child(3) { animation-delay: 180ms; }
+.js .process.reveal-in .process__step:nth-child(4) { animation-delay: 270ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .process__step {
+    opacity: 1;
+    transform: none;
+  }
+  .js .process.reveal-in .process__step {
+    animation: none;
+  }
 }
 
 .process__step-label {
@@ -1717,6 +1745,10 @@ a {
 .js .site-photo--landscape {
   opacity: 0;
   clip-path: inset(100% 0 0 0);
+  transform: scale(1.03);
+}
+
+.js .site-photo--landscape.reveal-in {
   animation: mask-reveal-up 0.9s var(--ease-soft) forwards;
   animation-delay: 0.1s;
 }
@@ -1738,8 +1770,10 @@ a {
   .js .site-photo--landscape {
     opacity: 1;
     clip-path: inset(0);
-    animation: none;
     transform: scale(1);
+  }
+  .js .site-photo--landscape.reveal-in {
+    animation: none;
   }
 }
 

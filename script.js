@@ -26,26 +26,26 @@
 
 
   // ===== 2. PROCESS STEPS SEQUENTIAL REVEAL =====
-  // Each process step fades in as it scrolls into view (one by one)
+  // Process container reveals, children cascade with staggered delays
   function initProcessStepsReveal() {
-    const steps = document.querySelectorAll('.process__step');
-    if (steps.length === 0) return;
+    const processes = document.querySelectorAll('.process');
+    if (processes.length === 0) return;
 
-    const stepOptions = {
+    const processOptions = {
       threshold: 0.3,
       rootMargin: '0px 0px -80px 0px'
     };
 
-    const stepObserver = new IntersectionObserver((entries) => {
+    const processObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('reveal-in');
-          stepObserver.unobserve(entry.target);
+          processObserver.unobserve(entry.target);
         }
       });
-    }, stepOptions);
+    }, processOptions);
 
-    steps.forEach(step => stepObserver.observe(step));
+    processes.forEach(process => processObserver.observe(process));
   }
 
   // ===== 5. IMAGE LAZY LOAD FADE =====
