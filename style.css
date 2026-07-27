@@ -969,7 +969,7 @@ a {
 
 .hero-split__title {
   font-family: var(--font-display);
-  font-feature-settings: "ss01" 0, "ss02" 0;
+  font-feature-settings: normal;
   font-weight: 500;
   /* De ondergrens is afgestemd op 320px: daar moet "Een idee is
      genoeg." nog op Ã©Ã©n regel passen. Bewust geen text-wrap: balance â€”
