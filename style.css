@@ -114,7 +114,11 @@
   --z-scroll-progress: 70;
 
   /* Layout */
-  --header-height: 6.5rem;
+  --header-height: 7rem;
+  /* Vanaf 900px staat er een groter logo in de balk. De hero rekent
+     met deze hoogte om zijn kop eronder te zetten, dus staan beide
+     hier bij elkaar en niet los in de media query. */
+  --header-height-lg: 9rem;
   --content-width: 84rem;
 
   /* Typografie */
@@ -438,7 +442,7 @@ a {
 }
 
 .site-header__logo img {
-  width: 140px;
+  width: 168px;
   height: auto;
   display: block;
   transition: transform 0.3s ease;
@@ -896,7 +900,11 @@ a {
 /* Twee verlopen, geen filter over de foto: bovenlangs een sluier voor
    de leesbaarheid van de headerbalk, onderlangs de overgang naar de
    tekst eronder. De sluier loopt niet verder dan nodig — op mobiel is
-   de balk lager én de foto korter, dus houdt hij daar eerder op. */
+   de balk lager én de foto korter, dus houdt hij daar eerder op.
+
+   Dit is het vangnet voor browsers zonder mask-image. Waar mask wél
+   werkt neemt het blok hieronder de onderrand over; deze regel houdt
+   dan alleen de sluier bovenlangs over. */
 .hero-split__image::after {
   content: "";
   position: absolute;
@@ -909,7 +917,36 @@ a {
       var(--color-cream-0) 9rem),
     linear-gradient(to top,
       var(--color-bg) 0,
-      var(--color-cream-0) 4rem);
+      var(--color-cream-0) 2.5rem);
+}
+
+/* De randen van de foto worden weggemaskeerd in plaats van overgoten
+   met een vlak cream verloop. Dat is geen detail: .page legt een heel
+   lichte walnoot-waas over de linkerhelft van het scherm, en een
+   dekkend cream verloop erbovenop was dáár net iets lichter dan de
+   pagina ernaast. Dat gaf een zichtbare verticale naad langs de
+   kolomrand (gemeten: 244,237,230 tegen 247,241,233).
+
+   Met een masker verdwijnt de foto in plaats van dat er kleur
+   overheen gaat, dus loopt de achtergrond van de pagina er
+   ononderbroken achter door en kán er geen naad ontstaan. */
+@supports (mask-image: linear-gradient(#000, #000)) {
+  .hero-split__image {
+    -webkit-mask-image: linear-gradient(to top,
+      transparent 0,
+      #000 2.5rem);
+    mask-image: linear-gradient(to top,
+      transparent 0,
+      #000 2.5rem);
+  }
+
+  .hero-split__image::after {
+    background-image:
+      linear-gradient(to bottom,
+        var(--color-cream-82) 0,
+        var(--color-cream-72) 4.5rem,
+        var(--color-cream-0) 9rem);
+  }
 }
 
 
@@ -954,12 +991,17 @@ a {
   margin-bottom: var(--space-2);
 }
 
+/* Dark brown en niet de zachtere walnoot-variant: dit is de belofte
+   waar de hero op uitkomt, en op 300 gewicht bleef die op 6,15:1 te
+   veel wegzakken naast de ondertitel erboven. Nu 10,42:1 op cream.
+   De rangorde loopt hier via grootte en gewicht, niet via kleur, dus
+   de regel blijft duidelijk ondergeschikt zonder te vervagen. */
 .hero-split__body {
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.7;
-  color: var(--color-ink-soft);
+  color: var(--color-ink);
   margin-bottom: var(--space-4);
 }
 
@@ -1013,23 +1055,66 @@ a {
     object-position: 68% 50%;
   }
 
-  /* Nu loopt de overgang naar links, het lege deel van de foto in.
+  /* Nu loopt de overgang ook naar links, het lege deel van de foto in.
      De sluier bovenlangs blijft en wordt langer, want de balk is hier
-     hoger en staat aan de kant van het menu op de foto. De korte veeg
-     onderlangs haalt de harde rand weg waar de foto op de volgende
-     sectie stuit. */
+     hoger en staat aan de kant van het menu op de foto. Vangnet-versie,
+     zie het @supports-blok hieronder. */
   .hero-split__image::after {
     background-image:
       linear-gradient(to bottom,
         var(--color-cream-82) 0,
-        var(--color-cream-72) 7rem,
-        var(--color-cream-0) 14rem),
+        var(--color-cream-72) 5.5rem,
+        var(--color-cream-0) 11rem),
       linear-gradient(to top,
         var(--color-bg) 0,
-        var(--color-cream-0) 5rem),
+        var(--color-cream-0) 3rem),
       linear-gradient(to right,
         var(--color-bg) 0,
-        var(--color-cream-0) 42%);
+        var(--color-cream-0) 46%);
+  }
+
+  @supports (mask-image: linear-gradient(#000, #000)) {
+    /* Twee maskers over elkaar: links het lange oplossen in de
+       pagina, onderlangs een korte veeg. mask-composite houdt de
+       kleinste van beide aan, zodat ze elkaar niet opheffen.
+
+       De stops links lopen bewust traag op het begin (18% dekking op
+       14% van de kolom) en versnellen daarna. Een rechte lijn tussen
+       twee stops geeft een zichtbare band waar het verloop begint;
+       deze kromme laat de foto opkomen zonder dat er een rand te
+       ontdekken valt. Op 46% is de foto vol, ruim vóór de bloemen. */
+    .hero-split__image {
+      -webkit-mask-image:
+        linear-gradient(to right,
+          transparent 0,
+          rgba(0, 0, 0, 0.18) 14%,
+          rgba(0, 0, 0, 0.55) 28%,
+          rgba(0, 0, 0, 0.85) 36%,
+          #000 46%),
+        linear-gradient(to top,
+          transparent 0,
+          #000 3rem);
+      mask-image:
+        linear-gradient(to right,
+          transparent 0,
+          rgba(0, 0, 0, 0.18) 14%,
+          rgba(0, 0, 0, 0.55) 28%,
+          rgba(0, 0, 0, 0.85) 36%,
+          #000 46%),
+        linear-gradient(to top,
+          transparent 0,
+          #000 3rem);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
+
+    .hero-split__image::after {
+      background-image:
+        linear-gradient(to bottom,
+          var(--color-cream-82) 0,
+          var(--color-cream-72) 5.5rem,
+          var(--color-cream-0) 11rem);
+    }
   }
 
   .hero-split__text {
@@ -1062,13 +1147,27 @@ a {
     min-height: min(88svh, 50rem);
   }
 
-  /* 8rem is de hoogte die de balk vanaf 900px aanhoudt. */
+  /* Speelruimte voor de trage beeldverschuiving in script.js. De foto
+     is 24px hoger dan zijn kader en begint 24px hoger, zodat er bij de
+     maximale verschuiving nooit een rand vrijkomt. Zonder JavaScript
+     of bij verminderde beweging staat de foto simpelweg stil en valt
+     de extra hoogte binnen het kader weg. */
+  .hero-split__img {
+    height: calc(100% + 24px);
+    margin-top: -24px;
+  }
+
+  /* --header-height-lg is de hoogte die de balk vanaf 900px aanhoudt;
+     als token, zodat een groter logo de kop niet onder de balk kan
+     schuiven. De linkermarge is ruimer dan de rechter: de tekst moet
+     lucht houden tegen de schermrand, terwijl rechts de foto het
+     werk al doet. */
   .hero-split__text {
     padding:
-      calc(8rem + var(--space-4))
+      calc(var(--header-height-lg) + var(--space-4))
       var(--space-4)
       var(--space-7)
-      var(--space-5);
+      var(--space-6);
   }
 
   .hero-split__title {
@@ -1092,14 +1191,14 @@ a {
    linkermarge, zodat de kop niet tegen de schermrand blijft plakken. */
 @media (min-width: 80rem) {
   .hero-split__text {
-    padding-left: var(--space-6);
+    padding-left: var(--space-7);
     padding-right: var(--space-5);
   }
 }
 
 @media (min-width: 90rem) {
   .hero-split__text {
-    padding-left: var(--space-7);
+    padding-left: 7rem;
   }
 }
 
@@ -1686,10 +1785,15 @@ a {
 }
 
 @media (min-width: 64rem) {
+  /* Iets smaller dan de standaardknop. De hoogte blijft die van .cta
+     (gemeten 60px, ruim boven het aanraakdoel van 44px); hoger maken
+     zou de knop zwaarder laten wegen dan de kop erboven. Door alleen
+     de zijmarge te trimmen wordt het vlak compacter en leest het als
+     een verzorgd blok in plaats van een brede balk. */
   .cta--hero {
     align-self: flex-start;
-    padding-left: var(--space-5);
-    padding-right: var(--space-5);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
 
@@ -2040,13 +2144,21 @@ a {
   .site-header {
     /* min-height, geen height: de balk mag altijd meegroeien met een
        grotere tekstinstelling of langere menuteksten. */
-    min-height: 8rem;
-    padding: var(--space-2) var(--space-4);
+    min-height: var(--header-height-lg);
+    /* Rechts ruimer dan links: logo.png draagt zelf een strook lege
+       ruimte mee, waardoor het merk optisch al verder van de rand
+       staat dan de menutekst. Deze marge trekt dat recht en geeft de
+       balk tegelijk meer rust. */
+    padding: var(--space-3) 3.5rem var(--space-3) var(--space-4);
   }
 
   .site-header__logo img {
-    width: 200px;
+    width: 224px;
     height: auto;
+  }
+
+  .site-nav__list {
+    gap: var(--space-5);
   }
 
   .section--narrow {

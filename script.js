@@ -182,6 +182,68 @@
     update();
   }
 
+  // ===== 8b. DIEPTE IN DE HEROFOTO =====
+  // De foto blijft bij het scrollen een klein stukje achter op de
+  // tekst ernaast. Dat maakt zichtbaar dat het beeld achter de
+  // tekstkolom ligt in plaats van ernaast geplakt.
+  //
+  // Bewust klein gehouden: hooguit 24px over de hele hero, oftewel een
+  // paar pixels per scrollslag. Groter zou de rust breken die de rest
+  // van de pagina opbouwt.
+  //
+  // Alleen vanaf 64rem. Op smallere schermen staat de foto boven de
+  // tekst in plaats van ernaast, is er geen dieptelaag om te tonen, en
+  // kost de beweging alleen maar batterij.
+  function initHeroParallax() {
+    const image = document.querySelector('.hero-split__img');
+    if (!image) return;
+
+    // Individuele translate-eigenschap, geen transform: de foto heeft
+    // al een transform-animatie bij het laden en die twee zouden
+    // elkaar overschrijven. Kent de browser translate niet, dan doet
+    // deze regel niets en staat de foto stil — geen foutmelding.
+    const MAX_SHIFT = 24;
+    const FACTOR = 0.04;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const wide = window.matchMedia('(min-width: 64rem)');
+
+    let ticking = false;
+    let running = false;
+
+    function update() {
+      ticking = false;
+      const shift = Math.min(window.scrollY * FACTOR, MAX_SHIFT);
+      image.style.translate = '0 ' + shift.toFixed(2) + 'px';
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    // Eén bron van waarheid voor beide media queries, zodat er nooit
+    // twee scroll-listeners tegelijk kunnen blijven hangen.
+    function sync() {
+      const shouldRun = wide.matches && !reduced.matches;
+      if (shouldRun === running) return;
+      running = shouldRun;
+
+      if (running) {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        update();
+      } else {
+        window.removeEventListener('scroll', onScroll);
+        image.style.translate = '';
+      }
+    }
+
+    reduced.addEventListener('change', sync);
+    wide.addEventListener('change', sync);
+    sync();
+  }
+
   // ===== 9. HOOFDMENU: THEMABOXEN-DISCLOSURE + MOBIEL MENU =====
   // De navigatie werkt zonder JavaScript: alle menu-items zijn gewone
   // links. JavaScript voegt alleen het open- en dichtklappen toe.
@@ -275,6 +337,9 @@
     initCustomCursor();
     initBackToTop();
     initHeaderScrollState();
+    // Leest zelf uit of beweging gewenst is, en luistert daarna op
+    // wijzigingen. Daarom hier en niet in het blok hierboven.
+    initHeroParallax();
     initNavigation();
   }
 
