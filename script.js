@@ -25,6 +25,29 @@
   }
 
 
+  // ===== 2. PROCESS STEPS SEQUENTIAL REVEAL =====
+  // Each process step fades in as it scrolls into view (one by one)
+  function initProcessStepsReveal() {
+    const steps = document.querySelectorAll('.process__step');
+    if (steps.length === 0) return;
+
+    const stepOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -80px 0px'
+    };
+
+    const stepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-in');
+          stepObserver.unobserve(entry.target);
+        }
+      });
+    }, stepOptions);
+
+    steps.forEach(step => stepObserver.observe(step));
+  }
+
   // ===== 5. IMAGE LAZY LOAD FADE =====
   // Fade in images as they load from blur
   function initImageLazyLoadFade() {
@@ -265,6 +288,7 @@
 
     if (!prefersReduced) {
       initScrollReveals();
+      initProcessStepsReveal();
       initImageLazyLoadFade();
     }
 
