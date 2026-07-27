@@ -3,9 +3,9 @@
 
 (function () {
   // ===== 1. SCROLL REVEAL =====
-  // Fade in section headings as they come into view
+  // Fade in section headings, content blocks, and reveal-groups as they come into view
   function initScrollReveals() {
-    const reveals = document.querySelectorAll('.section__heading, .page-hero, .content-block');
+    const reveals = document.querySelectorAll('.section__heading, .page-hero, .content-block, .reveal-group');
 
     const revealOptions = {
       threshold: 0.15,

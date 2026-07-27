@@ -168,6 +168,38 @@ html {
 }
 
 /* ===================================================================
+   REVEAL-GROUP PATTERN: Cascade animations on containers
+   All interactive reveals use this pattern for consistency
+   =================================================================== */
+
+.js .reveal-group > * {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.js .reveal-group.reveal-in > * {
+  animation: reveal-fade-in 0.6s var(--ease-soft) forwards;
+}
+
+.js .reveal-group.reveal-in > *:nth-child(1) { animation-delay: 0ms; }
+.js .reveal-group.reveal-in > *:nth-child(2) { animation-delay: 90ms; }
+.js .reveal-group.reveal-in > *:nth-child(3) { animation-delay: 180ms; }
+.js .reveal-group.reveal-in > *:nth-child(4) { animation-delay: 270ms; }
+.js .reveal-group.reveal-in > *:nth-child(5) { animation-delay: 360ms; }
+/* Cap at 5 items to prevent long waits; 6+ stays at 450ms */
+.js .reveal-group.reveal-in > *:nth-child(n+6) { animation-delay: 450ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-group > * {
+    opacity: 1;
+    transform: none;
+  }
+  .js .reveal-group.reveal-in > * {
+    animation: none;
+  }
+}
+
+/* ===================================================================
    Animation Keyframes
    =================================================================== */
 
