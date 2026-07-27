@@ -418,10 +418,10 @@ a {
 
 .js .hero-overlay .site-header--scrolled,
 .js .hero-overlay .site-header--menu-open {
-  background-color: transparent;
-  backdrop-filter: none;
-  border-bottom-color: transparent;
-  box-shadow: none;
+  background-color: var(--color-header-bg);
+  backdrop-filter: blur(8px);
+  border-bottom-color: var(--color-line-soft);
+  box-shadow: 0 2px 8px var(--color-header-shadow);
 }
 
 @media (prefers-reduced-motion: reduce) {
