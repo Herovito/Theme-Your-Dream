@@ -1,5 +1,5 @@
 // Theme Your Dream — Enhanced Interactions
-// Scroll reveals, parallax, animations, and progressive contact form
+// Scroll reveals, animaties, navigatie
 
 (function () {
   // ===== 1. SCROLL REVEAL =====
@@ -24,23 +24,7 @@
     reveals.forEach(reveal => revealOnScroll.observe(reveal));
   }
 
-  // ===== 2. PARALLAX HERO =====
-  // Subtle parallax effect on hero image during scroll
-  function initParallax() {
-    const hero = document.querySelector('.hero, .page-hero');
-    if (!hero || window.innerWidth < 768) return; // Mobile: disabled
-
-    const heroImage = hero.querySelector('img');
-    if (!heroImage) return;
-
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const offset = scrollY * 0.5; // 50% of scroll speed
-      heroImage.style.transform = `translateY(${offset}px)`;
-    });
-  }
-
-  // ===== 3. PULSE CTA BUTTON =====
+  // ===== 2. PULSE CTA BUTTON =====
   // Primary CTA pulses on page load
   function initPulseCTA() {
     setTimeout(() => {
@@ -51,16 +35,7 @@
     }, 800);
   }
 
-  // ===== 4. ANIMATED WAVES =====
-  // Subtle wave animation on SVG wave dividers
-  function animateWaves() {
-    const waves = document.querySelectorAll('.story-wave');
-    waves.forEach((wave, index) => {
-      wave.style.animation = `wave-float ${8 + index * 0.5}s ease-in-out infinite`;
-    });
-  }
-
-  // ===== 5. BOX ZOOM ON SCROLL =====
+  // ===== 3. BOX ZOOM ON SCROLL =====
   // Mood cards zoom in as they scroll into view
   function initBoxZoomScroll() {
     const moodCards = document.querySelectorAll('.mood-card--photo');
@@ -84,29 +59,7 @@
     moodCards.forEach(card => zoomOnScroll.observe(card));
   }
 
-  // ===== 6. PROCESS STEP ANIMATION =====
-  // Animate process steps with dot progress
-  function initProcessAnimation() {
-    const steps = document.querySelectorAll('.process__step');
-
-    const stepOptions = {
-      threshold: 0.5,
-      rootMargin: '0px'
-    };
-
-    const stepObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('step-reveal');
-          entry.target.style.animationDelay = `${index * 0.1}s`;
-        }
-      });
-    }, stepOptions);
-
-    steps.forEach(step => stepObserver.observe(step));
-  }
-
-  // ===== 7. CUSTOM CURSOR =====
+  // ===== 4. CUSTOM CURSOR =====
   // Subtle branded cursor on desktop
   function initCustomCursor() {
     if (window.innerWidth < 768) return; // Mobile: skip
@@ -123,7 +76,7 @@
     document.head.appendChild(style);
   }
 
-  // ===== 8. IMAGE LAZY LOAD FADE =====
+  // ===== 5. IMAGE LAZY LOAD FADE =====
   // Fade in images as they load from blur
   function initImageLazyLoadFade() {
     const images = document.querySelectorAll('img[loading="lazy"], .site-photo, .mood-card__img');
@@ -143,7 +96,7 @@
     });
   }
 
-  // ===== 9. SCROLL PROGRESS BAR =====
+  // ===== 6. SCROLL PROGRESS BAR =====
   // Thin line at top that fills as user scrolls
   function initScrollProgress() {
     const progressBar = document.createElement('div');
@@ -169,7 +122,7 @@
     });
   }
 
-  // ===== 10. BACK TO TOP BUTTON =====
+  // ===== 7. BACK TO TOP BUTTON =====
   // Smooth scroll to top
   function initBackToTop() {
     const backToTopBtn = document.getElementById('back-to-top');
@@ -192,59 +145,7 @@
     });
   }
 
-  // ===== 11. PROGRESSIVE CONTACT FORM =====
-  // Multi-step contact form with smooth transitions
-  function initProgressiveContactForm() {
-    const form = document.getElementById('progressive-contact-form');
-    if (!form) return;
-
-    const steps = form.querySelectorAll('.form-step');
-    const prevBtn = form.querySelector('[data-action="prev"]');
-    const nextBtn = form.querySelector('[data-action="next"]');
-    let currentStep = 0;
-
-    function showStep(step) {
-      steps.forEach((s, index) => {
-        if (index === step) {
-          s.classList.add('active');
-          s.style.animation = 'slideIn 0.3s ease-out';
-        } else {
-          s.classList.remove('active');
-        }
-      });
-
-      // Update button visibility
-      if (prevBtn) prevBtn.style.display = step === 0 ? 'none' : 'block';
-      if (nextBtn) {
-        nextBtn.textContent = step === steps.length - 1 ? 'Verstuur' : 'Volgende';
-        nextBtn.type = step === steps.length - 1 ? 'submit' : 'button';
-      }
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', (e) => {
-        if (currentStep < steps.length - 1) {
-          e.preventDefault();
-          currentStep++;
-          showStep(currentStep);
-        }
-      });
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentStep > 0) {
-          currentStep--;
-          showStep(currentStep);
-        }
-      });
-    }
-
-    showStep(0);
-  }
-
-  // ===== 12. HOOFDMENU: THEMABOXEN-DISCLOSURE + MOBIEL MENU =====
+  // ===== 8. HOOFDMENU: THEMABOXEN-DISCLOSURE + MOBIEL MENU =====
   // De navigatie werkt zonder JavaScript: alle menu-items zijn gewone
   // links. JavaScript voegt alleen het open- en dichtklappen toe.
   function initNavigation() {
@@ -324,18 +225,14 @@
 
     if (!prefersReduced) {
       initScrollReveals();
-      initParallax();
       initPulseCTA();
-      animateWaves();
       initBoxZoomScroll();
-      initProcessAnimation();
       initImageLazyLoadFade();
       initScrollProgress();
     }
 
     initCustomCursor();
     initBackToTop();
-    initProgressiveContactForm();
     initNavigation();
   }
 

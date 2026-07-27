@@ -104,10 +104,23 @@
       >
     </section>
 
+    <!-- Eén gedeelde blur voor alle golfovergangen. SVG-ids gelden
+         document-breed, dus de filter staat hier één keer in plaats
+         van vier keer. De blur maakt de kleurovergang zacht. -->
+    <svg class="svg-defs" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="wave-soften" x="-2%" y="-25%" width="104%" height="150%">
+          <feGaussianBlur stdDeviation="0 14"/>
+        </filter>
+      </defs>
+    </svg>
+
     <!-- Golf: pagina-achtergrond → eventstyling-zand -->
-    <svg class="story-wave" id="wave-intro-es" viewBox="0 0 1440 180"
+    <svg class="story-wave story-wave--cream-linen" viewBox="0 0 1440 180"
          preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs id="wave-intro-es-defs"></defs>
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to" filter="url(#wave-soften)"
+            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
     </svg>
 
     <!-- ============================================
@@ -134,9 +147,11 @@
     </section>
 
     <!-- Golf: eventstyling-zand → themaboxen-roos -->
-    <svg class="story-wave" id="wave-es-tb" viewBox="0 0 1440 180"
+    <svg class="story-wave story-wave--linen-pink" viewBox="0 0 1440 180"
          preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs id="wave-es-tb-defs"></defs>
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to" filter="url(#wave-soften)"
+            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
     </svg>
 
     <!-- ============================================
@@ -163,9 +178,11 @@
     </section>
 
     <!-- Golf: themaboxen-roos → over dionne-zand -->
-    <svg class="story-wave" id="wave-tb-od" viewBox="0 0 1440 180"
+    <svg class="story-wave story-wave--pink-linen" viewBox="0 0 1440 180"
          preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs id="wave-tb-od-defs"></defs>
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to" filter="url(#wave-soften)"
+            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
     </svg>
 
     <!-- ============================================
@@ -190,9 +207,11 @@
     </section>
 
     <!-- Golf: over dionne-zand → pagina-achtergrond -->
-    <svg class="story-wave" id="wave-od-wk" viewBox="0 0 1440 180"
+    <svg class="story-wave story-wave--linen-cream" viewBox="0 0 1440 180"
          preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs id="wave-od-wk-defs"></defs>
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to" filter="url(#wave-soften)"
+            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
     </svg>
 
     <!-- ============================================
@@ -278,55 +297,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-  (function () {
-    function buildWave(svgId, from, to) {
-      var svg  = document.getElementById(svgId);
-      var defs = document.getElementById(svgId + '-defs');
-      if (!svg || !defs) return;
-      var ns = 'http://www.w3.org/2000/svg';
-      var N = 150, W = 1440, H = 180, A = 38, C = 85, B = 55;
-      for (var i = 0; i < N; i++) {
-        var t  = i / (N - 1);
-        var wY = C + A * Math.sin(t * Math.PI * 2);
-        var id = svgId + '-' + i;
-        var g  = document.createElementNS(ns, 'linearGradient');
-        g.setAttribute('id', id);
-        g.setAttribute('gradientUnits', 'userSpaceOnUse');
-        g.setAttribute('x1', '0'); g.setAttribute('y1', '0');
-        g.setAttribute('x2', '0'); g.setAttribute('y2', H);
-        [[0, from], [wY, from], [wY + B, to], [H, to]].forEach(function (p) {
-          var s = document.createElementNS(ns, 'stop');
-          s.setAttribute('offset', (p[0] / H * 100).toFixed(2) + '%');
-          s.setAttribute('stop-color', p[1]);
-          g.appendChild(s);
-        });
-        defs.appendChild(g);
-        var r = document.createElementNS(ns, 'rect');
-        r.setAttribute('x', (i * W / N).toFixed(2));
-        r.setAttribute('y', '0');
-        r.setAttribute('width', (W / N + 0.5).toFixed(2));
-        r.setAttribute('height', H);
-        r.setAttribute('fill', 'url(#' + id + ')');
-        svg.appendChild(r);
-      }
-    }
-
-    // De drie sectiekleuren komen uit de tokens in style.css, zodat
-    // een paletwijziging nooit los in dit script bijgewerkt hoeft
-    // te worden.
-    var cs = getComputedStyle(document.documentElement);
-    var cream = cs.getPropertyValue('--color-cream').trim();
-    var linen = cs.getPropertyValue('--color-linen').trim();
-    var pink  = cs.getPropertyValue('--color-old-pink').trim();
-
-    buildWave('wave-intro-es', cream, linen);
-    buildWave('wave-es-tb',    linen, pink);
-    buildWave('wave-tb-od',    pink,  linen);
-    buildWave('wave-od-wk',    linen, cream);
-  })();
-  </script>
 
   <script src="script.js"></script>
 </body>
