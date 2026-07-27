@@ -1,7 +1,6 @@
 {
   "version": 2,
   "buildCommand": "node build-robots-meta.js",
-  "public": false,
   "headers": [
     {
       "source": "/(.*)",
@@ -21,16 +20,6 @@
     "ENVIRONMENT": {
       "default": "preview",
       "production": "production"
-    }
-  },
-  "buildGroups": {
-    "default": {
-      "builds": [
-        {
-          "src": "**/*.html",
-          "use": "@vercel/static"
-        }
-      ]
     }
   }
 }
