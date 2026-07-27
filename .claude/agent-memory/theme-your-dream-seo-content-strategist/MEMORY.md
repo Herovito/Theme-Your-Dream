@@ -1,0 +1,3 @@
+- [Vestigingsplaats Beneden Leeuwen](project_vestigingsplaats.md) — enige harde locatiegegeven; basis voor alle lokale SEO, werkgebied nog onbevestigd
+- [Concept-site placeholders](project_concept_site_placeholders.md) — WhatsApp-nummer, KvK, Btw-id en boxprijzen zijn niet geverifieerd
+- [Verbeterplan en merkdocumenten](reference_website_verbeterplan.md) — waar de vaste docs staan, en welk deel van het SEO-hoofdstuk onbetrouwbaar is

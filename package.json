@@ -1,0 +1,21 @@
+{
+  "name": "theme-your-dream",
+  "version": "1.0.0",
+  "description": "Static website for Theme Your Dream eventstyling studio",
+  "scripts": {
+    "build": "node build-robots-meta.js",
+    "start": "npx http-server .",
+    "dev": "ENVIRONMENT=development node build-robots-meta.js && npx http-server ."
+  },
+  "keywords": [
+    "eventstyling",
+    "event-design",
+    "theme",
+    "static-site"
+  ],
+  "author": "Dionne",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

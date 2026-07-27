@@ -1,0 +1,1 @@
+- [Navigatieconflict CLAUDE.md vs site](project_navigatie-conflict.md) — CLAUDE.md eist een site zonder menu, de gebouwde site heeft er wel een; keuze nog niet gemaakt.

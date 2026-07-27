@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "buildCommand": "node build-robots-meta.js",
+  "public": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
+    }
+  ],
+  "env": {
+    "ENVIRONMENT": {
+      "default": "preview",
+      "production": "production"
+    }
+  },
+  "buildGroups": {
+    "default": {
+      "builds": [
+        {
+          "src": "**/*.html",
+          "use": "@vercel/static"
+        }
+      ]
+    }
+  }
+}
