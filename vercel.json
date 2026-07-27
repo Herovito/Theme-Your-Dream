@@ -1,6 +1,7 @@
 {
   "version": 2,
   "buildCommand": "node build-robots-meta.js",
+  "outputDirectory": ".",
   "headers": [
     {
       "source": "/(.*)",
