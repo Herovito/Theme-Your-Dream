@@ -1,5 +1,5 @@
-/* ===================================================================
-   Theme Your Dream — style.css (concept, scrollend verhaal)
+﻿/* ===================================================================
+   Theme Your Dream â€” style.css (concept, scrollend verhaal)
    ===================================================================
    Inhoudsopgave:
    1. Design tokens (kleur, type, ruimte)
@@ -35,7 +35,7 @@
 
    Twee kleuren uit het handboek halen als tekstkleur geen WCAG AA:
    walnut haalt 4.29:1 en copper 3.69:1 op cream, terwijl 4.5:1 nodig
-   is. Daarom bestaat er van beide één verdiepte variant met dezelfde
+   is. Daarom bestaat er van beide Ã©Ã©n verdiepte variant met dezelfde
    tint. Die verdiepte varianten zijn uitsluitend bedoeld voor tekst,
    links en knoppen; voor vlakken en randen blijven de handboekkleuren
    zelf in gebruik.
@@ -125,7 +125,7 @@
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Beweging: één curve voor alles wat in beeld komt. Begint vlot en
+  /* Beweging: Ã©Ã©n curve voor alles wat in beeld komt. Begint vlot en
      komt zacht tot stilstand, zonder na te veren. */
   --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 
@@ -234,7 +234,7 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.75;
-  font-size: 1.125rem;
+  font-size: 1.24rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -262,7 +262,7 @@ a {
 /* ===================================================================
    3. Achtergrond
    -------------------------------------------------------------------
-   Geen zichtbare textuur, geen patroon — twee zeer zachte, brede
+   Geen zichtbare textuur, geen patroon â€” twee zeer zachte, brede
    gradients geven het vlak diepte, zoals kwalitatief papier dat
    het licht net iets anders weerkaatst dan een vlakke kleur.
    Het effect mag niet bewust waarneembaar zijn.
@@ -307,7 +307,7 @@ a {
 
 .section__eyebrow {
   display: block;
-  font-size: 0.7rem;
+  font-size: 1.24rem;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -336,7 +336,7 @@ a {
 }
 
 .section__lead {
-  font-size: 1.2rem;
+  font-size: 1.24rem;
   font-weight: 300;
   line-height: 1.7;
   color: var(--color-ink-soft);
@@ -348,9 +348,9 @@ a {
 /* ===================================================================
    5. Site header
    -------------------------------------------------------------------
-   Eén horizontale balk: logo links, hoofdmenu rechts. Het menu is
-   één <nav> met één <ul> met drie items, zodat hulpsoftware het als
-   één navigatie met drie keuzes aankondigt in plaats van als drie
+   EÃ©n horizontale balk: logo links, hoofdmenu rechts. Het menu is
+   Ã©Ã©n <nav> met Ã©Ã©n <ul> met drie items, zodat hulpsoftware het als
+   Ã©Ã©n navigatie met drie keuzes aankondigt in plaats van als drie
    losse navigaties.
 
    Themaboxen is een disclosure (knop plus lijst met gewone links),
@@ -583,7 +583,7 @@ a {
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover-openen alleen waar een echte muis is én de balk horizontaal
+/* Hover-openen alleen waar een echte muis is Ã©n de balk horizontaal
    staat. Op touch zou :hover blijven "hangen" na een tik. */
 @media (hover: hover) and (min-width: 900px) {
   .site-nav__item--dropdown:hover .nav-dropdown {
@@ -606,7 +606,7 @@ a {
   padding: var(--space-1) var(--space-3);
   color: var(--color-ink);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1.24rem;
   font-weight: 400;
   border-left: 2px solid transparent;
   transition: background-color 0.2s ease, color 0.2s ease;
@@ -748,7 +748,7 @@ a {
 
   /* De lijst met boxen schuift in de balk zelf open, niet erboven.
      display:none in plaats van visibility: een statisch element met
-     visibility:hidden zou wél ruimte blijven innemen. Blijft JS-
+     visibility:hidden zou wÃ©l ruimte blijven innemen. Blijft JS-
      gestuurd, zodat aria-expanded klopt met wat er te zien is. */
   .nav-dropdown {
     position: static;
@@ -795,7 +795,7 @@ a {
 
 .also-see__label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 1.24rem;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -814,7 +814,7 @@ a {
 
 .also-see__links a {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.24rem;
   font-weight: 400;
   text-decoration: none;
   color: var(--color-ink);
@@ -834,9 +834,9 @@ a {
 
 
 /* ===================================================================
-   6. Hero (homepage) — tekst naast beeld
+   6. Hero (homepage) â€” tekst naast beeld
    -------------------------------------------------------------------
-   Eén compositie, twee uitvoeringen.
+   EÃ©n compositie, twee uitvoeringen.
 
    Vanaf 48rem staat de tekst links en de foto rechts. De foto lost aan
    de linkerzijde op in de paginakleur, precies over het deel waar alleen
@@ -845,7 +845,7 @@ a {
    verhaal van vaag idee naar afgemaakt feest.
 
    Onder 48rem staat de foto boven de tekst. De <h1> blijft in de
-   broncode vóór het beeld staan; de omkering gebeurt met grid-areas,
+   broncode vÃ³Ã³r het beeld staan; de omkering gebeurt met grid-areas,
    zodat schermlezers met de kop beginnen en er niets van volgorde
    verandert voor het toetsenbord (het beeld is geen focuspunt).
 
@@ -899,10 +899,10 @@ a {
 
 /* Twee verlopen, geen filter over de foto: bovenlangs een sluier voor
    de leesbaarheid van de headerbalk, onderlangs de overgang naar de
-   tekst eronder. De sluier loopt niet verder dan nodig — op mobiel is
-   de balk lager én de foto korter, dus houdt hij daar eerder op.
+   tekst eronder. De sluier loopt niet verder dan nodig â€” op mobiel is
+   de balk lager Ã©n de foto korter, dus houdt hij daar eerder op.
 
-   Dit is het vangnet voor browsers zonder mask-image. Waar mask wél
+   Dit is het vangnet voor browsers zonder mask-image. Waar mask wÃ©l
    werkt neemt het blok hieronder de onderrand over; deze regel houdt
    dan alleen de sluier bovenlangs over. */
 .hero-split__image::after {
@@ -923,13 +923,13 @@ a {
 /* De randen van de foto worden weggemaskeerd in plaats van overgoten
    met een vlak cream verloop. Dat is geen detail: .page legt een heel
    lichte walnoot-waas over de linkerhelft van het scherm, en een
-   dekkend cream verloop erbovenop was dáár net iets lichter dan de
+   dekkend cream verloop erbovenop was dÃ¡Ã¡r net iets lichter dan de
    pagina ernaast. Dat gaf een zichtbare verticale naad langs de
    kolomrand (gemeten: 244,237,230 tegen 247,241,233).
 
    Met een masker verdwijnt de foto in plaats van dat er kleur
    overheen gaat, dus loopt de achtergrond van de pagina er
-   ononderbroken achter door en kán er geen naad ontstaan. */
+   ononderbroken achter door en kÃ¡n er geen naad ontstaan. */
 @supports (mask-image: linear-gradient(#000, #000)) {
   .hero-split__image {
     -webkit-mask-image: linear-gradient(to top,
@@ -965,9 +965,9 @@ a {
   font-family: var(--font-display);
   font-weight: 500;
   /* De ondergrens is afgestemd op 320px: daar moet "Een idee is
-     genoeg." nog op één regel passen. Bewust geen text-wrap: balance —
+     genoeg." nog op Ã©Ã©n regel passen. Bewust geen text-wrap: balance â€”
      de regelval wordt al met een <br> gestuurd, en balanceren zou de
-     merkzin alsnog in tweeën hakken. */
+     merkzin alsnog in tweeÃ«n hakken. */
   font-size: clamp(1.7rem, 6.4vw, 2.4rem);
   line-height: 1.22;
   letter-spacing: -0.015em;
@@ -983,7 +983,7 @@ a {
 
 .hero-split__subtitle {
   font-family: var(--font-body);
-  font-size: 1.125rem;
+  font-size: 1.24rem;
   font-weight: 400;
   line-height: 1.55;
   color: var(--color-ink);
@@ -998,7 +998,7 @@ a {
    de regel blijft duidelijk ondergeschikt zonder te vervagen. */
 .hero-split__body {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.24rem;
   font-weight: 300;
   line-height: 1.7;
   color: var(--color-ink);
@@ -1082,7 +1082,7 @@ a {
        14% van de kolom) en versnellen daarna. Een rechte lijn tussen
        twee stops geeft een zichtbare band waar het verloop begint;
        deze kromme laat de foto opkomen zonder dat er een rand te
-       ontdekken valt. Op 46% is de foto vol, ruim vóór de bloemen. */
+       ontdekken valt. Op 46% is de foto vol, ruim vÃ³Ã³r de bloemen. */
     .hero-split__image {
       -webkit-mask-image:
         linear-gradient(to right,
@@ -1119,7 +1119,7 @@ a {
 
   .hero-split__text {
     justify-content: center;
-    /* Verticaal gecentreerd in de ruimte ónder de balk, niet in het
+    /* Verticaal gecentreerd in de ruimte Ã³nder de balk, niet in het
        hele vlak: anders staat de kop optisch te hoog. */
     padding:
       calc(var(--header-height) + var(--space-4))
@@ -1181,7 +1181,7 @@ a {
   }
 
   .hero-split__body {
-    font-size: 1.125rem;
+    font-size: 1.24rem;
     margin-bottom: var(--space-5);
   }
 }
@@ -1221,7 +1221,7 @@ a {
 
 .page-hero__eyebrow {
   display: block;
-  font-size: 0.7rem;
+  font-size: 1.24rem;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1297,7 +1297,7 @@ a {
 }
 
 .service-card__text {
-  font-size: 0.95rem;
+  font-size: 1.24rem;
   font-weight: 300;
   line-height: 1.65;
   color: var(--color-ink-soft);
@@ -1306,7 +1306,7 @@ a {
 
 .service-card__link {
   display: inline-block;
-  font-size: 0.85rem;
+  font-size: 1.24rem;
   font-weight: 500;
   color: var(--color-accent);
   letter-spacing: 0.02em;
@@ -1329,7 +1329,7 @@ a {
    6d. Werkwijze
    -------------------------------------------------------------------
    Rustige stappen, benoemd in woorden in plaats van met opzichtige
-   01/02/03 cijfers — het zijn losse aandachtspunten in de manier
+   01/02/03 cijfers â€” het zijn losse aandachtspunten in de manier
    van werken, geen strikte genummerde procedure.
    =================================================================== */
 
@@ -1351,13 +1351,13 @@ a {
   display: block;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: 1.24rem;
   color: var(--color-accent);
   margin-bottom: var(--space-2);
 }
 
 .process__step-text {
-  font-size: 0.92rem;
+  font-size: 1.24rem;
   font-weight: 300;
   line-height: 1.65;
   color: var(--color-ink-soft);
@@ -1376,7 +1376,7 @@ a {
    -------------------------------------------------------------------
    Grote, op zichzelf staande secties voor Eventstyling en Themaboxen
    op de homepage. Geen kaartjes, maar volle, rustige vlakken met een
-   zachte eigen ondertoon, ruime tekst en één duidelijke knop. Twee
+   zachte eigen ondertoon, ruime tekst en Ã©Ã©n duidelijke knop. Twee
    varianten wisselen subtiel van ondertoon (zand / oudroze) zodat de
    twee secties van elkaar te onderscheiden zijn zonder hard contrast.
    =================================================================== */
@@ -1416,7 +1416,7 @@ a {
 }
 
 /* Golfovergang tussen twee sectiekleuren. De SVG bestaat uit een
-   vlak in de bovenkleur met daaroverheen één golfpad in de onder-
+   vlak in de bovenkleur met daaroverheen Ã©Ã©n golfpad in de onder-
    kleur; een verticale blur maakt de overgang zacht in plaats van
    een harde rand. De twee kleuren komen per golf uit een modifier,
    zodat een paletwijziging alleen in de tokens hoeft te gebeuren. */
@@ -1440,7 +1440,7 @@ a {
 
 .story-section__eyebrow {
   display: block;
-  font-size: 0.7rem;
+  font-size: 1.24rem;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1458,7 +1458,7 @@ a {
 }
 
 .story-section__text {
-  font-size: 1.02rem;
+  font-size: 1.24rem;
   font-weight: 300;
   line-height: 1.75;
   color: var(--color-ink-soft);
@@ -1565,7 +1565,7 @@ a {
 
 .box-meta__label {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 1.24rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1619,7 +1619,7 @@ a {
 }
 
 .content-block__text {
-  font-size: 1.125rem;
+  font-size: 1.24rem;
   font-weight: 300;
   line-height: 1.75;
   color: var(--color-ink-soft);
@@ -1639,14 +1639,14 @@ a {
 
 .feature-list__item {
   padding: var(--space-2) 0;
-  font-size: 0.96rem;
+  font-size: 1.24rem;
   font-weight: 300;
   line-height: 1.6;
   color: var(--color-ink-soft);
   border-bottom: 1px solid var(--color-line);
 }
 
-/* Herbruikbare layout-helpers — vervangt veelgebruikte inline styles */
+/* Herbruikbare layout-helpers â€” vervangt veelgebruikte inline styles */
 
 .section--photo {
   padding-top: 0;
@@ -1716,7 +1716,7 @@ a {
 .cta {
   display: inline-block;
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.24rem;
   font-weight: 400;
   color: var(--color-bg);
   background-color: var(--color-button);
@@ -1773,13 +1773,13 @@ a {
 }
 
 /* Knop in de hero. Over de volle breedte van de tekstkolom zolang die
-   smal is: een groter aanraakdoel, en het label blijft op één regel.
+   smal is: een groter aanraakdoel, en het label blijft op Ã©Ã©n regel.
    Vanaf 64rem is er ruimte genoeg en krimpt de knop tot zijn eigen
    breedte, links uitgelijnd met de kop erboven. */
 .cta--hero {
   align-self: stretch;
   /* Krappe zijmarge zolang de knop toch de volle breedte heeft: zo
-     blijft "Vertel Dionne jouw idee" ook op 320px op één regel. */
+     blijft "Vertel Dionne jouw idee" ook op 320px op Ã©Ã©n regel. */
   padding-left: var(--space-3);
   padding-right: var(--space-3);
 }
@@ -2013,7 +2013,7 @@ a {
   margin-bottom: 0.3rem;
 }
 
-/* Volledig uitgeschreven webadressen in juridische tekst zijn één
+/* Volledig uitgeschreven webadressen in juridische tekst zijn Ã©Ã©n
    lang woord. Zonder deze regel duwen ze de pagina op 320px breder
    dan het scherm. */
 .legal-body a {
@@ -2194,7 +2194,7 @@ a {
 }
 
 /* Ultra-wide: voorkom dat de pagina visueel "verdrinkt" in lege
-   zijkanten — de tekstkolommen blijven leesbaar gecentreerd, de
+   zijkanten â€” de tekstkolommen blijven leesbaar gecentreerd, de
    achtergrond vult de rest rustig op. */
 @media (min-width: 1800px) {
   .section--narrow {
@@ -2242,3 +2242,4 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
