@@ -16,10 +16,4 @@
       ]
     }
   ],
-  "env": {
-    "ENVIRONMENT": {
-      "default": "preview",
-      "production": "production"
-    }
-  }
 }
