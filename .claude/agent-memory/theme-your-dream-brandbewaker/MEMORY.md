@@ -1,3 +1,3 @@
-- [Openstaande merkbeslissingen concept-site](project_open_merkbeslissingen.md) — menubalk vs CLAUDE.md en palet-drift wachten op besluit van Dionne
+- [Openstaande merkbeslissingen concept-site](project_open_merkbeslissingen.md) — menubalk, palet-drift en knoptekstsuffix wachten op besluit van Dionne
 - [Concept-site lokaal reviewen](reference_lokale_review_setup.md) — localhost:3456 + headless Chrome, met de 390px-viewport valkuil
 - [Rol van de gebruiker](user_rol.md) — Storm bouwt/beheert de site, Dionne is merkeigenaar en beslisser

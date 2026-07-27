@@ -1,4 +1,6 @@
 - [Menubalk blijft, CLAUDE.md is achterhaald](project_nav_vs_claudemd_conflict.md) — beslist 2026-07-27; alleen de gebruiker mag die zin in CLAUDE.md aanpassen.
 - [Concept-site en merkpalet](project_concept_site_review.md) — preview op localhost:3456; palet teruggezet naar het handboek plus twee verdiepte tekstvarianten.
-- [Openstaande bevindingen na fase 1](project_openstaande_fase1_bevindingen.md) — reduced motion, no-JS menu, ontbrekende voorwaarden-PDF, inline styles.
+- [Openstaand na fase 1 en 2](project_openstaande_fase1_bevindingen.md) — no-JS menu, inline styles, dood formulier, PNG's, keuze voorwaarden-PDF.
+- [Auditcijfers eerst narekenen](feedback_auditcijfers_narekenen.md) — in fase 2 en 5 klopten meerdere claims niet; meet voor je repareert of verwijdert.
 - [Headless controle zonder dependencies](reference_headless_controle.md) — Chrome via CDP; wacht op toegepaste CSS en zet de cache uit.
+- [Beeldconversie naar WebP](reference_beeldconversie.md) — kan met de aanwezige Python plus Pillow; ImageMagick en cwebp ontbreken.
