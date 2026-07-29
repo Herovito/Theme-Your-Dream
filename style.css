@@ -57,6 +57,10 @@
   --color-walnut-deep: #6B5646; /* 6.15:1 op cream, 5.59:1 op linen */
   --color-copper-deep: #7A5240; /* 6.02:1 op cream, 5.47:1 op linen */
 
+  /* --- Golfovergangen ------------------------------------------------ */
+  --color-wave-sand: #D9B8A5;    /* warm sand transitie */
+  --color-wave-coral: #D8A78B;   /* coral transitie */
+
   /* --- Achtergrond ------------------------------------------------- */
   --color-bg: var(--color-cream);
   --color-bg-soft: var(--color-linen);
@@ -1503,9 +1507,9 @@ a {
 .story-wave__from { fill: var(--wave-from); }
 .story-wave__to   { fill: var(--wave-to); }
 
-.story-wave--cream-linen { --wave-from: var(--color-cream); --wave-to: var(--color-linen); }
-.story-wave--linen-pink  { --wave-from: var(--color-linen); --wave-to: var(--color-old-pink); }
-.story-wave--pink-linen  { --wave-from: var(--color-old-pink); --wave-to: var(--color-linen); }
+.story-wave--cream-linen { --wave-from: var(--color-cream); --wave-to: var(--color-wave-sand); }
+.story-wave--linen-pink  { --wave-from: var(--color-linen); --wave-to: var(--color-wave-coral); }
+.story-wave--pink-linen  { --wave-from: var(--color-wave-coral); --wave-to: var(--color-linen); }
 .story-wave--linen-cream { --wave-from: var(--color-linen); --wave-to: var(--color-cream); }
 
 .story-section__inner {
