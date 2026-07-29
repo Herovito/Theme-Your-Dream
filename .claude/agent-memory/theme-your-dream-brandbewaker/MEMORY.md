@@ -1,3 +1,4 @@
 - [Openstaande merkbeslissingen concept-site](project_open_merkbeslissingen.md) — menubalk, palet-drift en knoptekstsuffix wachten op besluit van Dionne
 - [Concept-site lokaal reviewen](reference_lokale_review_setup.md) — localhost:3456 + headless Chrome, met de 390px-viewport valkuil
 - [Rol van de gebruiker](user_rol.md) — Storm bouwt/beheert de site, Dionne is merkeigenaar en beslisser
+- [Parallelle Claude-sessies in deze repo](project_parallelle_sessies.md) — check git status vlak voor het committen, anders slokt een andere sessie je wijzigingen op
