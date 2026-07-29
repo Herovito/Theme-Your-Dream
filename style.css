@@ -46,7 +46,7 @@
 
 :root {
   /* --- Merkkleuren (merkhandboek, niet wijzigen) ------------------- */
-  --color-cream:      #D2C0AD;  /* hoofdachtergrond */
+  --color-cream:      #E0CDB8;  /* hoofdachtergrond */
   --color-linen:      #C9B5A0;  /* subtiele sectieachtergrond */
   --color-dark-brown: #4A3329;  /* tekst en navigatie */
   --color-walnut:     #8C6B5A;  /* accent, alleen vlakken en randen */
@@ -64,15 +64,15 @@
 
   /* Halftransparante headerbalk: cream met 96% dekking, zodat de
      inhoud er zichtbaar onderdoor beweegt zonder tekst te storen. */
-  --color-header-bg: rgba(210, 192, 173, 0.96);
+  --color-header-bg: rgba(224, 205, 184, 0.96);
 
   /* Cream op oplopende dekking, voor de overgang van foto naar vlak in
      de hero. rgba() kan geen var() bevatten, vandaar de losse waarden.
      De variant op 0% is bewust cream en niet `transparent`: dat laatste
      is zwart met dekking 0 en zou de kleurovergang grauw maken. */
-  --color-cream-0:  rgba(210, 192, 173, 0);
-  --color-cream-72: rgba(210, 192, 173, 0.72);
-  --color-cream-82: rgba(210, 192, 173, 0.82);
+  --color-cream-0:  rgba(224, 205, 184, 0);
+  --color-cream-72: rgba(224, 205, 184, 0.72);
+  --color-cream-82: rgba(224, 205, 184, 0.82);
 
   /* Schaduw onder de headerbalk zodra die vult. Dark brown op lage
      dekking in plaats van zwart, zodat de rand warm blijft. */
