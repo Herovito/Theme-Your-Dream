@@ -359,6 +359,13 @@ a {
   background-color: var(--color-cream);
 }
 
+/* Text color overrides for dark backgrounds */
+.section--walnut {
+  --color-ink: var(--color-cream);
+  --color-ink-soft: var(--color-cream);
+  --color-ink-faint: var(--color-cream);
+}
+
 .section__heading {
   text-align: center;
   margin-bottom: var(--space-5);
