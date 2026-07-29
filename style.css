@@ -1501,7 +1501,7 @@ a {
 .story-wave__from { fill: var(--wave-from); }
 .story-wave__to   { fill: var(--wave-to); }
 
-.story-wave--cream-linen { --wave-from: var(--color-cream); --wave-to: var(--color-wave-sand); }
+.story-wave--cream-linen { --wave-from: var(--color-cream); --wave-to: var(--color-linen); }
 .story-wave--linen-pink  { --wave-from: var(--color-linen); --wave-to: var(--color-wave-coral); }
 .story-wave--pink-linen  { --wave-from: var(--color-wave-coral); --wave-to: var(--color-linen); }
 .story-wave--linen-cream { --wave-from: var(--color-linen); --wave-to: var(--color-cream); }
