@@ -1493,8 +1493,6 @@ a {
 
   --color-ink-soft: var(--color-dark-brown);
   --color-ink-faint: var(--color-dark-brown);
-  --color-button: var(--color-dark-brown);
-  --color-button-hover: var(--color-walnut-deep);
 }
 
 /* Coral wave transitie kleur voor themaboxen sectie. */
@@ -1503,8 +1501,6 @@ a {
 
   --color-ink-soft: var(--color-dark-brown);
   --color-ink-faint: var(--color-dark-brown);
-  --color-button: var(--color-dark-brown);
-  --color-button-hover: var(--color-walnut-deep);
 }
 
 .story-section--cream {
@@ -1512,8 +1508,6 @@ a {
 
   --color-ink-soft: var(--color-dark-brown);
   --color-ink-faint: var(--color-dark-brown);
-  --color-button: var(--color-dark-brown);
-  --color-button-hover: var(--color-walnut-deep);
 }
 
 /* Draagt alleen herbruikbare SVG-definities (filters, gradients) en
