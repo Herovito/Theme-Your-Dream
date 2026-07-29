@@ -58,7 +58,6 @@
   --color-copper-deep: #7A5240; /* 6.02:1 op cream, 5.47:1 op linen */
 
   /* --- Golfovergangen ------------------------------------------------ */
-  --color-wave-sand: #D9B8A5;    /* warm sand transitie */
   --color-wave-coral: #D8A78B;   /* coral transitie */
 
   /* --- Achtergrond ------------------------------------------------- */
@@ -1485,7 +1484,10 @@ a {
 }
 
 .story-section--sand {
-  background-color: var(--color-bg-soft);
+  background-color: var(--color-walnut);
+
+  --color-ink-soft: var(--color-dark-brown);
+  --color-ink-faint: var(--color-dark-brown);
 }
 
 .story-section--walnut {
