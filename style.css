@@ -1496,10 +1496,10 @@ a {
 .story-wave {
   display: block;
   width: 100%;
-  height: 180px;
+  height: 181px;
   margin: 0;
   padding: 0;
-  margin-bottom: -1px;
+  margin-bottom: -2px;
   overflow: hidden;
 }
 
