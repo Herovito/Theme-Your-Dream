@@ -1408,7 +1408,6 @@ a {
   grid-template-columns: 1fr;
   gap: var(--space-4);
   margin: 0 auto;
-  background-color: var(--color-bg);
 }
 
 .process__step {
