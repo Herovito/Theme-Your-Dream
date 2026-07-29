@@ -1489,6 +1489,15 @@ a {
   background-color: var(--color-bg-soft);
 }
 
+.story-section--walnut {
+  background-color: var(--color-walnut);
+
+  --color-ink-soft: var(--color-dark-brown);
+  --color-ink-faint: var(--color-dark-brown);
+  --color-button: var(--color-dark-brown);
+  --color-button-hover: var(--color-walnut-deep);
+}
+
 /* Coral wave transitie kleur voor themaboxen sectie. */
 .story-section--rose {
   background-color: var(--color-wave-coral);
@@ -1535,6 +1544,8 @@ a {
 .story-wave__to   { fill: var(--wave-to); shape-rendering: crispEdges; }
 
 .story-wave--cream-linen { --wave-from: var(--color-cream); --wave-to: var(--color-linen); }
+.story-wave--linen-walnut { --wave-from: var(--color-linen); --wave-to: var(--color-walnut); }
+.story-wave--walnut-cream { --wave-from: var(--color-walnut); --wave-to: var(--color-cream); }
 .story-wave--linen-pink  { --wave-from: var(--color-linen); --wave-to: var(--color-wave-coral); }
 .story-wave--pink-linen  { --wave-from: var(--color-wave-coral); --wave-to: var(--color-linen); }
 .story-wave--linen-cream { --wave-from: var(--color-linen); --wave-to: var(--color-cream); }
