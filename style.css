@@ -1499,8 +1499,10 @@ a {
   height: 181px;
   margin: 0;
   padding: 0;
-  margin-bottom: -2px;
-  overflow: hidden;
+  margin-bottom: -4px;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
 }
 
 .story-wave__from { fill: var(--wave-from); }
