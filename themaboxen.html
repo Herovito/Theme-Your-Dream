@@ -118,7 +118,13 @@
         width="1344"
         height="576"
       >
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <!-- ============================================
@@ -132,7 +138,13 @@
           bij elkaar gezocht en op elkaar afgestemd.
         </p>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
 
@@ -150,7 +162,13 @@
           zelf mee aan de slag te gaan.
         </p>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <!-- ============================================
@@ -179,7 +197,13 @@
           <img src="Themabox 4.png" alt="It's Your Day —” roze droogbloemen en champagne" class="mood-card__img">
         </a>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <!-- ============================================
@@ -196,7 +220,13 @@
         Vertel Dionne jouw idee
       </a>
 
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <!-- ============================================
@@ -208,7 +238,13 @@
         <a href="eventstyling.html">Eventstyling</a>
         <a href="over_dionne.html">Over Dionne</a>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
   </main>
 
@@ -244,6 +280,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

@@ -117,7 +117,13 @@
         width="1344"
         height="576"
       >
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <!-- ============================================
@@ -132,7 +138,13 @@
           en maakt er een samenhangend geheel van.
         </p>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
 
@@ -153,7 +165,13 @@
         <li class="feature-list__item">Complete aankleding van de ruimte</li>
         <li class="feature-list__item">Samenwerking met ballondecoratie waar gewenst</li>
       </ul>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <!-- ============================================
@@ -183,7 +201,13 @@
           <p class="process__step-text">Dionne is aanwezig bij de opbouw. Alles staat zoals het moet staan, jij hoeft er niets voor te doen.</p>
         </div>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <!-- ============================================
@@ -209,7 +233,13 @@
           <img src="Bloemstukken.png" alt="Bloemstukken en sfeerelementen, afgestemd op de stijl" class="mood-card__img">
         </div>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <!-- ============================================
@@ -226,7 +256,13 @@
         Vertel Dionne jouw idee
       </a>
 
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <!-- ============================================
@@ -238,7 +274,13 @@
         <a href="themaboxen.html">Themaboxen</a>
         <a href="over_dionne.html">Over Dionne</a>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
   </main>
 
@@ -274,6 +316,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

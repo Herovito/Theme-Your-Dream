@@ -108,7 +108,13 @@
         width="1344"
         height="576"
       >
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <section class="section section--narrow">
@@ -126,7 +132,13 @@
           <span class="box-meta__value">3 dagen</span>
         </div>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <section class="section section--narrow">
@@ -143,7 +155,13 @@
         <li class="feature-list__item">Zijden strik in oudroze en goud</li>
         <li class="feature-list__item">Feestkaart met envelop</li>
       </ul>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <section class="section section--narrow">
@@ -155,7 +173,13 @@
           De exacte prijs hangt af van eventuele aanpassingen of extra's, Dionne geeft dit van tevoren aan.
         </p>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <section class="section section--narrow section--cta-padded">
@@ -169,7 +193,13 @@
         Vertel Dionne jouw idee
       </a>
 
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
 
     <section class="also-see" aria-label="Ook bekijken">
@@ -180,7 +210,13 @@
         <a href="box-natural.html">Natural</a>
         <a href="box-warm-cosy.html">Warm &amp; Cosy</a>
       </div>
-    </section>
+    
+            $waveIndex = $sectionIndex % $waveMap[$file].Count
+            $waveClass = $waveMap[$file][$waveIndex]
+            $wave = $waveTemplate -replace 'WAVE_CLASS', $waveClass
+            $sectionIndex++
+            "`</section>`n`n$wave"
+        
 
   </main>
 
@@ -216,6 +252,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
