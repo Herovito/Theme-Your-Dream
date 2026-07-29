@@ -1469,20 +1469,14 @@ a {
   background-color: var(--color-bg-soft);
 }
 
-/* Old pink is de donkerste sectieachtergrond. Daarop haalt alleen
-   dark brown WCAG AA (5.12:1); de gedempte bruintinten blijven onder
-   3.1:1 en de koperen knop komt met 2.96:1 net onder de 3:1 die een
-   knopvlak nodig heeft om als vorm herkenbaar te zijn. In plaats van
-   elk element hier apart te overschrijven worden de tokens lokaal
-   verdiept: alles wat verderop var(--color-ink-soft) of
-   var(--color-button) gebruikt, klopt daarmee automatisch. */
+/* Coral wave transitie kleur voor themaboxen sectie. */
 .story-section--rose {
-  background-color: var(--color-old-pink);
+  background-color: var(--color-wave-coral);
 
   --color-ink-soft: var(--color-dark-brown);
   --color-ink-faint: var(--color-dark-brown);
-  --color-button: var(--color-dark-brown);          /* 5.12:1 op old pink */
-  --color-button-hover: var(--color-walnut-deep);   /* 3.02:1 op old pink */
+  --color-button: var(--color-dark-brown);
+  --color-button-hover: var(--color-walnut-deep);
 }
 
 /* Draagt alleen herbruikbare SVG-definities (filters, gradients) en
