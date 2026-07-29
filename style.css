@@ -351,6 +351,14 @@ a {
   background-color: var(--color-bg-soft);
 }
 
+.section--full-bg.section--walnut::before {
+  background-color: var(--color-walnut);
+}
+
+.section--full-bg.section--cream::before {
+  background-color: var(--color-cream);
+}
+
 .section__heading {
   text-align: center;
   margin-bottom: var(--space-5);
