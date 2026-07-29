@@ -1499,6 +1499,15 @@ a {
   --color-button-hover: var(--color-walnut-deep);
 }
 
+.story-section--cream {
+  background-color: var(--color-cream);
+
+  --color-ink-soft: var(--color-dark-brown);
+  --color-ink-faint: var(--color-dark-brown);
+  --color-button: var(--color-dark-brown);
+  --color-button-hover: var(--color-walnut-deep);
+}
+
 /* Draagt alleen herbruikbare SVG-definities (filters, gradients) en
    mag zelf niets innemen of tonen. */
 .svg-defs {
