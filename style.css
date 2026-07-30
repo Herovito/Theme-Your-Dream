@@ -1548,8 +1548,6 @@ a {
   margin: 0;
   padding: 0;
   margin-bottom: -80px;
-  overflow: visible;
-  filter: url(#wave-soften);
 }
 
 .story-wave__from { fill: var(--wave-from); }
