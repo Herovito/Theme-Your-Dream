@@ -1547,11 +1547,13 @@ a {
   height: 180px;
   margin: 0;
   padding: 0;
-  margin-bottom: -1px;
+  margin-bottom: -80px;
+  overflow: visible;
+  filter: url(#wave-soften);
 }
 
 .story-wave__from { fill: var(--wave-from); }
-.story-wave__to   { fill: var(--wave-to); shape-rendering: crispEdges; }
+.story-wave__to { fill: var(--wave-to); }
 
 .story-wave--cream-linen { --wave-from: var(--color-cream); --wave-to: var(--color-linen); }
 .story-wave--cream-walnut { --wave-from: var(--color-cream); --wave-to: var(--color-walnut); }
