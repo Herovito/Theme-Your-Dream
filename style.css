@@ -1814,18 +1814,10 @@ a {
   margin-bottom: var(--space-5);
 }
 
-.site-photo--cinematic {
-  aspect-ratio: 4 / 3;   /* mobiel: sfeer behouden, geen dunne strook */
-}
-
 @media (min-width: 640px) {
   .site-photo--cinematic {
     aspect-ratio: 21 / 9; /* tablet/desktop: breed cinematografisch */
   }
-}
-
-.site-photo--landscape {
-  aspect-ratio: 16 / 9;
 }
 
 .site-photo--portrait {
@@ -1833,6 +1825,22 @@ a {
   max-width: 22rem;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 55% 45% 65% 35% / 65% 35% 55% 45%;
+}
+
+/* Unique organic shapes for story-section photos (homepage) */
+.story-section--walnut:nth-of-type(2) .site-photo { border-radius: 35% 65% 75% 25% / 45% 55% 45% 55%; }
+.story-section--cream .site-photo { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+.story-section--walnut:nth-of-type(5) .site-photo { border-radius: 45% 55% 50% 50% / 45% 50% 50% 55%; }
+
+.site-photo--cinematic {
+  /* Eventstyling page cinematic photo */
+  border-radius: 65% 35% 40% 60% / 35% 60% 40% 65%;
+}
+
+.site-photo--landscape {
+  /* Themaboxen page landscape photo */
+  border-radius: 50% 50% 55% 45% / 55% 45% 50% 50%;
 }
 
 
