@@ -1884,7 +1884,7 @@ a {
 .over-dionne__quote-grid {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
-  gap: 0 3rem;
+  gap: 0 1.5rem;
   align-items: center;
   position: relative;
   margin-top: 1rem;
@@ -1924,7 +1924,7 @@ a {
 .over-dionne-quote__text {
   position: relative;
   font-family: var(--font-display);
-  font-size: 19px;
+  font-size: 22px;
   font-style: italic;
   color: var(--color-ink);
   line-height: 1.65;
