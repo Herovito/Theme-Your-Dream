@@ -1960,7 +1960,7 @@ a {
 
 @media (min-width: 640px) {
   .site-photo--cinematic {
-    aspect-ratio: 21 / 9; /* tablet/desktop: breed cinematografisch */
+    aspect-ratio: 10 / 9.5; /* tablet/desktop: vierkanter kader voor table detail */
   }
 }
 
