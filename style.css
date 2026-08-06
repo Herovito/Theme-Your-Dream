@@ -1835,6 +1835,89 @@ a {
   margin-bottom: var(--space-5);
 }
 
+/* ===================================================================
+   Over Dionne: Intro sectie (gecentreerd)
+   =================================================================== */
+.section--over-dionne-intro {
+  text-align: center;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===================================================================
+   Over Dionne: Citaatblok met foto (2-koloms)
+   =================================================================== */
+.section--over-dionne-quote {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+  align-items: center;
+  max-width: 70rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.over-dionne-quote__photo-col {
+  position: relative;
+  overflow: visible;
+}
+
+.over-dionne-quote__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: -2.5rem;
+  margin-left: -1.5rem;
+}
+
+.over-dionne-quote__text-col {
+  position: relative;
+  padding-left: var(--space-5);
+}
+
+.over-dionne-quote__mark {
+  position: absolute;
+  top: -1.5rem;
+  left: 0;
+  font-size: 120px;
+  font-family: var(--font-display);
+  color: var(--color-accent);
+  opacity: 0.15;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.over-dionne-quote__text {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--color-ink);
+  margin-bottom: var(--space-5);
+}
+
+.over-dionne-quote__signature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.over-dionne-quote__line {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-accent);
+}
+
+.over-dionne-quote__author {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
 @media (min-width: 640px) {
   .site-photo--cinematic {
     aspect-ratio: 21 / 9; /* tablet/desktop: breed cinematografisch */
