@@ -356,29 +356,21 @@ a {
 .section--full-bg {
   position: relative;
   z-index: 0;
-  overflow: hidden;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
 }
 
-.section--full-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 100vw;
-  height: 100%;
-  transform: translateX(-50%);
-  z-index: -1;
-}
-
-.section--full-bg.section--linen::before {
+.section--full-bg.section--linen {
   background-color: var(--color-bg-soft);
 }
 
-.section--full-bg.section--walnut::before {
+.section--full-bg.section--walnut {
   background-color: var(--color-walnut);
 }
 
-.section--full-bg.section--cream::before {
+.section--full-bg.section--cream {
   background-color: var(--color-cream);
 }
 
