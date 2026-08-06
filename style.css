@@ -1979,7 +1979,7 @@ a {
 
 .site-photo--cinematic {
   /* Eventstyling page cinematic photo */
-  border-radius: 0;
+  border-radius: 55% 45% 52% 48% / 48% 52% 48% 52%;
 }
 
 .site-photo--landscape {
