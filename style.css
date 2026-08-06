@@ -1840,10 +1840,14 @@ a {
    =================================================================== */
 .section--over-dionne-intro {
   text-align: center;
-  max-width: 560px;
+  max-width: 660px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.section--over-dionne-intro .page-hero__title {
+  margin-top: 1rem;
 }
 
 /* ===================================================================
@@ -1851,18 +1855,17 @@ a {
    =================================================================== */
 .section--over-dionne-quote {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-7);
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 3rem;
   align-items: center;
-  max-width: 70rem;
+  max-width: 75rem;
   margin-left: auto;
   margin-right: auto;
 }
 
 .over-dionne-quote__photo-col {
   position: relative;
-  overflow: visible;
-  height: auto;
+  max-width: 400px;
 }
 
 .over-dionne-quote__photo {
@@ -1870,25 +1873,23 @@ a {
   width: 100%;
   height: auto;
   object-fit: contain;
-  margin-top: -2.5rem;
-  margin-left: -1.5rem;
-  margin-bottom: var(--space-4);
+  margin-bottom: 2rem;
 }
 
 .over-dionne-quote__text-col {
   position: relative;
-  padding-left: var(--space-5);
+  padding-top: 2.5rem;
 }
 
 .over-dionne-quote__mark {
   position: absolute;
-  top: -50px;
+  top: -20px;
   left: -10px;
-  font-size: 100px;
   font-family: var(--font-display);
-  color: var(--color-copper-deep);
-  opacity: 0.2;
+  font-size: 120px;
   line-height: 1;
+  color: var(--color-copper-deep);
+  opacity: 0.25;
   pointer-events: none;
 }
 
@@ -1896,30 +1897,32 @@ a {
   font-family: var(--font-display);
   font-size: 18px;
   font-style: italic;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--color-ink);
-  margin-bottom: var(--space-5);
+  margin-bottom: 1.5rem;
 }
 
 .over-dionne-quote__signature {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .over-dionne-quote__line {
   display: block;
   width: 32px;
   height: 1px;
-  background-color: var(--color-accent);
+  background-color: var(--color-copper-deep);
+  flex-shrink: 0;
 }
 
 .over-dionne-quote__author {
   font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
+  font-weight: 600;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-copper-deep);
 }
 
 @media (min-width: 640px) {
