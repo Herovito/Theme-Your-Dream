@@ -1569,6 +1569,8 @@ a {
   margin: 0;
   padding: 0;
   margin-bottom: -80px;
+  position: relative;
+  z-index: 1;
 }
 
 .story-wave__from { fill: var(--wave-from); }
