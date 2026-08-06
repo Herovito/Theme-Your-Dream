@@ -330,7 +330,6 @@ a {
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: var(--space-7);
-  align-items: center;
   max-width: 56rem;
 }
 
@@ -338,10 +337,14 @@ a {
   max-width: 100%;
   height: auto;
   order: 2;
+  position: sticky;
+  top: var(--space-5);
+  align-self: start;
 }
 
 .section--split .content-block {
   order: 1;
+  align-self: start;
 }
 
 .section--tight {
