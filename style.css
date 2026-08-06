@@ -328,15 +328,20 @@ a {
 
 .section--split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-7);
   align-items: center;
-  max-width: 60rem;
+  max-width: 56rem;
 }
 
 .section--split__photo {
   max-width: 100%;
   height: auto;
+  order: 2;
+}
+
+.section--split .content-block {
+  order: 1;
 }
 
 .section--tight {
