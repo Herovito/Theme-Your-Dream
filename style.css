@@ -1886,30 +1886,24 @@ a {
 }
 
 .over-dionne__quote-grid {
-  display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 0 1.5rem;
-  align-items: center;
+  display: block;
   position: relative;
   margin-top: 1rem;
 }
 
-.over-dionne-quote__photo-col {
-  position: relative;
-  margin: -2.5rem -18rem -2rem 0;
-}
-
 .over-dionne-quote__photo {
-  display: block;
-  width: 100%;
-  max-width: 420px;
+  float: left;
+  width: auto;
+  max-width: 280px;
   height: auto;
   object-fit: contain;
+  margin: 0 1.5rem 1.5rem 0;
 }
 
 .over-dionne-quote__text-col {
   position: relative;
   padding: 1rem 0;
+  overflow: auto;
 }
 
 .over-dionne-quote__mark {
