@@ -1892,12 +1892,12 @@ a {
 }
 
 .over-dionne-quote__photo {
-  float: left;
+  float: right;
   width: auto;
   max-width: 280px;
   height: auto;
   object-fit: contain;
-  margin: 0 1.5rem 1.5rem 0;
+  margin: 0 0 1.5rem 1.5rem;
 }
 
 .over-dionne-quote__text-col {
