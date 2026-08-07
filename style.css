@@ -1887,8 +1887,8 @@ a {
 
 .over-dionne__quote-grid {
   display: grid;
-  grid-template-columns: 0.35fr 1.65fr;
-  gap: 0 0.5rem;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 0 2rem;
   align-items: flex-start;
   position: relative;
   margin-top: 1rem;
