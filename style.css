@@ -1846,9 +1846,10 @@ a {
    Over Dionne: Intro + Quote samen
    =================================================================== */
 .section--over-dionne {
-  display: flex;
-  flex-direction: column;
-  max-width: 100%;
+  /* Gewone sectiebreedte: zonder deze regel liep het citaatblok als
+     enige onderdeel van de pagina van rand tot rand, terwijl de hero
+     erboven binnen 52rem blijft. */
+  max-width: var(--content-width);
 }
 
 .over-dionne__intro {
@@ -1885,13 +1886,24 @@ a {
   max-width: 440px;
 }
 
+/* Citaatblok: foto en citaat ontmoeten elkaar op de verticale middenas
+   van de pagina. Basis is gestapeld; het tweekolomsbeeld komt er pas bij
+   als beide helften genoeg breedte hebben. */
 .over-dionne__quote-grid {
+  /* Zichtbare breedte van de uitsnede; de PNG draagt links 18,1% en
+     rechts 8,8% transparante rand mee. Die percentages zijn gemeten op
+     Dionne-removebg-preview-v2.png en sturen de optische uitlijning. */
+  --od-photo-w: 14rem;
+  --od-photo-bleed-right: 8.8%;
+
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 2rem;
-  align-items: flex-start;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: start;
+  gap: var(--space-5) 0;
   position: relative;
-  margin-top: 1rem;
+  max-width: 34rem;
+  margin: var(--space-3) auto 0;
 }
 
 .over-dionne-quote__photo-col {
@@ -1900,10 +1912,17 @@ a {
 
 .over-dionne-quote__photo {
   display: block;
-  width: 100%;
-  max-width: 280px;
+  width: var(--od-photo-w);
+  max-width: 100%;
   height: auto;
-  object-fit: contain;
+  /* Gestapeld staat het kader gecentreerd, maar Dionne zelf niet: de
+     transparante randen zijn ongelijk. Deze halve correctie zet haar
+     optisch op de as in plaats van haar kader. */
+  margin-right: calc(var(--od-photo-w) * 0.093);
+  /* De uitsnede eindigt halverwege haar onderbeen. Een zachte fade laat
+     hem oplossen in de crème in plaats van er hard afgesneden te staan. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
 }
 
 .over-dionne-quote__text-col {
@@ -1927,7 +1946,10 @@ a {
 .over-dionne-quote__text {
   position: relative;
   font-family: var(--font-display);
-  font-size: 22px;
+  /* De regelafbrekingen in de HTML zijn bewust gezet. Door de
+     lettergrootte mee te laten schalen blijven die regels op elke
+     breedte staan waar ze horen, in plaats van dubbel af te breken. */
+  font-size: clamp(1.05rem, 1.55vw, 1.375rem);
   font-style: italic;
   color: var(--color-ink);
   line-height: 1.65;
@@ -1955,6 +1977,34 @@ a {
   color: var(--color-dark-brown);
   font-weight: 500;
   text-transform: uppercase;
+}
+
+/* Vanaf hier passen twee volwaardige helften naast elkaar. Twee gelijke
+   kolommen in een gecentreerd raster betekent dat de naad tussen foto en
+   citaat per definitie op de middenas van de pagina valt: de foto sluit
+   rechts af in de linkerhelft, de tekst begint links in de rechterhelft.
+   De halve gap staat dus links en rechts van die as, symmetrisch. */
+@media (min-width: 900px) {
+  .over-dionne__quote-grid {
+    --od-photo-w: clamp(16rem, 23vw, 21rem);
+
+    grid-template-columns: 1fr 1fr;
+    justify-items: stretch;
+    align-items: center;
+    gap: 0 var(--space-5);
+    max-width: 73rem;
+  }
+
+  .over-dionne-quote__photo-col {
+    justify-self: end;
+  }
+
+  .over-dionne-quote__photo {
+    max-width: none;
+    /* Trekt de transparante rand van de PNG weg, zodat Dionne zelf tegen
+       de as staat en niet haar onzichtbare kader. */
+    margin-right: calc(var(--od-photo-w) * -0.088);
+  }
 }
 
 @media (min-width: 640px) {
