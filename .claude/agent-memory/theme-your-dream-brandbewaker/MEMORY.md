@@ -1,4 +1,6 @@
-- [Openstaande merkbeslissingen concept-site](project_open_merkbeslissingen.md) — menubalk, palet-drift en knoptekstsuffix wachten op besluit van Dionne
+- [Naamswijziging naar styling boxen](project_naamswijziging_styling_boxen.md) — nieuwe box-namen sinds 2026-08-11, plus drie open merkpunten (inhoud, blauw, anglicismen)
+- [Openstaande merkbeslissingen concept-site](project_open_merkbeslissingen.md) — menubalk, palet-drift en "2,5 meter waarvan" wachten op besluit van Dionne
+- [Mojibake in de HTML-bestanden](project_mojibake_html_bestanden.md) — â‚¬ en â† staan letterlijk in de bestanden; laat Edit-matches nooit op die tekens ankeren
 - [Concept-site lokaal reviewen](reference_lokale_review_setup.md) — localhost:3456 + headless Chrome, met de 390px-viewport valkuil
 - [Rol van de gebruiker](user_rol.md) — Storm bouwt/beheert de site, Dionne is merkeigenaar en beslisser
 - [Parallelle Claude-sessies in deze repo](project_parallelle_sessies.md) — check git status vlak voor het committen, anders slokt een andere sessie je wijzigingen op

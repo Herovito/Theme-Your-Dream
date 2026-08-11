@@ -1641,6 +1641,12 @@ a {
   gap: var(--space-3);
 }
 
+/* Toelichting direct onder een beeldraster: ruimte houden zodat de tekst
+   niet tegen de laatste rij foto's aan plakt. */
+.mood-grid + .content-block {
+  margin-top: var(--space-5);
+}
+
 .mood-card {
   aspect-ratio: 4 / 5;
   border: 1px solid var(--color-line);
