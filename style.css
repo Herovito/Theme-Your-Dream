@@ -1806,6 +1806,22 @@ a {
   border-bottom: 1px solid var(--color-line);
 }
 
+/* Variant met bedrag: omschrijving links, prijs rechts op dezelfde regel.
+   Zelfde lijnenstructuur als de gewone feature-list, alleen het bedrag
+   staat in de donkere tekstkleur zodat het rustig opvalt. */
+.feature-list__item--priced {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 var(--space-2);
+}
+
+.feature-list__price {
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
 /* Herbruikbare layout-helpers —” vervangt veelgebruikte inline styles */
 
 .section--photo {
