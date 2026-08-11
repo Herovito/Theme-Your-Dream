@@ -2054,8 +2054,8 @@ a {
 }
 
 .site-photo--landscape {
-  /* Styling boxen page landscape photo */
-  border-radius: 50% 50% 55% 45% / 55% 45% 50% 50%;
+  /* Organic, asymmetric shape — more natural than standard oval */
+  border-radius: 42% 58% 65% 35% / 38% 62% 38% 62%;
 }
 
 
