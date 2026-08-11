@@ -50,14 +50,14 @@ The file `build-robots-meta.js` runs during every Vercel deployment:
 The following HTML files are updated with environment-appropriate robots meta:
 
 - `index.html`
-- `box-celebrate.html`
-- `box-natural.html`
-- `box-warm-cosy.html`
-- `box-your-day.html`
+- `box-bordeaux-date.html`
+- `box-blue-breeze.html`
+- `box-beige-bliss.html`
+- `box-blush-bloom.html`
 - `eventstyling.html`
 - `over_dionne.html`
 - `privacyverklaring.html`
-- `themaboxen.html`
+- `styling-boxes.html`
 
 ## Configuration Files
 

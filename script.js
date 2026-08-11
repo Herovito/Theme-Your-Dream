@@ -204,7 +204,7 @@
     sync();
   }
 
-  // ===== 9. HOOFDMENU: THEMABOXEN-DISCLOSURE + MOBIEL MENU =====
+  // ===== 9. HOOFDMENU: STYLING BOXEN-DISCLOSURE + MOBIEL MENU =====
   // De navigatie werkt zonder JavaScript: alle menu-items zijn gewone
   // links. JavaScript voegt alleen het open- en dichtklappen toe.
   function initNavigation() {
@@ -234,7 +234,7 @@
       if (!open) setDropdown(false);
     }
 
-    // Themaboxen open- en dichtklappen. Op desktop opent de lijst ook
+    // Styling boxen open- en dichtklappen. Op desktop opent de lijst ook
     // op hover (CSS); de knop blijft nodig voor touch en toetsenbord.
     if (dropdownBtn) {
       dropdownBtn.addEventListener('click', () => {
@@ -255,7 +255,7 @@
       setMenu(false);
     });
 
-    // Escape sluit eerst de themaboxenlijst, daarna het mobiele menu,
+    // Escape sluit eerst de lijst met styling boxen, daarna het mobiele menu,
     // en zet de focus terug op de knop die het opende.
     document.addEventListener('keydown', (event) => {
       if (event.key !== 'Escape') return;

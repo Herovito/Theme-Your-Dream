@@ -12,7 +12,7 @@
    6b. Pagina hero (subpagina's)
    6c. Dienstblokken (compact, gebruikt op Over Dionne)
    6d. Werkwijze
-   6e. Story sections (Eventstyling / Themaboxen op homepage)
+   6e. Story sections (Eventstyling / Styling boxen op homepage)
    6f. Sfeerkaarten (mood cards)
    6g. Tekstblokken en lijsten
    6h. Site-foto's
@@ -50,7 +50,7 @@
   --color-linen:      #C9B5A0;  /* subtiele sectieachtergrond */
   --color-dark-brown: #4A3329;  /* tekst en navigatie */
   --color-walnut:     #8C6B5A;  /* accent, alleen vlakken en randen */
-  --color-old-pink:   #C7A49A;  /* accentvlak, themaboxen-sectie */
+  --color-old-pink:   #C7A49A;  /* accentvlak, styling boxen sectie */
   --color-copper:     #A76F5B;  /* accent, alleen vlakken en randen */
 
   /* --- Verdiepte varianten voor tekst (zelfde tint, donkerder) ----- */
@@ -454,7 +454,7 @@ a {
    één navigatie met drie keuzes aankondigt in plaats van als drie
    losse navigaties.
 
-   Themaboxen is een disclosure (knop plus lijst met gewone links),
+   Styling boxen is een disclosure (knop plus lijst met gewone links),
    geen ARIA-menu. Op apparaten met een echte muis opent de lijst ook
    op hover; op touch en met het toetsenbord doet de knop het werk,
    zodat aria-expanded altijd de werkelijke toestand beschrijft.
@@ -661,7 +661,7 @@ a {
 }
 
 
-/* --- Themaboxen disclosure ----------------------------------------- */
+/* --- Styling boxen disclosure ----------------------------------------- */
 
 .nav-dropdown {
   position: absolute;
@@ -1309,7 +1309,7 @@ a {
    6b. Pagina hero (subpagina's)
    -------------------------------------------------------------------
    Kleinere, rustigere variant van de homepage hero, voor gebruik
-   bovenaan Eventstyling, Themaboxen en Over Dionne.
+   bovenaan Eventstyling, Styling boxen en Over Dionne.
    =================================================================== */
 
 .page-hero {
@@ -1362,7 +1362,7 @@ a {
 /* ===================================================================
    6c. Dienstblokken
    -------------------------------------------------------------------
-   Twee gelijkwaardige kaarten: Eventstyling en Themaboxen. Rustige
+   Twee gelijkwaardige kaarten: Eventstyling en Styling boxen. Rustige
    vlakken zonder schaduw, met een dunne rand en ruime binnenmarge.
    =================================================================== */
 
@@ -1508,7 +1508,7 @@ a {
 /* ===================================================================
    6e. Story sections (homepage)
    -------------------------------------------------------------------
-   Grote, op zichzelf staande secties voor Eventstyling en Themaboxen
+   Grote, op zichzelf staande secties voor Eventstyling en Styling boxen
    op de homepage. Geen kaartjes, maar volle, rustige vlakken met een
    zachte eigen ondertoon, ruime tekst en één duidelijke knop. Twee
    varianten wisselen subtiel van ondertoon (zand / oudroze) zodat de
@@ -1534,7 +1534,7 @@ a {
   --color-ink-faint: var(--color-dark-brown);
 }
 
-/* Coral wave transitie kleur voor themaboxen sectie. */
+/* Coral wave transitie kleur voor styling boxen sectie. */
 .story-section--rose {
   background-color: var(--color-wave-coral);
 
@@ -1632,7 +1632,7 @@ a {
    6f. Sfeerkaarten (mood cards)
    -------------------------------------------------------------------
    Rasterkaarten met een foto en een korte omschrijving, gebruikt op
-   Eventstyling en Themaboxen.
+   Eventstyling en Styling boxen.
    =================================================================== */
 
 .mood-grid {
@@ -2032,7 +2032,7 @@ a {
 }
 
 .site-photo--landscape {
-  /* Themaboxen page landscape photo */
+  /* Styling boxen page landscape photo */
   border-radius: 50% 50% 55% 45% / 55% 45% 50% 50%;
 }
 

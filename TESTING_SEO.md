@@ -27,15 +27,15 @@ ENVIRONMENT=development node build-robots-meta.js
 [SEO Build] Environment: development
 [SEO Build] Robots meta: noindex, nofollow
 [SEO Build] Found 9 HTML files to process
-[SEO Build] ✓ box-celebrate.html
-[SEO Build] ✓ box-natural.html
-[SEO Build] ✓ box-warm-cosy.html
-[SEO Build] ✓ box-your-day.html
+[SEO Build] ✓ box-bordeaux-date.html
+[SEO Build] ✓ box-blue-breeze.html
+[SEO Build] ✓ box-beige-bliss.html
+[SEO Build] ✓ box-blush-bloom.html
 [SEO Build] ✓ eventstyling.html
 [SEO Build] ✓ index.html
 [SEO Build] ✓ over_dionne.html
 [SEO Build] ✓ privacyverklaring.html
-[SEO Build] ✓ themaboxen.html
+[SEO Build] ✓ styling-boxes.html
 [SEO Build] Done!
 ```
 
@@ -149,15 +149,15 @@ grep "robots" *.html
 
 ### Expected Output (all should show same content)
 ```
-box-celebrate.html:  <meta name="robots" content="noindex, nofollow">
-box-natural.html:  <meta name="robots" content="noindex, nofollow">
-box-warm-cosy.html:  <meta name="robots" content="noindex, nofollow">
-box-your-day.html:  <meta name="robots" content="noindex, nofollow">
+box-bordeaux-date.html:  <meta name="robots" content="noindex, nofollow">
+box-blue-breeze.html:  <meta name="robots" content="noindex, nofollow">
+box-beige-bliss.html:  <meta name="robots" content="noindex, nofollow">
+box-blush-bloom.html:  <meta name="robots" content="noindex, nofollow">
 eventstyling.html:  <meta name="robots" content="noindex, nofollow">
 index.html:  <meta name="robots" content="noindex, nofollow">
 over_dionne.html:  <meta name="robots" content="noindex, nofollow">
 privacyverklaring.html:  <meta name="robots" content="noindex, nofollow">
-themaboxen.html:  <meta name="robots" content="noindex, nofollow">
+styling-boxes.html:  <meta name="robots" content="noindex, nofollow">
 ```
 
 ### ✓ Test Result

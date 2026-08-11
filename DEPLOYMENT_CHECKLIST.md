@@ -16,7 +16,7 @@ grep -rn "VERVANGEN DOOR DIONNE" *.html
 
 | Gegeven | Placeholder in de code | Waar |
 |---|---|---|
-| WhatsApp-nummer | `wa.me/31000000000` | `index.html`, `eventstyling.html`, `themaboxen.html`, `over_dionne.html`, `box-celebrate.html`, `box-natural.html`, `box-warm-cosy.html`, `box-your-day.html` |
+| WhatsApp-nummer | `wa.me/31000000000` | `index.html`, `eventstyling.html`, `styling-boxes.html`, `over_dionne.html`, `box-bordeaux-date.html`, `box-blue-breeze.html`, `box-beige-bliss.html`, `box-blush-bloom.html` |
 | KvK-nummer | `[VERVANGEN DOOR DIONNE: KvK-nummer]` | footer van alle 9 pagina's, plus `privacyverklaring.html` artikel 1 |
 | Btw-id | `[VERVANGEN DOOR DIONNE: btw-id]` | footer van alle 9 pagina's, plus `privacyverklaring.html` artikel 1 |
 
@@ -136,7 +136,7 @@ aanschrijft.
   ```
 - [ ] Check all pages
   ```bash
-  for page in index box-celebrate box-natural box-warm-cosy box-your-day eventstyling over_dionne themaboxen privacyverklaring; do
+  for page in index box-bordeaux-date box-blue-breeze box-beige-bliss box-blush-bloom eventstyling over_dionne styling-boxes privacyverklaring; do
     echo "=== $page.html ==="
     curl https://themeyourdream.nl/$page.html 2>/dev/null | grep "robots"
   done
