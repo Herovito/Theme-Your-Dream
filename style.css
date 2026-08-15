@@ -387,6 +387,12 @@ a {
   --color-ink-faint: var(--color-cream);
 }
 
+.section--walnut .service-card__title,
+.section--walnut .service-card__text,
+.section--walnut .service-card__link {
+  color: var(--color-dark-brown);
+}
+
 .section__heading {
   text-align: center;
   margin-bottom: var(--space-5);
