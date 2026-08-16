@@ -16,7 +16,7 @@ grep -rn "VERVANGEN DOOR DIONNE" *.html
 
 | Gegeven | Placeholder in de code | Waar |
 |---|---|---|
-| WhatsApp-nummer | `wa.me/31000000000` | `index.html`, `eventstyling.html`, `styling-boxes.html`, `over_dionne.html`, `box-bordeaux-date.html`, `box-blue-breeze.html`, `box-beige-bliss.html`, `box-blush-bloom.html` |
+| WhatsApp-nummer | `wa.me/31612166851` | `index.html`, `eventstyling.html`, `styling-boxes.html`, `over_dionne.html`, `box-bordeaux-date.html`, `box-blue-breeze.html`, `box-beige-bliss.html`, `box-blush-bloom.html` |
 | KvK-nummer | `[VERVANGEN DOOR DIONNE: KvK-nummer]` | footer van alle 9 pagina's, plus `privacyverklaring.html` artikel 1 |
 | Btw-id | `[VERVANGEN DOOR DIONNE: btw-id]` | footer van alle 9 pagina's, plus `privacyverklaring.html` artikel 1 |
 
@@ -31,13 +31,13 @@ grep -rn "VERVANGEN DOOR DIONNE" *.html
 - [ ] Btw-id ontvangen en ingevuld
 - [ ] De HTML-commentaarregels met `[VERVANGEN DOOR DIONNE: ...]` verwijderd
 - [ ] Controle: `grep -rn "VERVANGEN DOOR DIONNE" *.html` geeft geen resultaat
-- [ ] Controle: `grep -rn "wa.me/31000000000" *.html` geeft geen resultaat
+- [ ] Controle: `grep -rn "wa.me/31612166851" *.html` geeft geen resultaat
 - [ ] WhatsApp-knop op een echte telefoon getest (opent WhatsApp met het
       juiste nummer en de juiste voorgevulde tekst)
 
 Waarom een zichtbare placeholder in plaats van `xxxxxxxx`: een reeks x-en ziet
 uit als een bewuste keuze en kan ongemerkt live gaan. Een placeholder met een
-opdracht erin valt direct op. Het WhatsApp-nummer is met opzet `31000000000`
+opdracht erin valt direct op. Het WhatsApp-nummer is met opzet `31612166851`
 en geen plausibel nummer, zodat een bezoeker nooit per ongeluk een vreemde
 aanschrijft.
 
