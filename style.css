@@ -1344,7 +1344,7 @@ a {
 }
 
 .page-hero__title {
-  font-family: "Rouge Script", Georgia, serif;
+  font-family: var(--font-display);
   font-weight: 500;
   font-size: clamp(1.9rem, 6vw, 2.6rem);
   line-height: 1.32;
@@ -1600,7 +1600,7 @@ a {
 
 .story-section__eyebrow {
   display: block;
-  font-family: Georgia, serif;
+  font-family: "Rouge Script", Georgia, serif;
   font-size: 80px;
   font-weight: 500;
   color: var(--color-ink-faint);
