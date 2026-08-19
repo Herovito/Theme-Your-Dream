@@ -28,11 +28,7 @@
 
 /* ===================================================================
    0. Custom fonts
-   ===================================================================== */
-@font-face {
-  font-family: Hello Honey;
-  src: url(hello-honey.ttf);
-}
+   =================================================================== */
 
 /* ===================================================================
    1. Design tokens
@@ -133,7 +129,7 @@
   --content-width: 84rem;
 
   /* Typografie */
-  --font-display: "Hello Honey", Georgia, serif;
+  --font-display: "Rouge Script", Georgia, serif;
   --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Beweging: één curve voor alles wat in beeld komt. Begint vlot en
