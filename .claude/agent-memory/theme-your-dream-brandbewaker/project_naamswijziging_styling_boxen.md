@@ -11,7 +11,7 @@ Op 2026-08-11 is op branch `concept-site` de volledige site omgezet (commit `ec9
 
 Drie punten zijn hierbij niet opgelost en staan nog open:
 
-1. **Boxinhoud past niet meer bij de nieuwe naam.** Blue Breeze bevat saliegroen, rookgrijs, pampagras en "groene tinten"; Bordeaux Date bevat naturel linnen en goudkleurig, geen bordeaux. De namen zijn omgezet, de inhoudsteksten en foto's bewust niet.
+1. **Boxinhoud past niet meer bij de nieuwe naam.** Blue Breeze beschreef saliegroen, rookgrijs en pampagras; Bordeaux Date naturel linnen en goudkleurig, geen bordeaux. Op 2026-08-11 is de inhoudslijst van Blue Breeze omgezet naar blauw (commit `e824f15`: rookblauw, zacht blauw, blauw glas, blauwe droogbloemen). De tekst klopt nu, maar de foto niet: `Themabox 2.png` toont saliegroen linnen, groen glas en een kaart met de letterlijke tekst "NATURAL". Ook de hero-lead ("zachte groentinten"), de meta description, de alt-tekst op de boxpagina en de alt-tekst op de kaart in `styling-boxes.html` spreken nog van groen en natuurlijke materialen. Bordeaux Date is inhoudelijk nog onaangeroerd. Zie [[project-boxpaginas-vereenvoudigd]].
 2. **Blauw staat niet in het merkpalet** (Cream, Linen, Dark brown, Walnut, Old pink, Copper). "Blue Breeze" introduceert een kleurbelofte die het palet niet kan waarmaken.
 3. **Anglicismen in Nederlandse lopende tekst.** Het handboek vraagt natuurlijk Nederlands; "styling boxen" en vier Engelse boxnamen zijn een verschuiving in tone of voice.
 

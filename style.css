@@ -28,13 +28,10 @@
 
 /* ===================================================================
    0. Custom fonts
-   =================================================================== */
+   ===================================================================== */
 @font-face {
-  font-family: 'Hello Honey';
-  src: url('hello-honey.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+  font-family: Hello Honey;
+  src: url(hello-honey.ttf);
 }
 
 /* ===================================================================
