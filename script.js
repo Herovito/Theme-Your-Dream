@@ -282,11 +282,16 @@
   }
 
   // ===== INITIALIZATION =====
-  function init() {
-    // Respect prefers-reduced-motion
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Cache prefers-reduced-motion to avoid repeated media queries
+  const prefersReducedCached = (() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let cached = mq.matches;
+    mq.addEventListener('change', () => { cached = mq.matches; });
+    return () => cached;
+  })();
 
-    if (!prefersReduced) {
+  function init() {
+    if (!prefersReducedCached()) {
       initScrollReveals();
       initProcessStepsReveal();
       initImageLazyLoadFade();
@@ -294,8 +299,6 @@
 
     initBackToTop();
     initHeaderScrollState();
-    // Leest zelf uit of beweging gewenst is, en luistert daarna op
-    // wijzigingen. Daarom hier en niet in het blok hierboven.
     initHeroParallax();
     initNavigation();
   }
