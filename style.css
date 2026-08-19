@@ -1603,7 +1603,7 @@ a {
 .story-section__eyebrow {
   display: block;
   font-family: "Rouge Script", Georgia, serif;
-  font-size: 60px;
+  font-size: 80px;
   font-weight: 500;
   color: var(--color-ink-faint);
   margin-bottom: var(--space-3);
