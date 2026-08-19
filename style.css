@@ -1337,10 +1337,9 @@ a {
 
 .page-hero__eyebrow {
   display: block;
-  font-size: 1.24rem;
+  font-family: "Rouge Script", Georgia, serif;
+  font-size: 80px;
   font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--color-ink-faint);
   margin-bottom: var(--space-3);
 }
