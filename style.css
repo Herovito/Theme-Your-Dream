@@ -1707,6 +1707,11 @@ a {
   transition: transform 0.35s ease;
 }
 
+/* Beige Bliss box: flip horizontally so table faces same direction */
+.mood-grid .mood-card:nth-child(3) .mood-card__img {
+  transform: scaleX(-1);
+}
+
 /* Box detailpagina: prijs/borg/periode blok */
 .box-meta {
   display: flex;
