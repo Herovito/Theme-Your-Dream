@@ -1529,23 +1529,8 @@ a {
   text-align: center;
 }
 
-.story-section--sand {
-  background-color: var(--color-walnut);
-
-  --color-ink-soft: var(--color-dark-brown);
-  --color-ink-faint: var(--color-dark-brown);
-}
-
 .story-section--walnut {
   background-color: var(--color-walnut);
-
-  --color-ink-soft: var(--color-dark-brown);
-  --color-ink-faint: var(--color-dark-brown);
-}
-
-/* Coral wave transitie kleur voor styling boxen sectie. */
-.story-section--rose {
-  background-color: var(--color-wave-coral);
 
   --color-ink-soft: var(--color-dark-brown);
   --color-ink-faint: var(--color-dark-brown);
