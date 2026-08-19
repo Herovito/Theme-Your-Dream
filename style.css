@@ -129,7 +129,7 @@
   --content-width: 84rem;
 
   /* Typografie */
-  --font-display: "Rouge Script", Georgia, serif;
+  --font-display: Georgia, serif;
   --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Beweging: één curve voor alles wat in beeld komt. Begint vlot en
@@ -1602,7 +1602,7 @@ a {
 
 .story-section__eyebrow {
   display: block;
-  font-family: var(--font-display);
+  font-family: "Rouge Script", Georgia, serif;
   font-size: clamp(1.9rem, 6vw, 2.5rem);
   font-weight: 500;
   letter-spacing: 0.22em;
