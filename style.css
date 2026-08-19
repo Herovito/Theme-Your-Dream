@@ -129,7 +129,7 @@
   --content-width: 84rem;
 
   /* Typografie */
-  --font-display: Georgia, serif;
+  --font-display: "Rouge Script", Georgia, serif;
   --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Beweging: één curve voor alles wat in beeld komt. Begint vlot en
@@ -1345,7 +1345,7 @@ a {
 }
 
 .page-hero__title {
-  font-family: var(--font-display);
+  font-family: "Rouge Script", Georgia, serif;
   font-weight: 500;
   font-size: clamp(1.9rem, 6vw, 2.6rem);
   line-height: 1.32;
