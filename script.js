@@ -317,6 +317,14 @@
       if (slideCount > 1) {
         prevBtn.classList.add('visible');
         nextBtn.classList.add('visible');
+        updateButtonVisibility();
+      }
+
+      function updateButtonVisibility() {
+        prevBtn.style.opacity = currentSlide > 0 ? '1' : '0.5';
+        prevBtn.style.pointerEvents = currentSlide > 0 ? 'auto' : 'none';
+        nextBtn.style.opacity = currentSlide < slideCount - 1 ? '1' : '0.5';
+        nextBtn.style.pointerEvents = currentSlide < slideCount - 1 ? 'auto' : 'none';
       }
 
       function goToSlide(index) {
@@ -327,6 +335,8 @@
           dot.classList.toggle('photo-slider__dot--active', idx === currentSlide);
           dot.setAttribute('aria-current', idx === currentSlide);
         });
+
+        updateButtonVisibility();
       }
 
       // Button click handlers
