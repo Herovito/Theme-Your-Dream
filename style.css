@@ -2668,12 +2668,13 @@ a {
 
 .product-layout {
   display: grid;
-  grid-template-columns: 1fr 0.6fr;
-  gap: var(--space-8);
-  max-width: 1200px;
+  grid-template-columns: 50% 30%;
+  gap: 5%;
+  padding: 0 15%;
+  width: 100%;
+  box-sizing: border-box;
   margin: 0 auto;
   align-items: start;
-  padding: 0 var(--space-4);
 }
 
 /* Photo slider: button-controlled carousel */
