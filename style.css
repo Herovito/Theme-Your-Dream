@@ -2690,7 +2690,8 @@ a {
   flex: 1;
   overflow: hidden;
   border-radius: 8px;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/4;
+  min-height: 600px;
 }
 
 .photo-slider__track {
