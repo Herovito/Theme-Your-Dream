@@ -2691,7 +2691,7 @@ a {
   overflow: hidden;
   border-radius: 8px;
   aspect-ratio: 3/4;
-  min-height: 600px;
+  min-height: 750px;
 }
 
 .photo-slider__track {
