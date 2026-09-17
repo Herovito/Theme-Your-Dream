@@ -3003,3 +3003,51 @@ a {
 }
 /* Focus must remain visible on light cards inside dark sections. */
 .section--walnut .service-card { --color-focus: var(--color-dark-brown); }
+
+/* Practical box details: shared label/value rhythm and comfortable line length. */
+.practical-details {
+  width: 100%;
+  max-width: 56rem;
+  margin-inline: auto;
+  text-align: left;
+}
+.practical-details__title {
+  margin: 0 0 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: var(--color-ink);
+}
+.practical-details__list { margin: 0; }
+.practical-details__row {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--color-line);
+}
+.practical-details__row dt {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+.practical-details__row dd {
+  margin: 0;
+  color: var(--color-ink-soft);
+  line-height: 1.7;
+}
+.practical-details__note {
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line);
+  color: var(--color-ink-soft);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+@media (max-width: 600px) {
+  .practical-details__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.375rem;
+    padding-block: 1rem;
+  }
+  .practical-details__title { margin-bottom: 1.5rem; }
+}
