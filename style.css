@@ -2661,14 +2661,14 @@ a {
 
 .section--product-layout {
   background: var(--color-cream);
-  padding: var(--space-8) 0 var(--space-8) 0;
+  padding: var(--space-8) var(--space-4) var(--space-8) var(--space-4);
   width: 100vw;
   margin-left: calc(-50vw + 50%);
 }
 
 .product-layout {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr 1.8fr;
   gap: var(--space-8);
   max-width: 1400px;
   margin: 0 auto;
