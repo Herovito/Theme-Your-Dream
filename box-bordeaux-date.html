@@ -140,13 +140,25 @@
     <section class="section section--product-layout">
       <div class="product-layout">
 
-        <!-- LEFT: Photo slider with scroll transition -->
+        <!-- LEFT: Photo slider with navigation buttons -->
         <div class="photo-slider-wrapper">
-          <div class="photo-slider">
-            <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+1" alt="Foto 1" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+2" alt="Foto 2" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+3" alt="Foto 3" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+4" alt="Foto 4" loading="lazy"></div>
+          <div class="photo-slider" role="region" aria-label="Foto galerij">
+            <button class="photo-slider__btn photo-slider__btn--prev" aria-label="Vorige foto"></button>
+            <div class="photo-slider__viewport">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+1" alt="Foto 1" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+2" alt="Foto 2" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+3" alt="Foto 3" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+4" alt="Foto 4" loading="lazy"></div>
+              </div>
+            </div>
+            <button class="photo-slider__btn photo-slider__btn--next" aria-label="Volgende foto"></button>
+          </div>
+          <div class="photo-slider__dots">
+            <button class="photo-slider__dot photo-slider__dot--active" data-slide="0" aria-label="Foto 1" aria-current="true"></button>
+            <button class="photo-slider__dot" data-slide="1" aria-label="Foto 2"></button>
+            <button class="photo-slider__dot" data-slide="2" aria-label="Foto 3"></button>
+            <button class="photo-slider__dot" data-slide="3" aria-label="Foto 4"></button>
           </div>
         </div>
 

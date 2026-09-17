@@ -295,38 +295,43 @@
     return () => cached;
   })();
 
-  // ===== PHOTO CAROUSEL =====
-  // Sync carousel dots with scrolling
-  function initPhotoCarousel() {
-    const carousels = document.querySelectorAll('.photo-carousel');
-    if (carousels.length === 0) return;
+  // ===== PHOTO SLIDER =====
+  // Button-controlled carousel with dots
+  function initPhotoSlider() {
+    const sliders = document.querySelectorAll('.photo-slider-wrapper');
+    if (sliders.length === 0) return;
 
-    carousels.forEach(carousel => {
-      const track = carousel.querySelector('.photo-carousel__track');
-      const dots = carousel.querySelectorAll('.photo-carousel__dot');
-      const slides = carousel.querySelectorAll('.photo-carousel__slide');
+    sliders.forEach(wrapper => {
+      const track = wrapper.querySelector('.photo-slider__track');
+      const prevBtn = wrapper.querySelector('.photo-slider__btn--prev');
+      const nextBtn = wrapper.querySelector('.photo-slider__btn--next');
+      const dots = wrapper.querySelectorAll('.photo-slider__dot');
+      const slides = wrapper.querySelectorAll('.photo-slider__slide');
 
-      if (!track || dots.length === 0) return;
+      if (!track || !prevBtn || !nextBtn || slides.length === 0) return;
+
+      let currentSlide = 0;
+      const slideCount = slides.length;
+
+      function goToSlide(index) {
+        currentSlide = Math.max(0, Math.min(index, slideCount - 1));
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('photo-slider__dot--active', idx === currentSlide);
+          dot.setAttribute('aria-current', idx === currentSlide);
+        });
+      }
+
+      // Button click handlers
+      prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+      nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
 
       // Dot click handlers
       dots.forEach(dot => {
         dot.addEventListener('click', () => {
           const slideIndex = parseInt(dot.dataset.slide, 10);
-          const slide = slides[slideIndex];
-          if (slide) {
-            slide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-          }
-        });
-      });
-
-      // Sync dots with scroll
-      track.addEventListener('scroll', () => {
-        const scrollPos = track.scrollLeft;
-        const slideWidth = track.offsetWidth;
-        const currentSlide = Math.round(scrollPos / slideWidth);
-
-        dots.forEach((dot, idx) => {
-          dot.classList.toggle('photo-carousel__dot--active', idx === currentSlide);
+          goToSlide(slideIndex);
         });
       });
     });
@@ -345,7 +350,7 @@
     initBackToTop();
     initHeaderScrollState();
     initHeroParallax();
-    initPhotoCarousel();
+    initPhotoSlider();
   }
 
   // Wait for DOM ready
