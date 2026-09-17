@@ -2668,10 +2668,10 @@ a {
 
 .product-layout {
   display: grid;
-  grid-template-columns: 50% 30%;
-  gap: 5%;
+  grid-template-columns: 5fr 3fr;
+  gap: 0.5fr;
   padding: 0 15%;
-  max-width: 100%;
+  width: 100%;
   box-sizing: border-box;
   margin: 0 auto;
   align-items: start;
