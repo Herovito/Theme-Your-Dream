@@ -313,6 +313,12 @@
       let currentSlide = 0;
       const slideCount = slides.length;
 
+      // Only show buttons if there are multiple slides
+      if (slideCount > 1) {
+        prevBtn.classList.add('visible');
+        nextBtn.classList.add('visible');
+      }
+
       function goToSlide(index) {
         currentSlide = Math.max(0, Math.min(index, slideCount - 1));
         track.style.transform = `translateX(-${currentSlide * 100}%)`;
