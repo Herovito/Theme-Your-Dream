@@ -3051,3 +3051,18 @@ a {
   }
   .practical-details__title { margin-bottom: 1.5rem; }
 }
+
+.practical-details__contact {
+  margin: 1.25rem 0 0;
+  font-size: 1rem;
+}
+.practical-details__contact a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+.practical-details__contact a:hover { text-decoration-thickness: 2px; }
+.practical-details__contact a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
