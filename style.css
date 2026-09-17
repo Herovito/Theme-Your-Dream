@@ -2660,20 +2660,17 @@ a {
    =================================================================== */
 
 .section--product-layout {
-  background: red !important;
-  padding: var(--space-8) var(--space-6) var(--space-8) 0;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  background: var(--color-cream);
+  padding: var(--space-8) var(--space-6);
 }
 
 .product-layout {
   display: grid;
-  grid-template-columns: 1.3fr 0.8fr;
-  gap: var(--space-8);
-  max-width: 100%;
-  margin: 0;
+  grid-template-columns: 2fr 0.7fr;
+  gap: var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
   align-items: start;
-  background: blue !important;
 }
 
 /* Photo slider: button-controlled carousel */
@@ -2683,14 +2680,13 @@ a {
   height: fit-content;
   box-shadow: none;
   border: none;
-  background: green !important;
 }
 
 .photo-slider {
   position: relative;
   display: flex;
   align-items: center;
-  background: yellow !important;
+  background: transparent;
   width: 100%;
 }
 
@@ -2699,8 +2695,7 @@ a {
   overflow: hidden;
   border-radius: 8px;
   aspect-ratio: 3/4;
-  min-height: 750px;
-  background: purple !important;
+  min-height: 800px;
 }
 
 .photo-slider__track {
