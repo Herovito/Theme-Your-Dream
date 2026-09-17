@@ -2660,7 +2660,7 @@ a {
    =================================================================== */
 
 .section--product-layout {
-  background: var(--color-cream);
+  background: red !important;
   padding: var(--space-8) var(--space-6) var(--space-8) 0;
 }
 
@@ -2671,6 +2671,7 @@ a {
   max-width: 100%;
   margin: 0;
   align-items: start;
+  background: blue !important;
 }
 
 /* Photo slider: button-controlled carousel */
@@ -2680,13 +2681,14 @@ a {
   height: fit-content;
   box-shadow: none;
   border: none;
+  background: green !important;
 }
 
 .photo-slider {
   position: relative;
   display: flex;
   align-items: center;
-  background: transparent;
+  background: yellow !important;
   width: 100%;
 }
 
@@ -2696,6 +2698,7 @@ a {
   border-radius: 8px;
   aspect-ratio: 3/4;
   min-height: 750px;
+  background: purple !important;
 }
 
 .photo-slider__track {
