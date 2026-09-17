@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout Voorstel: Box Pagina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&family=Rouge+Script&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --color-cream: #E0CDB8;
+      --color-walnut: #8C6B5A;
+      --color-dark: #4A3329;
+    }
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background: var(--color-cream);
+      color: var(--color-dark);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: var(--color-cream);
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Sticky CTA */
+    .sticky-cta {
+      position: sticky;
+      top: 60px;
+      z-index: 40;
+      padding: 12px 40px;
+      background: var(--color-cream);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: center;
+    }
+    .cta-button {
+      background: var(--color-walnut);
+      color: white;
+      padding: 12px 36px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    /* Main layout: 2 kolommen */
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 40px;
+    }
+
+    /* Carousel */
+    .carousel-section {
+      position: sticky;
+      top: 180px;
+      height: fit-content;
+    }
+    .carousel {
+      background: #f5f5f5;
+      aspect-ratio: 4/3;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: #ccc;
+    }
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+    }
+    .dot.active {
+      background: var(--color-walnut);
+    }
+
+    /* Info panel */
+    .info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* Hero */
+    .hero {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 40px;
+    }
+    .hero__label {
+      font-family: 'Rouge Script', cursive;
+      font-size: 24px;
+      color: var(--color-walnut);
+      margin-bottom: 12px;
+    }
+    .hero__title {
+      font-size: 48px;
+      font-weight: 400;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .hero__description {
+      font-size: 16px;
+      color: rgba(74, 51, 41, 0.8);
+    }
+
+    /* Price card */
+    .price-card {
+      background: rgba(140, 107, 90, 0.1);
+      padding: 24px;
+      border-radius: 8px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+    .price-row:last-child {
+      margin-bottom: 0;
+    }
+    .price-label {
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: rgba(74, 51, 41, 0.6);
+    }
+    .price-value {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-dark);
+    }
+
+    /* Content block */
+    .content-block {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 40px;
+    }
+    .block-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(74, 51, 41, 0.6);
+    }
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .feature-item {
+      font-size: 15px;
+      padding-left: 24px;
+      position: relative;
+    }
+    .feature-item::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--color-walnut);
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .product-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .carousel-section {
+        position: static;
+      }
+      .hero__title {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="font-size: 24px; font-weight: 500;">TYD</div>
+    <nav style="display: flex; gap: 30px;">
+      <a href="#" style="text-decoration: none; color: inherit;">Eventstyling</a>
+      <a href="#" style="text-decoration: none; color: inherit;">Styling boxen</a>
+      <a href="#" style="text-decoration: none; color: inherit;">Over Dionne</a>
+    </nav>
+  </header>
+
+  <!-- Sticky CTA -->
+  <div class="sticky-cta">
+    <button class="cta-button">Huur deze box</button>
+  </div>
+
+  <!-- Main content -->
+  <div class="product-layout">
+
+    <!-- LEFT: CAROUSEL -->
+    <div class="carousel-section">
+      <div class="carousel">Carousel</div>
+      <div class="carousel-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: INFO PANEL -->
+    <div class="info-panel">
+
+      <!-- Hero: Titel + beschrijving -->
+      <div class="hero">
+        <div class="hero__label">Styling box</div>
+        <h1 class="hero__title">Bordeaux Date</h1>
+        <p class="hero__description">
+          Een gedekte tafel voor twee personen, met kaarslicht en bloemen. Er zit een vragenspel bij voor als het gesprek een zetje kan gebruiken. Jij zorgt voor het eten.
+        </p>
+      </div>
+
+      <!-- Price card -->
+      <div class="price-card">
+        <div class="price-row">
+          <span class="price-label">Huurprijs</span>
+          <span class="price-value">€39</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">Borg</span>
+          <span class="price-value">€75</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">Periode</span>
+          <span class="price-value">3 dagen</span>
+        </div>
+      </div>
+
+      <!-- Inhoud -->
+      <div class="content-block">
+        <h2 class="block-title">Inhoud</h2>
+        <ul class="feature-list">
+          <li class="feature-item">Tafelkleed, geschikt voor een tafel tot 2,5 meter</li>
+          <li class="feature-item">Placemats</li>
+          <li class="feature-item">Borden</li>
+          <li class="feature-item">Bestek</li>
+          <li class="feature-item">Servetten met servetringen</li>
+          <li class="feature-item">Glazen</li>
+          <li class="feature-item">Kandelaars met led kaarsen</li>
+          <li class="feature-item">Vaasjes met bloemen</li>
+          <li class="feature-item">Rozenblaadjes</li>
+          <li class="feature-item">Vragenspel dat bij de gelegenheid past</li>
+        </ul>
+      </div>
+
+      <!-- Opties -->
+      <div class="content-block">
+        <h2 class="block-title">Opties</h2>
+        <ul class="feature-list">
+          <li class="feature-item">Naambordje met houder — €2 per persoon</li>
+          <li class="feature-item">Menukaartje met jouw eigen tekst — €2 per persoon</li>
+          <li class="feature-item">Gepersonaliseerd welkomstbord met ezel — €35</li>
+          <li class="feature-item">Teddyberen als tafeldecoratie — €15</li>
+        </ul>
+      </div>
+
+      <!-- Praktisch -->
+      <div>
+        <h2 class="block-title">Praktisch</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+          De Bordeaux Date box kost €39. Dat is een vaste prijs voor een tafel tot 2,5 meter en de basis zit er al in. De verhuurperiode is standaard 3 dagen. Wil je de box langer huren, dan kost elke extra dag €10.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer style="background: var(--color-dark); color: white; padding: 40px; text-align: center; margin-top: 80px;">
+    <p>© 2026 Theme Your Dream</p>
+  </footer>
+
+</body>
+</html>
