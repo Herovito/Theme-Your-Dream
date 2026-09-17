@@ -2686,6 +2686,8 @@ a {
   position: relative;
   display: flex;
   align-items: center;
+  background: transparent;
+  width: 100%;
 }
 
 .photo-slider__viewport {
