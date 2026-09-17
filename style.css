@@ -2668,8 +2668,8 @@ a {
   display: grid;
   grid-template-columns: 1.3fr 0.8fr;
   gap: var(--space-8);
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   align-items: start;
 }
 
