@@ -1912,6 +1912,19 @@ a {
   object-fit: cover;
 }
 
+/* Sticky CTA: "Huur deze box" button */
+.sticky-cta {
+  position: sticky;
+  top: 80px;
+  z-index: 40;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-cream);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
 /* ===================================================================
    Over Dionne: Intro sectie (gecentreerd)
    =================================================================== */
