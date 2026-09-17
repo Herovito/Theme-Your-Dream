@@ -2670,7 +2670,7 @@ a {
   display: grid;
   grid-template-columns: 50% 30%;
   gap: 5%;
-  padding: 0 10%;
+  padding: 0 7.5%;
   width: 100%;
   box-sizing: border-box;
   margin: 0 auto;
