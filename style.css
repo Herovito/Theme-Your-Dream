@@ -1875,41 +1875,66 @@ a {
   margin-bottom: var(--space-5);
 }
 
-/* Photo Grid: 4-image layout (2x2 responsive) */
-.section--photo-grid {
+/* Photo Carousel: Slideable images with touch support */
+.section--photo-carousel {
   padding-top: 0;
   padding-bottom: var(--space-6);
   background: var(--color-cream);
 }
 
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-4);
-  max-width: var(--content-width);
+.photo-carousel {
+  position: relative;
+  max-width: 900px;
   margin: 0 auto;
   padding: var(--space-5);
 }
 
-.photo-grid__item {
+.photo-carousel__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  gap: var(--space-4);
+  border-radius: 0.75rem;
+  background: #f5f5f5;
+}
+
+.photo-carousel__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 0.5rem;
-  aspect-ratio: 1 / 1;
 }
 
-.photo-placeholder {
-  width: 100%;
-  height: 100%;
-  background: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.photo-placeholder img {
+.photo-carousel__slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.photo-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding: 0 var(--space-5);
+}
+
+.photo-carousel__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.photo-carousel__dot--active {
+  background: var(--color-walnut);
+  transform: scale(1.2);
 }
 
 /* Sticky CTA: "Huur deze box" button */

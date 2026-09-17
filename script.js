@@ -295,6 +295,43 @@
     return () => cached;
   })();
 
+  // ===== PHOTO CAROUSEL =====
+  // Sync carousel dots with scrolling
+  function initPhotoCarousel() {
+    const carousels = document.querySelectorAll('.photo-carousel');
+    if (carousels.length === 0) return;
+
+    carousels.forEach(carousel => {
+      const track = carousel.querySelector('.photo-carousel__track');
+      const dots = carousel.querySelectorAll('.photo-carousel__dot');
+      const slides = carousel.querySelectorAll('.photo-carousel__slide');
+
+      if (!track || dots.length === 0) return;
+
+      // Dot click handlers
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const slideIndex = parseInt(dot.dataset.slide, 10);
+          const slide = slides[slideIndex];
+          if (slide) {
+            slide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+          }
+        });
+      });
+
+      // Sync dots with scroll
+      track.addEventListener('scroll', () => {
+        const scrollPos = track.scrollLeft;
+        const slideWidth = track.offsetWidth;
+        const currentSlide = Math.round(scrollPos / slideWidth);
+
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('photo-carousel__dot--active', idx === currentSlide);
+        });
+      });
+    });
+  }
+
   function init() {
     // Collapse navigation only after its event handlers have been installed.
     initNavigation();
@@ -308,6 +345,7 @@
     initBackToTop();
     initHeaderScrollState();
     initHeroParallax();
+    initPhotoCarousel();
   }
 
   // Wait for DOM ready
