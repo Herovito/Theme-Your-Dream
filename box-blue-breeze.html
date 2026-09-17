@@ -136,62 +136,53 @@
       </defs>
     </svg>
 
-    <header class="page-hero">
-      <span class="page-hero__eyebrow">Styling box</span>
-      <h1 class="page-hero__title">Blue Breeze</h1>
-      <p class="page-hero__lead">
-        Zachte blauwe tinten, wit en subtiele details geven de tafel een frisse en elegante uitstraling. Perfect voor een babyshower voor een jongen, maar net zo mooi voor een verjaardag, diner of een ander bijzonder moment.
-      </p>
-    </header>
+    <!-- PRODUCT LAYOUT: Carousel (L) + Info (R) -->
+    <section class="section section--product-layout">
+      <div class="product-layout">
 
-    <!-- STICKY CTA: Huur deze box -->
-    <div class="sticky-cta">
-      <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20ben%20ge%C3%AFnteresseerd%20in%20de%20Blue%20Breeze%20box." class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
-        Huur deze box
-      </a>
-    </div>
-
-    <!-- FOTO CAROUSEL: Slideable foto's -->
-    <section class="section section--photo-carousel">
-      <div class="photo-carousel">
-        <div class="photo-carousel__track">
-          <div class="photo-carousel__slide">
-            <img src="https://via.placeholder.com/800x600?text=Foto+1" alt="Blue Breeze box - detail 1" loading="lazy">
-          </div>
-          <div class="photo-carousel__slide">
-            <img src="https://via.placeholder.com/800x600?text=Foto+2" alt="Blue Breeze box - detail 2" loading="lazy">
-          </div>
-          <div class="photo-carousel__slide">
-            <img src="https://via.placeholder.com/800x600?text=Foto+3" alt="Blue Breeze box - detail 3" loading="lazy">
-          </div>
-          <div class="photo-carousel__slide">
-            <img src="https://via.placeholder.com/800x600?text=Foto+4" alt="Blue Breeze box - detail 4" loading="lazy">
+        <!-- LEFT: Photo slider with scroll transition -->
+        <div class="photo-slider-wrapper">
+          <div class="photo-slider">
+            <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+1" alt="Foto 1" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+2" alt="Foto 2" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+3" alt="Foto 3" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="https://via.placeholder.com/600x450?text=Foto+4" alt="Foto 4" loading="lazy"></div>
           </div>
         </div>
-        <div class="photo-carousel__dots">
-          <button class="photo-carousel__dot photo-carousel__dot--active" data-slide="0" aria-label="Foto 1"></button>
-          <button class="photo-carousel__dot" data-slide="1" aria-label="Foto 2"></button>
-          <button class="photo-carousel__dot" data-slide="2" aria-label="Foto 3"></button>
-          <button class="photo-carousel__dot" data-slide="3" aria-label="Foto 4"></button>
-        </div>
-      </div>
-    </section>
 
+        <!-- RIGHT: Info panel -->
+        <div class="info-panel">
+          <!-- Hero -->
+          <div class="hero-info">
+            <span class="hero-info__label">Styling box</span>
+            <h1 class="hero-info__title">Blue Breeze</h1>
+            <p class="hero-info__description">
+              Zachte blauwe tinten, wit en subtiele details geven de tafel een frisse en elegante uitstraling. Perfect voor een babyshower voor een jongen, maar net zo mooi voor een verjaardag, diner of een ander bijzonder moment.
+            </p>
+          </div>
 
-    <section class="section section--narrow">
-      <div class="box-meta reveal-group">
-        <div class="box-meta__item">
-          <span class="box-meta__label">Huurprijs</span>
-          <span class="box-meta__value">€59</span>
+          <!-- Price card -->
+          <div class="price-card">
+            <div class="price-row">
+              <span class="price-label">Huurprijs</span>
+              <span class="price-value">€59</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">Borg</span>
+              <span class="price-value">€75</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">Verhuurperiode</span>
+              <span class="price-value">3 dagen</span>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20ben%20ge%C3%AFnteresseerd%20in%20de%20Blue%20Breeze%20box." class="cta cta--whatsapp cta--block" target="_blank" rel="noopener noreferrer">
+            Reserveer deze box
+          </a>
         </div>
-        <div class="box-meta__item">
-          <span class="box-meta__label">Borg</span>
-          <span class="box-meta__value">€75</span>
-        </div>
-        <div class="box-meta__item">
-          <span class="box-meta__label">Verhuurperiode</span>
-          <span class="box-meta__value">3 dagen</span>
-        </div>
+
       </div>
     </section>
 
