@@ -24,7 +24,17 @@ const sources = {
 
 async function main() {
   fs.mkdirSync(path.join(root, 'assets/images'), { recursive: true });
+  const galleryRoot = path.join(root, 'images/boxen');
+  if (fs.existsSync(galleryRoot)) {
+    for (const box of fs.readdirSync(galleryRoot)) {
+      for (const image of fs.readdirSync(path.join(galleryRoot, box))) {
+        if (!/\.(?:jpe?g|png)$/i.test(image)) continue;
+        sources[`images/boxen/${box}/${image}`] = ['gallery-' + path.parse(image).name];
+      }
+    }
+  }
   for (const [source, [name, alt]] of Object.entries(sources)) {
+    if (process.argv.includes('--gallery') && !source.startsWith('images/boxen/')) continue;
     const input = path.join(root, source);
     const metadata = await sharp(input).rotate().metadata();
     const originalWidth = metadata.autoOrient?.width || metadata.width;
@@ -43,7 +53,9 @@ async function main() {
       html = html.replace(/<img\b[^>]*>/g, tag => {
         const current = tag.match(/\bsrc="([^"]+)"/)?.[1];
         if (current !== source && !current?.startsWith(`assets/images/${name}-`)) return tag;
-        const sizes = tag.includes('mood-card__img')
+        const sizes = name.startsWith('gallery-')
+          ? '(min-width: 901px) 50vw, calc(100vw - 48px)'
+          : tag.includes('mood-card__img')
           ? '(min-width: 1200px) 300px, (min-width: 640px) 45vw, calc(100vw - 48px)'
           : tag.includes('hero-split__img')
             ? '(min-width: 1024px) 60vw, 100vw'

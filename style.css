@@ -2460,7 +2460,8 @@ a {
 /* Volledig uitgeschreven webadressen in juridische tekst zijn één
    lang woord. Zonder deze regel duwen ze de pagina op 320px breder
    dan het scherm. */
-.legal-body a {
+.legal-body a,
+.legal-article {
   overflow-wrap: anywhere;
 }
 
@@ -2663,24 +2664,31 @@ a {
   background: var(--color-cream);
   padding: var(--space-8) 0 var(--space-8) 0;
   width: 100%;
+  max-width: none;
   margin-left: 0;
 }
 
 .product-layout {
   display: grid;
-  grid-template-columns: 50% 30%;
-  gap: 5%;
-  padding: 0 7.5%;
+  /* Every track is measured against the full available viewport width.
+     Keeping the margins in the grid avoids percentages of a padded content box. */
+  grid-template-columns: 7.5% minmax(0, 50%) 5% minmax(0, 30%) 7.5%;
+  gap: 0;
+  padding: 0;
   width: 100%;
   box-sizing: border-box;
   margin: 0 auto;
   align-items: start;
 }
 
+.product-layout > .photo-slider-wrapper { grid-column: 2; }
+.product-layout > .info-panel { grid-column: 4; }
+.product-layout > * { min-width: 0; }
+
 /* Photo slider: button-controlled carousel */
 .photo-slider-wrapper {
   position: sticky;
-  top: 100px;
+  top: calc(var(--header-height-lg) + var(--space-2));
   width: 100%;
   height: fit-content;
   box-shadow: none;
@@ -2697,19 +2705,23 @@ a {
 
 .photo-slider__viewport {
   flex: 1;
+  min-width: 0;
   overflow: hidden;
   border-radius: 8px;
   aspect-ratio: 4/3;
-  height: clamp(200px, 60vw, 600px);
+  height: auto;
 }
 
 .photo-slider__track {
   display: flex;
+  height: 100%;
   transition: transform 0.4s ease-in-out;
 }
 
 .photo-slider__slide {
   flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
   aspect-ratio: 4/3;
   overflow: hidden;
 }
@@ -2778,22 +2790,51 @@ a {
 }
 
 .photo-slider__dot {
-  width: 10px;
-  height: 10px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
-  background: var(--color-line);
+  background: transparent;
   cursor: pointer;
   transition: background 0.2s ease;
   padding: 0;
 }
 
 .photo-slider__dot:hover {
-  background: var(--color-line-soft);
+  background: var(--color-copper-tint-strong);
 }
 
-.photo-slider__dot--active {
-  background: var(--color-walnut);
+.photo-slider__dot::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: auto;
+  border: 1px solid var(--color-ink-soft);
+  border-radius: 50%;
+}
+
+.photo-slider__dot--active::before {
+  background: var(--color-ink-soft);
+}
+
+.photo-slider__dot:focus-visible,
+.photo-slider__btn:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.photo-slider-wrapper:not(.slider-ready) .photo-slider__viewport {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.photo-slider-wrapper:not(.slider-ready) .photo-slider__slide {
+  scroll-snap-align: start;
+}
+
+.photo-slider-wrapper:not(.slider-ready) .photo-slider__dots {
+  display: none;
 }
 
 /* Info panel: hero + price card + CTA */
@@ -2871,16 +2912,19 @@ a {
 .cta--block {
   display: block;
   text-align: center;
-  padding: var(--space-4) var(--space-6);
+  padding: var(--space-4) var(--space-3);
   width: 100%;
 }
 
 @media (max-width: 900px) {
   .product-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-6);
     padding: 0 var(--space-3);
   }
+
+  .product-layout > .photo-slider-wrapper,
+  .product-layout > .info-panel { grid-column: 1; }
 
   .photo-slider-wrapper {
     position: static;

@@ -321,6 +321,8 @@
       }
 
       function updateButtonVisibility() {
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === slideCount - 1;
         prevBtn.style.opacity = currentSlide > 0 ? '1' : '0.5';
         prevBtn.style.pointerEvents = currentSlide > 0 ? 'auto' : 'none';
         nextBtn.style.opacity = currentSlide < slideCount - 1 ? '1' : '0.5';
@@ -350,6 +352,8 @@
           goToSlide(slideIndex);
         });
       });
+      goToSlide(0);
+      wrapper.classList.add('slider-ready');
     });
   }
 
