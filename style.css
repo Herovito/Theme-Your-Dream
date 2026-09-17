@@ -30,23 +30,8 @@
    0. Custom fonts
    =================================================================== */
 
-/* ===================================================================
-   1. Design tokens
-   -------------------------------------------------------------------
-   De zes merkkleuren staan hieronder exact zoals in het merkhandboek.
-   Ze worden nergens anders in dit bestand als hexwaarde herhaald;
-   alle regels verwijzen naar de semantische tokens eronder.
-
-   Twee kleuren uit het handboek halen als tekstkleur geen WCAG AA:
-   walnut haalt 4.29:1 en copper 3.69:1 op cream, terwijl 4.5:1 nodig
-   is. Daarom bestaat er van beide één verdiepte variant met dezelfde
-   tint. Die verdiepte varianten zijn uitsluitend bedoeld voor tekst,
-   links en knoppen; voor vlakken en randen blijven de handboekkleuren
-   zelf in gebruik.
-
-   Alle onderstaande verhoudingen zijn gemeten tegen de werkelijke
-   achtergrond (cream / linen / old pink) volgens WCAG 2.1 1.4.3.
-   =================================================================== */
+/* Design tokens. Tekstkleuren zijn afgestemd op de huidige cream-,
+   linen- en walnutvlakken. Zie tests voor de contrastcontrole. */
 
 :root {
   /* --- Merkkleuren (merkhandboek, niet wijzigen) ------------------- */
@@ -58,8 +43,9 @@
   --color-copper:     #A76F5B;  /* accent, alleen vlakken en randen */
 
   /* --- Verdiepte varianten voor tekst (zelfde tint, donkerder) ----- */
-  --color-walnut-deep: #6B5646; /* 6.15:1 op cream, 5.59:1 op linen */
-  --color-copper-deep: #7A5240; /* 6.02:1 op cream, 5.47:1 op linen */
+  --color-walnut-deep: #554034;
+  --color-copper-deep: #704A39;
+  --color-on-walnut: #FFF9F2;
 
   /* --- Golfovergangen ------------------------------------------------ */
   --color-wave-coral: #D8A78B;   /* coral transitie */
@@ -86,8 +72,8 @@
   --color-header-shadow: rgba(74, 51, 41, 0.09);
 
   /* --- Tekst ------------------------------------------------------- */
-  --color-ink: var(--color-dark-brown);        /* 10.42:1 op cream */
-  --color-ink-soft: var(--color-walnut-deep);  /* 6.15:1 op cream */
+  --color-ink: var(--color-dark-brown);        
+  --color-ink-soft: var(--color-walnut-deep);  
   /* Labels en kleine bovenschriften. Was een lichtere tint, maar die
      bleef op linen onder 4.5:1. Blijft als eigen token bestaan zodat
      labelgebruik semantisch benoemd blijft. */
@@ -95,8 +81,8 @@
 
   /* --- Accenten ---------------------------------------------------- */
   --color-accent: var(--color-copper-deep);    /* links, cursief, iconen */
-  --color-button: var(--color-copper-deep);    /* cream tekst: 6.02:1 */
-  --color-button-hover: var(--color-dark-brown); /* cream tekst: 10.42:1 */
+  --color-button: var(--color-copper-deep);    
+  --color-button-hover: var(--color-dark-brown); 
 
   /* --- Zeer lichte kleurwassingen ----------------------------------
      Merkkleuren op lage dekking, voor achtergrondgloed en hover-
@@ -180,8 +166,7 @@ html {
    =================================================================== */
 
 .js .reveal-group > * {
-  opacity: 0;
-  transform: translateY(14px);
+  opacity: 1;
 }
 
 .js .reveal-group.reveal-in > * {
@@ -386,9 +371,11 @@ a {
 
 /* Text color overrides for dark backgrounds */
 .section--walnut {
-  --color-ink: var(--color-cream);
-  --color-ink-soft: var(--color-cream);
-  --color-ink-faint: var(--color-cream);
+  --color-ink: var(--color-on-walnut);
+  --color-ink-soft: var(--color-on-walnut);
+  --color-ink-faint: var(--color-on-walnut);
+  --color-accent: var(--color-on-walnut);
+  --color-focus: var(--color-on-walnut);
 }
 
 .section--walnut .service-card__title,
@@ -423,11 +410,10 @@ a {
 }
 
 .js .section__title {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 1;
 }
 
-.js .section__title.reveal-in {
+.js .section__heading.reveal-in .section__title {
   animation: reveal-fade-in 0.7s var(--ease-soft) forwards;
 }
 
@@ -1462,13 +1448,12 @@ a {
 
 .js .process {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
 }
 
 .js .process__step {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 1;
 }
 
 .js .process.reveal-in .process__step {
@@ -1507,9 +1492,15 @@ a {
 }
 
 @media (min-width: 700px) {
-  .process {
-    grid-template-columns: repeat(4, 1fr);
+  .process, .js .process {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-3);
+  }
+}
+
+@media (min-width: 1100px) {
+  .process, .js .process {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -1532,8 +1523,10 @@ a {
 .story-section--walnut {
   background-color: var(--color-walnut);
 
-  --color-ink-soft: var(--color-dark-brown);
-  --color-ink-faint: var(--color-dark-brown);
+  --color-ink: var(--color-on-walnut);
+  --color-ink-soft: var(--color-on-walnut);
+  --color-ink-faint: var(--color-on-walnut);
+  --color-focus: var(--color-on-walnut);
 }
 
 .story-section--cream {
@@ -1674,12 +1667,34 @@ a {
   transition: transform 0.6s ease;
 }
 
-.mood-card__
-
 .mood-card--link {
   position: relative;
   text-decoration: none;
   display: block;
+}
+
+.mood-card--link .mood-card__img {
+  height: auto;
+}
+
+.mood-card__caption {
+  display: block;
+  padding: var(--space-3);
+  background: var(--color-linen);
+  color: var(--color-dark-brown);
+  font-weight: 500;
+  text-align: center;
+}
+
+.mood-card__caption small {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.mood-card--link:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
 }
 
 .mood-card--link:hover .mood-card__img,
@@ -1801,6 +1816,7 @@ a {
   font-weight: 300;
   line-height: 1.6;
   color: var(--color-ink-soft);
+  overflow-wrap: anywhere;
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -1857,6 +1873,43 @@ a {
   border-radius: 0.75rem;
   object-fit: cover;
   margin-bottom: var(--space-5);
+}
+
+/* Photo Grid: 4-image layout (2x2 responsive) */
+.section--photo-grid {
+  padding-top: 0;
+  padding-bottom: var(--space-6);
+  background: var(--color-cream);
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-4);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-5);
+}
+
+.photo-grid__item {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  aspect-ratio: 1 / 1;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ===================================================================
@@ -2617,3 +2670,18 @@ a {
 }
 
 
+
+/* Baseline navigation stays available until its controls are initialized. */
+.site-header:not(.nav-ready) .site-header__menu-toggle,
+.site-header:not(.nav-ready) .nav-link--dropdown { display: none; }
+.site-header:not(.nav-ready) { position: relative; }
+.site-header:not(.nav-ready) .nav-dropdown {
+  position: static; display: block; opacity: 1; visibility: visible; transform: none;
+}
+@media (max-width: 899px) {
+  .site-header:not(.nav-ready) .site-nav {
+    max-height: none; overflow: visible; visibility: visible; margin-top: var(--space-2);
+  }
+}
+/* Focus must remain visible on light cards inside dark sections. */
+.section--walnut .service-card { --color-focus: var(--color-dark-brown); }

@@ -5,7 +5,8 @@
   // ===== 1. SCROLL REVEAL =====
   // Fade in section headings, content blocks, and reveal-groups as they come into view
   function initScrollReveals() {
-    const reveals = document.querySelectorAll('.section__heading, .page-hero, .content-block, .reveal-group');
+    if (!('IntersectionObserver' in window)) return;
+    const reveals = document.querySelectorAll('main .section__heading, main .reveal-group');
 
     const revealOptions = {
       threshold: 0.15,
@@ -28,6 +29,7 @@
   // ===== 2. PROCESS STEPS SEQUENTIAL REVEAL =====
   // Process container reveals, children cascade with staggered delays
   function initProcessStepsReveal() {
+    if (!('IntersectionObserver' in window)) return;
     const processes = document.querySelectorAll('.process');
     if (processes.length === 0) return;
 
@@ -279,6 +281,9 @@
     const desktop = window.matchMedia('(min-width: 900px)');
     const syncViewport = () => { if (desktop.matches) setMenu(false); };
     desktop.addEventListener('change', syncViewport);
+    setDropdown(false);
+    setMenu(false);
+    header.classList.add('nav-ready');
   }
 
   // ===== INITIALIZATION =====
@@ -291,6 +296,9 @@
   })();
 
   function init() {
+    // Collapse navigation only after its event handlers have been installed.
+    initNavigation();
+    document.documentElement.classList.add('js');
     if (!prefersReducedCached()) {
       initScrollReveals();
       initProcessStepsReveal();
@@ -300,7 +308,6 @@
     initBackToTop();
     initHeaderScrollState();
     initHeroParallax();
-    initNavigation();
   }
 
   // Wait for DOM ready
