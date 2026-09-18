@@ -3077,26 +3077,26 @@ a {
 .box-catalog__eyebrow { font-family: "Rouge Script", Georgia, serif; font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--color-ink); }
 .box-catalog__intro h1 { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.75rem); line-height: 1.25; font-weight: 400; margin: 0.75rem 0 1rem; }
 .box-catalog__intro h1 em { font-weight: 400; }
-.box-catalog__intro p { max-width: 42rem; margin: 0 auto; font-size: 1.05rem; line-height: 1.7; color: var(--color-ink-soft); }
+.box-catalog__intro p { max-width: 42rem; margin: 0 auto; font-size: 1.2rem; line-height: 1.7; color: var(--color-ink-soft); }
 .box-catalog h2, .box-rental h2, .box-choice-help h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400; line-height: 1.3; margin: 0 0 1.5rem; }
 .box-catalog__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 2rem; }
 .box-card { display: block; color: var(--color-ink); text-decoration: none; min-width: 0; }
 .box-card__image { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 0.5rem; }
 .box-card__body { padding-block: 1.25rem 0.5rem; }
 .box-card__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; flex-wrap: wrap; }
-.box-card h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; margin: 0; }
-.box-card__price { font-size: 1rem; white-space: nowrap; }
-.box-card p { margin: 0.5rem 0 1rem; color: var(--color-ink-soft); font-size: 1rem; line-height: 1.65; }
-.box-card__link { font-size: 1rem; font-weight: 500; text-decoration: underline; text-underline-offset: 0.3em; }
+.box-card h3 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; margin: 0; }
+.box-card__price { font-size: 1.125rem; white-space: nowrap; }
+.box-card p { margin: 0.5rem 0 1rem; color: var(--color-ink-soft); font-size: 1.125rem; line-height: 1.65; }
+.box-card__link { font-size: 1.125rem; font-weight: 500; text-decoration: underline; text-underline-offset: 0.3em; }
 .box-card:hover .box-card__link { text-decoration-thickness: 2px; }
 .box-card:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 6px; border-radius: 0.5rem; }
-.box-catalog__note { max-width: 54rem; font-size: 0.875rem; line-height: 1.7; color: var(--color-ink-soft); margin: 2rem 0 0; }
+.box-catalog__note { max-width: 54rem; font-size: 1rem; line-height: 1.7; color: var(--color-ink-soft); margin: 2rem 0 0; }
 .box-rental { padding-block: 3.5rem; margin-top: 3rem; border-block: 1px solid var(--color-line); }
 .box-rental__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
-.box-rental h3 { font-size: 1.1rem; font-weight: 500; margin: 0 0 0.5rem; }
-.box-rental p { font-size: 1rem; color: var(--color-ink-soft); line-height: 1.7; margin: 0; }
+.box-rental h3 { font-size: 1.25rem; font-weight: 500; margin: 0 0 0.5rem; }
+.box-rental p { font-size: 1.125rem; color: var(--color-ink-soft); line-height: 1.7; margin: 0; }
 .box-choice-help { padding-block: 3.5rem; text-align: center; }
-.box-choice-help p { max-width: 35rem; margin: 0 auto 1.5rem; font-size: 1.05rem; color: var(--color-ink-soft); }
+.box-choice-help p { max-width: 35rem; margin: 0 auto 1.5rem; font-size: 1.2rem; color: var(--color-ink-soft); }
 @media (max-width: 699px) {
   .box-catalog__grid, .box-rental__grid { grid-template-columns: minmax(0, 1fr); }
   .box-catalog__intro { padding-bottom: 2rem; }
