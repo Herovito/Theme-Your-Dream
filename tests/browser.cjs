@@ -28,6 +28,7 @@ fs.mkdirSync(out, { recursive: true });
         const onResponse = r => { if (r.url().startsWith(origin) && r.status() >= 400) failed.push(r.url()); };
         page.on('pageerror', onError); page.on('response', onResponse);
         await page.goto(origin + '/' + file);
+        if (await page.locator('.cookie-banner').isVisible()) await page.getByRole('button', { name: 'Weigeren', exact: true }).click();
         const dots = page.locator('.photo-slider__dot');
         for (let i = 0; i < await dots.count(); i++) {
           await dots.nth(i).click();
@@ -89,6 +90,7 @@ fs.mkdirSync(out, { recursive: true });
     const page = await browser.newPage({ viewport: { width: 375, height: 667 } });
     for (const file of pages) {
       await page.goto(origin + '/' + file);
+        if (await page.locator('.cookie-banner').isVisible()) await page.getByRole('button', { name: 'Weigeren', exact: true }).click();
       await page.getByRole('button', { name: 'Menu openen' }).click();
       await page.getByRole('button', { name: 'Styling boxen', exact: true }).click();
       await page.waitForFunction(() => document.querySelector('.nav-link--dropdown').getAttribute('aria-expanded') === 'true');
@@ -100,6 +102,7 @@ fs.mkdirSync(out, { recursive: true });
     }
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(origin + '/');
+        if (await page.locator('.cookie-banner').isVisible()) await page.getByRole('button', { name: 'Weigeren', exact: true }).click();
     await page.locator('.nav-link--dropdown').focus(); await page.keyboard.press('Enter');
     await page.waitForFunction(() => document.querySelector('.nav-link--dropdown').getAttribute('aria-expanded') === 'true');
     await page.locator('.nav-dropdown a').first().waitFor({ state: 'visible' });

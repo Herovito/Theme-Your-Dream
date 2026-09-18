@@ -9,7 +9,8 @@
     "validate": "node scripts/validate-links.js",
     "images": "node scripts/optimize-images.js",
     "test": "node --test tests/build.test.js",
-    "test:browser": "node tests/browser.cjs"
+    "test:browser": "node tests/browser.cjs",
+    "test:consent": "node tests/consent.cjs"
   },
   "keywords": [
     "eventstyling",

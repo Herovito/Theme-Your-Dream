@@ -3,6 +3,8 @@
 // Confirmed business details. The build writes these into ordinary HTML links,
 // footers, the privacy statement and JSON-LD; no browser script is required.
 module.exports = {
+  // Leave empty until Dionne supplies her GA4 measurement ID.
+  analyticsMeasurementId: '',
   whatsapp: '31612166851',
   email: 'Dionne@ThemeYourDream.nl',
   kvk: '42125264',

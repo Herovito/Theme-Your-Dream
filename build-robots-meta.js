@@ -12,6 +12,8 @@ function build({ environment = process.env.VERCEL_ENV || process.env.ENVIRONMENT
   siteLive = process.env.SITE_LIVE === 'true', outputDir = path.join(root, '.vercel/output') } = {}) {
   // Fail closed: only an explicitly launched production build may be indexed.
   const live = environment === 'production' && siteLive === true;
+  const measurementId = business.analyticsMeasurementId || '';
+  if (measurementId && !/^G-[A-Z0-9]+$/.test(measurementId)) throw new Error('Invalid GA4 measurement ID');
   const robots = live ? 'index, follow' : 'noindex, nofollow';
   const target = path.resolve(outputDir);
   const relative = path.relative(root, target);
@@ -25,6 +27,7 @@ function build({ environment = process.env.VERCEL_ENV || process.env.ENVIRONMENT
   const assets = new Set(['og-image.jpg', 'assets/fonts/Work-Sans-OFL.txt', 'assets/fonts/Rouge-Script-OFL.txt']);
   for (const page of pages) {
     let html = fs.readFileSync(path.join(root, page), 'utf8')
+      .replace(/data-ga-id="[^"]*"/g, 'data-ga-id="' + (live ? measurementId : '') + '"')
       .replace(/(<meta name="robots" content=")[^"]+/, '$1' + robots)
       .replace(/(<span data-business="(kvk|btwId)">)[^<]+/g, (_, start, key) => start + business[key])
       .replace(/https:\/\/wa\.me\/\d+/g, 'https://wa.me/' + business.whatsapp)

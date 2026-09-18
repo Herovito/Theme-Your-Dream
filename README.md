@@ -37,3 +37,14 @@ De build maakt `.vercel/output` volgens de Vercel Build Output API. Alleen pagin
 Indexering staat uitsluitend aan bij `VERCEL_ENV=production` en `SITE_LIVE=true`. Zie [deploymentchecklist](DEPLOYMENT_CHECKLIST.md), [SEO-configuratie](SEO_CONFIGURATION.md) en [testinstructies](TESTING_SEO.md).
 
 Lettertypen: Work Sans en Rouge Script staan lokaal in `assets/fonts/`, inclusief SIL Open Font License-bestanden. De openbare pagina's laden `assets/fonts/fonts.css`; de build neemt de bijbehorende WOFF2-bestanden mee. Er zijn geen Google Fonts-verzoeken nodig.
+
+## Cookiekeuze en Google Analytics
+
+- `consent.js` beheert accepteren, weigeren, instellingen en intrekken. De keuze wordt maximaal 180 dagen in localStorage opgeslagen en is gekoppeld aan de meet-ID. Een nieuwe meet-ID vraagt opnieuw toestemming.
+- `config.js`: `analyticsMeasurementId` blijft leeg totdat Dionne haar `G-...`-ID aanlevert. Alleen een expliciet livegezette productiebuild geeft de ID door. Preview en development meten niet.
+- Geen Google-tag, preconnect of cookieloze Analytics-ping vóór toestemming. Advertentieopslag, advertentiepersonalisatie en Google Signals blijven uit.
+- Bij intrekking wordt Analytics uitgeschakeld, worden bereikbare `_ga`-cookies verwijderd en wordt de pagina opnieuw geladen om de geladen library te verwijderen.
+- `npm run test:consent` test de keuze en intrekking met een onderschepte testtag, zonder echte Analytics-verzoeken te versturen.
+- Activatie: vul de echte meet-ID in, werk artikel 8.3 van de privacytekst bij van voorbereiding naar daadwerkelijk gebruik, maak een productiebuild met de liveflag en controleer de echte metingen na toestemming. Plaats daarnaast geen losse Google-tag buiten deze toestemmingsregeling.
+
+Implementatie gebaseerd op [Google Basic Consent Mode](https://support.google.com/analytics/answer/14009635?hl=en). De Analytics-property zelf en de bewaartermijn in Dionnes account moeten bij activatie worden gecontroleerd.

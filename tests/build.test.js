@@ -68,6 +68,19 @@ test('build refuses an output path pointing to source', () => {
   assert.throws(() => build({ outputDir: path.resolve(__dirname, '..') }), /Build output must/);
 });
 
+test('Analytics ID is exposed only in live production and rejects invalid IDs', () => {
+  const original = business.analyticsMeasurementId;
+  try {
+    business.analyticsMeasurementId = 'G-TEST12345';
+    for (const [environment, siteLive, expected] of [['preview', true, ''], ['production', false, ''], ['production', true, 'G-TEST12345']]) {
+      const { staticDir } = build({ environment, siteLive, outputDir: path.join(base, `consent-${environment}-${siteLive}`) });
+      assert.ok(fs.readFileSync(path.join(staticDir, 'index.html'), 'utf8').includes(`data-ga-id="${expected}"`));
+    }
+    business.analyticsMeasurementId = 'invalid';
+    assert.throws(() => build({ outputDir: path.join(base, 'invalid-analytics') }), /Invalid GA4/);
+  } finally { business.analyticsMeasurementId = original; }
+});
+
 test('published pages load local fonts with all font files and licenses included', () => {
   const { staticDir } = build({ outputDir: path.join(base, 'local-fonts') });
   for (const page of pages) {
