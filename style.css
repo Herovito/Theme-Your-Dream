@@ -309,7 +309,7 @@ a {
   width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: var(--space-6) var(--space-3);
+  padding: var(--space-5) var(--space-3);
 }
 
 .section--narrow {
@@ -989,9 +989,8 @@ a {
   position: relative;
   overflow: hidden;
   /* svh, niet vh: op mobiel springt de hoogte anders mee met de
-     verdwijnende adresbalk. Op mobiel gereduceerd naar 28svh zodat
-     logo niet door foto heen komt. */
-  height: clamp(13rem, 28svh, 24rem);
+     verdwijnende adresbalk. Op mobiel gereduceerd naar 35svh voor sterker effect. */
+  height: clamp(16rem, 35svh, 28rem);
 }
 
 .hero-split__img {
@@ -1082,11 +1081,11 @@ a {
      genoeg." nog op één regel passen. Bewust geen text-wrap: balance —”
      de regelval wordt al met een <br> gestuurd, en balanceren zou de
      merkzin alsnog in tweeÃ«n hakken. */
-  font-size: clamp(1.7rem, 6.4vw, 2.4rem);
-  line-height: 1.22;
-  letter-spacing: -0.015em;
+  font-size: clamp(2.1rem, 7.5vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--color-ink);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-5);
 }
 
 .hero-split__title em {
@@ -1154,11 +1153,10 @@ a {
 
 @media (min-width: 48rem) {
   .hero-split {
-    /* Op tablet krijgt de tekst iets meer ruimte dan de 42/58 van het
-       ontwerp: onder de 64rem past de kop anders niet zonder rafelrand. */
-    grid-template-columns: 46fr 54fr;
+    /* Sterker beeld-tekst ratio voor luxere uitstraling. */
+    grid-template-columns: 42fr 58fr;
     grid-template-areas: "text media";
-    min-height: min(88svh, 44rem);
+    min-height: min(92svh, 48rem);
   }
 
   .hero-split__image {
@@ -1569,10 +1567,10 @@ a {
 .story-wave {
   display: block;
   width: 100%;
-  height: 180px;
+  height: 140px;
   margin: 0;
   padding: 0;
-  margin-bottom: -80px;
+  margin-bottom: -60px;
   position: relative;
   z-index: 1;
 }
@@ -3066,7 +3064,7 @@ a {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-4);
 }
 
 .editorial-header {
@@ -3094,8 +3092,8 @@ a {
 .editorial-images {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-4);
-  margin-bottom: var(--space-6);
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
 }
 
 .editorial-cta {
@@ -3151,17 +3149,17 @@ a {
   grid-template-columns: 1fr;
   gap: 0;
   position: relative;
-  min-height: 400px;
+  min-height: auto;
 }
 
 .two-ways__method--eventstyling {
   background-color: var(--color-walnut);
-  padding: var(--space-6) var(--space-4);
+  padding: var(--space-5) var(--space-3);
 }
 
 .two-ways__method--boxes {
   background-color: var(--color-cream);
-  padding: var(--space-6) var(--space-4);
+  padding: var(--space-5) var(--space-3);
 }
 
 .two-ways__bg-walnut {
@@ -3171,7 +3169,7 @@ a {
 .two-ways__image {
   overflow: hidden;
   border-radius: 12px;
-  height: 300px;
+  height: 400px;
   width: 100%;
 }
 
@@ -3231,15 +3229,15 @@ a {
     grid-template-columns: 1fr 1fr;
     gap: 0;
     align-items: stretch;
-    min-height: 500px;
+    min-height: auto;
   }
 
   .two-ways__method--eventstyling {
-    padding: var(--space-7) var(--space-6);
+    padding: var(--space-6) var(--space-5);
   }
 
   .two-ways__method--boxes {
-    padding: var(--space-7) var(--space-6);
+    padding: var(--space-6) var(--space-5);
   }
 
   .two-ways__method--eventstyling {
@@ -3274,7 +3272,7 @@ a {
   .two-ways__content {
     display: flex;
     justify-content: center;
-    padding: var(--space-6);
+    padding: var(--space-5);
   }
 }
 
@@ -3287,24 +3285,25 @@ a {
 
 .box-collection__header {
   text-align: center;
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-6);
 }
 
 .box-collection__label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--color-on-walnut);
   display: block;
   margin-bottom: var(--space-2);
+  opacity: 0.9;
 }
 
 .box-collection__title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.2;
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  line-height: 1.15;
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.018em;
   color: var(--color-on-walnut);
 }
 
@@ -3312,7 +3311,7 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-5);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-6);
 }
 
 @media (min-width: 768px) {
@@ -3323,7 +3322,7 @@ a {
 
 @media (min-width: 1200px) {
   .box-collection__grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -3343,7 +3342,7 @@ a {
 
 .box-card__image {
   overflow: hidden;
-  height: 280px;
+  height: clamp(300px, 50vw, 480px);
   background: var(--color-linen);
 }
 
@@ -3388,7 +3387,7 @@ a {
 
 /* Dionne Section */
 .section--dionne {
-  padding: var(--space-7) var(--space-4);
+  padding: var(--space-6) var(--space-4);
 }
 
 .dionne-hero {
@@ -3396,14 +3395,14 @@ a {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-7);
+  gap: var(--space-5);
   align-items: center;
 }
 
 .dionne-hero__image {
   overflow: hidden;
   border-radius: 12px;
-  height: 500px;
+  height: 550px;
 }
 
 .dionne-hero__image img {
@@ -3428,10 +3427,10 @@ a {
 }
 
 .dionne-hero__title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.2;
+  font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+  line-height: 1.18;
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.018em;
   color: var(--color-ink);
 }
 
@@ -3460,7 +3459,7 @@ a {
 
 /* Final CTA Section */
 .section--cta-final {
-  padding: var(--space-7) var(--space-4);
+  padding: var(--space-6) var(--space-4);
 }
 
 .cta-final {
@@ -3469,14 +3468,14 @@ a {
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-5);
 }
 
 .cta-final__tagline {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  line-height: 1.3;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.22;
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.016em;
   color: var(--color-on-walnut);
 }
 
