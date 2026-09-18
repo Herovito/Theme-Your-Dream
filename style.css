@@ -527,6 +527,11 @@ a {
     border-bottom-color: var(--color-line-soft);
     box-shadow: 0 2px 8px var(--color-header-shadow);
   }
+
+  /* Hero moet onder de vaste menubalk beginnen */
+  .js .hero-overlay .hero-split {
+    padding-top: var(--header-height);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
