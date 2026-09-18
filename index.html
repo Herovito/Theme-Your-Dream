@@ -29,6 +29,7 @@
 
   <link rel="stylesheet" href="assets/fonts/fonts.css?v=1">
   <link rel="stylesheet" href="style.css?v=20260918i">
+  <link rel="stylesheet" href="home.css?v=20260919">
 
   <!-- Zet .js voordat de eerste pixel getekend wordt. Zonder deze regel
        staat de balk bij het laden nog als meelopende sticky bar in de
@@ -108,23 +109,15 @@
 
   <main id="main-content" class="page">
 
-    <!-- ============================================================
-         COVER
-         Een omslag, geen standaard hero: de foto loopt van de
-         bovenrand tot de rechterrand door en de kop staat links op
-         het cremevlak. De laatste regel van de kop schuift de
-         gemaskeerde linkerrand van de foto in; daar is het beeld al
-         opgelost in de paginakleur, dus er komt geen sluier over de
-         fotografie heen.
-         ============================================================ -->
+    <!-- COVER: compositie in home.css; bestaande inhoud behouden. -->
     <header class="cover">
       <div class="cover__media">
         <img loading="eager"
-          src="assets/images/berry-eventstyling-1321.webp"
-          srcset="assets/images/berry-eventstyling-480.webp 480w, assets/images/berry-eventstyling-960.webp 960w, assets/images/berry-eventstyling-1321.webp 1321w"
+          src="assets/images/dionne-aan-het-werk-1344.webp"
+          srcset="assets/images/dionne-aan-het-werk-480.webp 480w, assets/images/dionne-aan-het-werk-960.webp 960w, assets/images/dionne-aan-het-werk-1344.webp 1344w"
           sizes="(min-width: 64rem) 72vw, 100vw"
-          width="1321" height="792"
-          alt="Volledig gestylede feesttafel met linnen, kaarsen, bloemen en een ballonboog"
+          width="1344" height="1077"
+          alt="Dionne zet bloemen en kaarsen recht op een gedekte feesttafel"
           class="cover__img"
           fetchpriority="high"
           decoding="async"
@@ -146,7 +139,7 @@
              class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
             Vertel Dionne jouw idee
           </a>
-          <a href="styling-boxes.html" class="cta cta--secondary">
+          <a href="#mogelijkheden" class="cta cta--secondary">
             Bekijk de mogelijkheden
           </a>
         </div>
@@ -154,13 +147,7 @@
     </header>
 
 
-    <!-- ============================================================
-         DETAILS
-         De kop is onderdeel van de beeldcompositie: hij staat op de
-         as van de kleine foto's en loopt over de bovenrand van het
-         grote beeld heen. Het grote beeld loopt links van de pagina
-         af, de twee kleine staan rechts op verschillende hoogte.
-         ============================================================ -->
+    <!-- DETAILS: compositie in home.css; bestaande inhoud behouden. -->
     <section class="chapter chapter--cream chapter--details" aria-labelledby="details-title">
       <div class="details">
         <div class="details__heading">
@@ -224,15 +211,8 @@
     </svg>
 
 
-    <!-- ============================================================
-         SPREAD: twee manieren
-         Eén donker hoofdstuk met twee bedrijven in plaats van twee
-         losse blokken. Beide foto's lopen van de pagina af, de ene
-         naar links, de andere naar rechts, in verschillende
-         beeldverhoudingen. De tweede tekstkolom begint hoger, zodat
-         de twee helften in elkaar haken.
-         ============================================================ -->
-    <section class="chapter chapter--walnut chapter--spread" aria-labelledby="spread-title">
+    <!-- SPREAD: twee manieren: compositie in home.css; bestaande inhoud behouden. -->
+    <section id="mogelijkheden" class="chapter chapter--walnut chapter--spread" aria-labelledby="spread-title">
       <div class="spread__opening">
         <p class="chapter-label">Twee manieren</p>
         <h2 class="chapter-title" id="spread-title">
@@ -266,11 +246,11 @@
       <article class="spread__act spread__act--right">
         <div class="spread__media">
           <img loading="lazy"
-            src="assets/images/styling-box-1536.webp"
-            srcset="assets/images/styling-box-480.webp 480w, assets/images/styling-box-960.webp 960w, assets/images/styling-box-1536.webp 1536w"
+            src="assets/images/gallery-beige-bliss-1-1600.webp"
+            srcset="assets/images/gallery-beige-bliss-1-480.webp 480w, assets/images/gallery-beige-bliss-1-960.webp 960w, assets/images/gallery-beige-bliss-1-1600.webp 1600w"
             sizes="(min-width: 64rem) 48vw, 100vw"
-            width="1536" height="1024"
-            alt="Geopende styling box met linnen, kaarsen, ballonnen en een welkomstkaart"
+            width="1600" height="1067"
+            alt="Gedekte tafel in beige en bruine tinten met bloemen en gouden details"
           >
         </div>
         <div class="spread__content">
@@ -287,13 +267,7 @@
     </section>
 
 
-    <!-- ============================================================
-         BOX COLLECTIE
-         Het raster van twee bij twee blijft staan; dit is een
-         catalogus en die hoort ordelijk te zijn. Verfijnd zijn de
-         naam in het schrijfschrift, de prijs op dezelfde onderlijn
-         en de rustige inzoom bij hover.
-         ============================================================ -->
+    <!-- BOX COLLECTIE: compositie in home.css; bestaande inhoud behouden. -->
     <section class="chapter chapter--cream chapter--boxes" aria-labelledby="boxes-title">
       <div class="boxes__opening">
         <p class="chapter-label">Kies een sfeer die bij je past</p>
@@ -306,7 +280,7 @@
             <img loading="lazy"
               src="assets/images/gallery-bordeaux-date-1-960.webp"
               srcset="assets/images/gallery-bordeaux-date-1-480.webp 480w, assets/images/gallery-bordeaux-date-1-960.webp 960w, assets/images/gallery-bordeaux-date-1-1600.webp 1600w"
-              sizes="(min-width: 48rem) 44vw, 100vw"
+              sizes="(min-width: 1100px) 22vw, (min-width: 640px) 44vw, calc(100vw - 48px)"
               width="960" height="640"
               alt="Gedekte tafel voor twee met bordeauxrode servetten, rozenblaadjes en kaarsen"
             >
@@ -323,7 +297,7 @@
             <img loading="lazy"
               src="assets/images/gallery-blue-breeze-1-960.webp"
               srcset="assets/images/gallery-blue-breeze-1-480.webp 480w, assets/images/gallery-blue-breeze-1-960.webp 960w, assets/images/gallery-blue-breeze-1-1600.webp 1600w"
-              sizes="(min-width: 48rem) 44vw, 100vw"
+              sizes="(min-width: 1100px) 22vw, (min-width: 640px) 44vw, calc(100vw - 48px)"
               width="960" height="640"
               alt="Tafelstyling in blauwe tinten met een gaasloper, blauwe bloemen en kaarsen"
             >
@@ -340,7 +314,7 @@
             <img loading="lazy"
               src="assets/images/gallery-beige-bliss-1-960.webp"
               srcset="assets/images/gallery-beige-bliss-1-480.webp 480w, assets/images/gallery-beige-bliss-1-960.webp 960w, assets/images/gallery-beige-bliss-1-1600.webp 1600w"
-              sizes="(min-width: 48rem) 44vw, 100vw"
+              sizes="(min-width: 1100px) 22vw, (min-width: 640px) 44vw, calc(100vw - 48px)"
               width="960" height="640"
               alt="Gedekte tafel in beige en bruine tinten met droogbloemen en gouden details"
             >
@@ -357,7 +331,7 @@
             <img loading="lazy"
               src="assets/images/gallery-blush-bloom-1-960.webp"
               srcset="assets/images/gallery-blush-bloom-1-480.webp 480w, assets/images/gallery-blush-bloom-1-960.webp 960w, assets/images/gallery-blush-bloom-1-1600.webp 1600w"
-              sizes="(min-width: 48rem) 44vw, 100vw"
+              sizes="(min-width: 1100px) 22vw, (min-width: 640px) 44vw, calc(100vw - 48px)"
               width="960" height="640"
               alt="Tafelstyling in zachtroze tinten met bloemen, kaarsen en gouden bestek"
             >
@@ -378,12 +352,7 @@
     </section>
 
 
-    <!-- ============================================================
-         DIONNE
-         Eigen kleurvlak, zodat dit als persoonlijk hoofdstuk leest en
-         niet als informatieblok. De foto loopt van de rechterrand af
-         en is hoger dan de tekstkolom.
-         ============================================================ -->
+    <!-- DIONNE: compositie in home.css; bestaande inhoud behouden. -->
     <section class="chapter chapter--linen chapter--dionne" aria-labelledby="dionne-title">
       <div class="dionne">
         <div class="dionne__content">
@@ -402,11 +371,11 @@
 
         <figure class="dionne__portrait">
           <img loading="lazy"
-            src="assets/images/dionne-aan-het-werk-1344.webp"
-            srcset="assets/images/dionne-aan-het-werk-480.webp 480w, assets/images/dionne-aan-het-werk-960.webp 960w, assets/images/dionne-aan-het-werk-1344.webp 1344w"
+            src="assets/images/dionne-hero-1366.webp"
+            srcset="assets/images/dionne-hero-480.webp 480w, assets/images/dionne-hero-960.webp 960w, assets/images/dionne-hero-1366.webp 1366w"
             sizes="(min-width: 64rem) 52vw, 100vw"
-            width="1344" height="1077"
-            alt="Dionne zet bloemen en kaarsen recht op een gedekte feesttafel"
+            width="1366" height="2048"
+            alt="Dionne met het Theme Your Dream logo"
           >
         </figure>
       </div>
@@ -423,9 +392,7 @@
     </svg>
 
 
-    <!-- ============================================================
-         SLOT
-         ============================================================ -->
+    <!-- SLOT: compositie in home.css; bestaande inhoud behouden. -->
     <section class="chapter chapter--walnut chapter--close" aria-labelledby="close-title">
       <div class="close">
         <h2 class="close__tagline" id="close-title">
@@ -477,8 +444,8 @@
     </div>
   </footer>
 
-  <script src="consent.js"></script>
-  <script src="script.js"></script>
+  <script src="consent.js?v=1" data-ga-id="" defer></script>
+  <script src="script.js?v=20260919" defer></script>
 
 </body>
 </html>

@@ -53,7 +53,7 @@ fs.mkdirSync(out, { recursive: true });
           width: document.documentElement.scrollWidth,
           broken: [...document.images].filter(i => !i.naturalWidth).map(i => i.src),
           hidden: [...document.querySelectorAll('main h1, main h2, main h3, main .feature-list__item, main .process__step')].filter(e => getComputedStyle(e).opacity === '0').map(e => e.textContent.trim()),
-          hero: document.querySelector('.hero-split__img')?.getAttribute('loading')
+          hero: document.querySelector('.cover__img')?.getAttribute('loading')
         }));
         assert.ok(state.width <= width + 1, `${file} overflows at ${width}: ${state.width}`);
         assert.deepEqual(state.broken, [], `${file}: broken images`);
