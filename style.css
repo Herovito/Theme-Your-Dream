@@ -1310,7 +1310,7 @@ a {
 
 .page-hero {
   text-align: center;
-  padding: var(--space-6) var(--space-3) var(--space-5);
+  padding: 2.5rem var(--space-3) 2.5rem;
   max-width: 38rem;
   margin: 0 auto;
 }
@@ -2571,7 +2571,7 @@ a {
   }
 
   .page-hero {
-    padding: var(--space-7) var(--space-4) var(--space-6);
+    padding: 3.5rem var(--space-4) 3rem;
   }
 }
 
@@ -2917,9 +2917,13 @@ a {
 }
 
 @media (max-width: 900px) {
+  .section--product-layout {
+    padding-block: 2rem 3rem;
+  }
+
   .product-layout {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-6);
+    gap: 1.5rem;
     padding: 0 var(--space-3);
   }
 
@@ -3139,3 +3143,18 @@ a {
 .cookie-actions button[data-choice="reject"]:hover,
 .cookie-actions button[data-choice="save"]:hover { background: var(--color-button-hover); border-color: var(--color-button-hover); }
 .cookie-banner .cookie-pending, .cookie-dialog .cookie-pending { color: var(--color-ink-soft); font-size: 0.9rem; }
+
+/* Gentle display-only exposure correction for the darker table photographs.
+   Keep the same treatment wherever each photograph appears; originals stay intact. */
+img[src*="/beige-bliss-"],
+img[src*="/gallery-beige-bliss-1-"],
+img[src*="/blue-breeze-"],
+img[src*="/gallery-blue-breeze-1-"],
+img[src*="/blush-bloom-"],
+img[src*="/gallery-blush-bloom-1-"] {
+  filter: brightness(1.08);
+}
+
+img[src*="/bordeaux-date-"] {
+  filter: brightness(1.06);
+}
