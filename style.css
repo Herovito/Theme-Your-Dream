@@ -519,6 +519,16 @@ a {
   box-shadow: 0 2px 8px var(--color-header-shadow);
 }
 
+/* Op mobiel: menubalk moet direct zichtbaar zijn, niet transparant */
+@media (max-width: 900px) {
+  .js .hero-overlay .site-header {
+    background-color: var(--color-header-bg);
+    backdrop-filter: blur(8px);
+    border-bottom-color: var(--color-line-soft);
+    box-shadow: 0 2px 8px var(--color-header-shadow);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .js .hero-overlay .site-header {
     transition: none;
