@@ -13,7 +13,8 @@ function createServer(outputDir = path.resolve(__dirname, '../.vercel/output')) 
     catch { res.writeHead(400); res.end('Invalid URL'); return; }
     for (const [key, value] of Object.entries(config.routes[0].headers)) res.setHeader(key, value);
     if (!exactFile(root, name)) { res.writeHead(404); res.end('Pagina niet gevonden'); return; }
-    res.setHeader('Content-Type', types[path.extname(name).toLowerCase()] || 'application/octet-stream');
+    const extension = path.extname(name).toLowerCase();
+    res.setHeader('Content-Type', extension === '.woff2' ? 'font/woff2' : types[extension] || 'application/octet-stream');
     fs.createReadStream(path.join(root, name)).pipe(res);
   });
 }

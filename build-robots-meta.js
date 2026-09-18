@@ -22,7 +22,7 @@ function build({ environment = process.env.VERCEL_ENV || process.env.ENVIRONMENT
   fs.rmSync(target, { recursive: true, force: true });
   const staticDir = path.join(target, 'static');
   fs.mkdirSync(staticDir, { recursive: true });
-  const assets = new Set(['og-image.jpg']);
+  const assets = new Set(['og-image.jpg', 'assets/fonts/Work-Sans-OFL.txt', 'assets/fonts/Rouge-Script-OFL.txt']);
   for (const page of pages) {
     let html = fs.readFileSync(path.join(root, page), 'utf8')
       .replace(/(<meta name="robots" content=")[^"]+/, '$1' + robots)
@@ -53,6 +53,17 @@ function build({ environment = process.env.VERCEL_ENV || process.env.ENVIRONMENT
   for (const asset of assets) {
     const source = path.resolve(root, asset);
     if (!source.startsWith(root + path.sep)) throw new Error('Asset outside site root');
+    // Include local dependencies of stylesheets, such as self-hosted fonts.
+    if (asset.endsWith('.css')) {
+      const css = fs.readFileSync(source, 'utf8');
+      for (const match of css.matchAll(/url\(\s*['"]?([^'"\s)]+)['"]?\s*\)/g)) {
+        const ref = match[1];
+        if (/^(?:[a-z]+:|\/\/|#)/i.test(ref)) continue;
+        const dependency = path.resolve(path.dirname(source), decodeURIComponent(ref.split(/[?#]/)[0]));
+        if (!dependency.startsWith(root + path.sep)) throw new Error('CSS asset outside site root');
+        assets.add(path.relative(root, dependency).split(path.sep).join('/'));
+      }
+    }
     const destination = path.join(staticDir, asset);
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.copyFileSync(source, destination);

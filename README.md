@@ -35,3 +35,5 @@ Voor browsertests is Playwright Chromium nodig (`npx playwright install chromium
 De build maakt `.vercel/output` volgens de Vercel Build Output API. Alleen pagina's uit het manifest en benodigde assets worden gepubliceerd. De repositoryhoofdmap is geen publicatiemap.
 
 Indexering staat uitsluitend aan bij `VERCEL_ENV=production` en `SITE_LIVE=true`. Zie [deploymentchecklist](DEPLOYMENT_CHECKLIST.md), [SEO-configuratie](SEO_CONFIGURATION.md) en [testinstructies](TESTING_SEO.md).
+
+Lettertypen: Work Sans en Rouge Script staan lokaal in `assets/fonts/`, inclusief SIL Open Font License-bestanden. De openbare pagina's laden `assets/fonts/fonts.css`; de build neemt de bijbehorende WOFF2-bestanden mee. Er zijn geen Google Fonts-verzoeken nodig.

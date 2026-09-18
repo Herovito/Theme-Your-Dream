@@ -67,3 +67,20 @@ test('validator reports missing images, wrong case and invalid anchors', () => {
 test('build refuses an output path pointing to source', () => {
   assert.throws(() => build({ outputDir: path.resolve(__dirname, '..') }), /Build output must/);
 });
+
+test('published pages load local fonts with all font files and licenses included', () => {
+  const { staticDir } = build({ outputDir: path.join(base, 'local-fonts') });
+  for (const page of pages) {
+    const html = fs.readFileSync(path.join(staticDir, page), 'utf8');
+    assert.ok(html.includes('assets/fonts/fonts.css?v=1'));
+    assert.ok(!/fonts\.(?:googleapis|gstatic)\.com/.test(html));
+  }
+  const css = fs.readFileSync(path.join(staticDir, 'assets/fonts/fonts.css'), 'utf8');
+  for (const match of css.matchAll(/url\(([^)]+)\)/g)) {
+    const font = fs.readFileSync(path.join(staticDir, 'assets/fonts', match[1]));
+    assert.equal(font.subarray(0, 4).toString(), 'wOF2');
+  }
+  for (const license of ['Work-Sans-OFL.txt', 'Rouge-Script-OFL.txt']) {
+    assert.ok(fs.readFileSync(path.join(staticDir, 'assets/fonts', license), 'utf8').includes('SIL OPEN FONT LICENSE'));
+  }
+});
