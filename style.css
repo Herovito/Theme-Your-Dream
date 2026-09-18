@@ -3012,6 +3012,7 @@ a {
   text-align: left;
 }
 .practical-details__title {
+  text-align: center;
   margin: 0 0 2rem;
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3vw, 2.25rem);
