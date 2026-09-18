@@ -974,8 +974,9 @@ a {
   position: relative;
   overflow: hidden;
   /* svh, niet vh: op mobiel springt de hoogte anders mee met de
-     verdwijnende adresbalk. */
-  height: clamp(17rem, 46svh, 24rem);
+     verdwijnende adresbalk. Op mobiel gereduceerd naar 35svh zodat
+     logo en CTA beter passen in een scherm. */
+  height: clamp(15rem, 35svh, 24rem);
 }
 
 .hero-split__img {
