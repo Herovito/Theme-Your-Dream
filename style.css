@@ -3095,6 +3095,13 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.editorial-cta {
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .editorial-image {
@@ -3134,32 +3141,38 @@ a {
 
 /* Two Ways Section */
 .two-ways {
-  max-width: var(--content-width);
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 var(--space-4);
-}
-
-.two-ways__heading {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  line-height: 1.2;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  color: var(--color-ink);
-  margin-bottom: var(--space-7);
-  text-align: center;
+  padding: 0;
 }
 
 .two-ways__method {
-  margin-bottom: var(--space-7);
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-5);
+  gap: 0;
+  position: relative;
+  min-height: 400px;
+}
+
+.two-ways__method--eventstyling {
+  background-color: var(--color-walnut);
+  padding: var(--space-6) var(--space-4);
+}
+
+.two-ways__method--boxes {
+  background-color: var(--color-cream);
+  padding: var(--space-6) var(--space-4);
+}
+
+.two-ways__bg-walnut {
+  display: none;
 }
 
 .two-ways__image {
   overflow: hidden;
   border-radius: 12px;
-  height: 400px;
+  height: 300px;
+  width: 100%;
 }
 
 .two-ways__image img {
@@ -3173,22 +3186,33 @@ a {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .two-ways__label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--color-ink-faint);
 }
 
+.two-ways__method--eventstyling .two-ways__label {
+  color: var(--color-on-walnut);
+  opacity: 0.8;
+}
+
 .two-ways__title {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  line-height: 1.2;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.15;
   font-weight: 500;
   letter-spacing: -0.015em;
   color: var(--color-ink);
+}
+
+.two-ways__method--eventstyling .two-ways__title {
+  color: var(--color-on-walnut);
 }
 
 .two-ways__text {
@@ -3197,27 +3221,60 @@ a {
   color: var(--color-ink-soft);
 }
 
+.two-ways__method--eventstyling .two-ways__text {
+  color: var(--color-on-walnut);
+  opacity: 0.9;
+}
+
 @media (min-width: 900px) {
   .two-ways__method {
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-7);
-    align-items: center;
+    gap: 0;
+    align-items: stretch;
+    min-height: 500px;
   }
 
   .two-ways__method--eventstyling {
-    direction: ltr;
+    padding: var(--space-7) var(--space-6);
   }
 
   .two-ways__method--boxes {
-    direction: rtl;
+    padding: var(--space-7) var(--space-6);
+  }
+
+  .two-ways__method--eventstyling {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .two-ways__method--boxes {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .two-ways__method--eventstyling .two-ways__image {
+    order: 2;
+  }
+
+  .two-ways__method--eventstyling .two-ways__content {
+    order: 1;
+  }
+
+  .two-ways__method--boxes .two-ways__image {
+    order: 1;
   }
 
   .two-ways__method--boxes .two-ways__content {
-    direction: ltr;
+    order: 2;
   }
 
   .two-ways__image {
-    height: 500px;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .two-ways__content {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-6);
   }
 }
 
@@ -3302,6 +3359,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  height: 100%;
 }
 
 .box-card__title {
@@ -3315,6 +3373,17 @@ a {
   font-size: 0.95rem;
   color: var(--color-ink-soft);
   line-height: 1.5;
+  margin-bottom: var(--space-2);
+  flex-grow: 1;
+}
+
+.box-card__price {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: auto;
 }
 
 /* Dionne Section */
@@ -3442,6 +3511,16 @@ a {
 }
 
 .section--walnut .cta--secondary:hover {
+  background: var(--color-on-walnut);
+  color: var(--color-walnut);
+}
+
+.cta--white {
+  color: var(--color-on-walnut);
+  border-color: var(--color-on-walnut);
+}
+
+.cta--white:hover {
   background: var(--color-on-walnut);
   color: var(--color-walnut);
 }
