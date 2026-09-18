@@ -28,7 +28,14 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="stylesheet" href="assets/fonts/fonts.css?v=1">
-  <link rel="stylesheet" href="style.css?v=20260918h">
+  <link rel="stylesheet" href="style.css?v=20260918i">
+
+  <!-- Zet .js voordat de eerste pixel getekend wordt. Zonder deze regel
+       staat de balk bij het laden nog als meelopende sticky bar in de
+       pagina en springt hij pas naar zijn plek zodra script.js onderaan
+       heeft gedraaid. Dat gaf de balk die halverwege door de inhoud leek
+       te staan. -->
+  <script>document.documentElement.classList.add('js');</script>
 
   <script type="application/ld+json">
   {
@@ -55,7 +62,7 @@
   </script>
 </head>
 
-<body class="hero-overlay">
+<body class="home">
 
   <a class="skip-link" href="#main-content">Direct naar inhoud</a>
 
@@ -101,308 +108,335 @@
 
   <main id="main-content" class="page">
 
-    <header class="hero-split hero-split--editorial">
-      <div class="hero-split__image hero-split__image--primary">
+    <!-- ============================================================
+         COVER
+         Een omslag, geen standaard hero: de foto loopt van de
+         bovenrand tot de rechterrand door en de kop staat links op
+         het cremevlak. De laatste regel van de kop schuift de
+         gemaskeerde linkerrand van de foto in; daar is het beeld al
+         opgelost in de paginakleur, dus er komt geen sluier over de
+         fotografie heen.
+         ============================================================ -->
+    <header class="cover">
+      <div class="cover__media">
         <img loading="eager"
           src="assets/images/berry-eventstyling-1321.webp"
           srcset="assets/images/berry-eventstyling-480.webp 480w, assets/images/berry-eventstyling-960.webp 960w, assets/images/berry-eventstyling-1321.webp 1321w"
-          sizes="(min-width: 1024px) 65vw, 100vw"
+          sizes="(min-width: 64rem) 72vw, 100vw"
           width="1321" height="792"
-          alt="Volledig opgestelde feesttafel met styling in warm taupe en bruine tinten, kaarsen en bloemen"
-          class="hero-split__img"
+          alt="Volledig gestylede feesttafel met linnen, kaarsen, bloemen en een ballonboog"
+          class="cover__img"
           fetchpriority="high"
           decoding="async"
         >
       </div>
 
-      <div class="hero-split__text hero-split__text--editorial">
-        <div class="hero-split__content">
-          <h1 class="hero-split__title hero-split__title--editorial">
-            Jouw feest.<br>
-            Onze creativiteit.<br>
-            <em>Jullie herinnering.</em>
-          </h1>
-          <p class="hero-split__subtitle hero-split__subtitle--editorial">
-            Van een intiem diner tot een compleet gestylede feest. Dionne verzorgt jouw idee naar een setting waarin alles klopt.
-          </p>
-          <div class="hero-split__ctas">
-            <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20heb%20een%20idee%20en%20wil%20graag%20meedenken%20over%20de%20styling."
-               class="cta cta--whatsapp cta--hero" target="_blank" rel="noopener noreferrer">
-              Vertel jouw idee
-            </a>
-            <a href="styling-boxes.html" class="cta cta--secondary cta--hero">
-              Bekijk de mogelijkheden
-            </a>
-          </div>
+      <div class="cover__text">
+        <p class="cover__eyebrow">Eventstyling en styling boxen</p>
+        <h1 class="cover__title">
+          Je hoeft nog geen<br>
+          plan te hebben.<br>
+          <em>Een idee is genoeg.</em>
+        </h1>
+        <p class="cover__lead">
+          Vertel wat je in gedachten hebt. Dionne maakt er een setting van waarin alles klopt, van een intiem diner tot een compleet gestyled feest.
+        </p>
+        <div class="cover__actions">
+          <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20heb%20een%20idee%20en%20wil%20graag%20meedenken%20over%20de%20styling."
+             class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
+            Vertel Dionne jouw idee
+          </a>
+          <a href="styling-boxes.html" class="cta cta--secondary">
+            Bekijk de mogelijkheden
+          </a>
         </div>
       </div>
     </header>
 
-    <svg class="story-wave story-wave--cream-walnut" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
-    </svg>
 
-    <section class="section section--editorial section--walnut">
-      <div class="editorial-grid">
-        <div class="editorial-header">
-          <span class="editorial-header__label">Van idee naar sfeer</span>
-          <h2 class="editorial-header__title">Details maken de herinnering.</h2>
+    <!-- ============================================================
+         DETAILS
+         De kop is onderdeel van de beeldcompositie: hij staat op de
+         as van de kleine foto's en loopt over de bovenrand van het
+         grote beeld heen. Het grote beeld loopt links van de pagina
+         af, de twee kleine staan rechts op verschillende hoogte.
+         ============================================================ -->
+    <section class="chapter chapter--cream chapter--details" aria-labelledby="details-title">
+      <div class="details">
+        <div class="details__heading">
+          <p class="chapter-label">Van idee naar sfeer</p>
+          <h2 class="chapter-title" id="details-title">
+            Details maken<br>
+            <em>de herinnering.</em>
+          </h2>
         </div>
 
-        <div class="editorial-images">
-          <div class="editorial-image editorial-image--large">
-            <img loading="lazy"
-              src="assets/images/berry-tafeldetail-1175.webp"
-              srcset="assets/images/berry-tafeldetail-480.webp 480w, assets/images/berry-tafeldetail-960.webp 960w, assets/images/berry-tafeldetail-1175.webp 1175w"
-              sizes="(min-width: 900px) 55vw, 100vw"
-              width="1175" height="753"
-              alt="Detail van gedekte tafel met linnen, kandelaars, kaarsen en bloemen"
-              class="site-photo"
-            >
-          </div>
+        <figure class="details__lead">
+          <img loading="lazy"
+            src="assets/images/berry-tafeldetail-1175.webp"
+            srcset="assets/images/berry-tafeldetail-480.webp 480w, assets/images/berry-tafeldetail-960.webp 960w, assets/images/berry-tafeldetail-1175.webp 1175w"
+            sizes="(min-width: 64rem) 55vw, 100vw"
+            width="1175" height="753"
+            alt="Gedekte tafel met een geruite loper, glazen vaasjes met bloemen en gouden kandelaars"
+          >
+        </figure>
 
-          <div class="editorial-details">
-            <div class="editorial-image editorial-image--small">
-              <img loading="lazy"
-                src="assets/images/berry-bloemendetail-960.webp"
-                srcset="assets/images/berry-bloemendetail-480.webp 480w, assets/images/berry-bloemendetail-960.webp 960w, assets/images/berry-bloemendetail-1485.webp 1485w"
-                sizes="(min-width: 900px) 25vw, 50vw"
-                width="960" height="640"
-                alt="Close-up van bloemen en droogbloemen arrangement"
-                class="site-photo"
-              >
-            </div>
-            <div class="editorial-image editorial-image--small">
-              <img loading="lazy"
-                src="assets/images/berry-bloemen-960.webp"
-                srcset="assets/images/berry-bloemen-480.webp 480w, assets/images/berry-bloemen-960.webp 960w, assets/images/berry-bloemen-1366.webp 1366w"
-                sizes="(min-width: 900px) 25vw, 50vw"
-                width="960" height="640"
-                alt="Bloemenstuk met bloemen en groen"
-                class="site-photo"
-              >
-            </div>
-          </div>
-        </div>
+        <figure class="details__side details__side--high">
+          <img loading="lazy"
+            src="assets/images/berry-bloemendetail-960.webp"
+            srcset="assets/images/berry-bloemendetail-480.webp 480w, assets/images/berry-bloemendetail-960.webp 960w, assets/images/berry-bloemendetail-1485.webp 1485w"
+            sizes="(min-width: 64rem) 28vw, 50vw"
+            width="960" height="640"
+            alt="Lange gedekte tafel in een tent, met een rood witte loper tot aan de achterwand"
+          >
+        </figure>
 
-        <div class="editorial-cta">
-          <a href="styling-boxes.html" class="cta cta--secondary cta--white">
+        <figure class="details__side details__side--low">
+          <img loading="lazy"
+            src="assets/images/berry-bloemen-960.webp"
+            srcset="assets/images/berry-bloemen-480.webp 480w, assets/images/berry-bloemen-960.webp 960w, assets/images/berry-bloemen-1366.webp 1366w"
+            sizes="(min-width: 64rem) 28vw, 50vw"
+            width="960" height="640"
+            alt="Klein bloemstuk in een geribbeld vaasje op een rode servetkrans met aardbeien"
+          >
+        </figure>
+
+        <div class="details__note">
+          <p>
+            Een kleur die terugkomt in de servetten, een kaars die precies goed staat. Daar blijft een avond aan hangen.
+          </p>
+          <a href="styling-boxes.html" class="link-arrow">
             Laat je inspireren
+            <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
     </section>
 
-    <svg class="story-wave story-wave--walnut-cream" viewBox="0 0 1440 181"
+
+    <!-- Signature golf: de enige diepe golf op de pagina, als opstap
+         naar het donkere hoofdstuk. -->
+    <svg class="story-wave story-wave--cream-walnut story-wave--deep" viewBox="0 0 1440 181"
          preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect class="story-wave__from" width="1440" height="180"/>
       <path class="story-wave__to"
             d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
     </svg>
 
-    <section class="section section--cream">
-      <div class="two-ways">
-        <div class="two-ways__method two-ways__method--eventstyling">
-          <div class="two-ways__bg-walnut"></div>
-          <div class="two-ways__image">
-            <img loading="lazy"
-              src="assets/images/berry-backdrop-1474.webp"
-              srcset="assets/images/berry-backdrop-480.webp 480w, assets/images/berry-backdrop-960.webp 960w, assets/images/berry-backdrop-1474.webp 1474w"
-              sizes="100vw"
-              width="1474" height="738"
-              alt="Feestdecoratie met bloemen en stoffen styling tegen achtergrond"
-              class="site-photo"
-            >
-          </div>
-          <div class="two-ways__content">
-            <span class="two-ways__label">Laat Dionne het doen</span>
-            <h3 class="two-ways__title">Eventstyling</h3>
-            <p class="two-ways__text">
-              Van eerste idee tot complete opbouw op locatie. Dionne regelt het concept en voert het uit. Jij hoeft alleen nog te genieten.
-            </p>
-            <a href="eventstyling.html" class="cta cta--secondary cta--white">
-              Meer over eventstyling
-            </a>
-          </div>
-        </div>
 
-        <div class="two-ways__method two-ways__method--boxes">
-          <div class="two-ways__image">
-            <img loading="lazy"
-              src="assets/images/styling-box-1536.webp"
-              srcset="assets/images/styling-box-480.webp 480w, assets/images/styling-box-960.webp 960w, assets/images/styling-box-1536.webp 1536w"
-              sizes="100vw"
-              width="1536" height="1024"
-              alt="Styling box collectie met verschillende thema's en inhoud"
-              class="site-photo"
-            >
-          </div>
-          <div class="two-ways__content">
-            <span class="two-ways__label">Doe het zelf, maar wel helemaal af</span>
-            <h3 class="two-ways__title">Styling boxen</h3>
-            <p class="two-ways__text">
-              Een complete box met alles wat je nodig hebt. Alles is al bij elkaar gezocht en op elkaar afgestemd. Jij hoeft alleen uit te pakken.
-            </p>
-            <a href="styling-boxes.html" class="cta cta--secondary">
-              Bekijk de styling boxen
-            </a>
-          </div>
-        </div>
+    <!-- ============================================================
+         SPREAD: twee manieren
+         Eén donker hoofdstuk met twee bedrijven in plaats van twee
+         losse blokken. Beide foto's lopen van de pagina af, de ene
+         naar links, de andere naar rechts, in verschillende
+         beeldverhoudingen. De tweede tekstkolom begint hoger, zodat
+         de twee helften in elkaar haken.
+         ============================================================ -->
+    <section class="chapter chapter--walnut chapter--spread" aria-labelledby="spread-title">
+      <div class="spread__opening">
+        <p class="chapter-label">Twee manieren</p>
+        <h2 class="chapter-title" id="spread-title">
+          Je kiest zelf hoeveel je<br>
+          <em>uit handen geeft.</em>
+        </h2>
       </div>
-    </section>
 
-    <svg class="story-wave story-wave--cream-walnut" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
-    </svg>
-
-    <section class="section section--walnut">
-      <div class="box-collection">
-        <div class="box-collection__header">
-          <span class="box-collection__label">Kies een sfeer die bij je past</span>
-          <h2 class="box-collection__title">Onze styling boxen</h2>
+      <article class="spread__act spread__act--left">
+        <div class="spread__media">
+          <img loading="lazy"
+            src="assets/images/berry-backdrop-1474.webp"
+            srcset="assets/images/berry-backdrop-480.webp 480w, assets/images/berry-backdrop-960.webp 960w, assets/images/berry-backdrop-1474.webp 1474w"
+            sizes="(min-width: 64rem) 55vw, 100vw"
+            width="1474" height="738"
+            alt="Feestopstelling met een ballonboog, een taart op een sokkel en een gedekte tafel ervoor"
+          >
         </div>
-
-        <div class="box-collection__grid">
-          <a href="box-bordeaux-date.html" class="box-card">
-            <div class="box-card__image">
-              <img loading="lazy"
-                src="assets/images/gallery-bordeaux-date-1-960.webp"
-                srcset="assets/images/gallery-bordeaux-date-1-480.webp 480w, assets/images/gallery-bordeaux-date-1-960.webp 960w, assets/images/gallery-bordeaux-date-1-1600.webp 1600w"
-                sizes="(min-width: 1200px) 25vw, (min-width: 768px) 50vw, 100vw"
-                width="960" height="640"
-                alt="Bordeaux Date styling box"
-                class="site-photo"
-              >
-            </div>
-            <div class="box-card__content">
-              <h3 class="box-card__title">Bordeaux Date</h3>
-              <p class="box-card__description">Intens, stijlvol en warm.</p>
-              <p class="box-card__price">Vanaf €39</p>
-            </div>
-          </a>
-
-          <a href="box-blue-breeze.html" class="box-card">
-            <div class="box-card__image">
-              <img loading="lazy"
-                src="assets/images/gallery-blue-breeze-1-960.webp"
-                srcset="assets/images/gallery-blue-breeze-1-480.webp 480w, assets/images/gallery-blue-breeze-1-960.webp 960w, assets/images/gallery-blue-breeze-1-1600.webp 1600w"
-                sizes="(min-width: 1200px) 25vw, (min-width: 768px) 50vw, 100vw"
-                width="960" height="640"
-                alt="Blue Breeze styling box"
-                class="site-photo"
-              >
-            </div>
-            <div class="box-card__content">
-              <h3 class="box-card__title">Blue Breeze</h3>
-              <p class="box-card__description">Fris, rustig en tijdloos.</p>
-              <p class="box-card__price">Vanaf €59</p>
-            </div>
-          </a>
-
-          <a href="box-beige-bliss.html" class="box-card">
-            <div class="box-card__image">
-              <img loading="lazy"
-                src="assets/images/gallery-beige-bliss-1-960.webp"
-                srcset="assets/images/gallery-beige-bliss-1-480.webp 480w, assets/images/gallery-beige-bliss-1-960.webp 960w, assets/images/gallery-beige-bliss-1-1600.webp 1600w"
-                sizes="(min-width: 1200px) 25vw, (min-width: 768px) 50vw, 100vw"
-                width="960" height="640"
-                alt="Beige Bliss styling box"
-                class="site-photo"
-              >
-            </div>
-            <div class="box-card__content">
-              <h3 class="box-card__title">Beige Bliss</h3>
-              <p class="box-card__description">Warm, stijlvol en natuurlijk.</p>
-              <p class="box-card__price">Vanaf €49</p>
-            </div>
-          </a>
-
-          <a href="box-blush-bloom.html" class="box-card">
-            <div class="box-card__image">
-              <img loading="lazy"
-                src="assets/images/gallery-blush-bloom-1-960.webp"
-                srcset="assets/images/gallery-blush-bloom-1-480.webp 480w, assets/images/gallery-blush-bloom-1-960.webp 960w, assets/images/gallery-blush-bloom-1-1600.webp 1600w"
-                sizes="(min-width: 1200px) 25vw, (min-width: 768px) 50vw, 100vw"
-                width="960" height="640"
-                alt="Blush Bloom styling box"
-                class="site-photo"
-              >
-            </div>
-            <div class="box-card__content">
-              <h3 class="box-card__title">Blush Bloom</h3>
-              <p class="box-card__description">Romantisch, zacht en sfeervol.</p>
-              <p class="box-card__price">Vanaf €64</p>
-            </div>
+        <div class="spread__content">
+          <p class="spread__label">Laat Dionne het doen</p>
+          <h3 class="spread__title">Eventstyling</h3>
+          <p class="spread__text">
+            Van eerste idee tot complete opbouw op locatie. Dionne bedenkt het concept en voert het uit. Jij hoeft alleen nog te genieten.
+          </p>
+          <a href="eventstyling.html" class="cta cta--secondary cta--white">
+            Meer over eventstyling
           </a>
         </div>
+      </article>
 
-        <div class="box-collection__footer">
+      <article class="spread__act spread__act--right">
+        <div class="spread__media">
+          <img loading="lazy"
+            src="assets/images/styling-box-1536.webp"
+            srcset="assets/images/styling-box-480.webp 480w, assets/images/styling-box-960.webp 960w, assets/images/styling-box-1536.webp 1536w"
+            sizes="(min-width: 64rem) 48vw, 100vw"
+            width="1536" height="1024"
+            alt="Geopende styling box met linnen, kaarsen, ballonnen en een welkomstkaart"
+          >
+        </div>
+        <div class="spread__content">
+          <p class="spread__label">Doe het zelf, maar wel helemaal af</p>
+          <h3 class="spread__title">Styling boxen</h3>
+          <p class="spread__text">
+            Een complete box met alles wat je nodig hebt. Het is al bij elkaar gezocht en op elkaar afgestemd. Jij hoeft alleen uit te pakken.
+          </p>
           <a href="styling-boxes.html" class="cta cta--secondary cta--white">
-            Alle styling boxen bekijken
+            Bekijk de styling boxen
           </a>
         </div>
+      </article>
+    </section>
+
+
+    <!-- ============================================================
+         BOX COLLECTIE
+         Het raster van twee bij twee blijft staan; dit is een
+         catalogus en die hoort ordelijk te zijn. Verfijnd zijn de
+         naam in het schrijfschrift, de prijs op dezelfde onderlijn
+         en de rustige inzoom bij hover.
+         ============================================================ -->
+    <section class="chapter chapter--cream chapter--boxes" aria-labelledby="boxes-title">
+      <div class="boxes__opening">
+        <p class="chapter-label">Kies een sfeer die bij je past</p>
+        <h2 class="chapter-title" id="boxes-title">De styling boxen</h2>
+      </div>
+
+      <div class="box-collection__grid">
+        <a href="box-bordeaux-date.html" class="box-tile">
+          <div class="box-tile__frame">
+            <img loading="lazy"
+              src="assets/images/gallery-bordeaux-date-1-960.webp"
+              srcset="assets/images/gallery-bordeaux-date-1-480.webp 480w, assets/images/gallery-bordeaux-date-1-960.webp 960w, assets/images/gallery-bordeaux-date-1-1600.webp 1600w"
+              sizes="(min-width: 48rem) 44vw, 100vw"
+              width="960" height="640"
+              alt="Gedekte tafel voor twee met bordeauxrode servetten, rozenblaadjes en kaarsen"
+            >
+          </div>
+          <div class="box-tile__body">
+            <h3 class="box-tile__name">Bordeaux Date</h3>
+            <span class="box-tile__price">Vanaf &euro;39</span>
+            <p class="box-tile__note">Intens, stijlvol en warm.</p>
+          </div>
+        </a>
+
+        <a href="box-blue-breeze.html" class="box-tile">
+          <div class="box-tile__frame">
+            <img loading="lazy"
+              src="assets/images/gallery-blue-breeze-1-960.webp"
+              srcset="assets/images/gallery-blue-breeze-1-480.webp 480w, assets/images/gallery-blue-breeze-1-960.webp 960w, assets/images/gallery-blue-breeze-1-1600.webp 1600w"
+              sizes="(min-width: 48rem) 44vw, 100vw"
+              width="960" height="640"
+              alt="Tafelstyling in blauwe tinten met een gaasloper, blauwe bloemen en kaarsen"
+            >
+          </div>
+          <div class="box-tile__body">
+            <h3 class="box-tile__name">Blue Breeze</h3>
+            <span class="box-tile__price">Vanaf &euro;59</span>
+            <p class="box-tile__note">Fris, rustig en tijdloos.</p>
+          </div>
+        </a>
+
+        <a href="box-beige-bliss.html" class="box-tile">
+          <div class="box-tile__frame">
+            <img loading="lazy"
+              src="assets/images/gallery-beige-bliss-1-960.webp"
+              srcset="assets/images/gallery-beige-bliss-1-480.webp 480w, assets/images/gallery-beige-bliss-1-960.webp 960w, assets/images/gallery-beige-bliss-1-1600.webp 1600w"
+              sizes="(min-width: 48rem) 44vw, 100vw"
+              width="960" height="640"
+              alt="Gedekte tafel in beige en bruine tinten met droogbloemen en gouden details"
+            >
+          </div>
+          <div class="box-tile__body">
+            <h3 class="box-tile__name">Beige Bliss</h3>
+            <span class="box-tile__price">Vanaf &euro;49</span>
+            <p class="box-tile__note">Warm, stijlvol en natuurlijk.</p>
+          </div>
+        </a>
+
+        <a href="box-blush-bloom.html" class="box-tile">
+          <div class="box-tile__frame">
+            <img loading="lazy"
+              src="assets/images/gallery-blush-bloom-1-960.webp"
+              srcset="assets/images/gallery-blush-bloom-1-480.webp 480w, assets/images/gallery-blush-bloom-1-960.webp 960w, assets/images/gallery-blush-bloom-1-1600.webp 1600w"
+              sizes="(min-width: 48rem) 44vw, 100vw"
+              width="960" height="640"
+              alt="Tafelstyling in zachtroze tinten met bloemen, kaarsen en gouden bestek"
+            >
+          </div>
+          <div class="box-tile__body">
+            <h3 class="box-tile__name">Blush Bloom</h3>
+            <span class="box-tile__price">Vanaf &euro;64</span>
+            <p class="box-tile__note">Romantisch, zacht en sfeervol.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="boxes__footer">
+        <a href="styling-boxes.html" class="cta cta--secondary">
+          Alle styling boxen bekijken
+        </a>
       </div>
     </section>
 
-    <svg class="story-wave story-wave--walnut-cream" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
-    </svg>
 
-    <section class="section section--dionne section--cream">
-      <div class="dionne-hero">
-        <div class="dionne-hero__content">
-          <span class="dionne-hero__label">Achter Theme Your Dream</span>
-          <h2 class="dionne-hero__title">Gewoon Dionne.</h2>
-          <p class="dionne-hero__text">
+    <!-- ============================================================
+         DIONNE
+         Eigen kleurvlak, zodat dit als persoonlijk hoofdstuk leest en
+         niet als informatieblok. De foto loopt van de rechterrand af
+         en is hoger dan de tekstkolom.
+         ============================================================ -->
+    <section class="chapter chapter--linen chapter--dionne" aria-labelledby="dionne-title">
+      <div class="dionne">
+        <div class="dionne__content">
+          <p class="chapter-label">Achter Theme Your Dream</p>
+          <h2 class="chapter-title" id="dionne-title">Gewoon <em>Dionne.</em></h2>
+          <p class="dionne__text">
             Theme Your Dream is het werk van één persoon. Geen team, geen laag tussen jou en degene die het werk doet.
           </p>
-          <p class="dionne-hero__text">
-            Dionne is altijd al degene geweest die feestjes aankleedde. Voor jezelf en voor mensen om je heen. Met een oog voor detail en oog voor wat bij iemand past.
+          <p class="dionne__text">
+            Dionne is altijd al degene geweest die feestjes aankleedde. Voor zichzelf en voor de mensen om haar heen, met oog voor detail en voor wat bij iemand past.
           </p>
           <a href="over_dionne.html" class="cta cta--secondary">
             Ontmoet Dionne
           </a>
         </div>
 
-        <div class="dionne-hero__image">
+        <figure class="dionne__portrait">
           <img loading="lazy"
             src="assets/images/dionne-aan-het-werk-1344.webp"
             srcset="assets/images/dionne-aan-het-werk-480.webp 480w, assets/images/dionne-aan-het-werk-960.webp 960w, assets/images/dionne-aan-het-werk-1344.webp 1344w"
-            sizes="(min-width: 900px) 60vw, 100vw"
+            sizes="(min-width: 64rem) 52vw, 100vw"
             width="1344" height="1077"
-            alt="Dionne zet bloemen en kaarsen op een gedekte feesttafel"
-            class="site-photo"
+            alt="Dionne zet bloemen en kaarsen recht op een gedekte feesttafel"
           >
-        </div>
+        </figure>
       </div>
     </section>
 
-    <svg class="story-wave story-wave--cream-walnut" viewBox="0 0 1440 181"
+
+    <!-- Tweede golf, bewust anders: ondieper, gespiegeld en van linnen
+         naar walnoot. Sluit het persoonlijke hoofdstuk af. -->
+    <svg class="story-wave story-wave--linen-walnut story-wave--shallow" viewBox="0 0 1440 181"
          preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect class="story-wave__from" width="1440" height="180"/>
       <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
+            d="M0,126 C180,108 360,96 540,101 C760,107 900,131 1080,137 C1230,142 1340,134 1440,120 L1440,300 L0,300 Z"/>
     </svg>
 
-    <section class="section section--walnut section--cta-final">
-      <div class="cta-final">
-        <p class="cta-final__tagline">
+
+    <!-- ============================================================
+         SLOT
+         ============================================================ -->
+    <section class="chapter chapter--walnut chapter--close" aria-labelledby="close-title">
+      <div class="close">
+        <h2 class="close__tagline" id="close-title">
           Jouw feest, onze creativiteit,<br>
-          jullie herinnering.
-        </p>
+          <em>jullie herinnering.</em>
+        </h2>
         <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20Theme%20Your%20Dream."
-           class="cta cta--whatsapp cta--large cta--white" target="_blank" rel="noopener noreferrer">
-          Vertel jouw idee
+           class="cta cta--whatsapp cta--on-walnut" target="_blank" rel="noopener noreferrer">
+          Vertel Dionne jouw idee
         </a>
+        <p class="close__note">Een appje met een idee is genoeg om te beginnen.</p>
       </div>
     </section>
 

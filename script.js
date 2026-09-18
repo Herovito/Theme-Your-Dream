@@ -107,16 +107,21 @@
     });
   }
 
-  // ===== 8. HEADER OVER DE BEELDHERO =====
-  // Op de homepage ligt de balk doorzichtig over de herofoto. Zodra de
-  // hero grotendeels voorbij is, vult de balk zich met de paginakleur,
-  // zodat de menutekst leesbaar blijft boven gewone inhoud.
+  // ===== 8. SCHADUW ONDER DE MENUBALK =====
+  // De balk is altijd gevuld en ligt nooit doorzichtig over een foto:
+  // dat is eerder geprobeerd, maar de menutekst haalde over de rode
+  // achterwand van de herofoto gemeten maar 2,0:1 en dat is onleesbaar.
+  //
+  // Wat overblijft is één toestand: zodra er inhoud onder de balk door
+  // schuift krijgt hij een zachte schaduw, zodat zichtbaar wordt dat de
+  // balk erbovenop ligt. Alleen op de homepage, zodat de subpagina's
+  // ongemoeid blijven.
   //
   // Dit is een toestandswissel, geen versiering: hij loopt ook wanneer
   // iemand verminderde beweging heeft ingesteld. Alleen de overgang
   // ernaartoe wordt dan door style.css uitgezet.
   function initHeaderScrollState() {
-    if (!document.body.classList.contains('hero-overlay')) return;
+    if (!document.body.classList.contains('home')) return;
 
     const header = document.querySelector('.site-header');
     if (!header) return;
@@ -157,7 +162,7 @@
   // tekst in plaats van ernaast, is er geen dieptelaag om te tonen, en
   // kost de beweging alleen maar batterij.
   function initHeroParallax() {
-    const image = document.querySelector('.hero-split__img');
+    const image = document.querySelector('.cover__img');
     if (!image) return;
 
     // Individuele translate-eigenschap, geen transform: de foto heeft

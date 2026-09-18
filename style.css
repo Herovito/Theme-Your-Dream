@@ -114,6 +114,17 @@
   --header-height-lg: 9rem;
   --content-width: 84rem;
 
+  /* Zijmarge van de pagina. Alle volle-breedte hoofdstukken rekenen
+     hiermee, zodat een foto die van de pagina afloopt precies even
+     ver doorloopt als de marge breed is. */
+  --edge: clamp(1.5rem, 5.5vw, 5.5rem);
+
+  /* Eén ronding voor alle fotokaders. Sluit aan bij de 1,5rem van de
+     boxkaarten op styling-boxes.html, zodat de site één taal spreekt.
+     Een foto die van de pagina afloopt houdt zijn ronding alleen aan
+     de kant waar hij nog een rand heeft. */
+  --radius-photo: 1.25rem;
+
   /* Typografie */
   --font-display: Georgia, serif;
   --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -206,14 +217,10 @@ html {
   }
 }
 
-/* De gloed is --color-copper-deep (#7A5240) op wisselende dekking.
-   rgba() kan geen var() bevatten, vandaar de losse waarde hier. */
-
-  50% {
-    transform: scale(1.02);
-    box-shadow: 0 0 0 8px rgba(122, 82, 64, 0);
-  }
-}
+/* Hier stond een los fragment van een @keyframes-blok waarvan de
+   openingsregel verdwenen was. Een selector `50%` op het hoogste
+   niveau is ongeldig, dus de browser gooide het weg; het stond alleen
+   de validatie in de weg. */
 
 @keyframes zoom-in-view {
   from {
@@ -478,64 +485,33 @@ a {
   border-bottom: 1px solid var(--color-line-soft);
 }
 
-/* --- Header over de beeldhero (alleen homepage) --------------------
-   Op pagina's met een beeldhero begint de balk onzichtbaar, zodat de
-   foto tot bovenaan het scherm doorloopt en het logo op de foto ligt.
-   Zodra er gescrold wordt vult de balk zich alsnog. De klasse staat op
-   <body>, niet op de header: de subpagina's houden hun gewone balk en
-   er verandert daar niets.
+/* --- Menubalk op de homepage ----------------------------------------
+   De balk lag hier eerder doorzichtig over de herofoto. Dat is
+   teruggedraaid: gemeten haalde de menutekst over de rode achterwand
+   van die foto maar 2,0:1, en geen enkele sluier die dat oplost laat de
+   fotografie heel. De balk is nu overal gevuld en meelopend
+   (position: sticky), dus hij staat altijd bovenaan het scherm en nooit
+   als losse strook midden in de inhoud.
 
-   Twee toestandsklassen met dezelfde opmaak, uit twee bronnen: gescrold
-   (script.js, scrollpositie) en menu open (script.js, setMenu). Een
-   geopend mobiel menu moet altijd een eigen ondergrond hebben, anders
-   staan de links op de foto.
+   Wat blijft is één toestand: zodra er inhoud onder de balk door
+   schuift komt er een zachte schaduw onder. De klasse wordt door
+   script.js gezet, alleen op de homepage, zodat de subpagina's
+   ongemoeid blijven. De klasse js staat via een regel in de head al op
+   het html-element, dus de balk staat meteen goed en springt niet na
+   het laden. */
 
-   Alles hangt aan .js op <html>. Het vullen van de balk gebeurt met
-   JavaScript; zonder JavaScript zou hij dus doorzichtig over de hele
-   pagina blijven liggen en het menu onleesbaar worden. Dan valt de hele
-   overlay weg en blijft de gewone, meelopende balk staan. */
-
-.js .hero-overlay .site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: transparent;
-  backdrop-filter: none;
-  border-bottom-color: transparent;
-  box-shadow: 0 0 0 0 transparent;
-  transition:
-    background-color 0.3s ease,
-    backdrop-filter 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+.home .site-header {
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-.js .hero-overlay .site-header--scrolled,
-.js .hero-overlay .site-header--menu-open {
-  background-color: var(--color-header-bg);
-  backdrop-filter: blur(8px);
-  border-bottom-color: var(--color-line-soft);
-  box-shadow: 0 2px 8px var(--color-header-shadow);
-}
-
-/* Op mobiel: menubalk moet direct zichtbaar zijn, niet transparant */
-@media (max-width: 900px) {
-  .js .hero-overlay .site-header {
-    background-color: var(--color-header-bg);
-    backdrop-filter: blur(8px);
-    border-bottom-color: var(--color-line-soft);
-    box-shadow: 0 2px 8px var(--color-header-shadow);
-  }
-
-  /* Hero moet onder de vaste menubalk beginnen */
-  .js .hero-overlay .hero-split {
-    padding-top: var(--header-height);
-  }
+.home .site-header--scrolled,
+.home .site-header--menu-open {
+  box-shadow: 0 2px 10px var(--color-header-shadow);
+  border-bottom-color: var(--color-line);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .js .hero-overlay .site-header {
+  .home .site-header {
     transition: none;
   }
 }
@@ -2974,555 +2950,1053 @@ a {
 }
 
 /* ===================================================================
-   12b. HOMEPAGE EDITORIAL REDESIGN
-   New sections: Editorial, Two Ways, Box Collection, Dionne, CTA Final
+   12b. HOMEPAGE
+   -------------------------------------------------------------------
+   De homepage is opgebouwd als een tijdschriftkatern: elk hoofdstuk
+   heeft een eigen kleurvlak over de volle breedte en daarbinnen één
+   gedeelde as waarop de tekst staat. De variatie zit in de beelden,
+   die per hoofdstuk aan een andere kant van de pagina aflopen, niet
+   in steeds een ander raster. Zo blijft asymmetrie ordelijk.
+
+   Drie regels die door alles heen lopen:
+
+   1. Kleur draagt de structuur. Ieder hoofdstuk heeft een échte
+      achtergrondkleur. Hiervoor stonden er hoofdstukken met witte
+      tekstkleuren op een cremevlak, wat een contrast van ongeveer
+      1,4:1 gaf; die tekst was praktisch onzichtbaar.
+   2. Koppen staan in de schreefletter van het merk, de begeleidende
+      tekst in de schreefloze. Het schrijfschrift is voorbehouden aan
+      de namen van de styling boxen, precies zoals op de boxpagina's.
+   3. Een haarlijntje van 2,5rem gaat aan ieder bovenschrift vooraf.
+      Dat is het enige herhaalde sierelement op de pagina.
    =================================================================== */
 
-/* Hero Split Editorial Variant - Larger, more visual */
-.hero-split--editorial {
-  grid-template-columns: 1fr;
-  grid-template-areas: "media" "text";
-  min-height: auto;
+/* --- Hoofdstukraster ------------------------------------------------
+   Volle-breedte raster met een middenkolom. Kinderen staan standaard
+   in die middenkolom; wie `grid-column: full` krijgt loopt van rand
+   tot rand. `justify-content: center` verdeelt de ruimte die overblijft
+   zodra het scherm breder is dan --content-width, zodat de zijmarges
+   op grote schermen meegroeien in plaats van de tekstkolom. */
+
+.chapter {
+  --chapter-space: clamp(3.5rem, 7vw, 6.5rem);
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--edge), 1fr)
+    [content-start] minmax(0, var(--content-width)) [content-end]
+    minmax(var(--edge), 1fr) [full-end];
+  justify-content: center;
+  padding-block: var(--chapter-space);
+  position: relative;
+  /* Eigen stapelcontext: z-index binnen een hoofdstuk kan nooit boven
+     de menubalk uitkomen, hoe diep het ook genest is. */
+  isolation: isolate;
 }
 
-.hero-split--editorial .hero-split__image--primary {
-  height: clamp(350px, 55vw, 500px);
+.chapter > * {
+  grid-column: content;
+  min-width: 0;
+}
+
+.chapter > .chapter--bleed,
+.chapter > [data-bleed] {
+  grid-column: full;
+}
+
+.chapter--cream  { background-color: var(--color-cream); }
+.chapter--linen  { background-color: var(--color-bg-soft); }
+
+.chapter--walnut {
+  background-color: var(--color-walnut);
+  --color-ink: var(--color-on-walnut);
+  --color-ink-soft: var(--color-on-walnut);
+  --color-accent: var(--color-on-walnut);
+  --color-focus: var(--color-on-walnut);
+  --color-line: rgba(255, 249, 242, 0.32);
+}
+
+
+/* --- Gedeelde bouwstenen -------------------------------------------- */
+
+/* Bovenschrift met haarlijn. De lijn is de enige decoratie die op
+   meerdere plekken terugkomt; hij geeft de hoofdstukken herkenbaar
+   dezelfde aanhef zonder dat er een kader omheen hoeft. */
+.chapter-label {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin-bottom: 1.1rem;
+}
+
+.chapter-label::before {
+  content: "";
+  flex: none;
+  width: 2.5rem;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.5;
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.018em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.chapter-title em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+/* Tekstlink met pijl. De pijl schuift bij hover een klein stukje mee,
+   zodat de richting van de handeling voelbaar wordt. Geen los icoon:
+   het teken staat in de link zelf en is voor hulpsoftware verborgen. */
+.link-arrow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  /* De ruimte staat bewust bovenlangs. Zonder die ruimte is de link
+     gemeten 33px hoog en dat is te klein om op een aanraakscherm
+     betrouwbaar te raken; de streep moet wel strak onder de tekst
+     blijven staan, dus die kant houdt zijn krappe maat. */
+  padding-top: 0.75rem;
+  padding-bottom: 0.2rem;
+}
+
+.link-arrow span {
+  transition: transform 0.4s var(--ease-soft);
+}
+
+.link-arrow:hover span {
+  transform: translateX(0.3rem);
+}
+
+.link-arrow:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-arrow span { transition: none; }
+  .link-arrow:hover span { transform: none; }
+}
+
+/* Beeldkader. Een foto die van de pagina afloopt houdt zijn ronding
+   alleen aan de kant waar hij nog een rand heeft. */
+.photo-frame {
+  overflow: hidden;
+  border-radius: var(--radius-photo);
+  background-color: var(--color-bg-soft);
+  margin: 0;
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ===================================================================
+   12b.1  Cover
+   -------------------------------------------------------------------
+   Geen hero met tekst links en een plaatje rechts, maar een omslag:
+   één grote foto die van de rechterpagina afloopt en aan de linkerkant
+   oplost in de paginakleur, met de merkzin er groot naast.
+
+   Er ligt nergens een sluier over de fotografie. Dat kan omdat de
+   menubalk erboven staat in plaats van eroverheen: de foto begint net
+   onder de balk. De enige plek waar tekst en beeld elkaar raken is het
+   eind van de laatste kopregel, en daar is het beeld al voor ruim
+   negentig procent opgelost in de paginakleur (gemeten 210,191,169
+   tegen een cremevlak van 224,205,184).
+   =================================================================== */
+
+.cover {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "media"
+    "text";
+  background-color: var(--color-cream);
+}
+
+.cover__media {
   grid-area: media;
+  position: relative;
+  overflow: hidden;
+  height: clamp(17rem, 46svh, 26rem);
 }
 
-.hero-split--editorial .hero-split__text--editorial {
+.cover__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* De uitsnede houdt de gedekte tafel vast, niet de lege tentwand. */
+  object-position: 70% 50%;
+  animation: cover-settle 1.5s var(--ease-soft) both;
+}
+
+@keyframes cover-settle {
+  from { transform: scale(1.045); opacity: 0.72; }
+  to   { transform: scale(1);     opacity: 1; }
+}
+
+/* Onderlangs lost de foto op in het vlak waar de kop op staat. */
+.cover__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to top,
+    var(--color-bg) 0,
+    var(--color-cream-0) 3rem);
+}
+
+.cover__text {
   grid-area: text;
-  padding: var(--space-6) var(--space-4);
-  background-color: transparent;
-}
-
-.hero-split__content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-4) var(--edge) var(--space-6);
 }
 
-.hero-split__eyebrow {
-  font-size: 12px;
+.cover__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 0.78rem;
   font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-ink-faint);
-  display: block;
-  margin-bottom: var(--space-2);
-}
-
-.hero-split__title--editorial {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  line-height: 1.15;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  color: var(--color-ink);
-  margin-bottom: var(--space-3);
-}
-
-.hero-split__subtitle--editorial {
-  font-size: 1.1rem;
-  line-height: 1.7;
   color: var(--color-ink-soft);
+  margin-bottom: 1.4rem;
+}
+
+.cover__eyebrow::before {
+  content: "";
+  flex: none;
+  width: 2.5rem;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.5;
+}
+
+.cover__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  /* De bovengrens is bepaald door de langste regel, "Je hoeft nog
+     geen", die op één regel in de tekstkolom van 43rem moet passen.
+     Gemeten is die regel dan 641px breed in een kolom van 688px.
+     Groter zetten breekt hem af en dan valt de opbouw van de zin uit
+     elkaar. */
+  /* De ondergrens is zelf ook vloeiend. Op 320px is de tekstkolom 272px
+     en is "Je hoeft nog geen" bij 2,35rem gemeten 300px breed; dan valt
+     "geen" als los woord op een eigen regel en klopt de opbouw van de
+     zin niet meer. Vanaf ongeveer 390px doet deze ondergrens niets. */
+  font-size: clamp(min(2.35rem, 9.6vw), 5.6vw, 5rem);
+  line-height: 1.06;
+  letter-spacing: -0.024em;
+  color: var(--color-ink);
+  margin-bottom: 1.6rem;
+}
+
+.cover__title em {
+  font-style: italic;
+  color: var(--color-copper-deep);
+}
+
+.cover__lead {
+  font-size: 1.1rem;
+  line-height: 1.68;
+  color: var(--color-ink-soft);
+  max-width: 30rem;
   margin-bottom: var(--space-4);
 }
 
-.hero-split__ctas {
+.cover__actions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  align-items: flex-start;
+  align-items: stretch;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 24rem;
 }
 
-@media (min-width: 900px) {
-  .hero-split--editorial {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "text media";
-    gap: var(--space-6);
-    min-height: clamp(500px, 70vh, 700px);
-  }
+.cover__actions .cta {
+  text-align: center;
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+}
 
-  .hero-split--editorial .hero-split__image--primary {
-    height: 100%;
-    width: 100%;
-  }
+/* De onderdelen komen kort na elkaar op, van boven naar beneden. Het
+   is één beweging over de hele omslag, geen los effect per element. */
+.js .cover__eyebrow,
+.js .cover__title,
+.js .cover__lead,
+.js .cover__actions {
+  animation: reveal-fade-in 0.8s var(--ease-soft) both;
+}
 
-  .hero-split__ctas {
+.js .cover__eyebrow { animation-delay: 0.1s; }
+.js .cover__title   { animation-delay: 0.18s; }
+.js .cover__lead    { animation-delay: 0.3s; }
+.js .cover__actions { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cover__img { animation: none; }
+
+  .js .cover__eyebrow,
+  .js .cover__title,
+  .js .cover__lead,
+  .js .cover__actions {
+    animation-duration: 0.01ms;
+    animation-delay: 0s;
+  }
+}
+
+@media (min-width: 40rem) {
+  .cover__actions {
     flex-direction: row;
-    gap: var(--space-4);
+    flex-wrap: wrap;
+    align-items: center;
+    width: auto;
+    max-width: none;
+    gap: var(--space-2) var(--space-3);
+  }
+
+  /* De labels breken nooit binnen de knop. Past het paar niet naast
+     elkaar, zoals in de tekstkolom van een laptop van 1024px, dan gaat
+     de tweede knop netjes op een eigen regel. Een knop met een label
+     over twee regels leest als een fout; twee knoppen onder elkaar
+     niet. */
+  .cover__actions .cta {
+    white-space: nowrap;
+  }
+
+  /* Iets kleiner en krapper dan de standaardknop. Gemeten passen de
+     twee labels bij de standaardmaat samen 703px breed en dat is meer
+     dan de tekstkolom; dan breekt "Vertel Dionne jouw idee" over twee
+     regels en verliest de hoofdactie zijn vorm. Bij deze maat is de
+     knop nog 56px hoog, ruim boven het aanraakdoel van 44px. */
+  .cover__actions .cta {
+    font-size: 1.12rem;
+    padding-left: 2.1rem;
+    padding-right: 2.1rem;
   }
 }
 
-/* Editorial Inspiration Section */
-.section--editorial {
-  padding: var(--space-7) var(--space-4);
+/* --- Vanaf 64rem: de omslag ---------------------------------------- */
+
+@media (min-width: 64rem) {
+  .cover {
+    /* De linkerkolom is een vaste marge, geen 1fr. Met twee flexibele
+       buitenkolommen deelt de browser de overgebleven ruimte gelijk en
+       komt de tekstkolom in het midden van het scherm te staan, boven
+       op het onbewerkte deel van de foto. Deze marge is dezelfde
+       berekening als die van .chapter, zodat de kop precies op de as
+       van de hoofdstukken eronder staat. */
+    grid-template-columns:
+      [full-start] max(var(--edge), (100% - var(--content-width)) / 2)
+      /* Hoogstens de helft van het scherm. Op een vaste 43rem hield de
+         foto op een laptop van 1024px maar 361px over en werd de
+         omslag een strook; met deze grens houdt de foto overal ruim
+         de helft van de breedte. */
+      [text-start] minmax(0, min(43rem, 50%)) [text-end]
+      minmax(0, 1fr) [full-end];
+    grid-template-areas: none;
+    align-items: center;
+    /* De balk staat erboven en niet eroverheen, dus telt zijn hoogte
+       mee. 42rem plus de balk van 9rem past op een scherm van 900px,
+       zodat de hele omslag zonder scrollen in beeld staat. */
+    min-height: min(78svh, 42rem);
+  }
+
+  /* De foto staat los van de rasterstroom: absoluut, van de rechterrand
+     tot net voorbij het einde van de tekstkolom. Zo bepaalt hij de
+     hoogte van de omslag niet (een grid-item met height:100% in een rij
+     die zichzelf nog moet meten levert een kringverwijzing op, en die
+     maakte de omslag hier ruim 1300px hoog) en staat de linkerrand
+     precies waar ik hem wil hebben.
+
+     De 6rem waarmee hij voorbij de tekstkolom komt is de overlap: de
+     langste kopregel raakt de fotorand net, meer niet. Daardoor is er
+     nergens tekst die over onbewerkte fotografie loopt. */
+  .cover__media {
+    /* Expliciete rasterplek én absoluut: zonder de plek valt de foto in
+       een impliciete rij ónder de omslag en wordt hij 0px hoog. */
+    grid-area: 1 / full-start / 2 / full-end;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: calc(
+      max(var(--edge), (100% - var(--content-width)) / 2)
+      + min(43rem, 50%) - 6rem);
+    height: auto;
+    z-index: 0;
+  }
+
+  .cover__text {
+    grid-column: text-start / text-end;
+    grid-row: 1;
+    z-index: 1;
+    padding: var(--space-5) 0;
+  }
+
+  .cover__img {
+    object-position: 66% 50%;
+  }
+
+  /* Vangnet voor browsers zonder mask-image: daar wordt de linkerrand
+     overgoten in plaats van weggemaskeerd. */
+  .cover__media::after {
+    background-image: linear-gradient(to right,
+      var(--color-bg) 0,
+      var(--color-cream-0) 22%);
+  }
+
+  @supports (mask-image: linear-gradient(#000, #000)) {
+    /* De foto verdwijnt naar links in plaats van dat er kleur overheen
+       komt. Dat is nodig omdat .page een zeer lichte walnootwaas over
+       de linkerbovenhoek legt: een dekkend cremeverloop is daar lichter
+       dan de pagina ernaast en geeft een zichtbare verticale naad.
+       De stops lopen traag op het begin en versnellen daarna, anders
+       is de plek waar het verloop begint als band te zien. */
+    .cover__media {
+      -webkit-mask-image: linear-gradient(to right,
+        transparent 0,
+        rgba(0, 0, 0, 0.22) 7%,
+        rgba(0, 0, 0, 0.62) 14%,
+        #000 24%);
+      mask-image: linear-gradient(to right,
+        transparent 0,
+        rgba(0, 0, 0, 0.22) 7%,
+        rgba(0, 0, 0, 0.62) 14%,
+        #000 24%);
+    }
+
+    /* Zodra het masker werkt is er geen verloop meer nodig: er ligt
+       dan niets meer óver de fotografie heen. */
+    .cover__media::after {
+      background-image: none;
+    }
+  }
 }
 
-.editorial-grid {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+
+/* ===================================================================
+   12b.2  Details
+   -------------------------------------------------------------------
+   De kop hoort bij de beeldcompositie: hij steekt links uit zijn eigen
+   kolom en zijn onderlijn valt samen met de bovenrand van het grote
+   beeld. Het grote beeld loopt van de linkerpagina af, de twee kleine
+   staan rechts op verschillende hoogte. Bewust geen tekst óver een
+   foto: dat zou de fotografie verzwakken en het lezen lastiger maken.
+   =================================================================== */
+
+.chapter--details {
+  padding-inline: 0;
+  display: block;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
+  padding-inline: var(--edge);
+  max-width: calc(var(--content-width) + 2 * var(--edge));
+  margin-inline: auto;
 }
 
-.editorial-header {
-  text-align: center;
-}
-
-.editorial-header__label {
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-ink-faint);
-  display: block;
-  margin-bottom: var(--space-2);
-}
-
-.editorial-header__title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.2;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  color: var(--color-on-walnut);
-}
-
-.editorial-images {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-3);
-  margin-bottom: var(--space-3);
-}
-
-.editorial-cta {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-
-.editorial-image {
+.details__lead,
+.details__side {
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: var(--radius-photo);
+  background-color: var(--color-bg-soft);
+  margin: 0;
 }
 
-.editorial-image img {
+.details__lead img,
+.details__side img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-@media (min-width: 900px) {
-  .editorial-images {
-    grid-template-columns: 1.5fr 1fr;
-    gap: var(--space-6);
-    align-items: stretch;
-  }
-
-  .editorial-image--large {
-    grid-row: span 2;
-  }
-
-  .editorial-details {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
-
-  .editorial-image--small {
-    overflow: hidden;
-    border-radius: 12px;
-  }
+.details__lead {
+  aspect-ratio: 4 / 3;
+  margin-inline: calc(var(--edge) * -1);
+  border-radius: 0;
 }
 
-/* Two Ways Section */
-.two-ways {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0;
+.details__side {
+  aspect-ratio: 3 / 2;
 }
 
-.two-ways__method {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  position: relative;
-  min-height: auto;
-}
-
-.two-ways__method--eventstyling {
-  background-color: var(--color-walnut);
-  padding: var(--space-5) var(--space-3);
-}
-
-.two-ways__method--boxes {
-  background-color: var(--color-cream);
-  padding: var(--space-5) var(--space-3);
-}
-
-.two-ways__bg-walnut {
-  display: none;
-}
-
-.two-ways__image {
-  overflow: hidden;
-  border-radius: 12px;
-  height: 400px;
-  width: 100%;
-}
-
-.two-ways__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.two-ways__content {
+.details__note {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.two-ways__label {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-ink-faint);
-}
-
-.two-ways__method--eventstyling .two-ways__label {
-  color: var(--color-on-walnut);
-  opacity: 0.8;
-}
-
-.two-ways__title {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  line-height: 1.15;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  color: var(--color-ink);
-}
-
-.two-ways__method--eventstyling .two-ways__title {
-  color: var(--color-on-walnut);
-}
-
-.two-ways__text {
-  font-size: 1rem;
+  align-items: flex-start;
+  gap: var(--space-2);
+  max-width: 26rem;
+  font-size: 1.05rem;
   line-height: 1.7;
   color: var(--color-ink-soft);
 }
 
-.two-ways__method--eventstyling .two-ways__text {
-  color: var(--color-on-walnut);
-  opacity: 0.9;
-}
-
-@media (min-width: 900px) {
-  .two-ways__method {
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    align-items: stretch;
-    min-height: auto;
+@media (min-width: 64rem) {
+  /* Drie rijen, twee kolommen. De kop staat linksboven op de as van de
+     pagina en het eerste kleine beeld staat er precies naast: hun
+     onderlijnen vallen samen. Daaronder loopt het grote beeld van de
+     linkerpagina af. Zo is de kop onderdeel van de compositie zonder
+     dat er ooit tekst over fotografie komt te staan. */
+  .details {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    column-gap: clamp(2rem, 4vw, 4rem);
+    row-gap: clamp(1.75rem, 3vw, 2.75rem);
+    grid-template-areas:
+      "heading high"
+      "lead    low"
+      "lead    note";
+    align-items: start;
   }
 
-  .two-ways__method--eventstyling {
-    padding: var(--space-6) var(--space-5);
-  }
+  .details__heading    { grid-area: heading; align-self: end; padding-bottom: 0.4rem; }
+  .details__lead       { grid-area: lead; }
+  .details__side--high { grid-area: high; }
+  .details__side--low  { grid-area: low; }
+  .details__note       { grid-area: note; align-self: start; }
 
-  .two-ways__method--boxes {
-    padding: var(--space-6) var(--space-5);
-  }
-
-  .two-ways__method--eventstyling {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .two-ways__method--boxes {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .two-ways__method--eventstyling .two-ways__image {
-    order: 2;
-  }
-
-  .two-ways__method--eventstyling .two-ways__content {
-    order: 1;
-  }
-
-  .two-ways__method--boxes .two-ways__image {
-    order: 1;
-  }
-
-  .two-ways__method--boxes .two-ways__content {
-    order: 2;
-  }
-
-  .two-ways__image {
+  /* Het grote beeld loopt alleen links van de pagina af en houdt
+     rechts zijn ronding. Het strekt zich over twee rijen, dus de
+     rechterkolom bepaalt zijn hoogte; daardoor blijft er onder de
+     kleine beelden geen leeg vlak over. */
+  .details__lead {
+    aspect-ratio: auto;
     height: 100%;
-    border-radius: 0;
+    min-height: 26rem;
+    margin-inline: calc(var(--edge) * -1) 0;
+    border-radius: 0 var(--radius-photo) var(--radius-photo) 0;
   }
 
-  .two-ways__content {
-    display: flex;
-    justify-content: center;
-    padding: var(--space-5);
+  .details__side {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Het tweede kleine beeld schuift naar binnen en naar beneden. Die
+     versprong maakt van de rechterkolom een compositie in plaats van
+     een stapel. */
+  .details__side--low {
+    margin-top: clamp(1rem, 3vw, 3rem);
+    margin-left: clamp(0rem, 5vw, 4.5rem);
+  }
+
+  /* Het bijschrift staat onder de kleine beelden, als onderschrift bij
+     de rechterkolom, en springt met het onderste beeld mee naar binnen. */
+  .details__note {
+    margin-left: clamp(0rem, 5vw, 4.5rem);
+    padding-top: 0.5rem;
   }
 }
 
-/* Box Collection */
-.box-collection {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 0 var(--space-4);
-}
 
-.box-collection__header {
-  text-align: center;
-  margin-bottom: var(--space-6);
-}
+/* ===================================================================
+   12b.3  Spread: twee manieren
+   -------------------------------------------------------------------
+   Eén donker hoofdstuk met twee bedrijven, niet twee losse blokken.
+   De foto's lopen om en om van de pagina af en hebben verschillende
+   beeldverhoudingen; de tekst staat rechtstreeks op het kleurvlak,
+   zonder kader eromheen. Dat maakt de twee diensten visueel
+   gelijkwaardig zonder dat ze op elkaar gaan lijken.
+   =================================================================== */
 
-.box-collection__label {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-on-walnut);
+.chapter--spread {
+  padding-inline: 0;
   display: block;
-  margin-bottom: var(--space-2);
-  opacity: 0.9;
 }
 
-.box-collection__title {
-  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-  line-height: 1.15;
-  font-weight: 500;
-  letter-spacing: -0.018em;
-  color: var(--color-on-walnut);
+.spread__opening,
+.spread__act {
+  max-width: calc(var(--content-width) + 2 * var(--edge));
+  margin-inline: auto;
+  padding-inline: var(--edge);
 }
 
-.box-collection__grid {
+.spread__opening {
+  max-width: calc(46rem + 2 * var(--edge));
+  margin-inline: 0 auto;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.spread__act {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
-  margin-bottom: var(--space-6);
-}
-
-@media (min-width: 768px) {
-  .box-collection__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .box-collection__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.box-card {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: 12px;
-  transition: transform 0.3s var(--ease-soft), box-shadow 0.3s ease;
-}
-
-.box-card:hover {
-  transform: translateY(-8px);
-}
-
-.box-card__image {
-  overflow: hidden;
-  height: clamp(300px, 50vw, 480px);
-  background: var(--color-linen);
-}
-
-.box-card__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.box-card__content {
-  padding: var(--space-4);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  height: 100%;
-}
-
-.box-card__title {
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: var(--color-ink);
-  line-height: 1.3;
-}
-
-.box-card__description {
-  font-size: 0.95rem;
-  color: var(--color-ink-soft);
-  line-height: 1.5;
-  margin-bottom: var(--space-2);
-  flex-grow: 1;
-}
-
-.box-card__price {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--color-ink-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: auto;
-}
-
-/* Dionne Section */
-.section--dionne {
-  padding: var(--space-6) var(--space-4);
-}
-
-.dionne-hero {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
-  align-items: center;
-}
-
-.dionne-hero__image {
-  overflow: hidden;
-  border-radius: 12px;
-  height: 550px;
-}
-
-.dionne-hero__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.dionne-hero__content {
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
 }
 
-.dionne-hero__label {
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-ink-faint);
+/* Krap gehouden: de twee bedrijven moeten als één katern lezen en niet
+   als twee blokken met ruimte ertussen. */
+.spread__act + .spread__act {
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
 }
 
-.dionne-hero__title {
-  font-size: clamp(2.1rem, 4.5vw, 3.2rem);
-  line-height: 1.18;
-  font-weight: 500;
-  letter-spacing: -0.018em;
-  color: var(--color-ink);
+.spread__media {
+  overflow: hidden;
+  border-radius: var(--radius-photo);
+  background-color: var(--color-walnut-deep);
 }
 
-.dionne-hero__text {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--color-ink-soft);
+.spread__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-@media (min-width: 900px) {
-  .dionne-hero {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-7);
-  }
+.spread__act--left .spread__media  { aspect-ratio: 4 / 3; }
+.spread__act--right .spread__media { aspect-ratio: 3 / 2; }
 
-  .dionne-hero__image {
-    order: 2;
-    height: 100%;
-    min-height: 500px;
-  }
-
-  .dionne-hero__content {
-    order: 1;
-  }
-}
-
-/* Final CTA Section */
-.section--cta-final {
-  padding: var(--space-6) var(--space-4);
-}
-
-.cta-final {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
+.spread__content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  align-items: flex-start;
+  gap: var(--space-2);
+  max-width: 30rem;
 }
 
-.cta-final__tagline {
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  line-height: 1.22;
+.spread__label {
+  font-size: 0.78rem;
   font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-on-walnut);
+  opacity: 0.85;
+}
+
+.spread__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.12;
   letter-spacing: -0.016em;
   color: var(--color-on-walnut);
 }
 
-.cta--large {
-  font-size: 1.1rem;
-  padding: var(--space-4) var(--space-6);
+.spread__text {
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: var(--color-on-walnut);
 }
 
-/* Secondary CTA Style */
+.spread__content .cta {
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 64rem) {
+  .spread__act {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    column-gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  /* Rij en kolom staan allebei expliciet. Alleen een kolom opgeven is
+     niet genoeg: in het tweede bedrijf staat het beeld vóór de tekst in
+     de broncode, en dan schuift de automatische plaatsing de tekst naar
+     een tweede rij ónder de foto in plaats van ernaast. */
+  .spread__act--left .spread__media {
+    grid-area: 1 / 1;
+    margin-left: calc(var(--edge) * -1);
+    border-radius: 0 var(--radius-photo) var(--radius-photo) 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .spread__act--left .spread__content { grid-area: 1 / 2; }
+
+  .spread__act--right {
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  }
+
+  .spread__act--right .spread__content { grid-area: 1 / 1; }
+
+  .spread__act--right .spread__media {
+    grid-area: 1 / 2;
+    margin-right: calc(var(--edge) * -1);
+    border-radius: var(--radius-photo) 0 0 var(--radius-photo);
+    aspect-ratio: 16 / 10;
+  }
+}
+
+
+/* ===================================================================
+   12b.4  Styling boxen
+   -------------------------------------------------------------------
+   Het raster van twee bij twee blijft staan: dit is een catalogus en
+   die hoort ordelijk te zijn. Verfijnd zijn de naam in het
+   schrijfschrift van het merk, de prijs op dezelfde onderlijn als de
+   naam, een haarlijn boven het bijschrift en een rustige inzoom bij
+   hover. De kaart springt niet meer omhoog; het beeld komt naar je
+   toe binnen een kader dat blijft staan, zodat het raster niet gaat
+   wiebelen als je er met de muis overheen gaat.
+
+   Alles staat onder .chapter--boxes. De klassen .box-card* op
+   styling-boxes.html hebben een andere opbouw en blijven ongemoeid.
+   =================================================================== */
+
+.boxes__opening {
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.chapter--boxes .box-collection__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: clamp(1.5rem, 3vw, 2.75rem);
+  row-gap: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+@media (min-width: 48rem) {
+  .chapter--boxes .box-collection__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.box-tile {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+/* 4:3 en niet 3:2: de tafelfoto's zijn liggend en bij 3:2 werd het
+   kader ruim honderd pixels lager dan het was. De opdracht was de
+   boxen juist niet kleiner te maken. */
+.box-tile__frame {
+  overflow: hidden;
+  border-radius: var(--radius-photo);
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-bg-soft);
+}
+
+.box-tile__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-soft);
+}
+
+.box-tile__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: var(--space-2);
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--color-line);
+  transition: border-color 0.4s ease;
+}
+
+.box-tile__name {
+  font-family: "Rouge Script", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.1rem, 3.6vw, 2.9rem);
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.box-tile__price {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+
+.box-tile__note {
+  grid-column: 1 / -1;
+  margin-top: 0.15rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+}
+
+@media (hover: hover) {
+  .box-tile:hover .box-tile__frame img {
+    transform: scale(1.045);
+  }
+
+  .box-tile:hover .box-tile__body {
+    border-color: var(--color-copper);
+  }
+}
+
+.box-tile:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 6px;
+  border-radius: var(--radius-photo);
+}
+
+.boxes__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .box-tile__frame img { transition: none; }
+  .box-tile:hover .box-tile__frame img { transform: none; }
+}
+
+
+/* ===================================================================
+   12b.5  Dionne
+   -------------------------------------------------------------------
+   Eigen kleurvlak, zodat dit als persoonlijk hoofdstuk leest en niet
+   als informatieblok tussen twee diensten. De foto is het grootste
+   beeld van de pagina na de omslag en loopt van de rechterpagina af.
+   =================================================================== */
+
+.chapter--dionne {
+  padding-inline: 0;
+  display: block;
+}
+
+.dionne {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-inline: var(--edge);
+  max-width: calc(var(--content-width) + 2 * var(--edge));
+  margin-inline: auto;
+}
+
+.dionne__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  max-width: 30rem;
+}
+
+.dionne__text {
+  font-size: 1.05rem;
+  line-height: 1.78;
+  color: var(--color-ink-soft);
+}
+
+.dionne__content .cta {
+  margin-top: var(--space-3);
+}
+
+.dionne__portrait {
+  overflow: hidden;
+  border-radius: var(--radius-photo);
+  background-color: var(--color-bg-soft);
+  aspect-ratio: 4 / 3;
+  margin: 0;
+}
+
+.dionne__portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 64rem) {
+  /* De foto komt hier van links binnen en de tekst staat ernaast. Dat
+     is niet alleen afwisseling: dit hoofdstuk gaat over de persoon, en
+     dan zie je haar eerst en lees je daarna. De omslag en het tweede
+     bedrijf van de spread hebben hun beeld rechts, dit hoofdstuk en het
+     eerste bedrijf links; zo wisselt de leesrichting per hoofdstuk
+     zonder dat het rommelig wordt.
+
+     Rij en kolom staan allebei expliciet, omdat de tekst in de
+     broncode vóór de foto staat en de automatische plaatsing hem
+     anders op een tweede rij zet. */
+  .dionne {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    column-gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .dionne__content  { grid-area: 1 / 2; }
+
+  .dionne__portrait {
+    grid-area: 1 / 1;
+    aspect-ratio: 5 / 4;
+    margin-left: calc(var(--edge) * -1);
+    border-radius: 0 var(--radius-photo) var(--radius-photo) 0;
+  }
+}
+
+
+/* ===================================================================
+   12b.6  Slot
+   =================================================================== */
+
+.chapter--close {
+  --chapter-space: clamp(3rem, 5.5vw, 4.75rem);
+}
+
+.close {
+  display: grid;
+  justify-items: center;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.close__tagline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.16;
+  letter-spacing: -0.016em;
+  color: var(--color-on-walnut);
+  text-wrap: balance;
+}
+
+.close__tagline em {
+  font-style: italic;
+}
+
+.close__note {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-on-walnut);
+  opacity: 0.85;
+}
+
+
+/* ===================================================================
+   12b.7  Knopvarianten
+   =================================================================== */
+
 .cta--secondary {
   background: transparent;
-  border: 2px solid currentColor;
+  border: 1px solid currentColor;
   color: var(--color-ink);
-  padding: var(--space-3) var(--space-5);
-  font-weight: 500;
-  transition: all 0.3s var(--ease-soft);
+  padding: 1rem 2.5rem;
+  font-weight: 400;
+  transition: background-color 0.35s var(--ease-soft),
+              color 0.35s var(--ease-soft),
+              transform 0.35s var(--ease-soft);
 }
 
 .cta--secondary:hover {
-  background: var(--color-ink);
-  color: white;
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  box-shadow: none;
 }
 
-.section--cream .cta--secondary {
-  color: var(--color-ink);
-  border-color: var(--color-ink);
-}
-
-.section--walnut .cta--secondary {
+/* Op een donker vlak keert de knop om: cremerand, en bij hover een
+   gevuld cremevlak met walnootkleurige tekst. */
+.cta--white,
+.chapter--walnut .cta--secondary {
   color: var(--color-on-walnut);
   border-color: var(--color-on-walnut);
 }
 
-.section--walnut .cta--secondary:hover {
-  background: var(--color-on-walnut);
-  color: var(--color-walnut);
+.cta--white:hover,
+.chapter--walnut .cta--secondary:hover {
+  background-color: var(--color-on-walnut);
+  color: var(--color-walnut-deep);
 }
 
-.cta--white {
-  color: var(--color-on-walnut);
-  border-color: var(--color-on-walnut);
+/* De hoofdknop op walnoot. De gewone koperen vulling zou hier maar
+   1,5:1 verschillen van de achtergrond en dus nauwelijks als knop
+   opvallen; omgekeerd haalt hij 9,3:1. */
+.cta--on-walnut {
+  background-color: var(--color-on-walnut);
+  color: var(--color-walnut-deep);
 }
 
-.cta--white:hover {
-  background: var(--color-on-walnut);
-  color: var(--color-walnut);
+.cta--on-walnut:hover {
+  background-color: var(--color-cream);
+  color: var(--color-dark-brown);
 }
+
+/* Op een telefoon lopen de langere labels ("Vertel Dionne jouw idee",
+   "Alle styling boxen bekijken") tegen de zijmarge van 3,25rem aan en
+   breken ze midden in de zin af. Over de volle kolombreedte met een
+   krappe zijmarge blijven ze op één regel en wordt het aanraakdoel
+   meteen zo breed mogelijk. Hetzelfde patroon als de knoppen in de
+   omslag, dus de pagina blijft één geheel. */
+@media (max-width: 34rem) {
+  .chapter .cta {
+    display: block;
+    width: 100%;
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+    text-align: center;
+  }
+}
+
+/* Op 320px blijft ook met de krappe zijmarge 240px over, en het langste
+   label ("Alle styling boxen bekijken") is daar bij de standaardmaat
+   gemeten 255px breed. Een tandje kleiner houdt hem op één regel; de
+   knop blijft 60px hoog en dus ruim boven het aanraakdoel van 44px. */
+@media (max-width: 22rem) {
+  .chapter .cta,
+  .cover__actions .cta {
+    font-size: 1.05rem;
+  }
+}
+
+
+/* ===================================================================
+   12b.8  Golven en voettekst op de homepage
+   -------------------------------------------------------------------
+   Twee golven op de hele pagina, allebei als opstap naar een donker
+   hoofdstuk en met een eigen vorm. De overige hoofdstukken raken
+   elkaar rechtstreeks: kleur tegen kleur, zonder tussenvorm. Vijf keer
+   dezelfde golf maakte van een sierdetail een patroon.
+   =================================================================== */
+
+.story-wave--deep {
+  height: clamp(5.5rem, 9vw, 9rem);
+  margin-bottom: -3.75rem;
+}
+
+.story-wave--shallow {
+  height: clamp(3.5rem, 5.5vw, 5.5rem);
+  margin-bottom: -2.25rem;
+}
+
+/* Het laatste hoofdstuk is een donker vlak; de voettekst sluit daar
+   direct op aan in plaats van na een strook lege ruimte. */
+.home .site-footer {
+  margin-top: 0;
+  padding-block: clamp(2.5rem, 5vw, 3.5rem) var(--space-4);
+}
+
+.home .site-footer__legal {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+}
+
 
 /* SVG Defs for wave filters */
 .svg-defs {
