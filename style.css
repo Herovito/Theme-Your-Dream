@@ -3085,7 +3085,7 @@ a {
 .box-card__image { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 1.5rem; }
 .box-card__body { padding-block: 1.25rem 0.5rem; }
 .box-card__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; flex-wrap: wrap; }
-.box-card h3 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; margin: 0; }
+.box-card h3 { font-family: 'Rouge Script', cursive; font-size: 2.5rem; line-height: 1.2; font-weight: 400; margin: 0; }
 .box-card__price { font-size: 1.125rem; white-space: nowrap; }
 .box-card p { margin: 0.5rem 0 1rem; color: var(--color-ink-soft); font-size: 1.125rem; line-height: 1.65; }
 .box-card__link { font-size: 1.125rem; font-weight: 500; text-decoration: underline; text-underline-offset: 0.3em; }
