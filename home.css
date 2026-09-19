@@ -1,5 +1,10 @@
 /* Homepage composition: compact story, paired services, four-box collection.
    Page-specific overrides preserve the existing catalogue and detail pages. */
+.home { --color-on-walnut: var(--color-cream); }
+.home .chapter--walnut { background-color: var(--color-copper-deep); }
+.home .story-wave--cream-walnut, .home .story-wave--linen-walnut { --wave-to: var(--color-copper-deep); }
+.home .cta--whatsapp { color: var(--color-cream); }
+.home .cta--on-walnut { color: var(--color-dark-brown); }
 .home .chapter { --chapter-space: clamp(2.5rem, 4vw, 4rem); }
 .home .chapter-title { font-size: clamp(2rem, 3.4vw, 3rem); }
 .home .chapter-label::before, .home .cover__eyebrow::before { display: none; }
@@ -11,11 +16,11 @@
 .home .cover__actions { gap: .75rem; }
 .home .cover__actions .cta { padding: .85rem 1.25rem; font-size: 1rem; }
 .home .cover__media { height: 17rem; }
-.home .cover__img { object-position: 50% 35%; }
+.home .cover__img { object-position: 50% 15%; }
 .home .cover__media::after { background: none; }
 .home .details {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-areas: "heading heading heading" "note note note" "lead high low";
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "heading" "note" "lead";
   gap: 1rem;
 }
 .home .details__heading { grid-area: heading; padding: 0; align-self: start; }
@@ -24,7 +29,7 @@
 .home .details__side--high { grid-area: high; }
 .home .details__side--low { grid-area: low; }
 .home .details__lead, .home .details__side {
-  margin: 0; min-height: 0; height: 100%; aspect-ratio: 3 / 4;
+  margin: 0; min-height: 0; height: auto; aspect-ratio: 3 / 2;
   border-radius: 1.5rem;
 }
 .home .story-wave--deep, .home .story-wave--shallow {
@@ -76,8 +81,8 @@
 .home .box-tile__price { grid-row: 3; color: var(--color-copper-deep); margin-top: .35rem; }
 .home .boxes__footer { margin-top: 2rem; }
 .home .dionne { gap: 2rem; align-items: center; }
-.home .dionne__portrait { aspect-ratio: 4 / 3; margin: 0; border-radius: 1.5rem; }
-.home .dionne__portrait img { object-position: center 35%; }
+.home .dionne__portrait { aspect-ratio: auto; margin: 0 auto; width: min(100%, 22rem); border-radius: 1.5rem; }
+.home .dionne__portrait img { height: auto; object-fit: contain; }
 .home .chapter--close { --chapter-space: 2.5rem; }
 .home .close { gap: 1.25rem; }
 .home .close__note { opacity: 1; }
@@ -97,17 +102,17 @@
   .home .cover__title { font-size: clamp(2.6rem,4.1vw,4rem); }
   .home .cover__lead { max-width: 28rem; }
   .home .details {
-    grid-template-columns: minmax(0,1.8fr) repeat(3,minmax(0,1fr));
-    grid-template-areas: "heading lead high low" "note lead high low";
+    grid-template-columns: minmax(0,1fr) minmax(0,1.4fr);
+    grid-template-areas: "heading lead" "note lead";
     column-gap: 1.25rem; row-gap: 1rem;
   }
   .home .details__heading { align-self: end; }
   .home .details__note { align-self: start; padding-right: 1.5rem; }
-  .home .details__lead, .home .details__side { aspect-ratio: auto; min-height: 20rem; }
+  .home .details__lead { aspect-ratio: 3 / 2; min-height: 0; align-self: center; }
   .home .spread__act { min-height: 26rem; }
   .home .dionne { grid-template-columns: 1fr 1fr; }
   .home .dionne__content { grid-area: 1 / 1; }
-  .home .dionne__portrait { grid-area: 1 / 2; height: 26rem; aspect-ratio: auto; }
+  .home .dionne__portrait { grid-area: 1 / 2; height: auto; aspect-ratio: auto; }
 }
 @media (min-width: 1100px) {
   .home .chapter--boxes .box-collection__grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
