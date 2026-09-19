@@ -119,7 +119,7 @@ fs.mkdirSync(out, { recursive: true });
       for (const file of ['privacyverklaring.html', 'eventstyling.html', 'box-beige-bliss.html']) {
         await p.goto(origin + '/' + file);
         if (mode !== 'reduced-motion') assert.ok(await p.locator('.nav-dropdown a').first().isVisible(), `${mode}: nav inaccessible`);
-        const opacity = await p.locator('main .feature-list__item, main .ev-steps li').first().evaluate(e => getComputedStyle(e).opacity);
+        const opacity = await p.locator('main .feature-list__item, main .event-services__list li').first().evaluate(e => getComputedStyle(e).opacity);
         assert.equal(opacity, '1', `${mode}: hidden list`);
       }
       await context.close();

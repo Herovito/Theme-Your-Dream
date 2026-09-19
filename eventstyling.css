@@ -1,115 +1,80 @@
-/* Eventstyling: rustig doorlopend verhaal. Hero ongewijzigd; daaronder foto's die
-   het ritme dragen, weinig tekst en golven die onderdeel van de compositie zijn. */
-.event-page {
-  --event-edge: clamp(1.5rem, 6vw, 7rem);
-  --ev-dark: var(--color-copper-deep);
-  --ev-wave: clamp(3rem, 7vw, 6.5rem);
-  background: var(--color-cream);
-  color: var(--color-dark-brown);
-}
+/* Eventstyling only: existing content, editorial composition. */
+.event-page { --event-edge: clamp(1.5rem, 6vw, 7rem); background: var(--color-cream); color: var(--color-dark-brown); }
+.event-page .event-section { padding: clamp(3rem, 6vw, 6rem) var(--event-edge); }
 .event-page .event-eyebrow { display: block; font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1.1rem; }
 .event-page h1, .event-page h2, .event-page h3 { font-family: Georgia, serif; font-weight: 400; line-height: 1.1; }
 .event-page h1 { font-size: clamp(2.6rem, 4.6vw, 4.6rem); margin: 0 0 1.6rem; }
 .event-page h1 em { display: block; color: var(--color-copper-deep); font-weight: 400; }
 .event-page h2 { font-size: clamp(2.1rem, 3.3vw, 3.4rem); margin: 0 0 1.5rem; }
 .event-page p { font-size: 1.08rem; line-height: 1.75; margin: 0; }
-
-/* --- Hero (ongewijzigd, de onderrand lost nu op in de pagina) -------------- */
 .event-page .event-hero { position: relative; display: grid; grid-template-columns: 1fr 1.05fr; min-height: 36rem; }
 .event-page .event-hero__copy { align-self: center; padding: 3rem 2rem 3rem var(--event-edge); z-index: 1; }
 .event-page .event-hero__copy p { max-width: 34rem; }
-.event-page .event-hero__media {
-  min-width: 0;
-  position: relative;
-  -webkit-mask-image: linear-gradient(to top, transparent 0, #000 4.5rem);
-  mask-image: linear-gradient(to top, transparent 0, #000 4.5rem);
-}
+.event-page .event-hero__media { min-width: 0; position: relative; }
 .event-page .event-hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--color-cream), transparent 24%); }
 .event-page .event-hero__image { display: block; width: 100%; height: 100%; position: absolute; object-fit: cover; object-position: 52% 50%; }
-
-/* --- Golven: een vlak in het donkere hoofdstuk, de crème pagina loopt erdoor --- */
-.event-page .ev-wave { display: block; width: 100%; height: var(--ev-wave); margin: -1px 0; }
-.event-page .ev-wave path { fill: var(--ev-dark); }
-
-/* --- Wat Dionne regelt: foto loopt tot de linkerrand ----------------------- */
-.event-page .ev-regelt { display: grid; gap: 2rem; padding: clamp(2rem, 4vw, 3.5rem) 0 0; }
-.event-page .ev-regelt__photo {
-  margin: 0 var(--event-edge) 0 0;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: 0 4rem 1.25rem 0;
-}
-.event-page .ev-regelt__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.event-page .ev-regelt__text { padding: 0 var(--event-edge); }
-.event-page .ev-regelt__text p + p { margin-top: 1rem; }
-.event-page .ev-regelt__text h2 { max-width: 20ch; }
-
-/* --- Werkwijze: vier begrippen, geen nummers, geen kaders ------------------- */
-.event-page .ev-werkwijze { padding: clamp(3.5rem, 7vw, 6.5rem) var(--event-edge) clamp(2.5rem, 5vw, 4rem); }
-.event-page .ev-werkwijze h2 { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
-.event-page .ev-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
-.event-page .ev-steps h3 { font-size: 1.7rem; margin: 0 0 .35rem; color: var(--color-copper-deep); font-style: italic; }
-.event-page .ev-steps p { font-size: 1rem; line-height: 1.6; max-width: 16rem; }
-
-/* --- Fotoband: de foto's zakken de golf in --------------------------------- */
-.event-page .ev-beeld {
-  position: relative;
-  z-index: 3;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(.75rem, 2vw, 1.75rem);
-  align-items: end;
-  padding: 0 var(--event-edge);
-  margin-bottom: calc(var(--ev-wave) * -1.5);
-}
-.event-page .ev-beeld figure { margin: 0; overflow: hidden; border-radius: 1.25rem; }
-.event-page .ev-beeld img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.event-page .ev-beeld__a { grid-column: 1 / -1; aspect-ratio: 3 / 2; border-top-left-radius: 4rem; }
-.event-page .ev-beeld__b { aspect-ratio: 4 / 5; }
-.event-page .ev-beeld__c { aspect-ratio: 4 / 5; border-top-right-radius: 4rem; }
-
-/* --- Slot: prijsinformatie loopt vanzelf naar de knop ---------------------- */
-.event-page .ev-contact {
-  background: var(--ev-dark);
-  color: var(--color-cream);
-  --color-focus: var(--color-cream);
-  text-align: center;
-  padding: calc(var(--ev-wave) * .5 + clamp(2.5rem, 5vw, 4rem)) var(--event-edge) clamp(3rem, 6vw, 5rem);
-}
-.event-page .ev-contact__lead { font-family: Georgia, serif; font-size: clamp(1.7rem, 2.9vw, 2.6rem); line-height: 1.3; max-width: 44rem; margin: 0 auto; text-wrap: balance; }
-.event-page .ev-contact__note { font-size: 1rem; line-height: 1.7; max-width: 34rem; margin: 1.75rem auto 2rem; opacity: .92; }
-.event-page .ev-contact__note em { font-family: Georgia, serif; font-size: 1.1em; }
-.event-page .ev-contact .cta { background: var(--color-cream); color: var(--color-dark-brown); font-size: 1.05rem; }
-.event-page .ev-contact .cta:hover { background: var(--color-linen); }
-.event-page .also-see { padding: 1.5rem var(--event-edge) 1rem; border-top: 0; background: transparent; }
-.event-page ~ .site-footer { margin-top: 1rem; }
-
-@media (min-width: 600px) and (max-width: 899px) {
-  .event-page .ev-regelt__photo { aspect-ratio: 3 / 2; }
-  .event-page .ev-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
-}
-@media (min-width: 900px) {
-  .event-page .ev-regelt { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; gap: 0; padding-top: clamp(2rem, 4vw, 3.5rem); }
-  .event-page .ev-regelt__photo { margin: 0; aspect-ratio: 1 / 1; border-radius: 0 7rem 1.5rem 0; }
-  .event-page .ev-regelt__text { padding-left: 5vw; }
-  .event-page .ev-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
-  .event-page .ev-beeld { --h: clamp(17rem, 34vw, 30rem); grid-template-columns: 1.3fr .8fr 1fr; }
-  .event-page .ev-beeld figure { aspect-ratio: auto; }
-  .event-page .ev-beeld__a { grid-column: auto; height: var(--h); border-top-left-radius: 7rem; }
-  .event-page .ev-beeld__b { height: calc(var(--h) * .74); }
-  .event-page .ev-beeld__c { height: calc(var(--h) * .88); border-top-right-radius: 7rem; }
+.event-page .event-wave { display: block; width: 100%; height: clamp(2.5rem, 6vw, 6rem); margin: -1px 0; position: relative; }
+.event-page .event-hero + .event-wave { margin-top: -4rem; height: 4rem; }
+.event-page .event-services { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 7vw, 7rem); background: var(--color-linen); }
+.event-page .event-services__intro { max-width: 31rem; }
+.event-page .event-services__list { padding: 0; margin: 0; list-style: none; align-self: center; }
+.event-page .event-services__list li { padding: 1.1rem 0; border-bottom: 1px solid rgba(74,51,41,.24); font-size: 1.08rem; line-height: 1.6; }
+.event-page .event-services__list li:first-child { border-top: 1px solid rgba(74,51,41,.24); }
+.event-page .event-timeline { padding: 0; margin: 3rem 0 0; list-style: none; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 2rem; }
+.event-page .event-timeline li { position: relative; border-top: 1px solid rgba(74,51,41,.3); padding-top: 1.3rem; }
+.event-page .event-step__number { display: block; font-family: Georgia,serif; font-size: 2rem; color: var(--color-copper-deep); margin-bottom: 1.4rem; }
+.event-page .event-timeline h3 { font-size: 1.8rem; margin: 0 0 1rem; }
+.event-page .event-timeline p { font-size: 1rem; }
+.event-page .event-gallery { padding-top: 1rem; }
+.event-page .event-gallery__grid { display: grid; grid-template-columns: 1.3fr .8fr 1fr; grid-template-rows: 17rem 17rem; gap: 1.25rem; margin-top: 2rem; }
+.event-page .event-gallery figure { margin: 0; min-width: 0; min-height: 0; overflow: hidden; border-radius: 1.5rem; }
+.event-page .event-gallery figure:first-child { grid-row: span 2; }
+.event-page .event-gallery figure:nth-child(2) { grid-row: span 2; margin-top: 4rem; }
+.event-page .event-gallery img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.event-page .event-contact { background: var(--color-copper-deep); color: var(--color-cream); text-align: center; padding-top: 2rem; }
+.event-page .event-contact p { font-family: Georgia,serif; font-size: clamp(1.7rem, 2.7vw, 2.6rem); line-height: 1.35; max-width: 48rem; margin: 0 auto 2rem; }
+.event-page .event-contact .cta { background: var(--color-cream); color: var(--color-dark-brown); font-size: 1.05rem; }
+.event-page .event-contact .cta:hover { background: var(--color-linen); }
+.event-page .also-see { padding: 2rem var(--event-edge); }
+@media (max-width: 1050px) {
+ .event-page .event-timeline { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 2.5rem; }
+ .event-page .event-gallery__grid { grid-template-rows: 13rem 13rem; }
 }
 @media (max-width: 899px) {
-  .event-page .event-hero { grid-template-columns: 1fr; }
-  .event-page .event-hero__copy { padding: 2.5rem var(--event-edge); }
-  .event-page .event-hero__copy p { max-width: 42rem; }
-  .event-page .event-hero__media { height: 25rem; }
-  .event-page .event-hero__media::after { background: linear-gradient(180deg, var(--color-cream), transparent 20%); }
+ .event-page .event-hero { grid-template-columns: 1fr; }
+ .event-page .event-hero__copy { padding: 2.5rem var(--event-edge); }
+ .event-page .event-hero__copy p { max-width: 42rem; }
+ .event-page .event-hero__media { height: 25rem; }
+ .event-page .event-hero__media::after { background: linear-gradient(180deg, var(--color-cream), transparent 20%); }
+ .event-page .event-services { gap: 2rem; }
+ .event-page .event-gallery__grid { grid-template-columns: 1.15fr 1fr; grid-template-rows: 22rem 18rem; }
+ .event-page .event-gallery figure:first-child, .event-page .event-gallery figure:nth-child(2) { grid-row: auto; margin-top: 0; }
 }
 @media (max-width: 599px) {
-  .event-page .event-hero__media { height: 22rem; }
-  .event-page .event-hero__image { object-position: 50% 58%; }
-  .event-page .ev-steps { gap: 1.25rem; }
-  .event-page .ev-steps p { max-width: none; }
+ .event-page .event-hero__media { height: 22rem; }
+ .event-page .event-hero__image { object-position: 50% 58%; }
+ .event-page .event-services { grid-template-columns: 1fr; }
+ .event-page .event-timeline { grid-template-columns: 1fr; gap: 0; margin-top: 2rem; }
+ .event-page .event-timeline li { border-top: 0; border-left: 1px solid rgba(74,51,41,.3); padding: 0 0 2rem 3rem; }
+ .event-page .event-timeline li:last-child { padding-bottom: 0; }
+ .event-page .event-step__number { position: absolute; left: .6rem; top: 0; font-size: 1.35rem; }
+ .event-page .event-timeline h3 { font-size: 1.65rem; margin-bottom: .6rem; }
+ .event-page .event-gallery__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 22rem 13rem 18rem; gap: .8rem; }
+ .event-page .event-gallery figure:first-child, .event-page .event-gallery figure:last-child { grid-column: 1 / -1; }
+ .event-page .event-contact .cta { padding: 1rem 1.4rem; }
 }
-.event-page .ev-contact { --color-focus: var(--color-cream); }
+.event-page .event-hero + .event-wave > path:first-child { fill: transparent; }
+.event-page .event-contact { --color-focus: var(--color-cream); }
+/* Praktische prijsinformatie onder de werkwijze: label in de eerste tijdlijnkolom, tekst ernaast. */
+.event-page .event-note { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 0 2rem; margin-top: 3rem; padding-top: 1.3rem; border-top: 1px solid rgba(74,51,41,.3); }
+.event-page .event-note h3 { font-size: 1.8rem; margin: 0; }
+.event-page .event-note p { grid-column: 2 / span 2; font-size: 1rem; }
+@media (max-width: 1050px) {
+ .event-page .event-note { grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 2.5rem; }
+ .event-page .event-note p { grid-column: 2; }
+}
+@media (max-width: 599px) {
+ .event-page .event-note { grid-template-columns: 1fr; gap: .6rem; margin-top: 2rem; }
+ .event-page .event-note h3 { font-size: 1.65rem; }
+ .event-page .event-note p { grid-column: 1; }
+}

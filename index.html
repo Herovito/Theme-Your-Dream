@@ -29,7 +29,7 @@
 
   <link rel="stylesheet" href="assets/fonts/fonts.css?v=1">
   <link rel="stylesheet" href="style.css?v=20260918i">
-  <link rel="stylesheet" href="home.css?v=20260920h">
+  <link rel="stylesheet" href="home.css?v=20260920y">
 
   <!-- Zet .js voordat de eerste pixel getekend wordt. Zonder deze regel
        staat de balk bij het laden nog als meelopende sticky bar in de
@@ -147,154 +147,255 @@
     </header>
 
 
-    <!-- Rustig verhaal na de omslag: beeld eerst, weinig tekst, zachte overgangen.
-       Compositie in home.css; de golven zijn onderdeel van de compositie. -->
+    <!-- DETAILS: compositie in home.css; bestaande inhoud behouden. -->
+    <section class="chapter chapter--cream chapter--details" aria-labelledby="details-title">
+      <div class="details">
+        <div class="details__heading">
+          <h2 class="chapter-title" id="details-title">
+            Details maken<br>
+            <em>de herinnering.</em>
+          </h2>
+        </div>
 
-    <section class="hp-details" aria-labelledby="details-title">
-      <div class="hp-details__text">
-        <h2 class="hp-title" id="details-title">Details maken <em>de herinnering.</em></h2>
-        <p class="hp-lede">Een kleur die terugkomt in de servetten, een kaars die precies goed staat. Daar blijft een avond aan hangen.</p>
-      </div>
-      <figure class="hp-details__photo">
-        <img loading="lazy"
-          src="assets/images/gallery-beige-bliss-1-1600.webp"
-          srcset="assets/images/gallery-beige-bliss-1-480.webp 480w, assets/images/gallery-beige-bliss-1-960.webp 960w, assets/images/gallery-beige-bliss-1-1600.webp 1600w"
-          sizes="(min-width: 1100px) 58rem, 92vw"
-          width="1600" height="1067"
-          alt="Gedekte tafel in beige en bruine tinten met bloemen en gouden details">
-      </figure>
-    </section>
+        <figure class="details__lead">
+          <img loading="lazy" src="assets/images/gallery-beige-bliss-1-960.webp"
+            srcset="assets/images/gallery-beige-bliss-1-480.webp 480w, assets/images/gallery-beige-bliss-1-960.webp 960w, assets/images/gallery-beige-bliss-1-1600.webp 1600w"
+            sizes="(min-width: 1024px) 55vw, calc(100vw - 48px)" width="960" height="640"
+            alt="Gedekte tafel in beige en bruine tinten met bloemen en gouden details">
+        </figure>
 
-    <svg class="hp-wave hp-wave--one" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path d="M0,74 C200,24 420,14 640,46 C860,78 1010,112 1220,96 C1330,88 1400,64 1440,42 L1440,120 L0,120 Z"/>
-    </svg>
-
-    <section id="mogelijkheden" class="hp-routes" aria-labelledby="routes-title">
-      <h2 class="hp-title hp-title--center" id="routes-title">Je kiest zelf hoeveel je <em>uit handen geeft.</em></h2>
-
-      <div class="hp-routes__grid">
-        <article class="hp-route hp-route--event">
-          <figure class="hp-route__photo">
-            <img loading="lazy"
-              src="assets/images/berry-backdrop-960.webp"
-              srcset="assets/images/berry-backdrop-480.webp 480w, assets/images/berry-backdrop-960.webp 960w, assets/images/berry-backdrop-1474.webp 1474w"
-              sizes="(min-width: 900px) 40vw, 92vw"
-              width="960" height="1049"
-              alt="Feestopstelling met een ballonboog, een taart op een sokkel en een gedekte tafel ervoor">
-          </figure>
-          <h3 class="hp-route__title">Eventstyling</h3>
-          <p class="hp-route__text">Dionne bedenkt het concept en voert het uit. Jij hoeft alleen nog te genieten.</p>
-          <a href="eventstyling.html" class="link-arrow">Meer over eventstyling <span aria-hidden="true">&rarr;</span></a>
-        </article>
-
-        <article class="hp-route hp-route--boxes">
-          <figure class="hp-route__photo">
-            <img loading="lazy"
-              src="assets/images/styling-box-960.webp"
-              srcset="assets/images/styling-box-480.webp 480w, assets/images/styling-box-960.webp 960w, assets/images/styling-box-1536.webp 1536w"
-              sizes="(min-width: 900px) 46vw, 92vw"
-              width="960" height="640"
-              alt="Geopende styling box met een Berry first birthday styling, ballonnen en decoratie">
-          </figure>
-          <h3 class="hp-route__title">Styling boxen</h3>
-          <p class="hp-route__text">Een complete styling die al voor je is samengesteld. Jij hoeft alleen uit te pakken.</p>
-          <a href="styling-boxes.html" class="link-arrow">Bekijk de styling boxen <span aria-hidden="true">&rarr;</span></a>
-        </article>
+        <div class="details__note">
+          <p>
+            Een kleur die terugkomt in de servetten, een kaars die precies goed staat. Daar blijft een avond aan hangen.
+          </p>
+        </div>
       </div>
     </section>
 
-    <svg class="hp-wave hp-wave--two" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path d="M0,0 L1440,0 L1440,46 C1300,86 1120,104 930,84 C720,62 560,20 340,30 C200,36 90,64 0,92 Z"/>
+
+    <!-- Signature golf: de enige diepe golf op de pagina, als opstap
+         naar het donkere hoofdstuk. -->
+    <svg class="story-wave story-wave--cream-walnut story-wave--deep" viewBox="0 0 1440 181"
+         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to"
+            d="M0,96 C160,124 330,150 520,138 C760,122 930,66 1140,60 C1270,56 1370,82 1440,104 L1440,300 L0,300 Z"/>
     </svg>
 
-    <section class="hp-boxes" aria-labelledby="boxes-title">
-      <h2 class="hp-title hp-title--center" id="boxes-title">De styling boxen</h2>
 
-      <div class="hp-boxes__grid">
-        <a href="box-bordeaux-date.html" class="hp-box">
-          <figure class="hp-box__photo">
+    <!-- SPREAD: twee manieren: compositie in home.css; bestaande inhoud behouden. -->
+    <section id="mogelijkheden" class="chapter chapter--walnut chapter--spread" aria-labelledby="spread-title">
+      <div class="spread__opening">
+        <h2 class="chapter-title" id="spread-title">
+          Je kiest zelf hoeveel je<br>
+          <em>uit handen geeft.</em>
+        </h2>
+      </div>
+
+      <article class="spread__act spread__act--left">
+        <div class="spread__media">
+          <img loading="lazy"
+            src="assets/images/berry-backdrop-1474.webp"
+            srcset="assets/images/berry-backdrop-480.webp 480w, assets/images/berry-backdrop-960.webp 960w, assets/images/berry-backdrop-1474.webp 1474w"
+            sizes="(min-width: 64rem) 55vw, 100vw"
+            width="1474" height="738"
+            alt="Feestopstelling met een ballonboog, een taart op een sokkel en een gedekte tafel ervoor"
+          >
+        </div>
+        <div class="spread__content">
+          <h3 class="spread__title">Eventstyling</h3>
+          <p class="spread__text">
+            Dionne bedenkt het concept en voert het uit. Jij hoeft alleen nog te genieten.
+          </p>
+          <a href="eventstyling.html" class="cta cta--secondary cta--white">
+            Meer over eventstyling
+          </a>
+        </div>
+      </article>
+
+      <article class="spread__act spread__act--right">
+        <div class="spread__media">
+          <img loading="lazy"
+            src="assets/images/gallery-beige-bliss-1-1600.webp"
+            srcset="assets/images/gallery-beige-bliss-1-480.webp 480w, assets/images/gallery-beige-bliss-1-960.webp 960w, assets/images/gallery-beige-bliss-1-1600.webp 1600w"
+            sizes="(min-width: 64rem) 48vw, 100vw"
+            width="1600" height="1067"
+            alt="Gedekte tafel in beige en bruine tinten met bloemen en gouden details"
+          >
+        </div>
+        <div class="spread__content">
+          <h3 class="spread__title">Styling boxen</h3>
+          <p class="spread__text">
+            Een complete styling die al voor je is samengesteld. Jij hoeft alleen uit te pakken.
+          </p>
+          <a href="styling-boxes.html" class="cta cta--secondary cta--white">
+            Bekijk de styling boxen
+          </a>
+        </div>
+      </article>
+    </section>
+
+
+    <svg class="story-wave story-wave--walnut-cream story-wave--medium" viewBox="0 0 1440 181"
+         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to"
+            d="M0,120 C200,92 380,70 580,84 C800,100 960,142 1160,146 C1290,148 1380,132 1440,116 L1440,300 L0,300 Z"/>
+    </svg>
+
+
+    <!-- BOX COLLECTIE: compositie in home.css; bestaande inhoud behouden. -->
+    <section class="chapter chapter--cream chapter--boxes" aria-labelledby="boxes-title">
+      <div class="boxes__opening">
+        <h2 class="chapter-title" id="boxes-title">De styling boxen</h2>
+      </div>
+
+      <div class="box-collection__grid">
+        <a href="box-bordeaux-date.html" class="box-tile">
+          <div class="box-tile__frame">
             <img loading="lazy"
               src="assets/images/gallery-bordeaux-date-1-960.webp"
               srcset="assets/images/gallery-bordeaux-date-1-480.webp 480w, assets/images/gallery-bordeaux-date-1-960.webp 960w, assets/images/gallery-bordeaux-date-1-1600.webp 1600w"
-              sizes="(min-width: 1200px) 560px, (min-width: 700px) 44vw, 92vw"
-              width="960" height="720"
-              alt="Gedekte tafel voor twee met bordeauxrode servetten, rozenblaadjes en kaarsen">
-          </figure>
-          <h3 class="hp-box__name">Bordeaux Date</h3>
-          <span class="hp-box__price">Vanaf &euro;39 <span aria-hidden="true">&rarr;</span></span>
+              sizes="(min-width: 1100px) 22vw, (min-width: 640px) 44vw, calc(100vw - 48px)"
+              width="960" height="640"
+              alt="Gedekte tafel voor twee met bordeauxrode servetten, rozenblaadjes en kaarsen"
+            >
+          </div>
+          <div class="box-tile__body">
+            <h3 class="box-tile__name">Bordeaux Date</h3>
+            <span class="box-tile__price">Vanaf &euro;39</span>
+          </div>
         </a>
 
-        <a href="box-blue-breeze.html" class="hp-box">
-          <figure class="hp-box__photo">
+        <a href="box-blue-breeze.html" class="box-tile">
+          <div class="box-tile__frame">
             <img loading="lazy"
               src="assets/images/gallery-blue-breeze-1-960.webp"
               srcset="assets/images/gallery-blue-breeze-1-480.webp 480w, assets/images/gallery-blue-breeze-1-960.webp 960w, assets/images/gallery-blue-breeze-1-1600.webp 1600w"
-              sizes="(min-width: 1200px) 560px, (min-width: 700px) 44vw, 92vw"
+              sizes="(min-width: 1100px) 22vw, (min-width: 640px) 44vw, calc(100vw - 48px)"
               width="960" height="640"
-              alt="Tafelstyling in blauwe tinten met een gaasloper, blauwe bloemen en kaarsen">
-          </figure>
-          <h3 class="hp-box__name">Blue Breeze</h3>
-          <span class="hp-box__price">Vanaf &euro;59 <span aria-hidden="true">&rarr;</span></span>
+              alt="Tafelstyling in blauwe tinten met een gaasloper, blauwe bloemen en kaarsen"
+            >
+          </div>
+          <div class="box-tile__body">
+            <h3 class="box-tile__name">Blue Breeze</h3>
+            <span class="box-tile__price">Vanaf &euro;59</span>
+          </div>
         </a>
 
-        <a href="box-beige-bliss.html" class="hp-box">
-          <figure class="hp-box__photo">
+        <a href="box-beige-bliss.html" class="box-tile">
+          <div class="box-tile__frame">
             <img loading="lazy"
               src="assets/images/gallery-beige-bliss-1-960.webp"
               srcset="assets/images/gallery-beige-bliss-1-480.webp 480w, assets/images/gallery-beige-bliss-1-960.webp 960w, assets/images/gallery-beige-bliss-1-1600.webp 1600w"
-              sizes="(min-width: 1200px) 560px, (min-width: 700px) 44vw, 92vw"
+              sizes="(min-width: 1100px) 22vw, (min-width: 640px) 44vw, calc(100vw - 48px)"
               width="960" height="640"
-              alt="Gedekte tafel in beige en bruine tinten met droogbloemen en gouden details">
-          </figure>
-          <h3 class="hp-box__name">Beige Bliss</h3>
-          <span class="hp-box__price">Vanaf &euro;59 <span aria-hidden="true">&rarr;</span></span>
+              alt="Gedekte tafel in beige en bruine tinten met droogbloemen en gouden details"
+            >
+          </div>
+          <div class="box-tile__body">
+            <h3 class="box-tile__name">Beige Bliss</h3>
+            <span class="box-tile__price">Vanaf &euro;59</span>
+          </div>
         </a>
 
-        <a href="box-blush-bloom.html" class="hp-box">
-          <figure class="hp-box__photo">
+        <a href="box-blush-bloom.html" class="box-tile">
+          <div class="box-tile__frame">
             <img loading="lazy"
               src="assets/images/gallery-blush-bloom-1-960.webp"
               srcset="assets/images/gallery-blush-bloom-1-480.webp 480w, assets/images/gallery-blush-bloom-1-960.webp 960w, assets/images/gallery-blush-bloom-1-1600.webp 1600w"
-              sizes="(min-width: 1200px) 560px, (min-width: 700px) 44vw, 92vw"
+              sizes="(min-width: 1100px) 22vw, (min-width: 640px) 44vw, calc(100vw - 48px)"
               width="960" height="640"
-              alt="Tafelstyling in zachtroze tinten met bloemen, kaarsen en gouden bestek">
-          </figure>
-          <h3 class="hp-box__name">Blush Bloom</h3>
-          <span class="hp-box__price">Vanaf &euro;59 <span aria-hidden="true">&rarr;</span></span>
+              alt="Tafelstyling in zachtroze tinten met bloemen, kaarsen en gouden bestek"
+            >
+          </div>
+          <div class="box-tile__body">
+            <h3 class="box-tile__name">Blush Bloom</h3>
+            <span class="box-tile__price">Vanaf &euro;59</span>
+          </div>
         </a>
       </div>
 
-      <p class="hp-boxes__more"><a href="styling-boxes.html" class="link-arrow">Alle styling boxen bekijken <span aria-hidden="true">&rarr;</span></a></p>
-    </section>
-
-    <section class="hp-dionne" aria-labelledby="dionne-title">
-      <figure class="hp-dionne__portrait">
-        <img loading="lazy"
-          src="assets/images/dionne-hero-960.webp"
-          srcset="assets/images/dionne-hero-480.webp 480w, assets/images/dionne-hero-960.webp 960w, assets/images/dionne-hero-1366.webp 1366w"
-          sizes="(min-width: 900px) 30vw, 72vw"
-          width="960" height="1439"
-          alt="Dionne met het Theme Your Dream logo">
-      </figure>
-      <div class="hp-dionne__text">
-        <h2 class="hp-title" id="dionne-title">Gewoon <em>Dionne.</em></h2>
-        <p class="hp-lede">Geen team, geen laag tussen jou en degene die het werk doet.</p>
-        <a href="over_dionne.html" class="link-arrow">Ontmoet Dionne <span aria-hidden="true">&rarr;</span></a>
+      <div class="boxes__footer">
+        <a href="styling-boxes.html" class="cta cta--secondary">
+          Alle styling boxen bekijken
+        </a>
       </div>
     </section>
 
-    <svg class="hp-wave hp-wave--three" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path d="M0,84 C220,110 430,96 640,60 C850,24 1080,10 1260,34 C1350,46 1410,60 1440,72 L1440,120 L0,120 Z"/>
+
+    <svg class="story-wave story-wave--cream-linen story-wave--medium" viewBox="0 0 1440 181"
+         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to"
+            d="M0,132 C240,112 470,100 700,116 C930,132 1120,150 1300,140 C1370,136 1410,128 1440,122 L1440,300 L0,300 Z"/>
     </svg>
 
-    <section class="hp-close" aria-labelledby="close-title">
-      <h2 class="hp-close__tagline" id="close-title">Jouw feest, onze creativiteit,<br><em>jullie herinnering.</em></h2>
-      <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20Theme%20Your%20Dream."
-         class="cta cta--whatsapp cta--on-walnut" target="_blank" rel="noopener noreferrer">Vertel Dionne jouw idee</a>
+
+    <!-- DIONNE: compositie in home.css; bestaande inhoud behouden. -->
+    <section class="chapter chapter--linen chapter--dionne" aria-labelledby="dionne-title">
+      <div class="dionne">
+        <div class="dionne__content">
+          <h2 class="chapter-title" id="dionne-title">Gewoon <em>Dionne.</em></h2>
+          <p class="dionne__text">
+            Geen team, geen laag tussen jou en degene die het werk doet.
+          </p>
+          <a href="over_dionne.html" class="cta cta--secondary">
+            Ontmoet Dionne
+          </a>
+        </div>
+
+        <figure class="dionne__portrait">
+          <img loading="lazy"
+            src="assets/images/dionne-hero-1366.webp"
+            srcset="assets/images/dionne-hero-480.webp 480w, assets/images/dionne-hero-960.webp 960w, assets/images/dionne-hero-1366.webp 1366w"
+            sizes="(min-width: 64rem) 52vw, 100vw"
+            width="1366" height="2048"
+            alt="Dionne met het Theme Your Dream logo"
+          >
+        </figure>
+      </div>
     </section>
 
-    <svg class="hp-wave hp-wave--four" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path d="M0,0 L1440,0 L1440,60 C1240,96 1040,104 820,80 C600,56 420,26 240,38 C130,46 50,66 0,84 Z"/>
+
+    <!-- Tweede golf, bewust anders: ondieper, gespiegeld en van linnen
+         naar walnoot. Sluit het persoonlijke hoofdstuk af. -->
+    <svg class="story-wave story-wave--linen-walnut story-wave--medium" viewBox="0 0 1440 181"
+         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to"
+            d="M0,126 C180,108 360,96 540,101 C760,107 900,131 1080,137 C1230,142 1340,134 1440,120 L1440,300 L0,300 Z"/>
+    </svg>
+
+
+    <!-- SLOT: compositie in home.css; bestaande inhoud behouden. -->
+    <section class="chapter chapter--walnut chapter--close" aria-labelledby="close-title">
+      <div class="close">
+        <h2 class="close__tagline" id="close-title">
+          Jouw feest, onze creativiteit,<br>
+          <em>jullie herinnering.</em>
+        </h2>
+        <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20Theme%20Your%20Dream."
+           class="cta cta--whatsapp cta--on-walnut" target="_blank" rel="noopener noreferrer">
+          Vertel Dionne jouw idee
+        </a>
+      </div>
+    </section>
+
+    <svg class="story-wave story-wave--walnut-cream story-wave--medium" viewBox="0 0 1440 181"
+         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to"
+            d="M0,104 C180,128 380,138 600,122 C820,106 1000,70 1200,74 C1310,76 1390,92 1440,108 L1440,300 L0,300 Z"/>
+    </svg>
+
+
+    <svg class="svg-defs" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="wave-soften" x="-10%" y="-50%" width="120%" height="200%" filterUnits="objectBoundingBox">
+          <feGaussianBlur stdDeviation="0 20" edgeMode="none"/>
+        </filter>
+      </defs>
     </svg>
 
   </main>
