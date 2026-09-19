@@ -1,13 +1,16 @@
-/* Homepage composition: compact story, paired services, four-box collection.
-   Page-specific overrides preserve the existing catalogue and detail pages. */
-.home { --color-on-walnut: var(--color-cream); }
-.home .chapter--walnut { background-color: var(--color-copper-deep); }
-.home .story-wave--cream-walnut, .home .story-wave--linen-walnut { --wave-to: var(--color-copper-deep); }
+/* Homepage: sfeer eerst. Weinig tekst, groot beeld, zachte overgangen.
+   De omslag (.cover) is ongewijzigd; alles daaronder is een rustig verhaal
+   waarin de golven onderdeel van de compositie zijn. Alleen voor index.html. */
+.home {
+  --color-on-walnut: var(--color-cream);
+  --hp-dark: var(--color-copper-deep);
+  --hp-wave: clamp(3rem, 7vw, 6.5rem);
+}
 .home .cta--whatsapp { color: var(--color-cream); }
 .home .cta--on-walnut { color: var(--color-dark-brown); }
-.home .chapter { --chapter-space: clamp(2.5rem, 4vw, 4rem); }
-.home .chapter-title { font-size: clamp(2rem, 3.4vw, 3rem); }
-.home .chapter-label::before, .home .cover__eyebrow::before { display: none; }
+
+/* --- Omslag (ongewijzigd) ------------------------------------------- */
+.home .cover__eyebrow::before { display: none; }
 .home .cover { grid-template-areas: "text" "media"; }
 .home .cover__text { padding: 2rem var(--edge); }
 .home .cover__title { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 1.25rem; }
@@ -18,81 +21,12 @@
 .home .cover__media { height: 17rem; }
 .home .cover__img { object-position: 50% 15%; }
 .home .cover__media::after { background: none; }
-.home .details {
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: "heading" "note" "lead";
-  gap: 1rem;
+.home .cover__media {
+  -webkit-mask-image: linear-gradient(to top, transparent 0, #000 4.5rem);
+  mask-image: linear-gradient(to top, transparent 0, #000 4.5rem);
 }
-.home .details__heading { grid-area: heading; padding: 0; align-self: start; }
-.home .details__note { grid-area: note; margin: 0 0 .5rem; padding: 0; max-width: 30rem; }
-.home .details__lead { grid-area: lead; }
-.home .details__side--high { grid-area: high; }
-.home .details__side--low { grid-area: low; }
-.home .details__lead, .home .details__side {
-  margin: 0; min-height: 0; height: auto; aspect-ratio: 3 / 2;
-  border-radius: 1.5rem;
-}
-.home .story-wave--deep, .home .story-wave--shallow {
-  height: clamp(1.5rem, 4vw, 3.5rem); margin-block: -1px;
-}
-.home .chapter--spread {
-  display: grid; grid-template-columns: minmax(0, 1fr);
-  gap: 1.5rem; padding-inline: var(--edge);
-  scroll-margin-top: calc(var(--header-height-lg) + 1rem);
-}
-.home .spread__opening {
-  grid-column: 1 / -1; max-width: 70rem; margin: 0 auto .5rem;
-  padding: 0; text-align: center;
-}
-.home .spread__opening .chapter-label { justify-content: center; }
-.home .spread__act {
-  grid-column: auto; position: relative; isolation: isolate;
-  display: grid; grid-template-columns: minmax(0, 1fr);
-  padding: 0; margin: 0; width: 100%; max-width: none;
-  min-height: 26rem; border-radius: 1.5rem; overflow: hidden;
-  background: var(--color-dark-brown);
-}
-.home .spread__act .spread__media {
-  position: absolute; inset: 0; grid-area: auto; margin: 0;
-  border-radius: 0; aspect-ratio: auto; z-index: -2;
-}
-.home .spread__act::after {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(90deg, rgba(30,20,15,.86), rgba(30,20,15,.55));
-}
-.home .spread__act .spread__content {
-  grid-area: 1 / 1; align-self: end; max-width: 32rem;
-  padding: clamp(1.5rem, 3vw, 2.5rem); gap: .85rem;
-}
-.home .spread__label { opacity: 1; }
-.home .spread__text { line-height: 1.6; }
-.home .spread__content .cta { font-size: 1rem; padding: .8rem 1.2rem; }
-.home .chapter--walnut .spread__content .cta {
-  color: var(--color-dark-brown); background: var(--color-on-walnut);
-  border-color: var(--color-on-walnut);
-}
-.home .chapter--walnut .spread__content .cta:hover { background: var(--color-cream); }
-.home .boxes__opening { text-align: center; margin-bottom: 2rem; }
-.home .boxes__opening .chapter-label { justify-content: center; }
-.home .chapter--boxes .box-collection__grid { gap: 2rem 1.5rem; }
-.home .box-tile__body { grid-template-columns: minmax(0,1fr); border: 0; padding: 0; gap: .4rem; margin-top: 1rem; }
-.home .box-tile__name { font-size: 2.5rem; }
-.home .box-tile__note { grid-row: 2; margin: 0; }
-.home .box-tile__price { grid-row: 3; color: var(--color-copper-deep); margin-top: .35rem; }
-.home .boxes__footer { margin-top: 2rem; }
-.home .dionne { gap: 2rem; align-items: center; }
-.home .dionne__portrait { aspect-ratio: auto; margin: 0 auto; width: min(100%, 22rem); border-radius: 1.5rem; }
-.home .dionne__portrait img { height: auto; object-fit: contain; }
-.home .chapter--close { --chapter-space: 2.5rem; }
-.home .close { gap: 1.25rem; }
-.home .close__note { opacity: 1; }
-.home .close__tagline { font-size: clamp(1.75rem, 3vw, 2.5rem); }
-
 @media (min-width: 640px) {
   .home .cover__actions { max-width: none; flex-wrap: wrap; }
-  .home .chapter--boxes .box-collection__grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .home .chapter--spread { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .home .spread__act { min-height: 30rem; }
 }
 @media (min-width: 1024px) {
   .home .cover { grid-template-columns: 1fr 1fr; grid-template-areas: "text media"; min-height: 36rem; }
@@ -101,19 +35,178 @@
   .home .cover__media::after { background: linear-gradient(90deg,var(--color-cream),transparent 28%); }
   .home .cover__title { font-size: clamp(2.6rem,4.1vw,4rem); }
   .home .cover__lead { max-width: 28rem; }
-  .home .details {
-    grid-template-columns: minmax(0,1fr) minmax(0,1.4fr);
-    grid-template-areas: "heading lead" "note lead";
-    column-gap: 1.25rem; row-gap: 1rem;
+}
+
+/* --- Gedeelde bouwstenen -------------------------------------------- */
+.home .hp-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4.6vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+.home .hp-title em { font-style: italic; color: var(--color-copper-deep); }
+.home .hp-title--center { text-align: center; }
+.home .hp-lede {
+  max-width: 26rem;
+  margin: 1.5rem 0 0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+/* Een golf is een vlak in de kleur van het donkere hoofdstuk, zonder eigen
+   achtergrond: de crème pagina loopt erdoor door. Elke golf heeft een eigen
+   vorm; ze staan inline bij de secties waar ze bij horen. */
+.home .hp-wave { display: block; width: 100%; height: var(--hp-wave); margin: -1px 0; }
+.home .hp-wave path { fill: var(--hp-dark); }
+
+.home .hp-routes,
+.home .hp-close {
+  background: var(--hp-dark);
+  color: var(--color-on-walnut);
+  --color-ink: var(--color-on-walnut);
+  --color-accent: var(--color-on-walnut);
+  --color-focus: var(--color-on-walnut);
+}
+.home .hp-routes .hp-title em,
+.home .hp-close__tagline em { font-style: italic; color: inherit; }
+
+/* --- Details: eerst rust, dan de boodschap, pas daarna de foto ------------ */
+/* De omslag krijgt ruimte om uit te ademen. De boodschap staat daarna alleen op
+   een eigen "scherm" en de foto komt pas erna, zodat er nooit twee grote beelden
+   tegelijk om aandacht vragen. Geen overlap, geen golf door de foto. */
+.home .hp-details { padding: 0 var(--edge) clamp(3rem, 6vw, 5rem); }
+.home .hp-details__text {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+  padding-block: clamp(4.5rem, 12vw, 9rem);
+}
+.home .hp-details__text .hp-lede { margin-inline: auto; }
+.home .hp-details__photo {
+  max-width: 58rem;
+  margin: 0 auto;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 1.25rem;
+}
+.home .hp-details__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 900px) and (min-height: 700px) {
+  .home .hp-details__text { min-height: max(36rem, calc(100svh - 2rem)); padding-block: 4rem; }
+}
+
+/* --- Twee routes: geen kaarten, twee foto's met een eigen maat ------------ */
+.home .hp-routes {
+  scroll-margin-top: var(--header-height-lg);
+  padding: clamp(2.5rem, 5vw, 4rem) var(--edge) clamp(3rem, 6vw, 5rem);
+}
+.home .hp-routes__grid {
+  display: grid;
+  gap: 3.5rem;
+  max-width: 76rem;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+}
+.home .hp-route__photo { margin: 0 0 1.5rem; overflow: hidden; }
+.home .hp-route__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.home .hp-route--event .hp-route__photo { aspect-ratio: 4 / 5; border-radius: 4.5rem 1.25rem 1.25rem 1.25rem; }
+.home .hp-route--boxes .hp-route__photo { aspect-ratio: 3 / 2; border-radius: 1.25rem 4.5rem 1.25rem 1.25rem; }
+.home .hp-route__title {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  line-height: 1.1;
+}
+.home .hp-route__text { max-width: 24rem; margin: 0 0 0.75rem; font-size: 1.05rem; line-height: 1.65; }
+@media (min-width: 600px) and (max-width: 899px) {
+  .home .hp-route--event .hp-route__photo { aspect-ratio: 3 / 2; }
+}
+@media (min-width: 900px) {
+  .home .hp-routes__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 5vw; align-items: start; }
+  .home .hp-route--boxes { margin-top: clamp(4rem, 8vw, 7rem); }
+  .home .hp-route--event .hp-route__photo { aspect-ratio: 5 / 6; border-top-left-radius: 7rem; }
+  .home .hp-route--boxes .hp-route__photo { border-top-right-radius: 7rem; }
+}
+
+/* --- De vier boxen: inspiratie, geen productkaarten ---------------------- */
+.home .hp-boxes { padding: clamp(3rem, 6vw, 5.5rem) var(--edge) clamp(3rem, 6vw, 5rem); }
+.home .hp-boxes__grid {
+  display: grid;
+  gap: 2.75rem;
+  max-width: 62rem;
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
+}
+.home .hp-box { display: block; color: inherit; text-decoration: none; }
+.home .hp-box__photo { margin: 0; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 1.5rem; }
+.home .hp-box__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.home .hp-box__name {
+  margin: 1rem 0 0.1rem;
+  font-family: "Rouge Script", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.3rem, 3vw, 2.9rem);
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+.home .hp-box__price { display: inline-block; font-size: 0.95rem; letter-spacing: 0.06em; color: var(--color-copper-deep); }
+.home .hp-box__price span { display: inline-block; transition: transform 0.4s var(--ease-soft); }
+.home .hp-box:hover .hp-box__price span { transform: translateX(0.3rem); }
+.home .hp-box:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 8px; border-radius: 1.5rem; }
+.home .hp-boxes__more { margin: clamp(2rem, 4vw, 3rem) 0 0; text-align: center; }
+@media (min-width: 700px) {
+  .home .hp-boxes__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 3rem; }
+  .home .hp-box:nth-child(even) { margin-top: 3rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home .hp-box__price span { transition: none; }
+  .home .hp-box:hover .hp-box__price span { transform: none; }
+}
+
+/* --- Dionne: portret, twee zinnen, een link ---------------------------- */
+.home .hp-dionne {
+  display: grid;
+  gap: 2.5rem;
+  padding: clamp(2rem, 4vw, 3rem) var(--edge) clamp(3rem, 6vw, 5rem);
+}
+.home .hp-dionne__portrait {
+  width: min(100%, 22rem);
+  margin: 0 auto;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 999px 999px 1rem 1rem;
+}
+.home .hp-dionne__portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; }
+.home .hp-dionne__text { max-width: 28rem; margin-inline: auto; }
+.home .hp-dionne__text .link-arrow { margin-top: 1.75rem; }
+@media (min-width: 900px) {
+  .home .hp-dionne {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: center;
+    gap: 6vw;
+    max-width: 78rem;
+    margin-inline: auto;
   }
-  .home .details__heading { align-self: end; }
-  .home .details__note { align-self: start; padding-right: 1.5rem; }
-  .home .details__lead { aspect-ratio: 3 / 2; min-height: 0; align-self: center; }
-  .home .spread__act { min-height: 26rem; }
-  .home .dionne { grid-template-columns: 1fr 1fr; }
-  .home .dionne__content { grid-area: 1 / 1; }
-  .home .dionne__portrait { grid-area: 1 / 2; height: auto; aspect-ratio: auto; }
+  .home .hp-dionne__portrait { width: min(100%, 24rem); margin: 0 0 0 auto; }
+  .home .hp-dionne__text { margin: 0; }
 }
-@media (min-width: 1100px) {
-  .home .chapter--boxes .box-collection__grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+
+/* --- Slot ----------------------------------------------------------- */
+.home .hp-close {
+  padding: clamp(2.5rem, 5vw, 4rem) var(--edge) clamp(3rem, 6vw, 5rem);
+  text-align: center;
 }
+.home .hp-close__tagline {
+  margin: 0 0 2rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+/* De laatste golf loopt direct in de footer over. */
+.home .site-footer { margin-top: 0; border-top: 0; }

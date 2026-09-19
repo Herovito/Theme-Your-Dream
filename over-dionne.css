@@ -27,7 +27,6 @@
 }
 
 .od-eyebrow,
-.od-heading__eyebrow,
 .od-practice__title {
   font-family: var(--font-body);
   font-size: 0.8rem;
@@ -170,10 +169,6 @@
   margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
-.od-heading__eyebrow {
-  margin: 0 0 1rem;
-}
-
 .od-heading__title {
   font-family: var(--font-display);
   font-weight: 400;
@@ -193,25 +188,22 @@
   padding: clamp(2rem, 3.5vw, 3rem) var(--od-edge) clamp(2rem, 3.5vw, 3.25rem);
 }
 
-.dionne-page .od-principles {
-  max-width: 34rem;
+.od-manifest {
+  max-width: 56rem;
   margin: 0 auto;
-  border-top: 0;
   text-align: center;
-}
-
-.dionne-page .od-principles .feature-list__item {
-  padding: 1.15rem 0;
-  border: 0;
-  font-size: 1.05rem;
-  font-weight: 400;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.1vw, 1.85rem);
   line-height: 1.55;
-  color: inherit;
-  overflow-wrap: normal;
 }
 
-.dionne-page .od-principles .feature-list__item + .feature-list__item {
-  border-top: 1px solid var(--od-line-on-dark);
+.od-manifest span {
+  display: block;
+  text-wrap: balance;
+}
+
+.od-manifest span + span {
+  margin-top: 0.35em;
 }
 
 
@@ -469,22 +461,6 @@
 
   .od-heading__title {
     font-size: clamp(2.4rem, 3.2vw, 3.1rem);
-  }
-
-  .dionne-page .od-principles {
-    max-width: 92rem;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .dionne-page .od-principles .feature-list__item {
-    padding: 0.5rem clamp(1rem, 1.8vw, 2rem);
-    font-size: 1.05rem;
-  }
-
-  .dionne-page .od-principles .feature-list__item + .feature-list__item {
-    border-top: 0;
-    border-left: 1px solid var(--od-line-on-dark);
   }
 }
 
