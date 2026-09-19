@@ -86,13 +86,11 @@
 .home .box-tile__note { grid-row: 2; margin: 0; }
 .home .box-tile__price { grid-row: 2; color: var(--color-copper-deep); margin-top: .35rem; }
 .home .boxes__footer { margin-top: 2rem; }
-.home .dionne { gap: 2rem; align-items: center; }
-.home .dionne__portrait { aspect-ratio: auto; margin: 0 auto; width: min(100%, 22rem); border-radius: 1.5rem; }
-.home .dionne__portrait img { height: auto; object-fit: contain; }
-.home .chapter--close { --chapter-space: 2.5rem; }
+.home .chapter--close { --chapter-space: clamp(3rem, 5vw, 4.25rem); }
 .home .close { gap: 1.25rem; }
 .home .close__note { opacity: 1; }
-.home .close__tagline { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+.home .close__tagline { font-size: clamp(1.75rem, 3vw, 2.5rem); color: var(--color-ink); }
+.home .close__tagline em { color: var(--color-accent); }
 
 @media (min-width: 640px) {
   .home .cover__actions { max-width: none; flex-wrap: wrap; }
@@ -116,78 +114,78 @@
   .home .details__note { align-self: start; padding-right: 1.5rem; }
   .home .details__lead { aspect-ratio: 3 / 2; min-height: 0; align-self: center; }
   .home .spread__act { min-height: 26rem; }
-  .home .dionne { grid-template-columns: 1fr 1fr; }
-  .home .dionne__content { grid-area: 1 / 1; }
-  .home .dionne__portrait { grid-area: 1 / 2; height: auto; aspect-ratio: auto; }
 }
 @media (min-width: 1100px) {
   .home .chapter--boxes .box-collection__grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
 }
-.home .site-footer { margin-top: 0; border-top: 0; }
-.home .dionne__text { text-wrap: balance; color: var(--color-on-walnut); }
+.home .site-footer { margin-top: 0; }
 @media (min-width: 640px) and (max-width: 1023px) {
   .home .cover { min-height: calc(100svh - 7rem); grid-template-rows: auto minmax(17rem, 1fr); }
   .home .cover__media { height: auto; }
 }
 
-/* Dionne: eigen donkere sectie met een eigen golf erboven. De foto is zo hoog als de
-   sectie en loopt uit richting de tekst. De sectie sluit direct aan op het slot. */
-.home .chapter--dionne { position: relative; overflow: hidden; display: block; padding-block: 0 clamp(3rem, 6vw, 4.5rem); }
-.home .dionne { display: flex; flex-direction: column; gap: 1.5rem; }
-.home .dionne__portrait {
-  order: -1;
-  position: relative;
-  align-self: stretch;
-  width: auto;
-  max-width: none;
-  height: clamp(22rem, 96vw, 32rem);
-  margin: 0 calc(var(--edge) * -1);
-  aspect-ratio: auto;
-  overflow: hidden;
-  border-radius: 0;
-  background: none;
-}
-.home .dionne__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-.home .dionne__portrait::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(0deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 30%), linear-gradient(180deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 9%);
-}
-@media (min-width: 640px) and (max-width: 1023px) {
-  .home .dionne__portrait { height: clamp(26rem, 60vw, 34rem); }
-  .home .dionne__portrait img { object-position: 50% 36%; }
-}
-@media (min-width: 1024px) {
-  .home .chapter--dionne { display: grid; align-content: center; min-height: clamp(34rem, 52vw, 56rem); padding-block: 3rem; }
-  .home .dionne { display: grid; }
-  .home .dionne__content { position: relative; z-index: 1; align-self: center; }
-  .home .dionne__portrait {
-    grid-area: auto;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 52%;
-    height: auto;
-    margin: 0;
-    order: 0;
-  }
-  .home .dionne__portrait::after {
-    background:
-      linear-gradient(90deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 62%),
-      linear-gradient(0deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 24%),
-      linear-gradient(180deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 8%);
-  }
-}
-.home .chapter--dionne + .chapter--close { padding-top: clamp(3.5rem, 7vw, 6rem); }
-@media (min-width: 1024px) {
-  .home .dionne__portrait img { object-position: 50% 50%; }
-}
 .home .boxes__footer .cta {
   background-color: var(--color-copper-deep);
   border-color: var(--color-copper-deep);
   color: var(--color-cream);
 }
 .home .boxes__footer .cta:hover { background-color: var(--color-button-hover); border-color: var(--color-button-hover); }
+
+/* Gewoon Dionne: foto links, tekst rechts, alles op de donkere achtergrond van het slot.
+   De sectie loopt zonder golf of naad over in de slogan en de knop eronder. Alleen
+   selectors voor .chapter--dionne en .chapter--close; niets erboven wordt geraakt. */
+.home .chapter--dionne {
+  display: block;
+  padding-block: clamp(3rem, 5vw, 4.5rem);
+}
+.home .dionne {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: center;
+}
+.home .dionne__portrait {
+  grid-area: auto;
+  margin: 0;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  background: none;
+  border-radius: var(--radius-photo);
+  border-top-left-radius: 4.5rem;
+}
+.home .dionne__portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+.home .dionne__content { grid-area: auto; gap: 1rem; max-width: 30rem; }
+.home .dionne__text { text-wrap: balance; color: var(--color-on-walnut); }
+.home .dionne__content .cta { margin-top: 0.5rem; }
+
+/* De slogan: dezelfde donkere vlak, met rustige ruimte na de foto. */
+
+@media (min-width: 60rem) {
+  .home .dionne {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    column-gap: clamp(2.5rem, 5vw, 5rem);
+  }
+  .home .dionne__portrait {
+    aspect-ratio: 11 / 10;
+    border-top-left-radius: 7rem;
+  }
+  .home .dionne__portrait img { object-position: 50% 32%; }
+  .home .dionne__content { justify-self: start; }
+  .home .dionne__content .chapter-title { font-size: clamp(2.25rem, 3.6vw, 3.25rem); }
+}
+
+/* Toetsenbordfocus en scrollen naar deze elementen mogen niet onder de sticky header eindigen. */
+.home .dionne__portrait,
+.home .dionne__content .chapter-title,
+.home .dionne__content .cta,
+.home .close__tagline,
+.home .close .cta { scroll-margin-top: calc(var(--header-height-lg) + 1.5rem); }
+@media (max-width: 380px) {
+  .home .close__tagline { font-size: 1.55rem; }
+}

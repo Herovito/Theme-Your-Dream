@@ -29,7 +29,7 @@
 
   <link rel="stylesheet" href="assets/fonts/fonts.css?v=1">
   <link rel="stylesheet" href="style.css?v=20260918i">
-  <link rel="stylesheet" href="home.css?v=20260920h">
+  <link rel="stylesheet" href="home.css?v=20260921f">
 
   <!-- Zet .js voordat de eerste pixel getekend wordt. Zonder deze regel
        staat de balk bij het laden nog als meelopende sticky bar in de
@@ -305,9 +305,19 @@
     </svg>
 
 
-    <!-- DIONNE: compositie in home.css; bestaande inhoud behouden. -->
+    <!-- DIONNE: foto links, tekst rechts, donkerbruin. Compositie in home.css. -->
     <section class="chapter chapter--walnut chapter--dionne" aria-labelledby="dionne-title">
       <div class="dionne">
+        <figure class="dionne__portrait">
+          <img loading="lazy"
+            src="assets/images/dionne-styling-960.webp"
+            srcset="assets/images/dionne-styling-480.webp 480w, assets/images/dionne-styling-960.webp 960w, assets/images/dionne-styling-1485.webp 1485w"
+            sizes="(min-width: 60rem) 45vw, calc(100vw - 3rem)"
+            width="960" height="1113"
+            alt="Dionne zet een kaars recht op een gedekte feesttafel in een feesttent"
+          >
+        </figure>
+
         <div class="dionne__content">
           <h2 class="chapter-title" id="dionne-title">Gewoon <em>Dionne.</em></h2>
           <p class="dionne__text">
@@ -317,40 +327,31 @@
             Ontmoet Dionne
           </a>
         </div>
-
-        <figure class="dionne__portrait">
-          <img loading="lazy"
-            src="assets/images/dionne-hero-1366.webp"
-            srcset="assets/images/dionne-hero-480.webp 480w, assets/images/dionne-hero-960.webp 960w, assets/images/dionne-hero-1366.webp 1366w"
-            sizes="(min-width: 64rem) 52vw, 100vw"
-            width="1366" height="2048"
-            alt="Dionne met het Theme Your Dream logo"
-          >
-        </figure>
       </div>
     </section>
 
 
-    <!-- SLOT: compositie in home.css; bestaande inhoud behouden. -->
-    <section class="chapter chapter--walnut chapter--close" aria-labelledby="close-title">
+    <svg class="story-wave story-wave--walnut-cream story-wave--medium" viewBox="0 0 1440 181"
+         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect class="story-wave__from" width="1440" height="180"/>
+      <path class="story-wave__to"
+            d="M0,110 C200,86 400,64 620,80 C840,96 1000,138 1210,140 C1320,141 1400,128 1440,114 L1440,300 L0,300 Z"/>
+    </svg>
+
+
+    <!-- SLOT: algemene afsluiting van de homepage, op de lichte achtergrond. Compositie in home.css. -->
+    <section class="chapter chapter--cream chapter--close" aria-labelledby="close-title">
       <div class="close">
         <h2 class="close__tagline" id="close-title">
           Jouw feest, onze creativiteit,<br>
           <em>jullie herinnering.</em>
         </h2>
         <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20Theme%20Your%20Dream."
-           class="cta cta--whatsapp cta--on-walnut" target="_blank" rel="noopener noreferrer">
+           class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
           Vertel Dionne jouw idee
         </a>
       </div>
     </section>
-
-    <svg class="story-wave story-wave--walnut-cream story-wave--medium" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,104 C180,128 380,138 600,122 C820,106 1000,70 1200,74 C1310,76 1390,92 1440,108 L1440,300 L0,300 Z"/>
-    </svg>
 
 
     <svg class="svg-defs" aria-hidden="true" focusable="false">
