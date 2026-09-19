@@ -185,3 +185,9 @@
 @media (min-width: 1024px) {
   .home .dionne__portrait img { object-position: 50% 50%; }
 }
+.home .boxes__footer .cta {
+  background-color: var(--color-copper-deep);
+  border-color: var(--color-copper-deep);
+  color: var(--color-cream);
+}
+.home .boxes__footer .cta:hover { background-color: var(--color-button-hover); border-color: var(--color-button-hover); }
