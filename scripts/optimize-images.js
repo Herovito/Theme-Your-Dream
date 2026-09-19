@@ -19,8 +19,55 @@ const sources = {
   'Fotoshoot Berry One/berry-one-table-perspective.jpg': ['berry-tafel'],
   'Themabox.png': ['styling-box'],
   'dionne-aan-het-werk-1344.jpg': ['dionne-aan-het-werk'],
-  'Dionne-removebg-preview-v2.png': ['dionne-portret']
+  'Dionne.jpeg': ['dionne-portret', null, {
+    cutout: 'Dionne-removebg-preview-v2.png',
+    widths: [408, 816, 900],
+    fallbackWidth: 408,
+    sizes: '(min-width: 1100px) min(23vw, 24rem), (min-width: 700px) min(33vw, 20rem), min(78vw, 19rem)'
+  }]
 };
+
+// Portret op transparante achtergrond: kleur en detail komen uit het 900px brede origineel,
+// het bestaande vrijstaande beeld levert het alfamasker. Breedtes die het vrijstaande beeld
+// zelf haalt (408px) komen rechtstreeks daaruit.
+async function portraitVariants(input, { cutout, widths }, name) {
+  const cutoutPath = path.join(root, cutout);
+  const cutoutWidth = (await sharp(cutoutPath).metadata()).width;
+  const { width: W, height: H } = await sharp(input).metadata();
+  const original = await sharp(input).removeAlpha().raw().toBuffer();
+  const cutoutUp = await sharp(cutoutPath).resize(W, H, { kernel: 'cubic' }).ensureAlpha().raw().toBuffer();
+  const rawAlpha = Buffer.alloc(W * H), solid = Buffer.alloc(W * H), alpha = Buffer.alloc(W * H);
+  for (let i = 0; i < W * H; i++) {
+    rawAlpha[i] = cutoutUp[i * 4 + 3];
+    solid[i] = rawAlpha[i] >= 250 ? 255 : 0;
+  }
+  const smooth = await sharp(rawAlpha, { raw: { width: W, height: H, channels: 1 } })
+    .blur(2.4).extractChannel(0).raw().toBuffer();
+  for (let i = 0; i < W * H; i++) {
+    const t = Math.min(1, Math.max(0, (smooth[i] / 255 - 0.28) / (0.72 - 0.28)));
+    alpha[i] = Math.round(255 * t * t * (3 - 2 * t));
+  }
+  const core = await sharp(solid, { raw: { width: W, height: H, channels: 1 } })
+    .blur(2).threshold(252).blur(1.5).extractChannel(0).raw().toBuffer();
+  const pixels = Buffer.alloc(W * H * 4);
+  for (let i = 0; i < W * H; i++) {
+    const weight = core[i] / 255;
+    for (let c = 0; c < 3; c++) pixels[i * 4 + c] = Math.round(weight * original[i * 3 + c] + (1 - weight) * cutoutUp[i * 4 + c]);
+    pixels[i * 4 + 3] = alpha[i];
+  }
+  const composite = sharp(pixels, { raw: { width: W, height: H, channels: 4 } });
+  const variants = [];
+  for (const width of widths) {
+    const file = `assets/images/${name}-${width}.webp`;
+    const target = path.join(root, file);
+    const info = width <= cutoutWidth
+      ? await sharp(cutoutPath).rotate().resize({ width, withoutEnlargement: true }).webp({ quality: 82, effort: 5 }).toFile(target)
+      : await composite.clone().resize(width, Math.round(width * H / W), { kernel: 'lanczos3' })
+        .webp({ quality: 82, alphaQuality: 100, effort: 5 }).toFile(target);
+    variants.push({ file, ...info });
+  }
+  return variants;
+}
 
 async function main() {
   fs.mkdirSync(path.join(root, 'assets/images'), { recursive: true });
@@ -33,34 +80,41 @@ async function main() {
       }
     }
   }
-  for (const [source, [name, alt]] of Object.entries(sources)) {
+  for (const [source, [name, alt, options = {}]] of Object.entries(sources)) {
     if (process.argv.includes('--gallery') && !source.startsWith('images/boxen/')) continue;
     const input = path.join(root, source);
-    const metadata = await sharp(input).rotate().metadata();
-    const originalWidth = metadata.autoOrient?.width || metadata.width;
-    const widths = [...new Set([480, 960, 1600].map(width => Math.min(width, originalWidth)))];
     const variants = [];
-    for (const width of widths) {
-      const file = `assets/images/${name}-${width}.webp`;
-      const info = await sharp(input).rotate().resize({ width, withoutEnlargement: true })
-        .webp({ quality: 82, effort: 5 }).toFile(path.join(root, file));
-      variants.push({ file, ...info });
+    if (options.cutout) {
+      variants.push(...await portraitVariants(input, options, name));
+    } else {
+      const metadata = await sharp(input).rotate().metadata();
+      const originalWidth = metadata.autoOrient?.width || metadata.width;
+      const widths = [...new Set([480, 960, 1600].map(width => Math.min(width, originalWidth)))];
+      for (const width of widths) {
+        const file = `assets/images/${name}-${width}.webp`;
+        const info = await sharp(input).rotate().resize({ width, withoutEnlargement: true })
+          .webp({ quality: 82, effort: 5 }).toFile(path.join(root, file));
+        variants.push({ file, ...info });
+      }
     }
-    const fallback = variants.find(v => v.width >= 960) || variants.at(-1);
+    const fallback = options.fallbackWidth
+      ? variants.find(v => v.width === options.fallbackWidth)
+      : variants.find(v => v.width >= 960) || variants.at(-1);
     for (const page of pages) {
       const file = path.join(root, page);
       let html = fs.readFileSync(file, 'utf8');
       html = html.replace(/<img\b[^>]*>/g, tag => {
         const current = tag.match(/\bsrc="([^"]+)"/)?.[1];
         if (current !== source && !current?.startsWith(`assets/images/${name}-`)) return tag;
-        const sizes = name.startsWith('gallery-')
+        const sizes = options.sizes
+          || (name.startsWith('gallery-')
           ? '(min-width: 901px) 50vw, calc(100vw - 48px)'
           : tag.includes('mood-card__img')
           ? '(min-width: 1200px) 300px, (min-width: 640px) 45vw, calc(100vw - 48px)'
           : tag.includes('hero-split__img')
             ? '(min-width: 1024px) 60vw, 100vw'
             : tag.includes('over-dionne-quote__photo') ? '(min-width: 900px) 336px, 224px'
-              : '(min-width: 1200px) 1088px, calc(100vw - 48px)';
+              : '(min-width: 1200px) 1088px, calc(100vw - 48px)');
         tag = tag.replace(/\s+(?:srcset|sizes|width|height)="[^"]*"/g, '')
           .replace(/\bsrc="[^"]+"/, `src="${fallback.file}" srcset="${variants.map(v=>`${v.file} ${v.width}w`).join(', ')}" sizes="${sizes}" width="${fallback.width}" height="${fallback.height}"`);
         return alt ? tag.replace(/\balt="[^"]*"/, `alt="${alt}"`) : tag;

@@ -120,6 +120,10 @@
   color: var(--color-dark-brown);
 }
 
+.od-quote__text p {
+  text-wrap: pretty;
+}
+
 .od-quote__text p + p {
   margin-top: 0.9em;
 }
