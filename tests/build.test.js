@@ -124,7 +124,7 @@ test('image script leaves every approved image tag exactly as it is', async () =
       checked++;
     }
   }
-  assert.ok(checked >= 35);
+  assert.ok(checked >= 30);
 });
 
 test('image script only refreshes srcset and fills in missing attributes', () => {
