@@ -124,14 +124,14 @@
   .home .chapter--boxes .box-collection__grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
 }
 .home .site-footer { margin-top: 0; border-top: 0; }
-.home .dionne__text { text-wrap: balance; }
+.home .dionne__text { text-wrap: balance; color: var(--color-on-walnut); }
 @media (min-width: 640px) and (max-width: 1023px) {
   .home .cover { min-height: calc(100svh - 7rem); grid-template-rows: auto minmax(17rem, 1fr); }
   .home .cover__media { height: auto; }
 }
 
-/* Dionne: de foto is zo hoog als de sectie, komt onder een golf vandaan en loopt
-   uit richting de tekst. Geen los kader, geen extra kleur. */
+/* Dionne: eigen donkere sectie met een eigen golf erboven. De foto is zo hoog als de
+   sectie en loopt uit richting de tekst. De sectie sluit direct aan op het slot. */
 .home .chapter--dionne { position: relative; overflow: hidden; display: block; padding-block: 0 clamp(3rem, 6vw, 4.5rem); }
 .home .dionne { display: flex; flex-direction: column; gap: 1.5rem; }
 .home .dionne__portrait {
@@ -146,22 +146,18 @@
   overflow: hidden;
   border-radius: 0;
   background: none;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,16 C26,4 56,-2 100,8 L100,100 L0,100 Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,16 C26,4 56,-2 100,8 L100,100 L0,100 Z'/%3E%3C/svg%3E");
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
 }
-.home .dionne__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; }
+.home .dionne__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 .home .dionne__portrait::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(0deg, var(--color-cream) 0, var(--color-cream-0) 30%);
+  background: linear-gradient(0deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 30%), linear-gradient(180deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 9%);
 }
 @media (min-width: 640px) and (max-width: 1023px) {
   .home .dionne__portrait { height: clamp(26rem, 60vw, 34rem); }
-  .home .dionne__portrait img { object-position: 50% 32%; }
+  .home .dionne__portrait img { object-position: 50% 36%; }
 }
 @media (min-width: 1024px) {
   .home .chapter--dionne { display: grid; align-content: center; min-height: clamp(32rem, 44vw, 42rem); padding-block: 3rem; }
@@ -180,7 +176,12 @@
   }
   .home .dionne__portrait::after {
     background:
-      linear-gradient(90deg, var(--color-cream) 0, var(--color-cream-0) 62%),
-      linear-gradient(0deg, var(--color-cream) 0, var(--color-cream-0) 24%);
+      linear-gradient(90deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 62%),
+      linear-gradient(0deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 24%),
+      linear-gradient(180deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 8%);
   }
+}
+.home .chapter--dionne + .chapter--close { padding-top: 0; }
+@media (min-width: 1024px) {
+  .home .dionne__portrait img { object-position: 50% 44%; }
 }
