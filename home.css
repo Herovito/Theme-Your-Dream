@@ -160,7 +160,7 @@
   .home .dionne__portrait img { object-position: 50% 36%; }
 }
 @media (min-width: 1024px) {
-  .home .chapter--dionne { display: grid; align-content: center; min-height: clamp(32rem, 44vw, 42rem); padding-block: 3rem; }
+  .home .chapter--dionne { display: grid; align-content: center; min-height: clamp(34rem, 52vw, 56rem); padding-block: 3rem; }
   .home .dionne { display: grid; }
   .home .dionne__content { position: relative; z-index: 1; align-self: center; }
   .home .dionne__portrait {
@@ -181,7 +181,7 @@
       linear-gradient(180deg, var(--color-copper-deep) 0, rgba(112,74,57,0) 8%);
   }
 }
-.home .chapter--dionne + .chapter--close { padding-top: 0; }
+.home .chapter--dionne + .chapter--close { padding-top: clamp(3.5rem, 7vw, 6rem); }
 @media (min-width: 1024px) {
-  .home .dionne__portrait img { object-position: 50% 44%; }
+  .home .dionne__portrait img { object-position: 50% 50%; }
 }
