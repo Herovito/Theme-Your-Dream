@@ -3,6 +3,8 @@
   'use strict';
   const measurementId = document.currentScript?.dataset.gaId || '';
   const configured = /^G-[A-Z0-9]+$/.test(measurementId);
+  // Without a measurement ID there is nothing to consent to: no banner, no settings link, no cookies.
+  if (!configured) return;
   const key = 'tyd-cookie-choice-v1';
   const lifetime = 180 * 24 * 60 * 60 * 1000;
   let loaded = false;
@@ -42,11 +44,11 @@
   const banner = document.createElement('section');
   banner.className = 'cookie-banner';
   banner.setAttribute('aria-label', 'Cookiekeuze');
-  banner.innerHTML = `<div><h2>Even over cookies</h2><p>Kijk gerust rond en doe ideeën op. Met jouw toestemming gebruikt Dionne Google Analytics om te zien welke pagina’s worden bezocht en de website te verbeteren. Liever geen analytische cookies? Kies ‘Weigeren’; je kunt de website gewoon gebruiken. Je keuze wijzigen of intrekken kan altijd via Cookie-instellingen onderaan de pagina.</p><p class="cookie-pending" ${configured ? 'hidden' : ''}>Op dit moment staat Google Analytics nog uit. Zodra dat verandert, vragen we je opnieuw wat jij prettig vindt.</p><a href="privacyverklaring.html#artikel-8">Lees ons cookiebeleid</a></div><div class="cookie-actions"><button type="button" data-choice="accept">Accepteren</button><button type="button" data-choice="reject">Weigeren</button><button type="button" data-choice="settings">Instellingen</button></div>`;
+  banner.innerHTML = `<div><h2>Even over cookies</h2><p>Kijk gerust rond en doe ideeën op. Met jouw toestemming gebruikt Dionne Google Analytics om te zien welke pagina’s worden bezocht en de website te verbeteren. Liever geen analytische cookies? Kies ‘Weigeren’; je kunt de website gewoon gebruiken. Je keuze wijzigen of intrekken kan altijd via Cookie-instellingen onderaan de pagina.</p><a href="privacyverklaring.html#artikel-8">Lees ons cookiebeleid</a></div><div class="cookie-actions"><button type="button" data-choice="accept">Accepteren</button><button type="button" data-choice="reject">Weigeren</button><button type="button" data-choice="settings">Instellingen</button></div>`;
   const dialog = document.createElement('dialog');
   dialog.className = 'cookie-dialog';
   dialog.setAttribute('aria-labelledby', 'cookie-dialog-title');
-  dialog.innerHTML = `<h2 id="cookie-dialog-title">Cookie-instellingen</h2><p>Jij kiest wat bij je past. We onthouden je keuze maximaal 180 dagen in deze browser via lokale opslag op je apparaat. Je kunt je toestemming hier altijd wijzigen of intrekken.</p><p><strong>Noodzakelijk</strong><br>Hiermee onthouden we je privacykeuze, zodat je die niet op iedere pagina opnieuw hoeft te maken. Altijd actief.</p><label class="cookie-option"><input type="checkbox" id="cookie-analytics"> <span><strong>Bezoekersstatistieken</strong><br>Met Google Analytics ziet Dionne hoeveel bezoekers langskomen en welke pagina’s zij bekijken. Zo kan ze de website verbeteren. Alleen met jouw toestemming.</span></label><p class="cookie-pending" ${configured ? 'hidden' : ''}>Google Analytics staat nu nog uit. Ook als je toestemming geeft, worden er op dit moment geen statistieken naar Google gestuurd.</p><div class="cookie-actions"><button type="button" data-choice="save">Keuze opslaan</button><button type="button" data-choice="reject">Alles weigeren</button><button type="button" data-choice="close">Sluiten</button></div>`;
+  dialog.innerHTML = `<h2 id="cookie-dialog-title">Cookie-instellingen</h2><p>Jij kiest wat bij je past. We onthouden je keuze maximaal 180 dagen in deze browser via lokale opslag op je apparaat. Je kunt je toestemming hier altijd wijzigen of intrekken.</p><p><strong>Noodzakelijk</strong><br>Hiermee onthouden we je privacykeuze, zodat je die niet op iedere pagina opnieuw hoeft te maken. Altijd actief.</p><label class="cookie-option"><input type="checkbox" id="cookie-analytics"> <span><strong>Bezoekersstatistieken</strong><br>Met Google Analytics ziet Dionne hoeveel bezoekers langskomen en welke pagina’s zij bekijken. Zo kan ze de website verbeteren. Alleen met jouw toestemming.</span></label><div class="cookie-actions"><button type="button" data-choice="save">Keuze opslaan</button><button type="button" data-choice="reject">Alles weigeren</button><button type="button" data-choice="close">Sluiten</button></div>`;
   const checkbox = dialog.querySelector('input');
   document.body.append(banner, dialog);
   function openSettings() {

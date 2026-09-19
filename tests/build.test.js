@@ -97,3 +97,45 @@ test('published pages load local fonts with all font files and licenses included
     assert.ok(fs.readFileSync(path.join(staticDir, 'assets/fonts', license), 'utf8').includes('SIL OPEN FONT LICENSE'));
   }
 });
+
+test('image script leaves every approved image tag exactly as it is', async () => {
+  const sharp = require('sharp');
+  const { syncImage, sources } = require('../scripts/optimize-images');
+  const dir = path.resolve(__dirname, '../assets/images');
+  const byName = new Map();
+  for (const file of fs.readdirSync(dir)) {
+    const match = file.match(/^(.+)-(\d+)\.webp$/);
+    if (!match) continue;
+    const { width, height } = await sharp(path.join(dir, file)).metadata();
+    if (!byName.has(match[1])) byName.set(match[1], []);
+    byName.get(match[1]).push({ file: `assets/images/${file}`, width, height });
+  }
+  let checked = 0;
+  for (const page of pages) {
+    const html = fs.readFileSync(path.resolve(__dirname, '..', page), 'utf8');
+    for (const [tag] of html.matchAll(/<img\b[^>]*>/g)) {
+      const src = tag.match(/\bsrc="(assets\/images\/[^"]+)"/)?.[1];
+      if (!src) continue;
+      const name = path.basename(src).replace(/-\d+\.webp$/, '');
+      const variants = byName.get(name).sort((a, b) => a.width - b.width);
+      const [, alt, options] = Object.values(sources).find(entry => entry[0] === name) || [];
+      const fallback = variants.find(v => v.width >= 960) || variants.at(-1);
+      assert.equal(syncImage(tag, { source: '', name, alt, options, variants, fallback }), tag, `${page}: ${src}`);
+      checked++;
+    }
+  }
+  assert.ok(checked >= 35);
+});
+
+test('image script only refreshes srcset and fills in missing attributes', () => {
+  const { syncImage } = require('../scripts/optimize-images');
+  const variants = [480, 960].map(width => ({ file: `assets/images/demo-${width}.webp`, width, height: width / 2 }));
+  const context = { source: 'demo.jpg', name: 'demo', alt: undefined, variants, fallback: variants[1] };
+  const srcset = 'assets/images/demo-480.webp 480w, assets/images/demo-960.webp 960w';
+  const tuned = `<img src="assets/images/demo-480.webp" srcset="stale.webp 1w" sizes="50vw" width="7" height="3" alt="Demo">`;
+  assert.equal(syncImage(tuned, context), `<img src="assets/images/demo-480.webp" srcset="${srcset}" sizes="50vw" width="7" height="3" alt="Demo">`);
+  const bare = `<img loading="lazy"\n  src="demo.jpg"\n  alt="Demo" class="x">`;
+  assert.equal(syncImage(bare, context), `<img loading="lazy"\n  src="assets/images/demo-960.webp" srcset="${srcset}" sizes="(min-width: 1200px) 1088px, calc(100vw - 48px)" width="960" height="480"\n  alt="Demo" class="x">`);
+  const foreign = '<img src="assets/images/other-960.webp" alt="Other">';
+  assert.equal(syncImage(foreign, context), foreign);
+});

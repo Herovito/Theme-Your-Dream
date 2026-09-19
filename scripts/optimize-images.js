@@ -69,6 +69,38 @@ async function portraitVariants(input, { cutout, widths }, name) {
   return variants;
 }
 
+// De HTML blijft de bron van waarheid voor de context van iedere afbeelding: gekozen `src`,
+// `sizes`, `width` en `height` zijn goedgekeurde, handmatig afgestemde waarden en worden nooit
+// overschreven. Het script houdt alleen `srcset` gelijk aan de gegenereerde varianten en vult
+// ontbrekende attributen aan met een standaardwaarde. Een tag die al klopt blijft daardoor
+// byte voor byte gelijk, ook qua opmaak, en een tweede run levert nooit een diff op.
+function syncImage(tag, { source, name, alt, options = {}, variants, fallback }) {
+  const current = tag.match(/\bsrc="([^"]+)"/)?.[1];
+  if (current !== source && !current?.startsWith(`assets/images/${name}-`)) return tag;
+  const chosen = variants.find(v => v.file === current) || fallback;
+  const defaultSizes = options.sizes
+    || (name.startsWith('gallery-')
+    ? '(min-width: 901px) 50vw, calc(100vw - 48px)'
+    : tag.includes('mood-card__img')
+    ? '(min-width: 1200px) 300px, (min-width: 640px) 45vw, calc(100vw - 48px)'
+    : tag.includes('hero-split__img')
+      ? '(min-width: 1024px) 60vw, 100vw'
+      : tag.includes('over-dionne-quote__photo') ? '(min-width: 900px) 336px, 224px'
+        : '(min-width: 1200px) 1088px, calc(100vw - 48px)');
+  const srcset = variants.map(v => `${v.file} ${v.width}w`).join(', ');
+  const has = (html, key) => new RegExp(`\\s${key}="`).test(html);
+  const insertAfter = (html, anchor, key, value) =>
+    html.replace(new RegExp(`(\\s${anchor}="[^"]*")`), (match) => `${match} ${key}="${value}"`);
+  let out = chosen.file === current ? tag : tag.replace(/\bsrc="[^"]+"/, () => `src="${chosen.file}"`);
+  out = has(out, 'srcset')
+    ? out.replace(/(\ssrcset=")[^"]*(")/, (match, open, close) => `${open}${srcset}${close}`)
+    : insertAfter(out, 'src', 'srcset', srcset);
+  if (!has(out, 'sizes')) out = insertAfter(out, 'srcset', 'sizes', defaultSizes);
+  if (!has(out, 'width')) out = insertAfter(out, 'sizes', 'width', chosen.width);
+  if (!has(out, 'height')) out = insertAfter(out, 'width', 'height', chosen.height);
+  return alt ? out.replace(/\balt="[^"]*"/, () => `alt="${alt}"`) : out;
+}
+
 async function main() {
   fs.mkdirSync(path.join(root, 'assets/images'), { recursive: true });
   const galleryRoot = path.join(root, 'images/boxen');
@@ -102,27 +134,14 @@ async function main() {
       : variants.find(v => v.width >= 960) || variants.at(-1);
     for (const page of pages) {
       const file = path.join(root, page);
-      let html = fs.readFileSync(file, 'utf8');
-      html = html.replace(/<img\b[^>]*>/g, tag => {
-        const current = tag.match(/\bsrc="([^"]+)"/)?.[1];
-        if (current !== source && !current?.startsWith(`assets/images/${name}-`)) return tag;
-        const sizes = options.sizes
-          || (name.startsWith('gallery-')
-          ? '(min-width: 901px) 50vw, calc(100vw - 48px)'
-          : tag.includes('mood-card__img')
-          ? '(min-width: 1200px) 300px, (min-width: 640px) 45vw, calc(100vw - 48px)'
-          : tag.includes('hero-split__img')
-            ? '(min-width: 1024px) 60vw, 100vw'
-            : tag.includes('over-dionne-quote__photo') ? '(min-width: 900px) 336px, 224px'
-              : '(min-width: 1200px) 1088px, calc(100vw - 48px)');
-        tag = tag.replace(/\s+(?:srcset|sizes|width|height)="[^"]*"/g, '')
-          .replace(/\bsrc="[^"]+"/, `src="${fallback.file}" srcset="${variants.map(v=>`${v.file} ${v.width}w`).join(', ')}" sizes="${sizes}" width="${fallback.width}" height="${fallback.height}"`);
-        return alt ? tag.replace(/\balt="[^"]*"/, `alt="${alt}"`) : tag;
-      });
-      fs.writeFileSync(file, html);
+      const before = fs.readFileSync(file, 'utf8');
+      const html = before.replace(/<img\b[^>]*>/g, tag => syncImage(tag, { source, name, alt, options, variants, fallback }));
+      if (html !== before) fs.writeFileSync(file, html);
     }
     console.log(`${source}: ${(fs.statSync(input).size / 1024).toFixed(0)} KiB -> ${variants.map(v => `${v.width}w ${(v.size / 1024).toFixed(0)} KiB`).join(', ')}`);
   }
 }
 
-main().catch(error => { console.error(error); process.exitCode = 1; });
+if (require.main === module) main().catch(error => { console.error(error); process.exitCode = 1; });
+
+module.exports = { syncImage, sources };
