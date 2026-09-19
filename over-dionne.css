@@ -1,0 +1,505 @@
+/* Over Dionne: editorial about-spread. Alleen voor over_dionne.html.
+   Bestaande teksten, foto, fonts en kleurtokens; niets hiervan raakt andere pagina's. */
+
+.dionne-page {
+  --od-edge: clamp(1.25rem, 6.5vw, 8rem);
+  --od-dark: var(--color-copper-deep);
+  --od-on-dark: var(--color-on-walnut);
+  --od-line-on-dark: rgba(255, 249, 242, 0.32);
+  --od-wave-h: clamp(2.5rem, 5.5vw, 5.5rem);
+  color: var(--color-dark-brown);
+}
+
+
+/* --- Introductie ---------------------------------------------------- */
+
+.od-intro {
+  padding: clamp(2rem, 4vw, 3.5rem) var(--od-edge) clamp(2rem, 3vw, 3rem);
+}
+
+.od-intro__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  max-width: 92rem;
+  margin: 0 auto;
+}
+
+.od-eyebrow,
+.od-heading__eyebrow,
+.od-practice__title {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.od-eyebrow {
+  margin: 0 0 1.25rem;
+  color: var(--color-walnut-deep);
+}
+
+.od-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 9vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--color-dark-brown);
+  margin: 0 0 1.5rem;
+  text-wrap: balance;
+}
+
+.od-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-copper-deep);
+}
+
+.od-lead {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 29rem;
+  margin: 0;
+  color: var(--color-dark-brown);
+}
+
+
+/* --- Portret in boogvorm --------------------------------------------- */
+
+.od-portrait {
+  margin: 0 auto;
+  width: min(78vw, 19rem);
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 999px 999px 0.5rem 0.5rem;
+  background: linear-gradient(180deg, var(--color-linen) 0%, var(--color-old-pink) 100%);
+}
+
+.od-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 100%;
+}
+
+
+/* --- Quote van Dionne ------------------------------------------------ */
+
+.od-quote {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 28rem;
+  padding-top: 3rem;
+}
+
+.od-quote__mark {
+  position: absolute;
+  top: -0.35rem;
+  left: -0.1rem;
+  font-family: var(--font-display);
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--color-copper);
+  user-select: none;
+}
+
+.od-quote__text {
+  margin: 0;
+  font-family: "Rouge Script", Georgia, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1.65rem, 6.2vw, 1.9rem);
+  line-height: 1.45;
+  color: var(--color-dark-brown);
+}
+
+.od-quote__text p + p {
+  margin-top: 0.9em;
+}
+
+.od-quote__author {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-dark-brown);
+}
+
+.od-quote__line {
+  flex: none;
+  width: 2.25rem;
+  height: 1px;
+  background: var(--color-walnut);
+}
+
+
+/* --- Golven ---------------------------------------------------------- */
+
+.od-wave {
+  display: block;
+  width: 100%;
+  height: var(--od-wave-h);
+  margin: -1px 0;
+}
+
+.od-wave path {
+  fill: var(--od-dark);
+}
+
+
+/* --- Koppen en gedeelde kop-opmaak ----------------------------------- */
+
+.od-heading {
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+.od-heading__eyebrow {
+  margin: 0 0 1rem;
+}
+
+.od-heading__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  margin: 0;
+}
+
+
+/* --- Stijl ------------------------------------------------------------ */
+
+.od-style {
+  --color-focus: var(--od-on-dark);
+  background: var(--od-dark);
+  color: var(--od-on-dark);
+  padding: clamp(2rem, 3.5vw, 3rem) var(--od-edge) clamp(2rem, 3.5vw, 3.25rem);
+}
+
+.dionne-page .od-principles {
+  max-width: 34rem;
+  margin: 0 auto;
+  border-top: 0;
+  text-align: center;
+}
+
+.dionne-page .od-principles .feature-list__item {
+  padding: 1.15rem 0;
+  border: 0;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: inherit;
+  overflow-wrap: normal;
+}
+
+.dionne-page .od-principles .feature-list__item + .feature-list__item {
+  border-top: 1px solid var(--od-line-on-dark);
+}
+
+
+/* --- Werkwijze -------------------------------------------------------- */
+
+.od-process {
+  padding: clamp(1.75rem, 3.5vw, 3rem) var(--od-edge) 0;
+}
+
+.od-steps {
+  --od-gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  --od-num: 2.4rem;
+
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 84rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.od-steps__item {
+  position: relative;
+  padding: 0 0 2.25rem 3.6rem;
+}
+
+.od-steps__item:last-child {
+  padding-bottom: 0;
+}
+
+.od-steps__num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: var(--od-num);
+  height: var(--od-num);
+  border-radius: 50%;
+  background: var(--od-dark);
+  color: var(--od-on-dark);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.od-steps__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--od-num) + 0.4rem);
+  bottom: 0.4rem;
+  left: calc(var(--od-num) / 2 - 0.5px);
+  width: 1px;
+  background: var(--color-walnut);
+  opacity: 0.55;
+}
+
+.od-steps__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0.3rem 0 0.6rem;
+}
+
+.od-steps__text {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+  margin: 0;
+  color: var(--color-dark-brown);
+}
+
+
+/* --- CTA -------------------------------------------------------------- */
+
+.od-cta {
+  text-align: center;
+  padding: clamp(2rem, 3vw, 2.75rem) var(--od-edge) clamp(2rem, 3vw, 3rem);
+}
+
+.od-cta__lead {
+  max-width: 30rem;
+  margin: 0 auto 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.od-cta .cta {
+  font-size: 1.05rem;
+  padding: 0.9rem 2.25rem;
+}
+
+
+/* --- In de praktijk ---------------------------------------------------- */
+
+.od-practice {
+  --color-focus: var(--od-on-dark);
+  background: var(--od-dark);
+  color: var(--od-on-dark);
+  padding: clamp(1.5rem, 3vw, 2.75rem) var(--od-edge) clamp(2rem, 3.5vw, 3.25rem);
+}
+
+.od-practice__title {
+  margin: 0 0 1.75rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.od-practice .service-grid {
+  max-width: 58rem;
+  margin: 0 auto;
+  gap: 1.25rem 1.5rem;
+}
+
+.od-practice .service-card {
+  padding: 1.9rem 1.5rem 1.75rem;
+  background-color: var(--color-cream);
+  border-color: transparent;
+  border-radius: 1.25rem;
+}
+
+.od-practice .service-card:hover {
+  border-color: var(--color-copper-deep);
+}
+
+.od-practice .service-card__title {
+  font-weight: 400;
+  font-size: 1.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.od-practice .service-card__text {
+  font-size: 1.02rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 1.1rem;
+  text-wrap: balance;
+}
+
+.od-practice .service-card__link {
+  font-size: 0.98rem;
+}
+
+.od-practice .service-card__link::after {
+  content: "\2192";
+  margin-left: 0.45em;
+}
+
+
+/* --- Footer sluit direct op de laatste golf aan ------------------------- */
+
+.dionne-page ~ .site-footer {
+  margin-top: 0;
+  border-top: 0;
+}
+
+
+/* --- Tablet: tekst en portret naast elkaar, quote eronder --------------- */
+
+@media (min-width: 700px) {
+  .od-intro__grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 2.5rem clamp(2rem, 5vw, 4rem);
+  }
+
+  .od-portrait {
+    width: min(100%, 20rem);
+  }
+
+  .od-quote {
+    grid-column: 1 / -1;
+    max-width: 36rem;
+  }
+
+  .od-quote__text {
+    font-size: 1.85rem;
+  }
+
+  .od-title {
+    font-size: clamp(2.4rem, 5.6vw, 3.2rem);
+  }
+
+  .od-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.75rem var(--od-gap);
+  }
+
+  .od-steps__item,
+  .od-steps__item:last-child {
+    padding: 0;
+    text-align: center;
+  }
+
+  .od-steps__num {
+    position: static;
+    margin: 0 auto 1.1rem;
+  }
+
+  .od-steps__title {
+    margin-top: 0;
+  }
+
+  .od-steps__text {
+    max-width: 21rem;
+    margin: 0 auto;
+  }
+
+  .od-steps__item::after,
+  .od-steps__item:not(:last-child)::after {
+    top: calc(var(--od-num) / 2);
+    bottom: auto;
+    left: calc(50% + var(--od-num) / 2 + 0.9rem);
+    width: calc(100% + var(--od-gap) - var(--od-num) - 1.8rem);
+    height: 1px;
+  }
+
+  .od-steps__item:nth-child(even)::after,
+  .od-steps__item:last-child::after {
+    display: none;
+  }
+
+  .od-practice .service-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+/* --- Desktop: drie zones, asymmetrisch ----------------------------------- */
+
+@media (min-width: 1100px) {
+  .od-intro__grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 3.4vw, 4rem);
+  }
+
+  .od-title {
+    font-size: clamp(2.6rem, 3.6vw, 3.75rem);
+  }
+
+  .od-portrait {
+    width: 100%;
+    max-width: 24rem;
+  }
+
+  .od-quote {
+    grid-column: auto;
+    max-width: none;
+  }
+
+  .od-quote__text {
+    font-size: clamp(1.75rem, 1.95vw, 2.2rem);
+  }
+
+  .od-heading__title {
+    font-size: clamp(2.4rem, 3.2vw, 3.1rem);
+  }
+
+  .dionne-page .od-principles {
+    max-width: 92rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .dionne-page .od-principles .feature-list__item {
+    padding: 0.5rem clamp(1rem, 1.8vw, 2rem);
+    font-size: 1.05rem;
+  }
+
+  .dionne-page .od-principles .feature-list__item + .feature-list__item {
+    border-top: 0;
+    border-left: 1px solid var(--od-line-on-dark);
+  }
+}
+
+@media (min-width: 960px) {
+  .od-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .od-steps__item:nth-child(even)::after {
+    display: block;
+  }
+
+  .od-steps__item:last-child::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .od-practice .service-card {
+    transition: none;
+  }
+}

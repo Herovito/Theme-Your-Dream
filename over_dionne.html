@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
@@ -31,6 +31,7 @@
 
   <link rel="stylesheet" href="assets/fonts/fonts.css?v=1">
   <link rel="stylesheet" href="style.css?v=20260918h">
+  <link rel="stylesheet" href="over-dionne.css?v=20260919">
 
   <!-- Schema.org JSON-LD: LocalBusiness for search engines -->
   <script type="application/ld+json">
@@ -105,79 +106,68 @@
     </nav>
   </header>
 
-  <main id="main-content" class="page">
-
-    <!-- Wave filter definition -->
-    <svg class="svg-defs" aria-hidden="true" focusable="false">
-      <defs>
-        <filter id="wave-soften" x="-10%" y="-50%" width="120%" height="200%" filterUnits="objectBoundingBox">
-          <feGaussianBlur stdDeviation="0 20" edgeMode="none"/>
-        </filter>
-      </defs>
-    </svg>
+  <main id="main-content" class="page dionne-page">
 
     <!-- ============================================
-         Over Dionne: Intro + Quote (samen in één section)
+         Introductie: tekst | Dionne | eigen woorden van Dionne.
+         Compositie en stijl staan in over-dionne.css.
          ============================================ -->
-    <header class="page-hero">
-      <span class="page-hero__eyebrow">Over Dionne</span>
-      <h1 class="page-hero__title">
-        Begonnen met eigen feestjes, <em>uitgevoerd met liefde</em>
-      </h1>
-      <p class="page-hero__lead">
-        Theme Your Dream is het werk van één persoon. Geen team, geen
-        laag tussen jou en degene die het werk doet, gewoon Dionne.
-      </p>
+    <header class="od-intro">
+      <div class="od-intro__grid">
+
+        <div class="od-intro__text">
+          <p class="od-eyebrow">Over Dionne</p>
+          <h1 class="od-title">
+            Begonnen met eigen feestjes, <em>uitgevoerd met liefde.</em>
+          </h1>
+          <p class="od-lead">
+            Theme Your Dream is het werk van één persoon. Geen team, geen
+            laag tussen jou en degene die het werk doet, gewoon Dionne.
+          </p>
+        </div>
+
+        <figure class="od-portrait">
+          <img loading="eager" fetchpriority="high" decoding="async"
+            src="assets/images/dionne-portret-408.webp"
+            srcset="assets/images/dionne-portret-408.webp 408w"
+            sizes="(min-width: 1100px) 26vw, (min-width: 700px) 38vw, 78vw"
+            width="408" height="612"
+            alt="Portretfoto van Dionne"
+          >
+        </figure>
+
+        <figure class="od-quote">
+          <span class="od-quote__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="od-quote__text">
+            <p>Ik ben altijd al degene geweest die feestjes aankleedde. Voor mezelf en voor mensen om me heen.</p>
+            <p>Niet met een vaste checklist, maar door goed te kijken naar wat bij iemand past.</p>
+            <p>Theme Your Dream is daar het logische vervolg op: dezelfde aandacht, nu ook voor jouw evenement.</p>
+          </blockquote>
+          <figcaption class="od-quote__author">
+            <span class="od-quote__line" aria-hidden="true"></span>
+            Dionne, Oprichter
+          </figcaption>
+        </figure>
+
+      </div>
     </header>
 
-    <section class="section section--over-dionne">
-
-      <div class="over-dionne__quote-grid">
-        <div class="over-dionne-quote__photo-col">
-          <img loading="lazy"
-            src="assets/images/dionne-portret-408.webp" srcset="assets/images/dionne-portret-408.webp 408w" sizes="(min-width: 900px) 336px, 224px" width="408" height="612"
-            alt="Portretfoto van Dionne"
-            class="over-dionne-quote__photo"
-          >
-        </div>
-        <div class="over-dionne-quote__text-col">
-          <div class="over-dionne-quote__mark">"</div>
-          <p class="over-dionne-quote__text">
-            Ik ben altijd al degene geweest die feestjes aankleedde.<br>
-            Voor mezelf en voor mensen om me heen.<br>
-            <br>
-            Niet met een vaste checklist,<br>
-            maar door goed te kijken naar wat bij iemand past.<br>
-            <br>
-            Theme Your Dream is daar het logische vervolg op:<br>
-            dezelfde aandacht, nu ook voor jouw evenement.
-          </p>
-          <div class="over-dionne-quote__signature">
-            <span class="over-dionne-quote__line"></span>
-            <span class="over-dionne-quote__author">Dionne, Oprichter</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Wave transition: Introductie â†’ Stijl -->
-    <svg class="story-wave story-wave--cream-walnut" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
+    <!-- Overgang: introductie naar Stijl -->
+    <svg class="od-wave od-wave--one" viewBox="0 0 1440 120" preserveAspectRatio="none"
+         xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M0,66 C180,98 360,106 560,86 C760,66 960,22 1180,30 C1300,34 1380,50 1440,66 L1440,120 L0,120 Z"/>
     </svg>
 
     <!-- ============================================
          Stijl
          ============================================ -->
-    <section class="section section--narrow section--full-bg section--walnut">
-      <div class="section__heading">
-        <span class="section__eyebrow">Stijl</span>
-        <h2 class="section__title">Hoe ik naar styling kijk</h2>
+    <section class="od-style" aria-labelledby="od-style-title">
+      <div class="od-heading">
+        <p class="od-heading__eyebrow">Stijl</p>
+        <h2 class="od-heading__title" id="od-style-title">Hoe ik naar styling kijk</h2>
       </div>
 
-      <ul class="feature-list reveal-group">
+      <ul class="feature-list od-principles">
         <li class="feature-list__item">Rustig, zonder overbodige toeters en bellen</li>
         <li class="feature-list__item">Strak, waarbij alles op de juiste plek staat</li>
         <li class="feature-list__item">Luxe in de materialen, niet in de hoeveelheid</li>
@@ -186,73 +176,71 @@
       </ul>
     </section>
 
-    <!-- Wave transition: Stijl â†’ Werkwijze -->
-    <svg class="story-wave story-wave--walnut-cream" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
+    <!-- Overgang: Stijl naar Werkwijze -->
+    <svg class="od-wave od-wave--two" viewBox="0 0 1440 120" preserveAspectRatio="none"
+         xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M0,0 L1440,0 L1440,72 C1260,98 1080,106 900,86 C700,64 520,32 340,40 C200,46 90,68 0,90 Z"/>
     </svg>
 
     <!-- ============================================
-         Manier van werken
+         Werkwijze
          ============================================ -->
-    <section class="section section--narrow">
-      <div class="section__heading">
-        <span class="section__eyebrow">Werkwijze</span>
-        <h2 class="section__title">Van jouw idee tot de opbouw</h2>
+    <section class="od-process" aria-labelledby="od-process-title">
+      <div class="od-heading">
+        <p class="od-heading__eyebrow">Werkwijze</p>
+        <h2 class="od-heading__title" id="od-process-title">Van jouw idee tot de opbouw</h2>
       </div>
 
-      <div class="process">
-        <div class="process__step">
-          <span class="process__step-label">Luisteren</span>
-          <p class="process__step-text">Je vertelt wat je voor je ziet. Ik vraag door tot ik snap welk gevoel je zoekt, ook als je dat zelf nog niet in woorden hebt.</p>
-        </div>
-        <div class="process__step">
-          <span class="process__step-label">Uitwerken</span>
-          <p class="process__step-text">Ik zet dat gevoel om in kleuren, materialen en een beeld van het geheel. Daarbij ben ik duidelijk over wat wel en niet kan.</p>
-        </div>
-        <div class="process__step">
-          <span class="process__step-label">Voorbereiden</span>
-          <p class="process__step-text">Ik zoek alles bij elkaar en regel wat nodig is. De keuzes die bij jou liggen houd ik overzichtelijk, zodat je niet in details verdwaalt.</p>
-        </div>
-        <div class="process__step">
-          <span class="process__step-label">Opbouwen</span>
-          <p class="process__step-text">Op de dag zelf sta ik er zelf. Ik loop alles na tot het staat zoals bedoeld, zodat jij er niets voor hoeft te doen.</p>
-        </div>
-      </div>
+      <ol class="od-steps" role="list">
+        <li class="od-steps__item">
+          <span class="od-steps__num" aria-hidden="true">1</span>
+          <h3 class="od-steps__title">Luisteren</h3>
+          <p class="od-steps__text">Je vertelt wat je voor je ziet. Ik vraag door tot ik snap welk gevoel je zoekt, ook als je dat zelf nog niet in woorden hebt.</p>
+        </li>
+        <li class="od-steps__item">
+          <span class="od-steps__num" aria-hidden="true">2</span>
+          <h3 class="od-steps__title">Uitwerken</h3>
+          <p class="od-steps__text">Ik zet dat gevoel om in kleuren, materialen en een beeld van het geheel. Daarbij ben ik duidelijk over wat wel en niet kan.</p>
+        </li>
+        <li class="od-steps__item">
+          <span class="od-steps__num" aria-hidden="true">3</span>
+          <h3 class="od-steps__title">Voorbereiden</h3>
+          <p class="od-steps__text">Ik zoek alles bij elkaar en regel wat nodig is. De keuzes die bij jou liggen houd ik overzichtelijk, zodat je niet in details verdwaalt.</p>
+        </li>
+        <li class="od-steps__item">
+          <span class="od-steps__num" aria-hidden="true">4</span>
+          <h3 class="od-steps__title">Opbouwen</h3>
+          <p class="od-steps__text">Op de dag zelf sta ik er zelf. Ik loop alles na tot het staat zoals bedoeld, zodat jij er niets voor hoeft te doen.</p>
+        </li>
+      </ol>
     </section>
-
 
     <!-- ============================================
          CTA
          ============================================ -->
-    <section class="section section--narrow section--full-bg section--cream section--cta-padded">
-      <p class="section__lead">
+    <section class="od-cta">
+      <p class="od-cta__lead">
         Op de dag zelf hoef je nergens aan te denken. Dat gevoel begint met één berichtje.
       </p>
       <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20Theme%20Your%20Dream." class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
         Vertel Dionne jouw idee
       </a>
-
     </section>
 
-    <!-- Wave transition: CTA â†’ Benieuwd -->
-    <svg class="story-wave story-wave--cream-walnut" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
+    <!-- Overgang: CTA naar Benieuwd -->
+    <svg class="od-wave od-wave--three" viewBox="0 0 1440 120" preserveAspectRatio="none"
+         xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M0,46 C160,22 340,14 520,34 C740,60 940,100 1160,92 C1290,88 1380,68 1440,48 L1440,120 L0,120 Z"/>
     </svg>
 
     <!-- ============================================
          Afsluitende verwijzing
          ============================================ -->
-    <section class="section section--narrow section--cta section--full-bg section--walnut">
-      <p class="content-block__text" style="margin-bottom: var(--space-4)">
+    <section class="od-practice" aria-labelledby="od-practice-title">
+      <h2 class="od-practice__title" id="od-practice-title">
         Benieuwd wat dat in de praktijk betekent?
-      </p>
-      <div class="service-grid reveal-group">
+      </h2>
+      <div class="service-grid">
         <a class="service-card" href="eventstyling.html">
           <h3 class="service-card__title">Eventstyling</h3>
           <p class="service-card__text">
@@ -271,12 +259,10 @@
       </div>
     </section>
 
-    <!-- Wave transition: Benieuwd â†’ Footer -->
-    <svg class="story-wave story-wave--walnut-cream" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
+    <!-- Overgang: Benieuwd naar footer -->
+    <svg class="od-wave od-wave--four" viewBox="0 0 1440 120" preserveAspectRatio="none"
+         xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M0,0 L1440,0 L1440,54 C1300,84 1140,96 960,82 C740,64 560,34 360,42 C220,48 100,72 0,92 Z"/>
     </svg>
 
   </main>
@@ -309,16 +295,8 @@
     </div>
   </footer>
 
-  
-
 
   <script src="script.js?v=20260918" defer></script>
   <script src="consent.js?v=1" data-ga-id="" defer></script>
 </body>
 </html>
-
-
-
-
-
-
