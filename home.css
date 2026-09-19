@@ -102,7 +102,7 @@
   .home .spread__act { min-height: 30rem; }
 }
 @media (min-width: 1024px) {
-  .home .cover { grid-template-columns: 1fr 1fr; grid-template-areas: "text media"; min-height: 36rem; }
+  .home .cover { grid-template-columns: 1fr 1fr; grid-template-areas: "text media"; min-height: clamp(36rem, calc(100svh - 9rem), 70rem); }
   .home .cover__text { width: auto; max-width: none; align-self: center; padding: 3rem 0 3rem var(--edge); }
   .home .cover__media { position: absolute; inset: 0 0 0 42%; height: auto; width: auto; grid-area: auto; }
   .home .cover__media::after { background: linear-gradient(90deg,var(--color-cream),transparent 28%); }
