@@ -466,3 +466,7 @@
     transition: none;
   }
 }
+/* Dionnes feedback: sierlijke titel met meer ademruimte en effen beige blokken. */
+.dionne-page .od-title { font-family: 'Rouge Script', cursive; font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.18; margin-bottom: 2.5rem; letter-spacing: 0; }
+.dionne-page .od-title em { font-style: normal; }
+.dionne-page .od-practice .service-card { background: var(--color-cream); color: var(--color-dark-brown); }

@@ -78,3 +78,12 @@
  .event-page .event-note h3 { font-size: 1.65rem; }
  .event-page .event-note p { grid-column: 1; }
 }
+/* Dionnes feedback: warme kleurvlakken, sierletters en rustige gelijke beelden. */
+.event-page .event-hero__copy > .event-eyebrow { font-family: 'Rouge Script', cursive; font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.2; letter-spacing: 0; text-transform: none; }
+.event-page .event-services { background: var(--color-copper-deep); color: var(--color-cream); align-items: center; }
+.event-page .event-services__list li { border-color: rgba(224,205,184,.35); }
+.event-page .event-timeline li { padding-top: 1.5rem; }
+.event-page .event-gallery__grid { grid-template-columns: repeat(4,minmax(0,1fr)); grid-template-rows: auto; }
+.event-page .event-gallery figure, .event-page .event-gallery figure:first-child, .event-page .event-gallery figure:nth-child(2), .event-page .event-gallery figure:last-child { grid-row: auto; grid-column: auto; margin: 0; aspect-ratio: 3 / 4; }
+@media (max-width: 899px) { .event-page .event-gallery__grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 599px) { .event-page .event-timeline li { padding: 0 0 2rem 1.25rem; } }

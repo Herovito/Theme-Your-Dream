@@ -189,3 +189,6 @@
 @media (max-width: 380px) {
   .home .close__tagline { font-size: 1.55rem; }
 }
+/* Dionnes feedback: één lettertype en hetzelfde boogportret als Over Dionne. */
+.home .dionne__portrait { width: min(78vw, 24rem); aspect-ratio: 2 / 3; border-radius: 999px 999px .5rem .5rem; margin-inline: auto; }
+.home .dionne__portrait img { object-position: 50% 50%; }

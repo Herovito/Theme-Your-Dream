@@ -19,6 +19,7 @@ const sources = {
   'Fotoshoot Berry One/berry-one-table-perspective.jpg': ['berry-tafel'],
   'Themabox.png': ['styling-box'],
   'dionne-aan-het-werk-1344.jpg': ['dionne-aan-het-werk'],
+  'Fotoshoot Berry One/dionne-bord.jpeg': ['dionne-bord', 'Dionne met het ronde Theme Your Dream-bord'],
   'Fotoshoot Berry One/WhatsApp Image 2026-08-06 at 16.13.13 (19).jpeg': ['dionne-styling', 'Dionne zet een kaars recht op een gedekte feesttafel in een feesttent'],
   'Dionne.jpeg': ['dionne-portret', null, {
     cutout: 'Dionne-removebg-preview-v2.png',
