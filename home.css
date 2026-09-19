@@ -126,3 +126,16 @@
 }
 .home .site-footer { margin-top: 0; border-top: 0; }
 .home .dionne__text { text-wrap: balance; }
+@media (min-width: 640px) and (max-width: 1023px) {
+  .home .cover__media { height: clamp(17rem, 34svh, 26rem); }
+}
+/* Dionne: het portret staat niet als los kader op de pagina maar loopt zacht uit.
+   De rand vervaagt en de witte lucht neemt de kleur van de achtergrond aan. */
+.home .dionne__portrait {
+  width: min(100%, 27rem);
+  border-radius: 0;
+  background: none;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 50%, #000 64%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at 50% 50%, #000 64%, transparent 100%);
+}
