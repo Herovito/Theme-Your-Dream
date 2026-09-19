@@ -56,6 +56,7 @@
     "serviceType": ["Eventstyling", "Styling Box Rental"]
   }
   </script>
+  <link rel="stylesheet" href="eventstyling.css?v=20260919">
 </head>
 <body>
 
@@ -105,188 +106,49 @@
     </nav>
   </header>
 
-  <main id="main-content" class="page">
-
-    <!-- Wave filter definition -->
-    <svg class="svg-defs" aria-hidden="true" focusable="false">
-      <defs>
-        <filter id="wave-soften" x="-10%" y="-50%" width="120%" height="200%" filterUnits="objectBoundingBox">
-          <feGaussianBlur stdDeviation="0 20" edgeMode="none"/>
-        </filter>
-      </defs>
-    </svg>
-
-    <!-- ============================================
-         Pagina hero
-         ============================================ -->
-    <header class="page-hero">
-      <span class="page-hero__eyebrow">Eventstyling</span>
-      <h1 class="page-hero__title">
-        Jij geniet. <em>Dionne zorgt dat alles klopt.</em>
-      </h1>
-      <p class="page-hero__lead">
-        Van tafelstyling tot backdrop, van kleur tot materiaal. Dionne kleedt
-        jouw feest of evenement compleet aan, zodat jij niet zelf
-        achter losse onderdelen aan hoeft.
-      </p>
-    </header>
-
-    <!-- ============================================
-         Sfeerfoto boven de vouw
-         ============================================ -->
-    <section class="section section--photo">
-      <img loading="lazy"
-        src="assets/images/berry-eventstyling-960.webp" srcset="assets/images/berry-eventstyling-480.webp 480w, assets/images/berry-eventstyling-960.webp 960w, assets/images/berry-eventstyling-1321.webp 1321w" sizes="(min-width: 1200px) 1088px, calc(100vw - 48px)" width="960" height="878"
+  <main id="main-content" class="page event-page">
+<header class="event-hero">
+<div class="event-hero__copy"><span class="event-eyebrow">Eventstyling</span><h1>Jij geniet. <em>Dionne zorgt dat alles klopt.</em></h1><p>Je hoeft nog geen concreet plan te hebben. Een sfeer, een paar foto's die je mooi vindt, of gewoon een gevoel waar je iets mee wilt, is genoeg om mee te beginnen. Dionne luistert en maakt er een samenhangend geheel van.</p></div>
+<div class="event-hero__media"><img fetchpriority="high"
+        src="assets/images/berry-eventstyling-960.webp" srcset="assets/images/berry-eventstyling-480.webp 480w, assets/images/berry-eventstyling-960.webp 960w, assets/images/berry-eventstyling-1321.webp 1321w" sizes="(min-width: 900px) 55vw, 100vw" width="960" height="878"
         alt="Volledig opgestelde feesttafel met verzorgde styling, bloemen en decoratie"
-        class="site-photo site-photo--cinematic"
-      >
-    </section>
-
-
-    <!-- ============================================
-         Geen plan nodig
-         ============================================ -->
-    <section class="section section--narrow section--tight">
-      <div class="content-block">
-        <p class="content-block__text">
-          Je hoeft nog geen concreet plan te hebben. Een sfeer, een
-          paar foto's die je mooi vindt, of gewoon een gevoel waar je
-          iets mee wilt, is genoeg om mee te beginnen. Dionne luistert
-          en maakt er een samenhangend geheel van.
-        </p>
-      </div>
-    </section>
-
-    <!-- Wave transition: Geen plan â†’ Waar Dionne mee helpt -->
-    <svg class="story-wave story-wave--cream-walnut" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
-    </svg>
-
-    <!-- ============================================
-         Wat valt eronder
-         ============================================ -->
-    <section class="section section--narrow section--full-bg section--walnut">
-      <div class="section__heading">
-        <h2 class="section__title">Wat Dionne voor je regelt bij de eventstyling</h2>
-      </div>
-
-      <ul class="feature-list reveal-group">
-        <li class="feature-list__item">Tafelstyling, van linnen tot servies via een externe partij</li>
-        <li class="feature-list__item">Backdrops voor foto's en sfeer</li>
-        <li class="feature-list__item">Bloemen en natuurlijke sfeerelementen</li>
-        <li class="feature-list__item">Kleur en materiaalkeuzes die bij elkaar passen</li>
-        <li class="feature-list__item">Complete aankleding van de ruimte</li>
-        <li class="feature-list__item">Samenwerking met ballondecoratie waar gewenst</li>
-      </ul>
-    </section>
-
-    <!-- Wave transition: Waar Dionne mee helpt â†’ Werkwijze -->
-    <svg class="story-wave story-wave--walnut-cream" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
-    </svg>
-
-    <!-- ============================================
-         Werkwijze
-         ============================================ -->
-    <section class="section section--narrow">
-      <div class="section__heading">
-        <span class="section__eyebrow">Werkwijze</span>
-        <h2 class="section__title">Rustig, stap voor stap</h2>
-      </div>
-
-      <div class="process">
-        <div class="process__step">
-          <span class="process__step-label">Vertellen</span>
-          <p class="process__step-text">Je beschrijft de sfeer die je voor je ziet. Een gevoel, een paar foto's, of een kleur is genoeg.</p>
-        </div>
-        <div class="process__step">
-          <span class="process__step-label">Meedenken</span>
-          <p class="process__step-text">Dionne vertaalt jouw gevoel naar concrete keuzes: kleur, materiaal, tafelkleed, bloemen, backdrop.</p>
-        </div>
-        <div class="process__step">
-          <span class="process__step-label">Regelen</span>
-          <p class="process__step-text">Alles wordt ingekocht en voorbereid. Jij hoeft niet achter losse onderdelen aan.</p>
-        </div>
-        <div class="process__step">
-          <span class="process__step-label">Op de dag</span>
-          <p class="process__step-text">Dionne is aanwezig bij de opbouw. Alles staat zoals het moet staan, jij hoeft er niets voor te doen.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Wave transition: Werkwijze â†’ Sfeer -->
-    <svg class="story-wave story-wave--cream-walnut" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
-    </svg>
-
-    <!-- ============================================
-         Sfeerblok
-         ============================================ -->
-    <section class="section section--full-bg section--walnut">
-      <div class="section__heading">
-        <span class="section__eyebrow">Sfeer</span>
-        <h2 class="section__title">Een eerste indruk</h2>
-      </div>
-
-      <div class="mood-grid reveal-group">
-        <div class="mood-card mood-card--photo">
-          <img loading="lazy" src="assets/images/berry-backdrop-960.webp" srcset="assets/images/berry-backdrop-480.webp 480w, assets/images/berry-backdrop-960.webp 960w, assets/images/berry-backdrop-1474.webp 1474w" sizes="(min-width: 1200px) 300px, (min-width: 640px) 45vw, calc(100vw - 48px)" width="960" height="1049" alt="Backdrop met bloemen en zachte achtergrond voor foto's" class="mood-card__img">
-        </div>
-        <div class="mood-card mood-card--photo">
-          <img loading="lazy" src="assets/images/berry-tafel-960.webp" srcset="assets/images/berry-tafel-480.webp 480w, assets/images/berry-tafel-960.webp 960w, assets/images/berry-tafel-1366.webp 1366w" sizes="(min-width: 1200px) 300px, (min-width: 640px) 45vw, calc(100vw - 48px)" width="960" height="1439" alt="Tafelvoorbereiding met bloemen en kaarsen" class="mood-card__img">
-        </div>
-        <div class="mood-card mood-card--photo">
-          <img loading="lazy" src="assets/images/berry-bloemen-960.webp" srcset="assets/images/berry-bloemen-480.webp 480w, assets/images/berry-bloemen-960.webp 960w, assets/images/berry-bloemen-1366.webp 1366w" sizes="(min-width: 1200px) 300px, (min-width: 640px) 45vw, calc(100vw - 48px)" width="960" height="1439" alt="Bloemstukken en sfeerelementen, afgestemd op de stijl" class="mood-card__img">
-        </div>
-        <div class="mood-card mood-card--photo">
-          <img loading="lazy" src="assets/images/berry-bloemendetail-960.webp" srcset="assets/images/berry-bloemendetail-480.webp 480w, assets/images/berry-bloemendetail-960.webp 960w, assets/images/berry-bloemendetail-1485.webp 1485w" sizes="(min-width: 1200px) 300px, (min-width: 640px) 45vw, calc(100vw - 48px)" width="960" height="953" alt="Details die het verschil maken: bloemen, tafel, materialen" class="mood-card__img">
-        </div>
-      </div>
-    </section>
-
-    <!-- Wave transition: Sfeer â†’ CTA -->
-    <svg class="story-wave story-wave--walnut-cream" viewBox="0 0 1440 181"
-         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect class="story-wave__from" width="1440" height="180"/>
-      <path class="story-wave__to"
-            d="M0,112.5 C120,132.4 240,150.5 360,150.5 C480,150.5 600,132.4 720,112.5 C840,92.6 960,74.5 1080,74.5 C1200,74.5 1320,92.6 1440,112.5 L1440,300 L0,300 Z"/>
-    </svg>
-
-    <!-- ============================================
-         CTA
-         ============================================ -->
-    <section class="section section--narrow section--full-bg section--cream section--cta-padded">
-      <p class="section__lead">
-        Je hoeft nog niets uitgewerkt te hebben. Vertel wat je voor je ziet, dan pakt Dionne het vanaf daar op.
-      </p>
-      <a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20eventstyling." class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
+        class="event-hero__image"
+      ></div>
+</header>
+<svg class="event-wave" style="--wave-from:var(--color-cream);--wave-to:var(--color-linen)" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path fill="var(--wave-from)" d="M0 0H1440V120H0Z"/><path fill="var(--wave-to)" d="M0 65C220 10 340 20 590 65S1020 125 1440 38V120H0Z"/></svg>
+<section class="event-services event-section" aria-labelledby="event-services-title">
+<div class="event-services__intro"><h2 id="event-services-title">Wat Dionne voor je regelt bij de eventstyling</h2><p>Van tafelstyling tot backdrop, van kleur tot materiaal. Dionne kleedt jouw feest of evenement compleet aan, zodat jij niet zelf achter losse onderdelen aan hoeft.</p></div>
+<ul class="event-services__list" role="list"><li>Tafelstyling, van linnen tot servies via een externe partij</li>
+<li>Backdrops voor foto's en sfeer</li>
+<li>Bloemen en natuurlijke sfeerelementen</li>
+<li>Kleur en materiaalkeuzes die bij elkaar passen</li>
+<li>Complete aankleding van de ruimte</li>
+<li>Samenwerking met ballondecoratie waar gewenst</li></ul>
+</section>
+<svg class="event-wave" style="--wave-from:var(--color-linen);--wave-to:var(--color-cream)" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path fill="var(--wave-from)" d="M0 0H1440V120H0Z"/><path fill="var(--wave-to)" d="M0 65C220 10 340 20 590 65S1020 125 1440 38V120H0Z"/></svg>
+<section class="event-process event-section" aria-labelledby="event-process-title">
+<span class="event-eyebrow">Werkwijze</span><h2 id="event-process-title">Rustig, stap voor stap</h2>
+<ol class="event-timeline" role="list"><li><span class="event-step__number" aria-hidden="true">01</span><h3>Vertellen</h3><p>Je beschrijft de sfeer die je voor je ziet. Een gevoel, een paar foto's, of een kleur is genoeg.</p></li>
+<li><span class="event-step__number" aria-hidden="true">02</span><h3>Meedenken</h3><p>Dionne vertaalt jouw gevoel naar concrete keuzes: kleur, materiaal, tafelkleed, bloemen, backdrop.</p></li>
+<li><span class="event-step__number" aria-hidden="true">03</span><h3>Regelen</h3><p>Alles wordt ingekocht en voorbereid. Jij hoeft niet achter losse onderdelen aan.</p></li>
+<li><span class="event-step__number" aria-hidden="true">04</span><h3>Op de dag</h3><p>Dionne is aanwezig bij de opbouw. Alles staat zoals het moet staan, jij hoeft er niets voor te doen.</p></li></ol>
+</section>
+<section class="event-gallery event-section" aria-labelledby="event-gallery-title"><span class="event-eyebrow">Sfeer</span><h2 id="event-gallery-title">Een eerste indruk</h2><div class="event-gallery__grid"><figure><img loading="lazy" src="assets/images/berry-backdrop-960.webp" srcset="assets/images/berry-backdrop-480.webp 480w, assets/images/berry-backdrop-960.webp 960w, assets/images/berry-backdrop-1474.webp 1474w" sizes="(min-width: 900px) 48vw, (min-width: 600px) 50vw, 100vw" width="960" height="1049" alt="Backdrop met bloemen en zachte achtergrond voor foto's" ></figure>
+<figure><img loading="lazy" src="assets/images/berry-tafel-960.webp" srcset="assets/images/berry-tafel-480.webp 480w, assets/images/berry-tafel-960.webp 960w, assets/images/berry-tafel-1366.webp 1366w" sizes="(min-width: 900px) 48vw, (min-width: 600px) 50vw, 100vw" width="960" height="1439" alt="Tafelvoorbereiding met bloemen en kaarsen" ></figure>
+<figure><img loading="lazy" src="assets/images/berry-bloemen-960.webp" srcset="assets/images/berry-bloemen-480.webp 480w, assets/images/berry-bloemen-960.webp 960w, assets/images/berry-bloemen-1366.webp 1366w" sizes="(min-width: 900px) 48vw, (min-width: 600px) 50vw, 100vw" width="960" height="1439" alt="Bloemstukken en sfeerelementen, afgestemd op de stijl" ></figure>
+<figure><img loading="lazy" src="assets/images/berry-bloemendetail-960.webp" srcset="assets/images/berry-bloemendetail-480.webp 480w, assets/images/berry-bloemendetail-960.webp 960w, assets/images/berry-bloemendetail-1485.webp 1485w" sizes="(min-width: 900px) 48vw, (min-width: 600px) 50vw, 100vw" width="960" height="953" alt="Details die het verschil maken: bloemen, tafel, materialen" ></figure></div></section>
+<svg class="event-wave" style="--wave-from:var(--color-cream);--wave-to:var(--color-copper-deep)" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path fill="var(--wave-from)" d="M0 0H1440V120H0Z"/><path fill="var(--wave-to)" d="M0 65C220 10 340 20 590 65S1020 125 1440 38V120H0Z"/></svg>
+<section class="event-contact event-section" aria-label="Neem contact op"><p>Je hoeft nog niets uitgewerkt te hebben. Vertel wat je voor je ziet, dan pakt Dionne het vanaf daar op.</p><a href="https://wa.me/31612166851?text=Hoi%20Dionne%21%20Ik%20wil%20graag%20meer%20weten%20over%20eventstyling." class="cta cta--whatsapp" target="_blank" rel="noopener noreferrer">
         Vertel Dionne jouw idee
-      </a>
-
-    </section>
-
-
-    <!-- ============================================
-         Zachte verwijzing, geen menu
-         ============================================ -->
-    <section class="also-see" aria-label="Ook bekijken">
+      </a></section>
+<section class="also-see" aria-label="Ook bekijken">
       <span class="also-see__label">Ook bekijken</span>
       <div class="also-see__links reveal-group">
         <a href="styling-boxes.html">Styling boxen</a>
         <a href="over_dionne.html">Over Dionne</a>
       </div>
     </section>
-
-  </main>
+</main>
 
   <!-- Back to Top Button -->
   <button id="back-to-top" class="back-to-top" aria-label="Terug naar boven">
