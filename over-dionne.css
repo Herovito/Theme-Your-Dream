@@ -4,7 +4,7 @@
 .dionne-page {
   --od-edge: clamp(1.25rem, 6.5vw, 8rem);
   --od-dark: var(--color-copper-deep);
-  --od-on-dark: var(--color-on-walnut);
+  --od-on-dark: var(--color-cream);
   --od-wave-h: clamp(2.5rem, 5.5vw, 5.5rem);
   color: var(--color-dark-brown);
 }
